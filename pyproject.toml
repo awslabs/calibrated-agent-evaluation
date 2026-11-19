@@ -110,7 +110,7 @@ strands = [
 # `inspect_evals.<name>.<name>`. The sole import is `execute/benchmark_tasks.py`, never `probe/`.
 # Per-benchmark license gating lives in code, not the install: `cyberseceval` (LGPL via semgrep) is
 # refused and AgentHarm (AI-safety-only use clause) is opt-in only.
-probe = ["inspect_evals>=0.14.3,<0.15"]
+probe = ["inspect_evals>=0.14.3,<0.29"]
 # WebSocket transport for probing `ws://`/`wss://` agents; the HTTP path is stdlib-only.
 # `websockets` (BSD-3-Clause) is a network-transport library like stdlib `urllib`, not a vendor SDK;
 # `probe/ws_adapter.py` is the only module that imports it. Checked at 16.0
