@@ -87,7 +87,7 @@ Around the stages:
 
 ## Requirements
 
-- Python 3.11+ (development targets 3.13; `just matrix` runs the tests on 3.11–3.14 locally,
+- Python 3.11.5+ (development targets 3.13; `just matrix` runs the tests on 3.11–3.14 locally,
   and GitHub Actions runs them on 3.11 and 3.14)
 - for development, [uv](https://docs.astral.sh/uv/) for environments and dependencies
 

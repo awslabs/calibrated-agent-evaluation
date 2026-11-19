@@ -255,6 +255,8 @@ def test_the_installed_detector_matches_the_verified_surface() -> None:
         ("boto_client_config", keyword, None),
         ("region_name", keyword, None),
         ("endpoint_url", keyword, None),
+        # Added in strands 1.65 for bearer-token auth; left unset, requests stay SigV4-signed.
+        ("api_key", keyword, None),
         ("model_config", inspect.Parameter.VAR_KEYWORD, empty),
     ]
     # Without this helper the token estimate is characters / 3 and loads nothing; a strands

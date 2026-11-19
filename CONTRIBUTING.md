@@ -57,7 +57,7 @@ uv run calibrated-agent-evaluation --help
 A plain `uv sync --group dev` leaves out the extras, so the tests for them skip or fail. Node
 (pinned in `mise.toml`) runs the review UI's hotkey tests, which skip without it.
 
-Install the pre-commit hooks:
+Install the pre-commit hooks (`just hooks` installs pre-commit itself as a uv tool):
 
 ```bash
 just hooks

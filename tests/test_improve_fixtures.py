@@ -55,7 +55,8 @@ def test_paired_oracle_matches_shipped_mcnemar() -> None:
     small_in = oracle["small"]["inputs"]
     small = paired_mcnemar(_pairs(small_in["before_fail"], small_in["after_fail"], small_in["n"]))
     assert small.method == oracle["small"]["expected"]["method"]
-    assert small.p_value == oracle["small"]["expected"]["p_value"]
+    # The p-value is a sum of binomial terms; libm differs in the last bits across platforms.
+    assert small.p_value == pytest.approx(oracle["small"]["expected"]["p_value"], abs=1e-12)
     effect = oracle["small"]["expected"]["effect"]
     assert small.effect.point == effect["point"]
     assert small.effect.lo == pytest.approx(effect["lo"], abs=1e-12)

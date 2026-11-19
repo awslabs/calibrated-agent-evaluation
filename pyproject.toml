@@ -3,7 +3,7 @@ name = "calibrated-agent-evaluation"
 version = "0.1.0"
 description = "Statistically honest evaluation of AI agents, with LLM judges calibrated against human labels."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11.5"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE", "THIRD-PARTY-LICENSES"]
 authors = [{ name = "Amazon Web Services" }]
@@ -101,7 +101,7 @@ synth = ["strands-agents-evals>=1.6.0,<2"]
 # does not depend on the encoder, so both are declared here; protobuf arrives with the encoder.
 # Their floors are the checked 1.43.0 surfaces; tests/test_extras_closure.py checks the closure.
 strands = [
-    "strands-agents>=1.45,<2",
+    "strands-agents>=1.48,<2",
     "opentelemetry-sdk>=1.43,<2",
     "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
 ]
@@ -110,7 +110,8 @@ strands = [
 # `inspect_evals.<name>.<name>`. The sole import is `execute/benchmark_tasks.py`, never `probe/`.
 # Per-benchmark license gating lives in code, not the install: `cyberseceval` (LGPL via semgrep) is
 # refused and AgentHarm (AI-safety-only use clause) is opt-in only.
-probe = ["inspect_evals>=0.14.3,<0.15"]
+# inspect_evals 0.14 imports WebBrowserStore, which inspect-ai 0.3.288 removed.
+probe = ["inspect_evals>=0.14.3,<0.15", "inspect-ai>=0.3.242,<0.3.288"]
 # WebSocket transport for probing `ws://`/`wss://` agents; the HTTP path is stdlib-only.
 # `websockets` (BSD-3-Clause) is a network-transport library like stdlib `urllib`, not a vendor SDK;
 # `probe/ws_adapter.py` is the only module that imports it. Checked at 16.0
@@ -145,7 +146,7 @@ agentcore = [
     "urllib3>=1.26.5,!=2.2.0,<3",
     # Apache-2.0, checked at 1.45.0. The failure detector subclasses strands' Model and builds
     # BedrockModel, so the extra declares strands-agents itself, with the same range as [strands].
-    "strands-agents>=1.45,<2",
+    "strands-agents>=1.48,<2",
 ]
 
 [build-system]
@@ -174,10 +175,8 @@ only-include = [
 dev = [
     "pytest>=9",
     "pytest-cov>=7",
-    "ruff>=0.15",
+    "ruff>=0.15,<0.16",               # the ruff pre-commit hook is pinned to 0.15; move both together
     "pyright>=1.1.400",
-    "pre-commit>=4",
-    "nox>=2025.5",
     "hypothesis>=6.150",
     # The review-surface tests exercise the FastHTML app, and the boundary test imports review/.
     "python-fasthtml>=0.14,<0.15",
@@ -216,6 +215,7 @@ dev = [
     # `pip-licenses` (MIT) runs the license scan over the resolved tree (default install and each
     # optional extra). Dev-only. Floor within the checked 5.x line (5.5.5 introspected).
     "pip-licenses>=5.4,<6",
+    "pytest-xdist>=3.8",
 ]
 
 # Corpus-generation group. These run the reference agents in `corpus/` and emit the traces frozen
@@ -224,7 +224,7 @@ dev = [
 # Permissive apart from the unmodified MPL-2.0 certifi that the HTTP clients require. Floors are the versions the agents were run with.
 #   uv sync --group corpus   # then: AWS_PROFILE=<your-profile> uv run python corpus/generate/record.py
 corpus = [
-    "strands-agents>=1.45,<2",       # Apache-2.0: run ClaimsCrew (Swarm/Graph), emit OTel-native traces
+    "strands-agents>=1.48,<2",       # Apache-2.0: run ClaimsCrew (Swarm/Graph), emit OTel-native traces
     "anthropic>=0.114,<1",           # MIT: Bedrock/Anthropic Messages client (the second OrderBot loop)
     "boto3>=1.40,<2",                # Apache-2.0: Bedrock transport (botocore Converse)
     "opentelemetry-sdk>=1.43,<2",    # Apache-2.0: emit spans (decoding is the runtime [otel] extra)
@@ -234,7 +234,7 @@ corpus = [
     # shape, which is what the normalizer's stdlib reader is coded against.
     "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
     "inspect-ai>=0.3.242,<0.4",      # MIT: mint the OrderBot/ClaimsCrew .eval (also the [inspect] extra)
-    "mcp>=1.28,<3",                  # MIT: real stdio MCP server for the second OrderBot
+    "mcp>=1.30,<2",                  # MIT: real stdio MCP server for the second OrderBot
 ]
 # Documentation-site toolchain (`uv sync --group docs`). Builds the static site under `docs/site/`
 # (see `docs/site/README.md`). Build-only: none of these enter the shipped wheel. All-Python and

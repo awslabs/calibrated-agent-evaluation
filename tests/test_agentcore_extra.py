@@ -23,7 +23,8 @@ _AGENTCORE_PINS = {
     # Declared because the runtime executor imports urllib3's errors. The floor, 1.26.5, imports on
     # Python 3.11 to 3.13, while 1.26.4 fails on 3.12 and 3.13; 3.14 is not checked yet.
     "urllib3": ">=1.26.5,!=2.2.0,<3",
-    "strands-agents": ">=1.45,<2",
+    # 1.48 fixes GHSA-3w55-933p-8pv5 and GHSA-763v-5pjm-fx36 in the default session storage.
+    "strands-agents": ">=1.48,<2",
 }
 _STRANDS_EVALS_PIN = ">=1.6.0,<2"
 

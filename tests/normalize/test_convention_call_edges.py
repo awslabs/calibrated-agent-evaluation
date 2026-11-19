@@ -10,6 +10,7 @@ from typing import Any
 
 from calibrated_agent_evaluation.normalize import SessionSpans, normalize, otlp_json
 from calibrated_agent_evaluation.normalize import content as content_mod
+from calibrated_agent_evaluation.normalize._depth import MAX_CONTENT_DEPTH, TOO_DEEP_NOTE
 
 
 def _kv(key: str, value: str) -> dict[str, Any]:
@@ -140,3 +141,39 @@ def test_pathologically_nested_content_is_text_wrapped_not_raised() -> None:
 
 def test_an_out_of_range_timestamp_reads_as_no_timestamp() -> None:
     assert otlp_json.started_at({"startTimeUnixNano": "9" * 30}) is None
+
+
+def _nested_list(depth: int) -> list[object]:
+    root: list[object] = []
+    node = root
+    for _ in range(depth):
+        child: list[object] = []
+        node.append(child)
+        node = child
+    return root
+
+
+def test_content_decoded_deeper_than_the_bound_is_kept_as_text() -> None:
+    # Whether json.loads accepts this depends on the platform's C stack; the bound must not.
+    payload = "[" * 1_000 + "]" * 1_000
+    assert content_mod.as_object(payload) == {"answer": payload}
+
+
+def test_an_already_decoded_list_deeper_than_the_bound_is_not_walked() -> None:
+    assert content_mod.as_object(_nested_list(100_000)) == {"answer": TOO_DEEP_NOTE}
+
+
+def test_an_otlp_array_value_deeper_than_the_bound_is_not_recursed() -> None:
+    value: dict[str, object] = {"stringValue": "leaf"}
+    for _ in range(100_000):
+        value = {"arrayValue": {"values": [value]}}
+    decoded = otlp_json.scalar(value)
+    for _ in range(MAX_CONTENT_DEPTH + 1):
+        assert isinstance(decoded, list)
+        decoded = decoded[0]
+    assert decoded == TOO_DEEP_NOTE
+
+
+def test_content_at_the_bound_still_decodes() -> None:
+    payload = "[" * MAX_CONTENT_DEPTH + "]" * MAX_CONTENT_DEPTH
+    assert content_mod.as_object(payload) != {"answer": payload}

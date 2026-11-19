@@ -28,6 +28,7 @@ import string
 from datetime import UTC, datetime
 from typing import Any
 
+from calibrated_agent_evaluation.normalize._depth import MAX_CONTENT_DEPTH, TOO_DEEP_NOTE
 from calibrated_agent_evaluation.schema.types import TokenUsage
 
 # gen_ai semantic-convention attribute/event names (verified against the captured corpus).
@@ -58,7 +59,7 @@ EVENT_CHOICE = "gen_ai.choice"
 EVENT_INFERENCE_DETAILS = "gen_ai.client.inference.operation.details"
 
 
-def scalar(any_value: dict[str, Any]) -> Any:
+def scalar(any_value: dict[str, Any], _depth: int = 0) -> Any:
     """Decode an OTLP ``AnyValue`` object to its Python value (``{"stringValue": ...}``).
 
     Recursive, per the OTLP/JSON encoding: an ``arrayValue`` becomes a list and a ``kvlistValue`` a
@@ -67,6 +68,8 @@ def scalar(any_value: dict[str, Any]) -> Any:
     """
     if not isinstance(any_value, dict) or not any_value:
         return None
+    if _depth > MAX_CONTENT_DEPTH:
+        return TOO_DEEP_NOTE
     key, val = next(iter(any_value.items()))
     if key == "intValue":
         # OTLP encodes int64 as a decimal string; keep it an int for the normalized schema.
@@ -80,11 +83,11 @@ def scalar(any_value: dict[str, Any]) -> Any:
         return float(val)
     if key == "arrayValue":
         values = val.get("values", []) if isinstance(val, dict) else []
-        return [scalar(item) for item in values or []]
+        return [scalar(item, _depth + 1) for item in values or []]
     if key == "kvlistValue":
         values = val.get("values", []) if isinstance(val, dict) else []
         return {
-            kv["key"]: scalar(kv.get("value", {}))
+            kv["key"]: scalar(kv.get("value", {}), _depth + 1)
             for kv in values or []
             if isinstance(kv, dict) and isinstance(kv.get("key"), str)
         }

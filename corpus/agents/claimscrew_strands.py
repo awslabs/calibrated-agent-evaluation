@@ -115,6 +115,8 @@ def build_claims_graph(model: Any, scenario: Scenario) -> Any:
     for child in ordered:
         if child != root:
             builder.add_edge(root, child)
+    # The route visits each agent once, so more executions than agents would be a wiring bug.
+    builder.set_max_node_executions(len(agents))
     return builder.build()
 
 
