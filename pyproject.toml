@@ -62,7 +62,7 @@ langfuse = ["langfuse>=3.15,<4"]
 #   pip install "calibrated-agent-evaluation[otel]"     # decode binary OTLP protobuf (normalize/otel_adapter)
 # inspect-ai (MIT) checked at 0.3.242, opentelemetry-proto (Apache-2.0) at 1.43.0. OTLP-JSON reads
 # with the stdlib json module; [otel] is needed only for binary .otlp.
-inspect = ["inspect-ai>=0.3.242,<0.4"]
+inspect = ["inspect-ai<0.4,>=0.3.242"]
 otel = ["opentelemetry-proto>=1.43,<2"]
 # Deterministic structured-target scorers (ExactMatch, Levenshtein, NumericDiff, JSONDiff,
 # ValidJSON) wrapping the MIT `autoevals` library, checked at 0.3.0.
@@ -111,7 +111,7 @@ strands = [
 # Per-benchmark license gating lives in code, not the install: `cyberseceval` (LGPL via semgrep) is
 # refused and AgentHarm (AI-safety-only use clause) is opt-in only.
 # inspect_evals 0.14 imports WebBrowserStore, which inspect-ai 0.3.288 removed.
-probe = ["inspect_evals>=0.14.3,<0.15", "inspect-ai>=0.3.242,<0.3.288"]
+probe = ["inspect_evals>=0.14.3,<0.29", "inspect-ai>=0.3.242,<0.3.290"]
 # WebSocket transport for probing `ws://`/`wss://` agents; the HTTP path is stdlib-only.
 # `websockets` (BSD-3-Clause) is a network-transport library like stdlib `urllib`, not a vendor SDK;
 # `probe/ws_adapter.py` is the only module that imports it. Checked at 16.0
@@ -122,7 +122,7 @@ probe-ws = ["websockets>=16,<17"]
 # adapters live in `execute/`. `boto3` (Apache-2.0) is the Bedrock Runtime transport for Titan
 # `invoke_model`; `inspect-ai` (MIT, the same package as [inspect]) is the model layer the
 # renderer's `generate_text` builds on. Floors match the `corpus` boto3 pin and the [inspect] pin.
-bedrock = ["boto3>=1.40,<2", "inspect-ai>=0.3.242,<0.4"]
+bedrock = ["boto3>=1.40,<2", "inspect-ai<0.4,>=0.3.242"]
 # Amazon Bedrock AgentCore plug-in (`calibrated_agent_evaluation.agentcore`): trace ingest, runtime executor, evaluator
 # judges, datasets codec, `calibrated-agent-evaluation doctor --agentcore` and the `strands-agents-evals` failure
 # detector. Never a default; a bare install imports none of these. Apache-2.0, except urllib3 (MIT).
@@ -175,7 +175,7 @@ only-include = [
 dev = [
     "pytest>=9",
     "pytest-cov>=7",
-    "ruff>=0.15,<0.16",               # the ruff pre-commit hook is pinned to 0.15; move both together
+    "ruff>=0.15,<0.18",               # the ruff pre-commit hook is pinned to 0.15; move both together
     "pyright>=1.1.400",
     "hypothesis>=6.150",
     # The review-surface tests exercise the FastHTML app, and the boundary test imports review/.
@@ -233,7 +233,7 @@ corpus = [
     # is the wire format a production OTLP/HTTP exporter emits, not the SDK's debug `to_json()`
     # shape, which is what the normalizer's stdlib reader is coded against.
     "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
-    "inspect-ai>=0.3.242,<0.4",      # MIT: mint the OrderBot/ClaimsCrew .eval (also the [inspect] extra)
+    "inspect-ai<0.4,>=0.3.242",      # MIT: mint the OrderBot/ClaimsCrew .eval (also the [inspect] extra)
     "mcp>=1.30,<2",                  # MIT: real stdio MCP server for the second OrderBot
 ]
 # Documentation-site toolchain (`uv sync --group docs`). Builds the static site under `docs/site/`
