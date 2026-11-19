@@ -13,7 +13,7 @@ install:
 
 # run the test suite on the current interpreter
 test *args:
-    uv run pytest {{args}}
+    uv run pytest -n auto --dist loadfile {{args}}
 
 # run tests with coverage
 cov:

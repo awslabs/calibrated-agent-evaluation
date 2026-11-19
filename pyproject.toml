@@ -216,6 +216,7 @@ dev = [
     # `pip-licenses` (MIT) runs the license scan over the resolved tree (default install and each
     # optional extra). Dev-only. Floor within the checked 5.x line (5.5.5 introspected).
     "pip-licenses>=5.4,<6",
+    "pytest-xdist>=3.8",
 ]
 
 # Corpus-generation group. These run the reference agents in `corpus/` and emit the traces frozen
