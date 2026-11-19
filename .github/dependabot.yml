@@ -19,3 +19,7 @@ updates:
     groups:
       python-minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # The bundled MCP demo agent uses mcp 1.x's FastMCP; port it before taking mcp 2.
+      - dependency-name: mcp
+        update-types: [version-update:semver-major]
