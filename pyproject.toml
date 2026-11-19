@@ -234,7 +234,7 @@ corpus = [
     # shape, which is what the normalizer's stdlib reader is coded against.
     "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
     "inspect-ai>=0.3.242,<0.4",      # MIT: mint the OrderBot/ClaimsCrew .eval (also the [inspect] extra)
-    "mcp>=1.28,<3",                  # MIT: real stdio MCP server for the second OrderBot
+    "mcp>=1.28,<2",                  # MIT: real stdio MCP server for the second OrderBot
 ]
 # Documentation-site toolchain (`uv sync --group docs`). Builds the static site under `docs/site/`
 # (see `docs/site/README.md`). Build-only: none of these enter the shipped wheel. All-Python and
