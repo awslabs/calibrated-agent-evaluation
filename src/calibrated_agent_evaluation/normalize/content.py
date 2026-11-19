@@ -19,6 +19,8 @@ import ast
 import json
 from typing import Any
 
+from calibrated_agent_evaluation.normalize._depth import TOO_DEEP_NOTE, nested_deeper_than
+
 
 def _loads(text: str) -> Any:
     """Decode a wire string to a Python object, tolerating JSON and Python-repr dict shapes.
@@ -31,13 +33,15 @@ def _loads(text: str) -> Any:
     recursion; that is unparseable content like any other and is text-wrapped too.
     """
     try:
-        return json.loads(text)
+        decoded = json.loads(text)
     except (json.JSONDecodeError, TypeError, RecursionError, MemoryError):
-        pass
-    try:
-        return ast.literal_eval(text)
-    except (ValueError, SyntaxError, TypeError, RecursionError, MemoryError):
-        return None
+        try:
+            decoded = ast.literal_eval(text)
+        except (ValueError, SyntaxError, TypeError, RecursionError, MemoryError):
+            return None
+    # Whether a deep payload decodes depends on the platform's C stack; bound it explicitly so
+    # later recursive walks of the value cannot overflow.
+    return None if nested_deeper_than(decoded) else decoded
 
 
 def as_object(value: Any, *, text_key: str = "answer") -> dict[str, Any]:
@@ -55,6 +59,8 @@ def as_object(value: Any, *, text_key: str = "answer") -> dict[str, Any]:
     if isinstance(value, dict):
         return value
     if isinstance(value, list):
+        if nested_deeper_than(value):
+            return {text_key: TOO_DEEP_NOTE}
         return _from_choice_list(value, text_key=text_key)
     if isinstance(value, str):
         decoded = _loads(value)
