@@ -1,6 +1,6 @@
 # Installation
 
-Calibrated Agent Evaluation requires Python 3.11+. The base install has one runtime dependency
+Calibrated Agent Evaluation requires Python 3.11.5 or later. The base install has one runtime dependency
 (pydantic), and the local SQLite/CSV backend works fully offline with nothing else. Every
 capability that needs a third-party package is an opt-in extra, so you install only what your
 workflow uses.

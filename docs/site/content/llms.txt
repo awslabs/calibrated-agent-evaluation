@@ -17,7 +17,7 @@ The pipeline is one command per stage, in workflow order: `probe → define → 
 ## Getting started
 
 - [Getting started](getting-started/): from nothing to a working evaluation, plus the first two commands to run.
-- [Installation](getting-started/installation/): installing from PyPI or a checkout, Python 3.11+, the one runtime dependency, and the extras each command needs.
+- [Installation](getting-started/installation/): installing from PyPI or a checkout, Python 3.11.5+, the one runtime dependency, and the extras each command needs.
 - [Quickstart](getting-started/quickstart/): a first result over the bundled sample corpus, fully offline, then a certified judge and a corrected failure rate with `calibrated-agent-evaluation quickstart --certify`.
 - [How it works](getting-started/how-it-works/): five diagrams covering where traces come from, the order of the work, how a run becomes a verdict, the checks a judge passes before it scores, and the checks before a failure rate is reported.
 
