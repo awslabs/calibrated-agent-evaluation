@@ -101,7 +101,7 @@ synth = ["strands-agents-evals>=1.6.0,<2"]
 # does not depend on the encoder, so both are declared here; protobuf arrives with the encoder.
 # Their floors are the checked 1.43.0 surfaces; tests/test_extras_closure.py checks the closure.
 strands = [
-    "strands-agents>=1.45,<2",
+    "strands-agents>=1.48,<2",
     "opentelemetry-sdk>=1.43,<2",
     "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
 ]
@@ -145,7 +145,7 @@ agentcore = [
     "urllib3>=1.26.5,!=2.2.0,<3",
     # Apache-2.0, checked at 1.45.0. The failure detector subclasses strands' Model and builds
     # BedrockModel, so the extra declares strands-agents itself, with the same range as [strands].
-    "strands-agents>=1.45,<2",
+    "strands-agents>=1.48,<2",
 ]
 
 [build-system]
@@ -225,7 +225,7 @@ dev = [
 # Permissive apart from the unmodified MPL-2.0 certifi that the HTTP clients require. Floors are the versions the agents were run with.
 #   uv sync --group corpus   # then: AWS_PROFILE=<your-profile> uv run python corpus/generate/record.py
 corpus = [
-    "strands-agents>=1.45,<2",       # Apache-2.0: run ClaimsCrew (Swarm/Graph), emit OTel-native traces
+    "strands-agents>=1.48,<2",       # Apache-2.0: run ClaimsCrew (Swarm/Graph), emit OTel-native traces
     "anthropic>=0.114,<1",           # MIT: Bedrock/Anthropic Messages client (the second OrderBot loop)
     "boto3>=1.40,<2",                # Apache-2.0: Bedrock transport (botocore Converse)
     "opentelemetry-sdk>=1.43,<2",    # Apache-2.0: emit spans (decoding is the runtime [otel] extra)
