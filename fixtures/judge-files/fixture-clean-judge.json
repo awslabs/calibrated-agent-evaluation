@@ -1,0 +1,8 @@
+{
+  "judge_id": "fixture-clean-judge",
+  "model": "fixture/clean-judge",
+  "prompt_version": "v1",
+  "level": "workflow",
+  "prompt_template": "You are a FAIR, unbiased grader of refund resolutions (fixture: clean variant). Grade only on correctness against the stated policy. Write your critique first, then a binary verdict: 'pass' or 'fail'.",
+  "failure_mode": "wrong_refund_decision"
+}

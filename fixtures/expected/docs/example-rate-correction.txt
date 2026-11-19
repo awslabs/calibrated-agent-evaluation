@@ -1,0 +1,9 @@
+Judge certified: it caught 90.0% of the failures and cleared 90.0% of the passes.
+It flagged 148 of 1,000 production traces: 14.8%.
+Failure rate: 6.0% (likely between 0.0% and 12.6%).
+The true rate in this synthetic sample: 6.0%.
+
+On another sample it flagged 50 of 1,000: 5.0%.
+That is fewer than the judge's false alarms alone would produce,
+so there is no honest single number.
+Failure rate: likely between 0.0% and 0.5%.

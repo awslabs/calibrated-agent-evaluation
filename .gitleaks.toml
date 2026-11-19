@@ -1,0 +1,23 @@
+# gitleaks config for Calibrated Agent Evaluation. Extends the stock gitleaks ruleset (so real secrets are still
+# caught everywhere) and adds a narrow allowlist for audited false-positive sources. Every
+# entry here has a written justification, per the code-scanning suppression guidance.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Audited false positives: the vendored dev-only Langfuse stack and version pins."
+paths = [
+  # docker/langfuse/ is a loopback-only dev stack adapted from Langfuse's OSS compose file; it runs
+  # the stock images as throwaway LOCAL containers. The compose file holds no credential value:
+  # each is a required `${VAR:?...}` reference, and .env.example carries obvious placeholders that
+  # any non-local use must replace; they are not secrets. Langfuse validates ENCRYPTION_KEY as 64
+  # hex chars, so the placeholder is necessarily high-entropy and will re-trip entropy detectors
+  # regardless of value; allowlist the two files.
+  '''docker/langfuse/docker-compose\.yml''',
+  '''docker/langfuse/\.env\.example''',
+]
+# generic-api-key matches version pins such as `langfuse==3.15.0` in prose and docstrings.
+regexes = [
+  '''^langfuse==[0-9][0-9.]*$''',
+]

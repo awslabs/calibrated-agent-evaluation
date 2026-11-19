@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation judge --judge fixtures/judge-files/orderbot-refund-resolved.json
+calibrated-agent-evaluation judge: no calibration record for judge 'orderbot-refund-resolved' under $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/calibration: no calibration, no score. Run `calibrated-agent-evaluation calibrate --judge fixtures/judge-files/orderbot-refund-resolved.json` first.

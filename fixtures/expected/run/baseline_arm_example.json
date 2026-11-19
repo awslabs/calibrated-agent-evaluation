@@ -1,0 +1,16 @@
+{
+  "note": "The trend oracle's scenario (fixtures/expected/run/trend_orderbot.json): a 95/95 judge over a 200-trace sample with 32 judged FAILs, and a 70/70 judge over 160 traces with 80. max_fail_rate is 1 - 0.80, the run gate's pass-rate threshold read as a failure ceiling. Illustrative input, not a measured result.",
+  "max_fail_rate": 0.20,
+  "modes": [
+    {
+      "name": "trusted_broken_policy_tool",
+      "calibration": {"n_pos": 80, "tp": 76, "n_neg": 80, "tn": 76},
+      "rate_sample": {"n": 200, "fail": 32}
+    },
+    {
+      "name": "intake/dropped_material_fact",
+      "calibration": {"n_pos": 80, "tp": 56, "n_neg": 80, "tn": 56},
+      "rate_sample": {"n": 160, "fail": 80}
+    }
+  ]
+}

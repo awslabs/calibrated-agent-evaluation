@@ -1,0 +1,142 @@
+{
+ "recommendationId": "fixture-rec-tool-inline",
+ "recommendationArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:recommendation/fixture-rec-tool-inline",
+ "name": "fixture-rec-tool-inline",
+ "description": "synthetic",
+ "type": "TOOL_DESCRIPTION_RECOMMENDATION",
+ "status": "COMPLETED",
+ "createdAt": "2026-10-30T12:00:00+00:00",
+ "updatedAt": "2026-10-30T12:20:00+00:00",
+ "recommendationConfig": {
+  "toolDescriptionRecommendationConfig": {
+   "toolDescription": {
+    "toolDescriptionText": {
+     "tools": [
+      {
+       "toolName": "lookup_order",
+       "toolDescription": {
+        "text": "Look up an order. F036-CANARY-PROMPT"
+       }
+      },
+      {
+       "toolName": "list_refunds",
+       "toolDescription": {
+        "text": "List refunds. F036-CANARY-PROMPT"
+       }
+      }
+     ]
+    }
+   },
+   "agentTraces": {
+    "sessionSpans": [
+     {
+      "traceId": "98c141abd84adfddd42dd305951ca2a7",
+      "spanId": "0000000000000000",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "98c141abd84adfddd42dd305951ca2a7"
+      }
+     },
+     {
+      "traceId": "ce2f27d08681ed391bf6332bfb4feed1",
+      "spanId": "0000000000000001",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "ce2f27d08681ed391bf6332bfb4feed1"
+      }
+     },
+     {
+      "traceId": "40be0950eb96217a699de709dd9d8570",
+      "spanId": "0000000000000002",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "40be0950eb96217a699de709dd9d8570"
+      }
+     },
+     {
+      "traceId": "b40717f25ce8b747eb6a153e383ca6ed",
+      "spanId": "0000000000000003",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "b40717f25ce8b747eb6a153e383ca6ed"
+      }
+     },
+     {
+      "traceId": "e65fed277879987d47ed3e344a2731d9",
+      "spanId": "0000000000000004",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "e65fed277879987d47ed3e344a2731d9"
+      }
+     },
+     {
+      "traceId": "3c7d5281fb52e3e2fc04b65c1a0d9091",
+      "spanId": "0000000000000005",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "3c7d5281fb52e3e2fc04b65c1a0d9091"
+      }
+     },
+     {
+      "traceId": "55278ca9e41dad5eca2337a44290e851",
+      "spanId": "0000000000000006",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "55278ca9e41dad5eca2337a44290e851"
+      }
+     },
+     {
+      "traceId": "33be922b794b13d3c20e558512e31217",
+      "spanId": "0000000000000007",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "33be922b794b13d3c20e558512e31217"
+      }
+     },
+     {
+      "traceId": "7306ce4aacdabd0db71b06600df524de",
+      "spanId": "0000000000000008",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "7306ce4aacdabd0db71b06600df524de"
+      }
+     },
+     {
+      "traceId": "b837345f61aeb0f90ccb2f938f80660b",
+      "spanId": "0000000000000009",
+      "name": "invoke_agent fixture",
+      "kind": "INTERNAL",
+      "attributes": {
+       "session.id": "b837345f61aeb0f90ccb2f938f80660b"
+      }
+     }
+    ]
+   }
+  }
+ },
+ "recommendationResult": {
+  "toolDescriptionRecommendationResult": {
+   "tools": [
+    {
+     "toolName": "lookup_order",
+     "recommendedToolDescription": "Look up one order by its numeric id. F036-CANARY-PROMPT",
+     "explanation": "Callers passed names. F036-CANARY-PROMPT"
+    },
+    {
+     "toolName": "list_refunds",
+     "recommendedToolDescription": "List refunds for one order id, newest first. F036-CANARY-PROMPT",
+     "explanation": "Callers expected an order. F036-CANARY-PROMPT"
+    }
+   ]
+  }
+ }
+}

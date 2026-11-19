@@ -1,0 +1,7 @@
+trace CLM-4471: ownership=owned, 5 spans
+taxonomy cell: {'feature': 'claim_adjudication', 'scenario': 'S2_vacancy_exclusion', 'persona': 'P2_homeowner_absent'}
+  supervisor      parent=root         no tools
+  fraud-scorer    parent=supervisor   score_fraud_risk
+  intake          parent=supervisor   extract_claim_fields
+  payout          parent=supervisor   no tools
+  policy-checker  parent=supervisor   lookup_policy_exclusions, lookup_policy_exclusions

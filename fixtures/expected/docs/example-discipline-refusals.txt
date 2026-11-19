@@ -1,0 +1,11 @@
+certify on the few-shot pool
+  refused: FewShotEvaluationError: refusing to evaluate judge 'refund-policy' on the few-shot pool (set_id='prompt-examples'); the few-shot pool is never an evaluation set
+
+first certification on locked-q4: CERTIFIED
+
+certify again on locked-q4
+  refused: LockedTestReuseError: locked test 'locked-q4' was already consumed once; it is single-use, so re-iterating after touching the locked test is refused
+
+measure the rate on the hunted set
+  refused: SampleMisuseError: rate_set_id 'locked-q4' equals the hunted_set_id; the true rate must come from a SEPARATE production-representative sample, never the hunted fail-heavy set
+

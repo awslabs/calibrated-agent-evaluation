@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation --backend langfuse ingest fixtures/raw/strands    # without the langfuse extra
+calibrated-agent-evaluation ingest: the langfuse backend needs the optional extra: uv sync --inexact --extra langfuse

@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation dump kit --judges-only --judge demo/quickstart/judge-v2.json
+dumped 1 judge(s) ('orderbot-refund-policy') to kit: each judge file with the calibration record and bias battery that admit it, and no traces or labels. Next: `calibrated-agent-evaluation load kit` into the store that will score with them.
+Run with --explain for the numbers behind this.

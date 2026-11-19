@@ -1,0 +1,2 @@
+{"trace_id": "CLM-4475", "expected": {"answer": "Claim CLM-4475 is DENIED. The policy was not in force on the date of loss (lapsed for non-renewal ~60 days prior), so no coverage applies regardless of peril. Authorized payout: $0."}}
+{"trace_id": "ORD-1001", "expected": {"answer": "I could not refund order A-7781: it was delivered 51 days ago, outside the 30-day return window."}}

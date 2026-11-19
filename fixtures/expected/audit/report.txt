@@ -1,0 +1,29 @@
+AgentCore reported (vendor claim, not evidence)
+  A/B test fixture-abtest-stopped (fixture-abtest): status ACTIVE, execution STOPPED
+  read at <read-at>; claim record <claim-record>
+  arm C (weight 50): bundle arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234 version 0a1b2c3d-0000-4000-8000-000000000001
+  arm T1 (weight 50): bundle arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234 version 0a1b2c3d-0000-4000-8000-000000000002
+  differs between the arms: component arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-runtime-AbCdEf1234: key sql_generator_system_prompt
+  2 evaluator comparison(s) by an undocumented test, with no documented correction across them
+  evaluator arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness
+    C: mean 0.71, sample size 120 (the number of sessions evaluated)
+    T1: mean 0.78, sample size 118; change 0.07 (9.86%), interval [0.006, 0.134] (level not stated by AgentCore), p 0.031, significant True
+  evaluator arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness
+    C: mean 0.64, sample size 120 (the number of sessions evaluated)
+    T1: mean 0.66, sample size 118; change 0.02 (3.13%), interval [-0.035, 0.075] (level not stated by AgentCore), p 0.48, significant False
+  traffic in arms read <arms-read> (counted by Calibrated Agent Evaluation, not tested):
+    C: 5 trace(s) in 2 runtime session(s); AgentCore sampleSize 120, 120 (the number of sessions evaluated)
+    T1: 4 trace(s) in 2 runtime session(s); AgentCore sampleSize 118, 118 (the number of sessions evaluated)
+    traces without a runtime session: 1
+    refused 5 (shared source id 0, half-stamped 0), unassigned 1, other experiment 1, unread 0
+    the agent's use of each arm's bundle was not checked
+Units: AgentCore measures a per-session mean evaluator score on live traffic; Calibrated Agent Evaluation measures a paired per-input failure verdict on a held-out replay
+Calibrated Agent Evaluation re-test (paired McNemar on one held-out replay, Holm guard panel)
+  verdict: accepted (improve record <improve-id>, audit <audit-id>)
+  target 'missing_date_range', rater human; registered minimum reduction 0.10
+  McNemar midp, 15 discordant pair(s), p 0.0005188
+  effect on the fail rate (after - before) -0.325 [-0.484, -0.146] (95% two-sided, newcombe_paired_hybrid_score)
+  guard panel: holm, alpha 0.05, m=1
+    guard 'wrong_join', rater human
+  not guarded: unbounded_scan
+  pre-registration frozen at <frozen-at>: ab_test_started_at before, analysis_timestamp before

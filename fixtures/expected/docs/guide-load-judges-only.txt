@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation --root ci load kit
+loaded 1 judge(s) from kit: ci/judges/judge-v2.json; records: 1 new calibration, 1 new bias. Next: `calibrated-agent-evaluation judge --judge ci/judges/judge-v2.json` scores the traces in this store.

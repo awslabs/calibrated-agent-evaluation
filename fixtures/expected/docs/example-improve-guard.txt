@@ -1,0 +1,3 @@
+OrderBot fix: accepted. The failure rate dropped by at least the registered amount, more than chance would explain.
+
+ClaimsCrew fix to intake: rejected. The agent it touched fails less, but the crew's outcome did not improve: the failures moved instead of going away.

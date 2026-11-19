@@ -1,0 +1,187 @@
+[
+ {
+  "otlp": {
+   "resourceSpans": [
+    {
+     "resource": {
+      "attributes": []
+     },
+     "scopeSpans": [
+      {
+       "spans": [
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "C",
+          "http.route": "/invocations",
+          "session.id": "s-h1"
+         },
+         "kind": "SERVER",
+         "name": "POST /invocations",
+         "spanId": "0000000000000000",
+         "traceId": "ff8460c45e10b1d20b740f18805b6c28"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "C",
+          "session.id": "s-h1"
+         },
+         "name": "nl_sql_agent.run",
+         "spanId": "aaaaaaaaaaaaaaaa",
+         "traceId": "ff8460c45e10b1d20b740f18805b6c28"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "C",
+          "session.id": "ff8460c45e10b1d20b740f18805b6c28"
+         },
+         "name": "agent.node0",
+         "spanId": "b000000000000000",
+         "traceId": "ff8460c45e10b1d20b740f18805b6c28"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "C",
+          "session.id": "ff8460c45e10b1d20b740f18805b6c28"
+         },
+         "name": "agent.node1",
+         "spanId": "b000000000000001",
+         "traceId": "ff8460c45e10b1d20b740f18805b6c28"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "session.id": "ff8460c45e10b1d20b740f18805b6c28"
+         },
+         "name": "agent.half",
+         "spanId": "cccccccccccccccc",
+         "traceId": "ff8460c45e10b1d20b740f18805b6c28"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "source_id": "ff8460c45e10b1d20b740f18805b6c28"
+ },
+ {
+  "otlp": {
+   "resourceSpans": [
+    {
+     "resource": {
+      "attributes": []
+     },
+     "scopeSpans": [
+      {
+       "spans": [
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "http.route": "/invocations",
+          "session.id": "s-h2"
+         },
+         "kind": "SERVER",
+         "name": "POST /invocations",
+         "spanId": "0000000000000000",
+         "traceId": "34db2470224592c85589ad4e5cd97688"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "session.id": "s-h2"
+         },
+         "name": "nl_sql_agent.run",
+         "spanId": "aaaaaaaaaaaaaaaa",
+         "traceId": "34db2470224592c85589ad4e5cd97688"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "session.id": "34db2470224592c85589ad4e5cd97688"
+         },
+         "name": "agent.node0",
+         "spanId": "b000000000000000",
+         "traceId": "34db2470224592c85589ad4e5cd97688"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "session.id": "34db2470224592c85589ad4e5cd97688"
+         },
+         "name": "agent.node1",
+         "spanId": "b000000000000001",
+         "traceId": "34db2470224592c85589ad4e5cd97688"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "source_id": "34db2470224592c85589ad4e5cd97688"
+ },
+ {
+  "otlp": {
+   "resourceSpans": [
+    {
+     "resource": {
+      "attributes": []
+     },
+     "scopeSpans": [
+      {
+       "spans": [
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "http.route": "/invocations",
+          "session.id": "s-h3"
+         },
+         "kind": "SERVER",
+         "name": "POST /invocations",
+         "spanId": "0000000000000000",
+         "traceId": "57c930dc1c316331553c289e56d70f58"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "session.id": "s-h3"
+         },
+         "name": "nl_sql_agent.run",
+         "spanId": "aaaaaaaaaaaaaaaa",
+         "traceId": "57c930dc1c316331553c289e56d70f58"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "session.id": "57c930dc1c316331553c289e56d70f58"
+         },
+         "name": "agent.node0",
+         "spanId": "b000000000000000",
+         "traceId": "57c930dc1c316331553c289e56d70f58"
+        },
+        {
+         "attributes": {
+          "aws.agentcore.gateway.routing_experiment_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+          "aws.agentcore.gateway.routing_experiment_variant_name": "T1",
+          "session.id": "57c930dc1c316331553c289e56d70f58"
+         },
+         "name": "agent.node1",
+         "spanId": "b000000000000001",
+         "traceId": "57c930dc1c316331553c289e56d70f58"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "source_id": "57c930dc1c316331553c289e56d70f58"
+ }
+]

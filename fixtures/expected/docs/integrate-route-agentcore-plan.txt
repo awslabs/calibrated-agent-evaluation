@@ -1,0 +1,10 @@
+$ CALIBRATED_AGENT_EVALUATION_CASSETTE_MODE=auto calibrated-agent-evaluation generate \
+    --run \
+    --executor agentcore \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 \
+    --payload-format agentcore_sse \
+    --cassette fixtures/raw/cassettes/agentcore_runtime_CLM-4471.cassette.json \
+    --frame fixtures/raw/frames/agentcore_CLM-4471.frame.json
+calibrated-agent-evaluation generate: this run can call AWS. It sends up to 1 input to the AgentCore Runtime agent arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 (qualifier DEFAULT), each a billed invocation (retried when the session is busy or the runtime throttles), and the span reader reads each run's spans. It stops at the first input that fails, and the traces of the inputs before it are then not stored: they stay in the cassette fixtures/raw/cassettes/agentcore_runtime_CLM-4471.cassette.json.
+calibrated-agent-evaluation generate: nothing was sent: this run can make the billed AWS calls listed above, so it needs --yes. Pass --yes to go ahead; offline runs need a cassette in replay mode: set CALIBRATED_AGENT_EVALUATION_CASSETTE_MODE=replay and pass --cassette PATH
+(exit 1)

@@ -1,0 +1,5 @@
+$ calibrated-agent-evaluation dataset build --answers answer-key.json --out slice.json
+Built 4 scenario(s) from the human FAIL labels on 6 stored trace(s) and wrote them to slice.json: 2 with assertions, 2 with an expected tool order.
+2 scenario(s) have no assertions, so AgentCore's goal check will judge them without ground truth; fill in their failure modes in answer-key.json.
+Next: `calibrated-agent-evaluation dataset publish slice.json --name NAME` shows the publish plan.
+Run with --explain for the numbers behind this.

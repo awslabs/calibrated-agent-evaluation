@@ -1,0 +1,10 @@
+The gate fails a build when more than 20.0% of traces fail.
+
+trusted_broken_policy_tool
+  bare number:     16.0%, so pass
+  with its range:  up to 21.7%, so fail
+  corrected rate:  up to 19.2% after removing the judge's mistakes, so pass
+intake/dropped_material_fact
+  bare number:     50.0%, so fail
+  with its range:  up to 57.7%, so fail
+  corrected rate:  no decision, because the judge isn't trusted yet

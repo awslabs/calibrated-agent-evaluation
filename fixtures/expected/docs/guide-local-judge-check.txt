@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation judge --check local-judge.json
+judge file ok

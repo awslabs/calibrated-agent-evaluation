@@ -1,0 +1,63 @@
+minimum_pre_commit_version: "4.0.0"
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+        # Generator output compared byte for byte (docs goldens, recorded cassettes) and vendored
+        # minified JS keep the bytes their producer wrote.
+        exclude: ^(fixtures/expected/docs/|fixtures/raw/cassettes/|.*/vendor/.*\.min\.js$)
+      - id: check-yaml
+        # --unsafe: syntax-only parse (no constructor resolution). docs/site/mkdocs.yml uses
+        # MkDocs' `!!python/name:pymdownx.superfences.fence_code_format` tag (mermaid rendering),
+        # which the default strict loader rejects. Syntax checking still catches malformed YAML.
+        args: [--unsafe]
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        # 5 MB (default is 500 KB). Frozen real-world trace fixtures, e.g. the whole,
+        # unaltered swebench JSONL session (~1.4 MB) that test_datasets_jsonl.py reads,
+        # exceed 500 KB and must be committed intact (trimming would make them synthetic).
+        args: [--maxkb=5120]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 77039ccbba72c8aede339c5f8ae29b42aced0a2e  # frozen: v0.15.18
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: uv run pyright
+        language: system
+        types: [python]
+        pass_filenames: false
+      # Permissive-license scan: fails on any GPL/LGPL/AGPL node in the shipped tree (default
+      # install + every optional extra). Only runs when a dependency manifest changes, so routine
+      # commits aren't slowed by the per-extra resolution.
+      - id: license-scan
+        name: license-scan (no copyleft in the shipped tree)
+        entry: uv run python scripts/license_scan.py
+        language: system
+        pass_filenames: false
+        files: ^(pyproject\.toml|uv\.lock|scripts/license_scan\.py)$
+      - id: license-header
+        name: license-header (copyright and SPDX line on Python, JS and CSS files)
+        entry: python3 scripts/check_license_header.py
+        language: system
+        files: \.(py|js|css)$
+        exclude: (^|/)vendor/|\.min\.js$
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e  # frozen: v8.30.1
+    hooks:
+      # Runs a locally installed binary (`brew install gitleaks`) instead of building gitleaks from
+      # source through proxy.golang.org.
+      - id: gitleaks-system
+        # The hook scans the staged diff itself; appended filenames make it reject the call
+        # ("accepts at most 1 arg(s)").
+        pass_filenames: false

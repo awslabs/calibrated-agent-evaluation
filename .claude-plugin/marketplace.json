@@ -1,0 +1,20 @@
+{
+  "name": "calibrated-agent-evaluation",
+  "owner": {
+    "name": "Amazon Web Services"
+  },
+  "description": "The Calibrated Agent Evaluation skills plugin for Claude Code.",
+  "plugins": [
+    {
+      "name": "calibrated-agent-evaluation",
+      "source": "./",
+      "description": "Skills that drive the calibrated-agent-evaluation CLI through error analysis, judge building and the calibration gate.",
+      "category": "development",
+      "keywords": [
+        "evaluation",
+        "llm-judge",
+        "error-analysis"
+      ]
+    }
+  ]
+}

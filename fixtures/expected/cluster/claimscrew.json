@@ -1,0 +1,13 @@
+{
+  "note": "Cluster-stage oracle for ClaimsCrew. The ground truth is the HUMAN-RATIFIED failure-mode taxonomy carried on the crew's FAIL Labels in fixtures/labels/gold.json: the distinct (origin agent, failure type) modes and their counts a saturated clusterer must recover. Authored from the human gold, NOT from an LLM label. Acceptance re-derives the mode taxonomy from gold.json and compares.",
+  "expected": {
+    "n_modes": 4,
+    "modes": {
+      "dropped_material_fact": 2,
+      "misread_amount": 1,
+      "trusted_broken_policy_tool": 2,
+      "vacancy_threshold_margin_mishandled": 1
+    },
+    "n_fail_labels": 6
+  }
+}

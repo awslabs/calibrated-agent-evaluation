@@ -1,0 +1,17 @@
+$ calibrated-agent-evaluation label \
+    --agreement \
+    --raters alice,bob \
+    --codebook-version 1 \
+    --explain
+calibrated-agent-evaluation label: alice and bob agree on PASS/FAIL with alpha 0.89 (could be as low as 0.70) over 40 shared unit(s), codebook version '1': not usable yet (top up overlap).
+Next: too few shared traces for the gate to trust alpha: have the second rater label 90 more traces of the calibration gold (no traces beyond the gold are needed) and run this again.
+The gate needs at least 130 traces labeled by two raters before it can say usable (--explain says how that was worked out).
+
+raters alice, bob; axis outcome; codebook version '1'; 40 unit(s) coded, 40 coded by two or more
+Krippendorff's alpha 0.887, 95% bootstrap interval [0.699, 1.000] (2000 resamples over 40 unit(s), seed 0)
+Cohen's kappa 0.886, 95% bootstrap interval [0.701, 1.000] (2000 resamples over 40 unit(s), seed 0)
+  specific agreement on 'FAIL' 0.923, 95% bootstrap interval [0.788, 1.000] (2000 resamples over 40 unit(s), seed 0)
+  specific agreement on 'PASS' 0.963, 95% bootstrap interval [0.902, 1.000] (2000 resamples over 40 unit(s), seed 0)
+gate: top_up_overlap (under 130 units coded by two or more it is codebook_broken when alpha's upper bound < 0.667, revise_codebook when it is < 0.8, top_up_overlap otherwise; from there usable when alpha's lower bound >= 0.8; a point below 0.667 means the codebook is broken, between that and 0.8 that it needs revising, at or above 0.8 with a lower bound below it that the overlap is too small)
+minimum overlap: 130 units, the smallest size from which two raters agreeing at the expected alpha 0.9 on gold that is 50% FAIL (the calibration gold, balanced per class) keep alpha's lower bound at or above 0.8 at that size and every larger one checked up to 1000 (expected counts rounded against the raters, exact bootstrap, a margin of two standard errors for the gate's 2000 resamples); double-code the calibration gold itself, no extra traces
+recorded as agreement-<id> in demo/records/agreement

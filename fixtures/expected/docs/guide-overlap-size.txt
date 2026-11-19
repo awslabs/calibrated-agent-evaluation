@@ -1,0 +1,12 @@
+raters expected at alpha 0.9, 50% FAIL
+
+shared traces   both FAIL / both PASS / split   lower bound   clears the gate
+   50           23 / 24 / 3                     0.723         no
+  100           47 / 48 / 5                     0.801         no
+  110           52 / 52 / 6                     0.800         no
+  122           57 / 58 / 7                     0.800         no
+  130           61 / 62 / 7                     0.812         yes
+  150           71 / 71 / 8                     0.814         yes
+  200           95 / 95 / 10                    0.838         yes
+
+minimum overlap: 130 (clears at every size from there to 1000)

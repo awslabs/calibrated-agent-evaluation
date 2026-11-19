@@ -1,0 +1,44 @@
+{
+  "below_threshold": 0,
+  "failures": [
+    {
+      "category": "execution-error-category-tool-schema",
+      "confidence": "medium",
+      "evidence": "The narrative explicitly states 'I've been in Florida for the last month visiting family', which directly conveys occupancy status (absent ~30 days). The extract_claim_fields tool returned occupancy_status as null despite this information being present and parseable in the input narrative, indicating a failure to extract a required field that was available.",
+      "parent": "execution-error",
+      "span_id": "CLM-4471/intake",
+      "tool_call_index": 0,
+      "tool_name": "extract_claim_fields"
+    },
+    {
+      "category": "repetitive-behavior-category-repetition-tool",
+      "confidence": "medium",
+      "evidence": "The policy-checker called lookup_policy_exclusions twice — once with peril='vacancy' (tool0) and once with peril='water damage' (tool1) — and both calls returned the identical result: exclusion W-7. The second call produced no new information beyond what the first call already returned, making it a redundant tool invocation without justification.",
+      "parent": "repetitive-behavior",
+      "span_id": "CLM-4471/policy-checker",
+      "tool_call_index": 1,
+      "tool_name": "lookup_policy_exclusions"
+    }
+  ],
+  "provenance": {
+    "confidence_threshold": "low",
+    "detector_package": "strands-agents-evals",
+    "detector_version": "1.6.0",
+    "model_config_sent": {},
+    "model_id": "global.anthropic.claude-sonnet-4-6",
+    "prompt_sha256": "30d6baa2559a514b87e9477f58afefb977371cc413f5c841eaa3ad9798c809a9",
+    "prompt_template": "v0",
+    "stamp": {
+      "dep_versions": {
+        "strands-agents-evals": "1.6.0"
+      },
+      "n_resamples": null,
+      "sampling": {},
+      "seed": null,
+      "thresholds": {}
+    }
+  },
+  "times": "placeholder",
+  "trace_id": "CLM-4471",
+  "trace_sha256": "ebfcd30b5b6ebb12983885229be2d48cfb78998bf0f9e65fbee6486196634662"
+}

@@ -1,0 +1,71 @@
+{
+  "trace_id": "ORD-1001",
+  "frame": "production-representative",
+  "ownership": "owned",
+  "captured_at": null,
+  "endpoint_fingerprint": null,
+  "input": {
+    "message": "I want a refund for order A-7781, the blender just isn't for me."
+  },
+  "output": {
+    "answer": "I processed a full refund of $89.99 for order A-7781 (Countertop Blender). The refund was within the return window and was successfully issued with Refund ID RF-30022."
+  },
+  "taxonomy_cell": {
+    "feature": "refund_handling",
+    "scenario": "S3_out_of_window_return",
+    "persona": "P1_consumer"
+  },
+  "spans": [
+    {
+      "span_id": "ORD-1001/orderbot",
+      "trace_id": "ORD-1001",
+      "agent": "orderbot",
+      "role": "specialist",
+      "parent": null,
+      "seq": 0,
+      "status": "completed",
+      "input": {
+        "message": "I want a refund for order A-7781, the blender just isn't for me."
+      },
+      "tool_calls": [
+        {
+          "name": "lookup_order",
+          "args": { "order_id": "A-7781" },
+          "result": {
+            "order_id": "A-7781",
+            "item": "Countertop blender",
+            "amount_usd": 89.99,
+            "delivered_at": "2026-03-22",
+            "return_window_days": 30
+          }
+        },
+        {
+          "name": "check_refund_policy",
+          "args": { "order_id": "A-7781", "today": "2025-01-30" },
+          "result": {
+            "days_since_delivery": 51,
+            "return_window_days": 30,
+            "within_window": true,
+            "policy_verdict": "WITHIN_WINDOW_REFUND_ALLOWED"
+          }
+        },
+        {
+          "name": "issue_refund",
+          "args": { "order_id": "A-7781", "amount_usd": 89.99 },
+          "result": {
+            "order_id": "A-7781",
+            "amount_usd": 89.99,
+            "refund_id": "RF-30022",
+            "status": "issued"
+          }
+        }
+      ],
+      "output": {
+        "answer": "I processed a full refund of $89.99 for order A-7781 (Countertop Blender). The refund was within the return window and was successfully issued with Refund ID RF-30022."
+      },
+      "started_at": null,
+      "ended_at": null
+    }
+  ],
+  "schema_version": "1"
+}

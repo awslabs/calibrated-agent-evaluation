@@ -1,0 +1,73 @@
+{
+ "abTestId": "fixture-abtest-live",
+ "abTestArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-live",
+ "name": "fixture-abtest-live",
+ "description": "redacted live capture",
+ "status": "ACTIVE",
+ "executionStatus": "RUNNING",
+ "gatewayArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:gateway/fixture-gateway-AbCdEf1234",
+ "variants": [
+  {
+   "name": "C",
+   "weight": 50,
+   "variantConfiguration": {
+    "configurationBundle": {
+     "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+     "bundleVersion": "0a1b2c3d-0000-4000-8000-000000000011"
+    }
+   }
+  },
+  {
+   "name": "T1",
+   "weight": 50,
+   "variantConfiguration": {
+    "configurationBundle": {
+     "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+     "bundleVersion": "0a1b2c3d-0000-4000-8000-000000000012"
+    }
+   }
+  }
+ ],
+ "gatewayFilter": {
+  "targetPaths": [
+   "/fixture-runtime-target/*"
+  ]
+ },
+ "evaluationConfig": {
+  "onlineEvaluationConfigArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:online-evaluation-config/fixture-oec-AbCdEf1234"
+ },
+ "roleArn": "arn:aws:iam::111122223333:role/fixture-abtest-role",
+ "currentRunId": "run-live-0001",
+ "startedAt": "2026-11-03T06:12:47.711000+00:00",
+ "maxDurationExpiresAt": "2026-11-17T06:12:47.711000+00:00",
+ "createdAt": "2026-11-03T06:12:44.745000+00:00",
+ "updatedAt": "2026-11-03T06:12:47+00:00",
+ "results": {
+  "analysisTimestamp": "2026-11-03T06:33:26.215000+00:00",
+  "evaluatorMetrics": [
+   {
+    "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness",
+    "controlStats": {
+     "variantName": "C",
+     "sampleSize": 11,
+     "mean": 0.8154545454545453
+    },
+    "variantResults": [
+     {
+      "variantName": "T1",
+      "sampleSize": 9,
+      "mean": 0.83,
+      "absoluteChange": 0.014545454545454639,
+      "percentChange": 1.7837235228539694,
+      "pValue": 0.8383726087673288,
+      "confidenceInterval": {
+       "lower": -0.013963636363636255,
+       "upper": 0.04305454545454553
+      },
+      "isSignificant": false
+     }
+    ]
+   }
+  ]
+ }
+}

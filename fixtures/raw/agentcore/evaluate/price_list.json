@@ -1,0 +1,21 @@
+{
+  "request": {
+    "Filters": [
+      {
+        "Field": "regionCode",
+        "Type": "TERM_MATCH",
+        "Value": "us-east-1"
+      }
+    ],
+    "FormatVersion": "aws_v1",
+    "ServiceCode": "AmazonBedrockAgentCore"
+  },
+  "response": {
+    "FormatVersion": "aws_v1",
+    "PriceList": [
+      "{\"product\": {\"attributes\": {\"regionCode\": \"us-east-1\", \"usagetype\": \"USE1-Evaluations:Consumption-based:BuiltIn-Input:Tier1\"}}, \"terms\": {\"OnDemand\": {\"T1\": {\"priceDimensions\": {\"D1\": {\"pricePerUnit\": {\"USD\": \"2.4000000000\"}, \"unit\": \"1M Input Tokens\"}}}}}}",
+      "{\"product\": {\"attributes\": {\"regionCode\": \"us-east-1\", \"usagetype\": \"USE1-Evaluations:Consumption-based:BuiltIn-Output:Tier1\"}}, \"terms\": {\"OnDemand\": {\"T1\": {\"priceDimensions\": {\"D1\": {\"pricePerUnit\": {\"USD\": \"12.0000000000\"}, \"unit\": \"1M Output Tokens\"}}}}}}",
+      "{\"product\": {\"attributes\": {\"regionCode\": \"us-east-1\", \"usagetype\": \"USE1-Evaluations:Consumption-based:CustomEvaluators:Tier1\"}}, \"terms\": {\"OnDemand\": {\"T1\": {\"priceDimensions\": {\"D1\": {\"pricePerUnit\": {\"USD\": \"0.0015000000\"}, \"unit\": \"Evaluations\"}}}}}}"
+    ]
+  }
+}

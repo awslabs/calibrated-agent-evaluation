@@ -1,0 +1,71 @@
+{
+  "trace_id": "ORD-1002",
+  "frame": "production-representative",
+  "ownership": "owned",
+  "captured_at": null,
+  "endpoint_fingerprint": null,
+  "input": {
+    "message": "Please refund order A-8120, the headphones arrived cracked."
+  },
+  "output": {
+    "answer": "I successfully processed a full refund for order A-8120 (Over-ear headphones). Here's what I did:\n\n1. **Looked up the order** (A-8120) — confirmed it was for Over-ear headphones worth $149.00, delivered on 2026-05-04.\n2. **Checked the refund policy** — the order was delivered 8 days ago, well within the 30-day return window, so a refund was allowed.\n3. **Issued the refund** — a full refund of $149.00 was successfully issued (Refund ID: RF-30022, Status: Issued).\n\nThe customer was informed of the refund and advised it would appear on their original payment method within a few business days."
+  },
+  "taxonomy_cell": {
+    "feature": "refund_handling",
+    "scenario": "S1_in_window_return",
+    "persona": "P1_consumer"
+  },
+  "spans": [
+    {
+      "span_id": "ORD-1002/orderbot",
+      "trace_id": "ORD-1002",
+      "agent": "orderbot",
+      "role": "specialist",
+      "parent": null,
+      "seq": 0,
+      "status": "completed",
+      "input": {
+        "message": "Please refund order A-8120, the headphones arrived cracked."
+      },
+      "tool_calls": [
+        {
+          "name": "lookup_order",
+          "args": { "order_id": "A-8120" },
+          "result": {
+            "order_id": "A-8120",
+            "item": "Over-ear headphones",
+            "amount_usd": 149.0,
+            "delivered_at": "2026-05-04",
+            "return_window_days": 30
+          }
+        },
+        {
+          "name": "check_refund_policy",
+          "args": { "order_id": "A-8120", "today": "2025-01-30" },
+          "result": {
+            "days_since_delivery": 8,
+            "return_window_days": 30,
+            "within_window": true,
+            "policy_verdict": "WITHIN_WINDOW_REFUND_ALLOWED"
+          }
+        },
+        {
+          "name": "issue_refund",
+          "args": { "order_id": "A-8120", "amount_usd": 149.0 },
+          "result": {
+            "order_id": "A-8120",
+            "amount_usd": 149.0,
+            "refund_id": "RF-30022",
+            "status": "issued"
+          }
+        }
+      ],
+      "output": {
+        "answer": "I successfully processed a full refund for order A-8120 (Over-ear headphones). Here's what I did:\n\n1. **Looked up the order** (A-8120) — confirmed it was for Over-ear headphones worth $149.00, delivered on 2026-05-04.\n2. **Checked the refund policy** — the order was delivered 8 days ago, well within the 30-day return window, so a refund was allowed.\n3. **Issued the refund** — a full refund of $149.00 was successfully issued (Refund ID: RF-30022, Status: Issued).\n\nThe customer was informed of the refund and advised it would appear on their original payment method within a few business days."
+      },
+      "started_at": null,
+      "ended_at": null
+    }
+  ],
+  "schema_version": "1"
+}

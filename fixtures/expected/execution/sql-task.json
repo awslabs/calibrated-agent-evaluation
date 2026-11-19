@@ -1,0 +1,9 @@
+{
+  "gold_result_set": [[1, 0], [3, 25]],
+  "candidates": {
+    "equivalent": "PASS",
+    "reordered": "PASS",
+    "wrong": "FAIL",
+    "syntax_error": "FAIL"
+  }
+}

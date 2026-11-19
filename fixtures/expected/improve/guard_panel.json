@@ -1,0 +1,18 @@
+{
+  "expected": {
+    "m": 3,
+    "method": "holm",
+    "regressed": [
+      "misread_amount"
+    ]
+  },
+  "inputs": {
+    "alpha": 0.05,
+    "regression_p": {
+      "dropped_material_fact": 0.6,
+      "misread_amount": 0.0005,
+      "vacancy_threshold": 0.85
+    }
+  },
+  "note": "guard_panel over 3 non-targeted slices, Holm at family-wise alpha 0.05. misread_amount regresses (p=0.0005; 0.0005 * 3 = 0.0015 <= 0.05) and survives correction; the other two are stable (0.6 * 2 > 0.05). m=3. Was BY-FDR at q=0.10 before the guard panel moved to Holm (same survivor). Acceptance re-runs guard_panel and compares."
+}

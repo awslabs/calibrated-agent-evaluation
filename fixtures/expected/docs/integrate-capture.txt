@@ -1,0 +1,18 @@
+$ calibrated-agent-evaluation capture --agent orderbot:run_once --service orderbot --dry-run
+calibrated-agent-evaluation capture: 1 would ingest, 0 refused, 0 skipped
+  [ok] <tmp>/calibrated-agent-evaluation-capture.otlp.json → <otel-trace-id> (gen_ai/latest, 1 span(s), 1 tool call(s), owned)
+(exit 0)
+
+$ calibrated-agent-evaluation capture --agent orderbot:run_once --service orderbot --trace-id ORD-A1001
+calibrated-agent-evaluation capture: 1 ingested, 0 refused, 0 skipped
+  [ok] <tmp>/ORD-A1001.otlp.json → ORD-A1001 (gen_ai/latest, 1 span(s), 1 tool call(s), owned)
+(exit 0)
+
+$ calibrated-agent-evaluation capture --agent orderbot:run_once --service orderbot --trace-id ORD-A1001
+calibrated-agent-evaluation capture: the store already holds trace 'ORD-A1001' and a capture cannot be re-run to recover what would be replaced; pass a different --trace-id, or --overwrite to replace it
+(exit 1)
+
+$ calibrated-agent-evaluation capture --agent os:getcwd
+calibrated-agent-evaluation capture: captured 0 spans from 'os:getcwd': the agent emitted no OpenTelemetry spans (is it instrumented? did it exit before a span closed?), so nothing was stored
+(exit 1)
+

@@ -1,0 +1,151 @@
+{
+  "trace_id": "CLM-4475",
+  "frame": "production-representative",
+  "ownership": "owned",
+  "captured_at": null,
+  "endpoint_fingerprint": null,
+  "input": {
+    "narrative": "My policy lapsed two months ago — I forgot to renew. A pipe still burst and flooded the utility room. Repair invoice is $1,200. Filing anyway to see if anything is covered.",
+    "claim_id": "CLM-4475",
+    "amount_requested_usd": 1200
+  },
+  "output": {
+    "answer": "Claim CLM-4475 is DENIED. The policy was not in force on the date of loss (lapsed for non-renewal ~60 days prior), so no coverage applies regardless of peril. Authorized payout: $0."
+  },
+  "taxonomy_cell": {
+    "feature": "claim_adjudication",
+    "scenario": "S3_lapsed_policy",
+    "persona": "P4_lapsed_policyholder"
+  },
+  "spans": [
+    {
+      "span_id": "CLM-4475/supervisor",
+      "trace_id": "CLM-4475",
+      "agent": "supervisor",
+      "role": "supervisor",
+      "parent": null,
+      "seq": 0,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4475 for $1200. Narrative: My policy lapsed two months ago — I forgot to renew. A pipe still burst and flooded the utility room. Repair invoice is $1,200. Filing anyway to see if anything is covered."
+      },
+      "tool_calls": [],
+      "output": {
+        "answer": "Routing CLM-4475 through intake, policy-checker, fraud-scorer, and payout. The lapsed-policy question is dispositive: if the policy was not in force, coverage cannot attach. Verdict: DENIED, $0."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4475/intake",
+      "trace_id": "CLM-4475",
+      "agent": "intake",
+      "role": "specialist",
+      "parent": "CLM-4475/supervisor",
+      "seq": 1,
+      "status": "completed",
+      "input": {
+        "narrative": "My policy lapsed two months ago — I forgot to renew. A pipe still burst and flooded the utility room. Repair invoice is $1,200. Filing anyway to see if anything is covered."
+      },
+      "tool_calls": [
+        {
+          "name": "extract_claim_fields",
+          "args": {
+            "narrative": "My policy lapsed two months ago — I forgot to renew. A pipe still burst and flooded the utility room. Repair invoice is $1,200. Filing anyway to see if anything is covered."
+          },
+          "result": {
+            "peril": "water_damage",
+            "loss_location": "utility room",
+            "amount_requested_usd": 12000,
+            "occupancy_status": "occupied",
+            "policy_status": "lapsed_60_days"
+          }
+        }
+      ],
+      "output": {
+        "peril": "water_damage",
+        "loss_location": "utility room",
+        "amount_requested_usd": 12000,
+        "occupancy_status": "occupied",
+        "policy_status": "lapsed_60_days"
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4475/policy-checker",
+      "trace_id": "CLM-4475",
+      "agent": "policy-checker",
+      "role": "specialist",
+      "parent": "CLM-4475/supervisor",
+      "seq": 2,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4475 for $1200. Policy status: lapsed_60_days."
+      },
+      "tool_calls": [
+        {
+          "name": "lookup_policy_exclusions",
+          "args": { "policy_id": "CLM-4475", "peril": "coverage in force" },
+          "result": {
+            "exclusions": [
+              {
+                "code": "IF-1",
+                "text": "No coverage attaches while the policy is not in force (lapsed / non-renewed).",
+                "requires": "policy_status"
+              }
+            ]
+          }
+        }
+      ],
+      "output": {
+        "answer": "The policy was lapsed (~60 days) on the date of loss. Exclusion IF-1 applies: no coverage attaches while the policy is not in force. This is dispositive regardless of the claimed amount. Recommended coverage status: DENIED."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4475/fraud-scorer",
+      "trace_id": "CLM-4475",
+      "agent": "fraud-scorer",
+      "role": "specialist",
+      "parent": "CLM-4475/supervisor",
+      "seq": 3,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4475 for $1200."
+      },
+      "tool_calls": [
+        {
+          "name": "score_fraud_risk",
+          "args": { "claim_id": "CLM-4475", "amount_requested_usd": 12000 },
+          "result": { "fraud_score": 0.05, "band": "low" }
+        }
+      ],
+      "output": {
+        "answer": "Fraud score 0.05 — LOW band. No SIU escalation needed. The denial rests on the lapsed-policy exclusion, not on fraud."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4475/payout",
+      "trace_id": "CLM-4475",
+      "agent": "payout",
+      "role": "specialist",
+      "parent": "CLM-4475/supervisor",
+      "seq": 4,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4475 for $1200."
+      },
+      "tool_calls": [],
+      "output": {
+        "answer": "No payment issued. Claim DENIED on exclusion IF-1 (policy not in force). Authorized payout: $0. No issue_payment call executed."
+      },
+      "started_at": null,
+      "ended_at": null
+    }
+  ],
+  "schema_version": "1"
+}

@@ -1,0 +1,24 @@
+$ calibrated-agent-evaluation --root store quickstart --certify
+calibrated-agent-evaluation quickstart --certify: the judge-trust chain on a set big enough to certify
+
+Seeded 848 OrderBot refund traces into an offline local store
+  (store)
+  round 1 (label_round=1): 324 hunted traces (discovery frame) carry gold, 162 FAIL for trusted_broken_policy_tool and 162 PASS
+  round 2 (label_round=2): 324 hunted traces (discovery frame) carry gold, 162 FAIL for trusted_broken_policy_tool and 162 PASS
+  200 production-representative traces carry none; the rate is measured on them
+The traces are real agent runs. The gold is SYNTHETIC: a rule applied the store's written return policy to each order, in place of a human reviewer:
+  Final-sale items are never refundable. Any other item is refundable if it was delivered no more than its return_window_days ago. An item the customer reports as damaged, broken, defective or not working is refundable up to 90 days after delivery, even outside its return window.
+
+Wrote the judge kit to store/quickstart: two versions of one judge, their model's recorded replies, and a bias probe set per round.
+Run these in order; each gate decides whether the next step may run. They replay the recorded replies, so none needs credentials.
+1. Certify judge v1 on round 1's gold, then run its bias battery:
+  calibrated-agent-evaluation --root store calibrate --judge store/quickstart/judge-v1.json --cassette store/quickstart/judge.cassette.json --rate-safe --cell label_round=1
+  calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v1.json --probes store/quickstart/bias-probes-1 --thresholds store/quickstart/bias-thresholds.json --cassette store/quickstart/judge.cassette.json
+2. v2 is the one prompt revision v1's bias result prompted. A locked test is single-use, so v2 is certified and probed on round 2 only:
+  calibrated-agent-evaluation --root store calibrate --judge store/quickstart/judge-v2.json --cassette store/quickstart/judge.cassette.json --rate-safe --cell label_round=2
+  calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v2.json --probes store/quickstart/bias-probes-2 --thresholds store/quickstart/bias-thresholds.json --cassette store/quickstart/judge.cassette.json
+3. If v2 passes both gates, score the production sample and run the CI gate:
+  calibrated-agent-evaluation --root store judge --judge store/quickstart/judge-v2.json --frame production-representative --cassette store/quickstart/judge.cassette.json
+  calibrated-agent-evaluation --root store run --judge store/quickstart/judge-v2.json --ci
+(exit 0)
+

@@ -1,0 +1,18 @@
+{
+  "fixture_judge": "clean",
+  "model": "fixture/clean-judge",
+  "prompt_version": "v1",
+  "pairwise": false,
+  "verdict": "CLEAR",
+  "failed_biases": [],
+  "expected_error": null,
+  "gate": "returns (promotion permitted)",
+  "probes": {
+    "length":          {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "passed": true},
+    "self_preference": {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "passed": true},
+    "sycophancy":      {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "passed": true},
+    "compassion_fade": {"status": "run", "is_must_pass": false, "magnitude": 0.0, "passed": true},
+    "positional":      {"status": "not_applicable", "is_must_pass": false, "magnitude": 0.0, "passed": null}
+  },
+  "notes": "The clean fixture judge grades every quality-matched trial identically, so no probe records a disagreement (magnitude 0.0). All must-pass probes are within threshold -> CLEAR, and enforce_bias_gate permits promotion. Positional is not_applicable on the single-verdict path."
+}

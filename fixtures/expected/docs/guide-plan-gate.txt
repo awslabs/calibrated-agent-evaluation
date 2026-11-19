@@ -1,0 +1,4 @@
+$ calibrated-agent-evaluation plan --gate --threshold 0.8 --expected-pass 0.95
+Each gated failure mode needs verdicts on 28 production-representative traces for `calibrated-agent-evaluation run --threshold 0.8` to pass a suite that passes 95% of the time; at 28 the gate tolerates up to 2 FAIL verdict(s) per mode.
+Next: sample that many traces at random (not hand-picked ones), score them with `calibrated-agent-evaluation judge` or `calibrated-agent-evaluation score`, then run the gate.
+Run with --explain for the numbers behind this.

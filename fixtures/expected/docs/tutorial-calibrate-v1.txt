@@ -1,0 +1,9 @@
+$ calibrated-agent-evaluation calibrate \
+    --judge demo/quickstart/judge-v1.json \
+    --cassette demo/quickstart/judge.cassette.json \
+    --rate-safe \
+    --cell label_round=1
+Judge certified on 324 gold label(s) (synthetic, from the sample policy rule): it agrees with them well enough to trust (it caught 95% of the failures and cleared 98.8% of the passes).
+Next: check it for bias with `calibrated-agent-evaluation bias --judge demo/quickstart/judge-v1.json --probes DIR --thresholds FILE --cassette demo/quickstart/judge.cassette.json`.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+Run with --explain for the numbers behind this.

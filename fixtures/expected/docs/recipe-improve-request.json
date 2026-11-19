@@ -1,0 +1,154 @@
+{
+  "target_metric": "trusted_broken_policy_tool",
+  "pairs": [
+    {
+      "trace_id": "ORD-conf-0",
+      "before_fail": true,
+      "after_fail": true,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-1",
+      "before_fail": true,
+      "after_fail": true,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-2",
+      "before_fail": true,
+      "after_fail": true,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-3",
+      "before_fail": true,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-4",
+      "before_fail": true,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-5",
+      "before_fail": true,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-6",
+      "before_fail": true,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-7",
+      "before_fail": true,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-8",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-9",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-10",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-11",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-12",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-13",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-14",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-15",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-16",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-17",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-18",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    },
+    {
+      "trace_id": "ORD-conf-19",
+      "before_fail": false,
+      "after_fail": false,
+      "labels_are_judge_produced": false
+    }
+  ],
+  "development_ids": [
+    "ORD-1001",
+    "ORD-1002"
+  ],
+  "slices": [
+    {
+      "name": "misread_amount",
+      "kind": "other",
+      "regression_p": 0.7,
+      "rate_before": {
+        "point": 0.06,
+        "lo": 0.01,
+        "hi": 0.11,
+        "method": "wilson",
+        "level": 0.95,
+        "sided": "two-sided",
+        "n": 100
+      },
+      "rate_after": {
+        "point": 0.06,
+        "lo": 0.01,
+        "hi": 0.11,
+        "method": "wilson",
+        "level": 0.95,
+        "sided": "two-sided",
+        "n": 100
+      }
+    }
+  ]
+}

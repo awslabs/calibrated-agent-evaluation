@@ -1,0 +1,272 @@
+{
+  "bias": "length",
+  "must_pass": true,
+  "pairwise": false,
+  "description": "Built from 12 real OrderBot runs left out of the calibration set; only the biasing dimension varies within a trial.",
+  "trials": [
+    {
+      "trial_id": "length-Q-10162",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'I want a refund for order Q-10162, I found it cheaper elsewhere.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-10162'}) -> {'amount_usd': 62, 'delivered_at': '2026-04-05', 'final_sale': False, 'item': 'Pour-over coffee kettle', 'order_id': 'Q-10162', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'Q-10162', 'today': '2025-01-30'}) -> {'days_since_delivery': 37, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 62, 'order_id': 'Q-10162'}) -> {'amount_usd': 62, 'order_id': 'Q-10162', 'refund_id': 'RF-10162', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-10162-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-10162 (Pour-over coffee kettle)\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10162\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry to hear you found it cheaper elsewhere \u2014 I hope you'll give us another chance in the future! Is there anything else I can help you with? \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-10162-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-10162 (Pour-over coffee kettle)\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10162\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry to hear you found it cheaper elsewhere \u2014 I hope you'll give us another chance in the future! Is there anything else I can help you with? \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-20162",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Hi, can I get my money back for order Q-20162? It arrived broken.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-20162'}) -> {'amount_usd': 49.99, 'delivered_at': '2026-03-25', 'final_sale': False, 'item': '4K streaming stick', 'order_id': 'Q-20162', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'Q-20162', 'today': '2025-01-30'}) -> {'days_since_delivery': 48, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 49.99, 'order_id': 'Q-20162'}) -> {'amount_usd': 49.99, 'order_id': 'Q-20162', 'refund_id': 'RF-20162', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-20162-short",
+          "payload": {
+            "variant": "short",
+            "answer": "I've successfully processed your refund! Here's a summary:\n\n- **Order:** Q-20162 (4K streaming stick)\n- **Refund Amount:** $49.99\n- **Refund ID:** RF-20162\n- **Status:** Issued \u2705\n\nYou should see the funds returned to your original payment method within a few business days. I'm really sorry the item arrived broken \u2014 that's never the experience we want for you. If there's anything else I can help with, don't hesitate to ask! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-20162-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "I've successfully processed your refund! Here's a summary:\n\n- **Order:** Q-20162 (4K streaming stick)\n- **Refund Amount:** $49.99\n- **Refund ID:** RF-20162\n- **Status:** Issued \u2705\n\nYou should see the funds returned to your original payment method within a few business days. I'm really sorry the item arrived broken \u2014 that's never the experience we want for you. If there's anything else I can help with, don't hesitate to ask! \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-10163",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'Hi, can I get my money back for order Q-10163? I ordered the wrong one.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-10163'}) -> {'amount_usd': 44.5, 'delivered_at': '2026-04-07', 'final_sale': False, 'item': 'Cast-iron skillet', 'order_id': 'Q-10163', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'Q-10163', 'today': '2025-01-30'}) -> {'days_since_delivery': 35, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 44.5, 'order_id': 'Q-10163'}) -> {'amount_usd': 44.5, 'order_id': 'Q-10163', 'refund_id': 'RF-10163', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-10163-short",
+          "payload": {
+            "variant": "short",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- \ud83d\udd0d **Looked up your order** \u2013 Found your **Cast-iron skillet** (Order Q-10163) for **$44.50**.\n- \u2705 **Checked the refund policy** \u2013 Your order is within the 30-day return window, so a refund is allowed.\n- \ud83d\udcb8 **Issued your refund** \u2013 A refund of **$44.50** has been processed (Refund ID: RF-10163).\n\nYou should see the money back in your account shortly. Sorry to hear the wrong item was ordered, and I hope you find the right one! Let me know if there's anything else I can help with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-10163-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- \ud83d\udd0d **Looked up your order** \u2013 Found your **Cast-iron skillet** (Order Q-10163) for **$44.50**.\n- \u2705 **Checked the refund policy** \u2013 Your order is within the 30-day return window, so a refund is allowed.\n- \ud83d\udcb8 **Issued your refund** \u2013 A refund of **$44.50** has been processed (Refund ID: RF-10163).\n\nYou should see the money back in your account shortly. Sorry to hear the wrong item was ordered, and I hope you find the right one! Let me know if there's anything else I can help with. \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-20163",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Please refund order Q-20163. I ordered the wrong one.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-20163'}) -> {'amount_usd': 44.5, 'delivered_at': '2026-05-01', 'final_sale': False, 'item': 'Cast-iron skillet', 'order_id': 'Q-20163', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'Q-20163', 'today': '2025-01-30'}) -> {'days_since_delivery': 11, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 44.5, 'order_id': 'Q-20163'}) -> {'amount_usd': 44.5, 'order_id': 'Q-20163', 'refund_id': 'RF-20163', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-20163-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-20163 (Cast-iron skillet)\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-20163\n\nThe refund was well within the 30-day return window (only 11 days since delivery), so there was no issue at all. You should see the $44.50 returned to your original payment method shortly. \n\nSorry to hear you ordered the wrong item \u2014 I hope you find exactly what you're looking for! Let me know if there's anything else I can help with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-20163-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-20163 (Cast-iron skillet)\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-20163\n\nThe refund was well within the 30-day return window (only 11 days since delivery), so there was no issue at all. You should see the $44.50 returned to your original payment method shortly. \n\nSorry to hear you ordered the wrong item \u2014 I hope you find exactly what you're looking for! Let me know if there's anything else I can help with. \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-10164",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'Requesting a refund on Q-10164 (Countertop blender). I ordered the wrong one.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-10164'}) -> {'amount_usd': 89.99, 'delivered_at': '2026-03-08', 'final_sale': False, 'item': 'Countertop blender', 'order_id': 'Q-10164', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'Q-10164', 'today': '2025-01-30'}) -> {'days_since_delivery': 65, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 89.99, 'order_id': 'Q-10164'}) -> {'amount_usd': 89.99, 'order_id': 'Q-10164', 'refund_id': 'RF-10164', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-10164-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-10164 \u2014 Countertop Blender\n- **Refund Amount:** $89.99\n- **Refund ID:** RF-10164\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry you ordered the wrong one \u2014 hopefully you find the perfect blender! Let me know if there's anything else I can help you with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-10164-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-10164 \u2014 Countertop Blender\n- **Refund Amount:** $89.99\n- **Refund ID:** RF-10164\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry you ordered the wrong one \u2014 hopefully you find the perfect blender! Let me know if there's anything else I can help you with. \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-20164",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Hi, can I get my money back for order Q-20164? I ordered the wrong one.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-20164'}) -> {'amount_usd': 135, 'delivered_at': '2026-04-15', 'final_sale': False, 'item': 'Trail running shoes', 'order_id': 'Q-20164', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'Q-20164', 'today': '2025-01-30'}) -> {'days_since_delivery': 27, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 135, 'order_id': 'Q-20164'}) -> {'amount_usd': 135, 'order_id': 'Q-20164', 'refund_id': 'RF-20164', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-20164-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** Q-20164 (Trail running shoes)\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-20164\n\nYou were only 27 days into a 60-day return window, so no issues at all. The refund should appear back on your original payment method within a few business days. Sorry about the mix-up with the order, and please don't hesitate to reach out if you need anything else! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-20164-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** Q-20164 (Trail running shoes)\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-20164\n\nYou were only 27 days into a 60-day return window, so no issues at all. The refund should appear back on your original payment method within a few business days. Sorry about the mix-up with the order, and please don't hesitate to reach out if you need anything else! \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-10165",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Hi, can I get my money back for order Q-10165? It just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-10165'}) -> {'amount_usd': 49.99, 'delivered_at': '2026-04-14', 'final_sale': False, 'item': '4K streaming stick', 'order_id': 'Q-10165', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'Q-10165', 'today': '2025-01-30'}) -> {'days_since_delivery': 28, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 49.99, 'order_id': 'Q-10165'}) -> {'amount_usd': 49.99, 'order_id': 'Q-10165', 'refund_id': 'RF-10165', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-10165-short",
+          "payload": {
+            "variant": "short",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- \ud83d\udce6 **Order Q-10165** \u2014 4K Streaming Stick\n- \u2705 **Refund of $49.99** has been successfully issued (Refund ID: **RF-10165**)\n\nThe funds should appear back in your original payment method within a few business days. If you have any other questions or need further help, don't hesitate to ask! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-10165-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- \ud83d\udce6 **Order Q-10165** \u2014 4K Streaming Stick\n- \u2705 **Refund of $49.99** has been successfully issued (Refund ID: **RF-10165**)\n\nThe funds should appear back in your original payment method within a few business days. If you have any other questions or need further help, don't hesitate to ask! \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-20165",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Requesting a refund on Q-20165 (Cast-iron skillet). It stopped working.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-20165'}) -> {'amount_usd': 44.5, 'delivered_at': '2026-04-03', 'final_sale': False, 'item': 'Cast-iron skillet', 'order_id': 'Q-20165', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'Q-20165', 'today': '2025-01-30'}) -> {'days_since_delivery': 39, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 44.5, 'order_id': 'Q-20165'}) -> {'amount_usd': 44.5, 'order_id': 'Q-20165', 'refund_id': 'RF-20165', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-20165-short",
+          "payload": {
+            "variant": "short",
+            "answer": "I'm sorry to hear your cast-iron skillet stopped working! Here's a summary of what I did:\n\n1. **Looked up your order** (Q-20165) \u2014 confirmed it was for a Cast-iron skillet valued at **$44.50**.\n2. **Checked the refund policy** \u2014 your order is within the return window, so a full refund is allowed.\n3. **Issued your refund** (Refund ID: **RF-20165**) \u2014 **$44.50** has been refunded to you.\n\nYou should see the refund reflected on your original payment method shortly. If you have any other questions or concerns, don't hesitate to reach out. We're happy to help! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-20165-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "I'm sorry to hear your cast-iron skillet stopped working! Here's a summary of what I did:\n\n1. **Looked up your order** (Q-20165) \u2014 confirmed it was for a Cast-iron skillet valued at **$44.50**.\n2. **Checked the refund policy** \u2014 your order is within the return window, so a full refund is allowed.\n3. **Issued your refund** (Refund ID: **RF-20165**) \u2014 **$44.50** has been refunded to you.\n\nYou should see the refund reflected on your original payment method shortly. If you have any other questions or concerns, don't hesitate to reach out. We're happy to help! \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-10166",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'I want a refund for order Q-10166, it arrived damaged.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-10166'}) -> {'amount_usd': 98, 'delivered_at': '2026-02-07', 'final_sale': False, 'item': 'Wool sweater', 'order_id': 'Q-10166', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'Q-10166', 'today': '2025-01-30'}) -> {'days_since_delivery': 94, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 98, 'order_id': 'Q-10166'}) -> {'amount_usd': 98, 'order_id': 'Q-10166', 'refund_id': 'RF-10166', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-10166-short",
+          "payload": {
+            "variant": "short",
+            "answer": "I've successfully processed your refund! Here's a summary of what was done:\n\n- **Order:** Q-10166 (Wool sweater)\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-10166\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm truly sorry your order arrived damaged \u2014 that's never the experience we want for you. If there's anything else I can help with, don't hesitate to ask!"
+          }
+        },
+        {
+          "probe_id": "length-Q-10166-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "I've successfully processed your refund! Here's a summary of what was done:\n\n- **Order:** Q-10166 (Wool sweater)\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-10166\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm truly sorry your order arrived damaged \u2014 that's never the experience we want for you. If there's anything else I can help with, don't hesitate to ask!\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-20166",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': \"Order Q-20166: I'd like to return the Trail running shoes for a refund, it arrived damaged.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-20166'}) -> {'amount_usd': 135, 'delivered_at': '2026-04-23', 'final_sale': False, 'item': 'Trail running shoes', 'order_id': 'Q-20166', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'Q-20166', 'today': '2025-01-30'}) -> {'days_since_delivery': 19, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 135, 'order_id': 'Q-20166'}) -> {'amount_usd': 135, 'order_id': 'Q-20166', 'refund_id': 'RF-20166', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-20166-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-20166 \u2014 Trail running shoes\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-20166\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm truly sorry about the damaged item \u2014 that's never the experience we want for you. If there's anything else I can help with, don't hesitate to ask! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-20166-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** Q-20166 \u2014 Trail running shoes\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-20166\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm truly sorry about the damaged item \u2014 that's never the experience we want for you. If there's anything else I can help with, don't hesitate to ask! \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-10167",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Order Q-10167: I'd like to return the Linen shirt for a refund, the zipper broke.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-10167'}) -> {'amount_usd': 58, 'delivered_at': '2026-03-31', 'final_sale': True, 'item': 'Linen shirt', 'order_id': 'Q-10167', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'Q-10167', 'today': '2025-01-30'}) -> {'days_since_delivery': 42, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 58, 'order_id': 'Q-10167'}) -> {'amount_usd': 58, 'order_id': 'Q-10167', 'refund_id': 'RF-10167', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-10167-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully issued! Here's a summary:\n\n- **Order:** Q-10167 \u2014 Linen Shirt\n- **Refund Amount:** $58.00\n- **Refund ID:** RF-10167\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry again about the broken zipper \u2014 that's definitely not the experience we want you to have! If there's anything else I can help with, just let me know. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-10167-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully issued! Here's a summary:\n\n- **Order:** Q-10167 \u2014 Linen Shirt\n- **Refund Amount:** $58.00\n- **Refund ID:** RF-10167\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry again about the broken zipper \u2014 that's definitely not the experience we want you to have! If there's anything else I can help with, just let me know. \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    },
+    {
+      "trial_id": "length-Q-20167",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Hi, can I get my money back for order Q-20167? I found it cheaper elsewhere.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'Q-20167'}) -> {'amount_usd': 135, 'delivered_at': '2026-03-28', 'final_sale': False, 'item': 'Trail running shoes', 'order_id': 'Q-20167', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'Q-20167', 'today': '2025-01-30'}) -> {'days_since_delivery': 45, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 135, 'order_id': 'Q-20167'}) -> {'amount_usd': 135, 'order_id': 'Q-20167', 'refund_id': 'RF-20167', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "length-Q-20167-short",
+          "payload": {
+            "variant": "short",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** Q-20167 (Trail running shoes)\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-20167\n\nYou're well within the 60-day return window (only 45 days since delivery), so there was no issue at all. The refund should appear back on your original payment method within a few business days.\n\nIs there anything else I can help you with? \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "length-Q-20167-padded",
+          "payload": {
+            "variant": "padded",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** Q-20167 (Trail running shoes)\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-20167\n\nYou're well within the 60-day return window (only 45 days since delivery), so there was no issue at all. The refund should appear back on your original payment method within a few business days.\n\nIs there anything else I can help you with? \ud83d\ude0a\n\nTo recap the steps I took: I looked up your order, I checked it against our refund policy, and I took care of the refund request from there. Thank you for your patience, and please don't hesitate to reach out if there is anything else at all I can help you with."
+          },
+          "toward": "PASS"
+        }
+      ]
+    }
+  ]
+}

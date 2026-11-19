@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation define --taxonomy taxonomy.json --out frame.json
+discovery frame from the taxonomy file taxonomy.json: 9 row(s) covering every 2-way combination of 3 dimension(s): feature (3), persona (3), channel (2)
+wrote the frame to frame.json (read it back with `calibrated-agent-evaluation generate --frame frame.json`)

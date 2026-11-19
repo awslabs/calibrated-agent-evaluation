@@ -1,0 +1,15 @@
+{
+  "datasets": [
+    {
+      "createdAt": "2026-10-01T15:45:37.851000-05:00",
+      "datasetArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:dataset/test-AbCdEf1234",
+      "datasetId": "test-AbCdEf1234",
+      "datasetName": "test",
+      "draftStatus": "MODIFIED",
+      "exampleCount": 1,
+      "schemaType": "THIRD_PARTY_EVALUATION_V1",
+      "status": "ACTIVE",
+      "updatedAt": "2026-10-01T15:45:40.050000-05:00"
+    }
+  ]
+}

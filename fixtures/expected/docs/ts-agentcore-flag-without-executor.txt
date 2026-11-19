@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation generate \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234
+calibrated-agent-evaluation generate: --runtime-arn only applies to --executor agentcore; pass --run --executor agentcore to send the inputs to an AgentCore Runtime agent, or drop it

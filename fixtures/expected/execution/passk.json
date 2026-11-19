@@ -1,0 +1,6 @@
+{
+  "samples": [[true, true, false, false, false]],
+  "k": 2,
+  "point": 0.7,
+  "note": "point = 1 - C(3,2)/C(5,2) = 0.7; the interval is a seeded bootstrap that brackets the point (its exact lo/hi are run-reproducible, not hand-pinned here)."
+}

@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation ingest fixtures/raw/strands
+calibrated-agent-evaluation ingest: 6 ingested, 0 refused, 0 skipped
+  [ok] fixtures/raw/strands/CLM-4471.otlp.json → CLM-4471 (strands, 5 span(s), 4 tool call(s), owned)
+  [ok] fixtures/raw/strands/CLM-4473.otlp.json → CLM-4473 (strands, 5 span(s), 4 tool call(s), owned)
+  [ok] fixtures/raw/strands/CLM-4475.otlp.json → CLM-4475 (strands, 5 span(s), 4 tool call(s), owned)
+  [ok] fixtures/raw/strands/CLM-4477.otlp.json → CLM-4477 (strands, 5 span(s), 4 tool call(s), owned)
+  [ok] fixtures/raw/strands/CLM-7720-swarm.otlp.json → CLM-7720-swarm (strands, 2 span(s), 3 tool call(s), owned)
+  [ok] fixtures/raw/strands/ORD-3310-as-tool.otlp.json → ORD-3310-as-tool (strands, 2 span(s), 2 tool call(s), owned)

@@ -1,0 +1,5 @@
+$ calibrated-agent-evaluation calibrate --judge fixtures/judge-files/orderbot-refund-resolved.json --cassette fixtures/raw/cassettes/judge_orderbot_resolved.cassette.json --cell feature=refund_handling
+calibrated-agent-evaluation calibrate: Not enough labels yet to trust this judge (checked on 2 gold label(s)).
+Next: label 54 more FAIL and 54 more PASS traces, then run `calibrated-agent-evaluation calibrate` again.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+Run with --explain for the numbers behind this.

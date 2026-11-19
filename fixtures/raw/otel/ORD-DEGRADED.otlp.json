@@ -1,0 +1,91 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "telemetry.sdk.language",
+            "value": {
+              "stringValue": "python"
+            }
+          },
+          {
+            "key": "telemetry.sdk.name",
+            "value": {
+              "stringValue": "opentelemetry"
+            }
+          },
+          {
+            "key": "telemetry.sdk.version",
+            "value": {
+              "stringValue": "1.43.0"
+            }
+          },
+          {
+            "key": "service.instance.id",
+            "value": {
+              "stringValue": "173e5ddc-8df0-49c2-bdec-c33ffe8ea29b"
+            }
+          },
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "orderbot"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "calibrated_agent_evaluation.orderbot.degraded"
+          },
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "calibrated-agent-evaluation-orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.input.content",
+                  "value": {
+                    "stringValue": "{\"message\":\"I want a refund for order A-7781, the blender just isn't for me.\"}"
+                  }
+                },
+                {
+                  "key": "gen_ai.output.content",
+                  "value": {
+                    "stringValue": "{\"answer\":\"Your refund has been successfully processed! Here's a quick summary:\\n\\n- **Order:** A-7781 (Countertop Blender)\\n- **Refund Amount:** $89.99\\n- **Refund ID:** RF-30022\\n\\nYou should see the funds returned to your original payment method within a few business days. If you have any other questions or need further assistance, don't hesitate to reach out. Sorry the blender wasn't the right fit \\u2014 hope we can help you find something you love! \\ud83d\\ude0a\"}"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1792136038792374000",
+              "flags": 256,
+              "kind": "SPAN_KIND_CLIENT",
+              "name": "invoke_agent orderbot",
+              "spanId": "DlPRgd9pQYk=",
+              "startTimeUnixNano": "1792136038792374000",
+              "status": {},
+              "traceId": "vwgJcZR9yPb6Gu03MWTOcA=="
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

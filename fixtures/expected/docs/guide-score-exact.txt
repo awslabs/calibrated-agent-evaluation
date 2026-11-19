@@ -1,0 +1,5 @@
+$ calibrated-agent-evaluation score --scorer exact --mode wrong_reply --key answer --expected expected-replies.jsonl
+Scored 2 trace(s) for wrong_reply with the exact scorer: 1 FAIL, 1 PASS.
+4 trace(s) in scope had no expected value to compare with and were not scored; --explain names them.
+Next: gate these verdicts with `calibrated-agent-evaluation run --verdicts scorer` (they are code verdicts, not a judge's, so no calibration is involved).
+Run with --explain for the numbers behind this.

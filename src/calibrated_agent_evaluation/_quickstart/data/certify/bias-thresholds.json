@@ -1,0 +1,11 @@
+{
+  "description": "Per-bias ceilings for the quickstart judge. Each must-pass bias is gated on the one-sided 95% upper bound of how much more often its trials disagree than placebos that vary nothing. With no placebo disagreeing, 0.35 passes at most one disagreeing trial of 12 (round 1's probe set) and at most six of 30 (round 2's).",
+  "by_model": {
+    "bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0": {
+      "length": 0.35,
+      "self_preference": 0.35,
+      "sycophancy": 0.35,
+      "compassion_fade": 0.35
+    }
+  }
+}

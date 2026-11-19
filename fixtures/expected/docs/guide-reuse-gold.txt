@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation --root store calibrate --judge store/quickstart/judge-v1.json --cassette store/quickstart/judge.cassette.json --rate-safe --cell label_round=1
+calibrated-agent-evaluation calibrate: These labels were already used to test a judge for this failure mode (it certified that judge), and a set of labels tests a judge only once.
+Next: label fresh traces for this judge: re-testing on labels a judge was already checked on hides overfitting.
+(Run with --explain for the details.)
+(exit 1)
+

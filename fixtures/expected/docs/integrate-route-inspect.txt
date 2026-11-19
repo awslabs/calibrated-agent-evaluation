@@ -1,0 +1,6 @@
+trace ORD-1001: ownership=owned, 1 span(s)
+input:  {'message': "I want a refund for order A-7781, the blender just isn't for me."}
+  orderbot called lookup_order({'order_id': 'A-7781'})
+  orderbot called check_refund_policy({'order_id': 'A-7781', 'today': '2025-01-30'})
+  orderbot called issue_refund({'amount_usd': 89.99, 'order_id': 'A-7781'})
+output: {'answer': 'I processed a full refund of $89.99 for order A-7781 (Countertop Blender). The refund was within the return window and was successfully issued with Refund ID RF-30022.'}

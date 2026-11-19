@@ -1,0 +1,192 @@
+{
+  "ab_test_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+  "ab_test_id": "fixture-abtest-stopped",
+  "analysis_timestamp": "2026-10-29T19:00:00+00:00",
+  "claim_kind": "vendor-claim",
+  "current_run_id": "run-0001",
+  "error_details": [],
+  "evaluation_config_arns": [
+    "arn:aws:bedrock-agentcore:us-west-2:111122223333:online-evaluation-config/fixture-oec-AbCdEf1234"
+  ],
+  "evaluator_claims": [
+    {
+      "control": {
+        "absolute_change": null,
+        "ci_lower": null,
+        "ci_upper": null,
+        "is_significant": null,
+        "mean": 0.71,
+        "p_value": null,
+        "percent_change": null,
+        "sample_size": 120,
+        "variant_name": "C"
+      },
+      "evaluator_arn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness",
+      "variants": [
+        {
+          "absolute_change": 0.07,
+          "ci_lower": 0.006,
+          "ci_upper": 0.134,
+          "is_significant": true,
+          "mean": 0.78,
+          "p_value": 0.031,
+          "percent_change": 9.86,
+          "sample_size": 118,
+          "variant_name": "T1"
+        }
+      ]
+    },
+    {
+      "control": {
+        "absolute_change": null,
+        "ci_lower": null,
+        "ci_upper": null,
+        "is_significant": null,
+        "mean": 0.64,
+        "p_value": null,
+        "percent_change": null,
+        "sample_size": 120,
+        "variant_name": "C"
+      },
+      "evaluator_arn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness",
+      "variants": [
+        {
+          "absolute_change": 0.02,
+          "ci_lower": -0.035,
+          "ci_upper": 0.075,
+          "is_significant": false,
+          "mean": 0.66,
+          "p_value": 0.48,
+          "percent_change": 3.13,
+          "sample_size": 118,
+          "variant_name": "T1"
+        }
+      ]
+    }
+  ],
+  "execution_status": "STOPPED",
+  "gateway_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:gateway/fixture-gateway-AbCdEf1234",
+  "identical_arms": false,
+  "max_duration_expires_at": "2026-11-04T19:00:00+00:00",
+  "name": "fixture-abtest",
+  "provisional": false,
+  "schema_version": "1",
+  "started_at": "2026-10-28T19:00:00+00:00",
+  "status": "ACTIVE",
+  "stopped_at": "2026-10-29T19:00:00+00:00",
+  "updated_at": "2026-10-29T19:00:05+00:00",
+  "variants": [
+    {
+      "bundle": {
+        "branch_name": "main",
+        "bundle_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+        "components": [
+          {
+            "component_id": "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-runtime-AbCdEf1234",
+            "keys": [
+              {
+                "key": "sql_generator_model_id",
+                "length": 31,
+                "sha256": "b8e1bf663a74afb73890997ef81bb99706203bc2a3d153e198ac87a1b13656c4"
+              },
+              {
+                "key": "sql_generator_system_prompt",
+                "length": 63,
+                "sha256": "a9f2bbf430b9166ac7aacdaea2da974341c20a4cab36133e966ab5d953559a88"
+              },
+              {
+                "key": "supervisor_model_id",
+                "length": 31,
+                "sha256": "b8e1bf663a74afb73890997ef81bb99706203bc2a3d153e198ac87a1b13656c4"
+              },
+              {
+                "key": "supervisor_system_prompt",
+                "length": 59,
+                "sha256": "825773423f8e769fc55fcf264a701b9386ca81f0d972961b90f4eb2a20d994fc"
+              }
+            ],
+            "length": 301,
+            "sha256": "c813cd2701d3199ddc3fcccc03982368db40d77b06cf8895b637f0dd77edaf87"
+          },
+          {
+            "component_id": "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-tools-AbCdEf1234",
+            "keys": [
+              {
+                "key": "tool_description",
+                "length": 42,
+                "sha256": "53ed35d61c7d873e63e993879160cd4961bf9172de3c514a879a11ea67d85887"
+              }
+            ],
+            "length": 65,
+            "sha256": "edc4738bc67b65b8c5e46214cd599cc1cdad98f57322dabe033042d4f51ccbed"
+          }
+        ],
+        "components_sha256": "28e122829b612916014bfb5e24f0029be17cc92743e70de5a02a5f60b62899e1",
+        "created_by": "fixture-owner",
+        "parent_version_ids": [],
+        "version_created_at": "2026-10-28T18:05:00+00:00",
+        "version_id": "0a1b2c3d-0000-4000-8000-000000000001"
+      },
+      "name": "C",
+      "target_name": null,
+      "weight": 50
+    },
+    {
+      "bundle": {
+        "branch_name": "main",
+        "bundle_arn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+        "components": [
+          {
+            "component_id": "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-runtime-AbCdEf1234",
+            "keys": [
+              {
+                "key": "sql_generator_model_id",
+                "length": 31,
+                "sha256": "b8e1bf663a74afb73890997ef81bb99706203bc2a3d153e198ac87a1b13656c4"
+              },
+              {
+                "key": "sql_generator_system_prompt",
+                "length": 92,
+                "sha256": "9473f4d46e0a8b57f1e0b9b3078ca7fca5fadabdd8bc320116464d22248005f2"
+              },
+              {
+                "key": "supervisor_model_id",
+                "length": 31,
+                "sha256": "b8e1bf663a74afb73890997ef81bb99706203bc2a3d153e198ac87a1b13656c4"
+              },
+              {
+                "key": "supervisor_system_prompt",
+                "length": 59,
+                "sha256": "825773423f8e769fc55fcf264a701b9386ca81f0d972961b90f4eb2a20d994fc"
+              }
+            ],
+            "length": 330,
+            "sha256": "74167c04b682101ca78ccff966f173ecf9059e40e0c5347a28ae0c248ddd86a4"
+          },
+          {
+            "component_id": "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-tools-AbCdEf1234",
+            "keys": [
+              {
+                "key": "tool_description",
+                "length": 42,
+                "sha256": "53ed35d61c7d873e63e993879160cd4961bf9172de3c514a879a11ea67d85887"
+              }
+            ],
+            "length": 65,
+            "sha256": "edc4738bc67b65b8c5e46214cd599cc1cdad98f57322dabe033042d4f51ccbed"
+          }
+        ],
+        "components_sha256": "3f6c77a6aa9ad3089708bd0fc96daea7fc6a13782ebd1be6f1ee435154648014",
+        "created_by": "fixture-owner",
+        "parent_version_ids": [
+          "0a1b2c3d-0000-4000-8000-000000000001"
+        ],
+        "version_created_at": "2026-10-28T18:10:00+00:00",
+        "version_id": "0a1b2c3d-0000-4000-8000-000000000002"
+      },
+      "name": "T1",
+      "target_name": null,
+      "weight": 50
+    }
+  ]
+}

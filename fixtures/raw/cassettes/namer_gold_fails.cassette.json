@@ -1,0 +1,1505 @@
+{
+  "entries": [
+    {
+      "fingerprint": "c21c6957f917c9f1",
+      "model": {
+        "config": {},
+        "id": "global.anthropic.claude-sonnet-4-6"
+      },
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "You are helping a human reviewer start a codebook of failure modes for an AI agent.\n\nReviewers wrote critiques of agent traces that failed, and the critiques were grouped into clusters of similar critiques. Name each cluster with the one failure category from the vocabulary below whose definition best describes what the cluster's critiques say went wrong.\n\nRules:\n- Use only category names from the vocabulary, spelled exactly as they are listed.\n- Give every cluster exactly one name. Two clusters may get the same name when the same category fits both.\n- A cluster's heading says how many of its critiques are shown. Name the cluster from the critiques shown.\n- Answer with one JSON array of strings and nothing else: one category name per cluster, in cluster order, so the first name is for Cluster 1, the second for Cluster 2, and so on.\n\nVocabulary, one category per line as \"- name: definition\":\n- execution-error-category-authentication: Failed access attempts due to credential or permission issues<br><br> \u2022 HTTP 401/403 errors<br> \u2022 Invalid/expired tokens<br> \u2022 Missing credentials\n- execution-error-category-resource-not-found: Requested resource does not exist at specified location<br><br> \u2022 HTTP 404 errors<br> \u2022 Missing file/endpoint<br> \u2022 Invalid identifier\n- execution-error-category-service-errors: Upstream service failure or unavailability<br><br> \u2022 HTTP 500 errors<br> \u2022 Service disruption<br> \u2022 System failures\n- execution-error-category-rate-limiting: Request frequency exceeds allowed quota<br><br> \u2022 HTTP 429 errors<br> \u2022 Quota exceeded messages<br> \u2022 Rate threshold warnings\n- execution-error-category-formatting: Failure to produce correctly structured output according to expected format or syntax<br><br> \u2022 Syntax errors in structured data<br> \u2022 Missing required structural elements<br> \u2022 Invalid format for specified type\n- execution-error-category-timeout: Request or operation exceeded time constraints<br><br> \u2022 Explicit timeout message<br> \u2022 Duration threshold exceeded<br> \u2022 Connection time limit\n- execution-error-category-resource-exhaustion: System resource capacity limits reached<br><br> \u2022 Memory/disk/CPU limits<br> \u2022 Resource quota exceeded<br> \u2022 System capacity error\n- execution-error-category-environment: Missing or incorrect system setup requirements<br><br> \u2022 Missing environment variables<br> \u2022 Invalid configuration<br> \u2022 Setup requirement errors\n- execution-error-category-tool-schema: Tool input/output does not match required schema<br><br> \u2022 Parameter validation errors<br> \u2022 Missing required fields<br> \u2022 Invalid data types\n- task-instruction-category-non-compliance: Failure to follow explicit directives from the user or system prompts/constraints<br><br>Not all datasets have this information\n- task-instruction-category-problem-id: Agent correctly identifies the end goal but fails to determine the appropriate path to achieve it. The agent applies incorrect reasoning about how to reach the goal, leading to misaligned actions.\n- incorrect-actions-category-tool-selection: Using an incorrect but available tool when a more appropriate tool exists in the agent's toolbox<br><br>\u2022 Tool exists in toolbox<br> \u2022 Wrong tool selected for task<br> \u2022 More appropriate tool available<br> \u2022 Not about hallucinated tools\n- incorrect-actions-category-poor-information-retrieval: Incorrect or ineffective use of a correctly selected tool<br><br>\u2022 Right tool, wrong query<br> \u2022 Irrelevant search terms<br> \u2022 Missing key search parameters<br> \u2022 Overly broad/narrow queries\n- incorrect-actions-category-clarification: Proceeding with action despite unclear/incomplete information<br><br>\u2022 Missing critical info<br> \u2022 Ambiguous user input<br> \u2022 Assumptions made instead of asking\n- incorrect-actions-category-inappropriate-info-request: Agent makes an information request that is inappropriate for at least one of these reasons:<br><br>1. Tool-Available: Information should be retrieved through agent's available tools/APIs<br>-> Is there an API/tool that should be used instead?<br><br>2.. Task-Irrelevant: Information is not needed for any stage of the current task<br>-> Is the information unnecessary for the task?<br><br><br>Differences compared to other categories:<br>\u2022 First-time request (if repeated, see Information Seeking Repetition)<br>\n- context-handling-error-category-context-handling-failures: Sudden and unwarranted loss of recent interaction context while retaining older context, or complete and unexpected restart of conversation state, losing all accumulated context\n- hallucination-category-hall-capabilities: Agent claims or attempts to use tool features that don't exist in the API specification\n- hallucination-category-hall-misunderstand: Agent misinterprets the meaning or structure of actual tool responses while the response itself is valid.\n- hallucination-category-hall-usage: Agent claims to have used tools when it hasn't\n- hallucination-category-hall-history: Agent references conversations or user inputs that never occurred\n- hallucination-category-hall-params: Agent uses parameter values that conflict with established previous trajectory context\n- hallucination-category-fabricate-tool-outputs: Agent fabricates or makes up tool outputs that were not actually returned\n- repetitive-behavior-category-repetition-tool: Making identical API/tool calls multiple times without justification<br><br> \u2022 Same tool, same parameters <br>\u2022 No user request (\"provide me with 2 more options\") nor justification (the result of \"check account balance\" would be different before and after making a withdrawal, so calling it twice could be justified)\n- repetitive-behavior-category-repetition-info: Requesting information from user that was previously provided in the conversation<br><br> \u2022 Asking for provided data<br> \u2022 Ignoring prior responses<br> \u2022 Redundant user queries<br> \u2022 Forgetting stated preferences<br><br>The key distinction from Inappropriate Information Request is that the information being requested:<br>- Would be appropriate if asked for the first time<br>- Cannot be obtained through tools/APIs<br>- Is relevant to the current task<br>- Was already directly stated by the user in the conversation\n- repetitive-behavior-category-step-repetition: Repeating the same action steps or workflow stages without progress or justification\n- orchestration-related-errors-category-reasoning-mismatch: Disconnect between agent's stated reasoning/plan and actual executed actions\n- orchestration-related-errors-category-goal-deviation: Agent diverges from original task objective or user intent\n- orchestration-related-errors-category-premature-termination: Task or interaction ended before completion of necessary steps or objectives\n- orchestration-related-errors-category-unaware-termination: Failure to recognize or properly handle task completion or continuation criteria\n- llm-output-category-nonsensical: Exposing internal system details, implementation logic, or debug information in user-facing responses; producing malformed, illogical, or endlessly looping tool calls or JSON structures; or displaying redacted, placeholder, or special tokens\n- configuration-mismatch-category-tool-definition: Tool functionality differs from its declared purpose or capabilities<br>Disconnect between API requirements and agent's actual capabilities<br><br>The root cause of the issue is in the set up\n- coding-use-case-specific-failure-types-category-edge-case-oversights: Failure to handle non-standard inputs, boundary conditions, or exceptional scenarios in code generation or modification\n- coding-use-case-specific-failure-types-category-dependency-issues: Failures in handling code dependencies, imports, or external library requirements\n- other: If uncertain about category, use \"other\" with explanation\n\nClusters, 7 in all, each critique written as a JSON string:\nCluster 1 (1 of 1 critiques shown):\n- \"Claim wrongly CLEARED for payout ($9,500) on a property vacant ~35 days, where exclusion W-7 should apply and the claim should have been DENIED. Counterfactual walk-back from the harm (payout): payout cleared disbursement on a COVERED recommendation (innocent propagator); fraud-scorer was clean (innocent); intake CORRECTLY extracted occupancy_status='vacant_35_days' and handed it across the seam (innocent \u2014 the opposite of CLM-4471, where intake was the culprit). First divergence is policy-checker: its lookup_policy_exclusions tool returned a broken affirmative 'COVERED / W-7 not triggered / no exclusions' determination, and policy-checker trusted that verdict at face value instead of catching that a 35-day vacancy plainly exceeds W-7's >30-day threshold. Same failure family as CLM-4471 (a covered-but-doomed vacant-home claim), opposite origin \u2014 the culprit cannot be read off the outcome.\"\n\nCluster 2 (1 of 1 critiques shown):\n- \"Claim wrongly CLEARED for payout ($8,200) on a property vacant beyond the intended W-7 threshold; it should have been DENIED. The culprit is DISPUTED (REQ-LBL-5) and recorded as such, not forced to one agent: walk-back A blames intake \u2014 'since early last month' is a >30-day vacancy, and intake imprecisely rounded it to exactly 'vacant_30_days', landing the value right on the boundary where W-7 (> 30) no longer bites; had it recorded the true duration, W-7 would apply. Walk-back B blames policy-checker \u2014 handed a value one day short of the strict threshold on an obviously-marginal case, it applied a rigid boundary read ('30 is not > 30 \u2192 COVERED') instead of flagging the borderline vacancy for review. Both walk-backs are defensible; the split exposes an undefined responsibility boundary \u2014 is threshold-margin resolution intake's (precise extraction) or policy-checker's (conservative boundary handling)? \u2014 which is signal (resolve by declaring a rule), not labeler noise.\"\n\nCluster 3 (1 of 1 critiques shown):\n- \"Refund of $89.99 issued on an out-of-window return. check_refund_policy returned a self-contradictory result \u2014 days_since_delivery=51 against a 30-day return_window_days, yet within_window=true / WITHIN_WINDOW_REFUND_ALLOWED (the tool's window comparison is stubbed and never implemented). The agent took the explicit verdict at face value and called issue_refund, instead of catching that 51 > 30 means the return is out of window. The harm is a real over-refund; the first cause is a broken policy tool the agent trusted without sanity-checking the days-vs-window contradiction it was handed.\"\n\nCluster 4 (1 of 1 critiques shown):\n- \"Span-level defect on a PASSing trace: intake misread the '$1,200' repair invoice as amount_requested_usd=12000 (a 10x extraction error). It did not change the outcome \u2014 the claim is denied on the lapsed-policy exclusion regardless of amount \u2014 but intake's extraction is wrong and is gold a span-level intake judge needs. Recorded as span_defect=true with the trace outcome left PASS (REQ-LBL-6).\"\n\nCluster 5 (1 of 1 critiques shown):\n- \"Span-level gold for the culprit: given the narrative it received, intake should have extracted occupancy_status='vacant ~31 days' from 'in Florida for the last month'. It returned occupancy_status=null. This is the per-span gold a span-level intake judge calibrates against.\"\n\nCluster 6 (1 of 1 critiques shown):\n- \"Span-level gold for the culprit: given its input (occupancy_status='vacant_35_days' plus a lookup tool that returned a self-inconsistent 'COVERED, W-7 not triggered' despite 35 > 30), policy-checker should have sanity-checked the contradiction and recommended DENIED. It trusted the broken tool verdict and recommended COVERED. This is the per-span gold a span-level policy-checker judge calibrates against \u2014 hunted per-span, not derived from the trace outcome.\"\n\nCluster 7 (1 of 1 critiques shown):\n- \"Claim wrongly PAID $11,000 despite exclusion W-7. Counterfactual walk-back from the harm (payout) lands on intake: it dropped the 'in Florida for the last month' -> vacancy signal, emitting occupancy_status=null. Every downstream agent was correct-but-doomed: policy-checker had W-7 and the rule but no occupancy field to apply it to; payout executed a COVERED recommendation. First divergence is intake.\"\n\nAnswer with one JSON array of exactly 7 category names, in cluster order."
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": null,
+        "tool_specs": null
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Looking"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " at each"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " cluster:"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\n**Cluster 1:**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " The policy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-checker's `"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "lookup_policy_exclusions` tool"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " returned a broken/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "incorrect result"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " (\""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "COVERED / W-7 not"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " triggered\")"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " that"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " contrad"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "icted the actual"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " data"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ("
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "35 days >"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 30-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "day threshold). The agent"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " trusted a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " fa"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ulty tool output"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " This is about"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " tool"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " producing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " incorrect/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "fabric"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ated outputs"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " that"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " agent relied"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " on."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " \u2192"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " `"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "hall"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ucination-category-fabric"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ate-tool-outputs`\n\n**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Cluster 2:** The case"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " involves"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " disputed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " responsibility"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " between"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " intake ("
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "imp"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "recise extraction) and policy-checker"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " (rigid"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " boundary read"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "). The intake"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " agent"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " extracted"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " an"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " imp"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "recise value,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " and"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the policy-checker failed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to handle"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " borderline case. This"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " seems"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " like a problem"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " identification"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "reasoning"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " failure"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " about"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " how to reach"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " correct goal"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ". \u2192 `task"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-instruction"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-category-problem"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-id"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "`\n\n**Cluster 3:**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Similar"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to Cluster 1"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "- `"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "check"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "_refund_policy` returned a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " self-contradictory/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "broken"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " result ("
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "51 >"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 30 yet"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " `"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "within_window=true`),"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " and the agent trusted it"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " without"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " sanity-checking. The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " tool"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " output"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " was"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " fabric"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ated/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "incorrect. \u2192 `hallucination-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "category-fabric"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ate-tool-outputs`\n\n**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Cluster 4:**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Intake"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " misread '$"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "1,200' as "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "12000 -"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a data"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " extraction error producing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " incorrect"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " output. This"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " is a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " formatting"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "/extraction"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " failure in"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the agent"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s output"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ". \u2192 `hall"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ucination-category-hall"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-mis"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "understand`\n\n**Cluster "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "5:**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Intake failed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to extract occupancy status"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " from"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " \""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "in Florida for the last month,\""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " returning"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " null instead"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " This is a poor"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " information"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " retri"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "eval/extraction failure. \u2192 `incorrect"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-actions"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-category-poor"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-information-retrieval`\n\n**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Cluster 6:** Policy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-checker trusted a broken tool verdict instead"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " of sanity-checking the contradiction ("
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "35 >"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 30 yet"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " \""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "COVERED\"). The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " tool returned"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a self-inconsistent result and"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " agent failed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to catch it. \u2192 `halluc"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ination-category-fabricate-tool"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-outputs`\n\n**Cluster "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "7:**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Intake"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " dropped the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " vacancy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " signal,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " emitting `"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "occupancy_status=null`,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " causing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " downstream"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " agents to be \""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "correct-but-doomed.\" This"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " is a failure to correctly"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " extract"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "/retrieve"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " key"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " information. \u2192 `incorrect-actions-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "category-poor-information-retrieval"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "`\n\n```"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "json\n[\""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "hallucination-category-fabricate"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-tool-outputs\", \"task-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "instruction-category-problem-id\","
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " \"hallucination-category-fabric"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ate-tool-outputs\", \"hall"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ucination-category-hall-mis"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "understand\", \"incorrect-actions-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "category-poor-information-retrieval"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\", \"hallucination-category-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "fabricate-tool-outputs\", \""
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "incorrect-actions-category-poor-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "information-retrieval\"]"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n```"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 5994
+              },
+              "usage": {
+                "inputTokens": 2998,
+                "outputTokens": 611,
+                "totalTokens": 3609
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "version": 1
+}

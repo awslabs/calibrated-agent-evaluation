@@ -1,0 +1,11 @@
+{
+  "schema_sql": "CREATE TABLE orders (id INTEGER, status TEXT, amount_usd INTEGER);",
+  "seed_sql": "INSERT INTO orders VALUES (1, 'refunded', 0), (2, 'shipped', 50), (3, 'refunded', 25);",
+  "gold_sql": "SELECT id, amount_usd FROM orders WHERE status = 'refunded'",
+  "candidates": {
+    "equivalent": "SELECT id, amount_usd FROM orders WHERE status = 'refunded'",
+    "reordered": "SELECT id, amount_usd FROM orders WHERE status = 'refunded' ORDER BY id DESC",
+    "wrong": "SELECT id, amount_usd FROM orders WHERE status = 'shipped'",
+    "syntax_error": "SELEKT id FROM orders"
+  }
+}

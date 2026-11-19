@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation score --scorer exact --mode wrong_reply --key answer --expected expected-replies.jsonl --explain
+Scored 2 trace(s) for wrong_reply with the exact scorer: 1 FAIL, 1 PASS.
+4 trace(s) in scope had no expected value to compare with and were not scored; --explain names them.
+Next: gate these verdicts with `calibrated-agent-evaluation run --verdicts scorer` (they are code verdicts, not a judge's, so no calibration is involved).
+
+wrote 2 code verdict(s) as rater 'scorer:exact@d40a58a2' (parameters {"key": "answer", "scorer": "exact"}) for mode 'wrong_reply' on 6 stored trace(s)
+  expected values from docs/site/examples/guides/expected-replies.jsonl
+  not scored: 4 trace(s) with no expected value for this mode: 'CLM-4471', 'CLM-4473', 'CLM-4477', 'ORD-1002'

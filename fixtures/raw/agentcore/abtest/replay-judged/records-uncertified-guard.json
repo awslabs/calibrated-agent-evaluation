@@ -1,0 +1,20 @@
+{
+ "calibration": [
+  {
+   "calib_id": "calib-target-judge-0",
+   "judge_id": "target-judge",
+   "judge_fingerprint": "3f1c0a9e5b7d2468",
+   "result": "CERTIFIED",
+   "run_at": "2026-10-30T09:00:00+00:00"
+  }
+ ],
+ "bias": [
+  {
+   "battery_id": "bias-target-judge-0",
+   "judge_id": "target-judge",
+   "judge_fingerprint": "3f1c0a9e5b7d2468",
+   "verdict": "CLEAR",
+   "run_at": "2026-10-30T09:00:00+00:00"
+  }
+ ]
+}

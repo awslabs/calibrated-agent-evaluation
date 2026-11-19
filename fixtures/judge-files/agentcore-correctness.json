@@ -1,0 +1,6 @@
+{
+  "backend": "agentcore",
+  "judge_id": "agentcore-correctness",
+  "evaluator_id": "Builtin.Correctness",
+  "failure_mode": "incorrect_answer"
+}

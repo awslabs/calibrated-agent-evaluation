@@ -1,0 +1,288 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "telemetry.sdk.language",
+            "value": {
+              "stringValue": "python"
+            }
+          },
+          {
+            "key": "telemetry.sdk.name",
+            "value": {
+              "stringValue": "opentelemetry"
+            }
+          },
+          {
+            "key": "telemetry.sdk.version",
+            "value": {
+              "stringValue": "1.43.0"
+            }
+          },
+          {
+            "key": "service.instance.id",
+            "value": {
+              "stringValue": "173e5ddc-8df0-49c2-bdec-c33ffe8ea29b"
+            }
+          },
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "orderbot"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "calibrated_agent_evaluation.orderbot.otel"
+          },
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "calibrated-agent-evaluation-orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "lookup_order"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1792136038791477000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "gen_ai.tool.input",
+                      "value": {
+                        "stringValue": "{\"order_id\":\"A-8120\"}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1792136038791472000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "gen_ai.tool.output",
+                      "value": {
+                        "stringValue": "{\"amount_usd\":149.0,\"delivered_at\":\"2026-05-04\",\"item\":\"Over-ear headphones\",\"order_id\":\"A-8120\",\"return_window_days\":30}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1792136038791476000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool lookup_order",
+              "parentSpanId": "o8QRKSfiwSs=",
+              "spanId": "K5QiWSvcVmk=",
+              "startTimeUnixNano": "1792136038791468000",
+              "status": {},
+              "traceId": "f5VIGbaNl9lDJa13VPoeDA=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "calibrated-agent-evaluation-orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "check_refund_policy"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1792136038791495000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "gen_ai.tool.input",
+                      "value": {
+                        "stringValue": "{\"order_id\":\"A-8120\",\"today\":\"2025-01-30\"}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1792136038791491000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "gen_ai.tool.output",
+                      "value": {
+                        "stringValue": "{\"days_since_delivery\":8,\"policy_verdict\":\"WITHIN_WINDOW_REFUND_ALLOWED\",\"return_window_days\":30,\"within_window\":true}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1792136038791494000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool check_refund_policy",
+              "parentSpanId": "o8QRKSfiwSs=",
+              "spanId": "sXZUItCg/ms=",
+              "startTimeUnixNano": "1792136038791488000",
+              "status": {},
+              "traceId": "f5VIGbaNl9lDJa13VPoeDA=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "calibrated-agent-evaluation-orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "issue_refund"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1792136038791509000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "gen_ai.tool.input",
+                      "value": {
+                        "stringValue": "{\"amount_usd\":149.0,\"order_id\":\"A-8120\"}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1792136038791506000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "gen_ai.tool.output",
+                      "value": {
+                        "stringValue": "{\"amount_usd\":149.0,\"order_id\":\"A-8120\",\"refund_id\":\"RF-30022\",\"status\":\"issued\"}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1792136038791509000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool issue_refund",
+              "parentSpanId": "o8QRKSfiwSs=",
+              "spanId": "TxxgwHPQxmw=",
+              "startTimeUnixNano": "1792136038791503000",
+              "status": {},
+              "traceId": "f5VIGbaNl9lDJa13VPoeDA=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "calibrated-agent-evaluation-orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "orderbot"
+                  }
+                },
+                {
+                  "key": "calibrated_agent_evaluation.agent.role",
+                  "value": {
+                    "stringValue": "specialist"
+                  }
+                },
+                {
+                  "key": "calibrated_agent_evaluation.span.seq",
+                  "value": {
+                    "intValue": "0"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1792136038791516000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"message\":\"Please refund order A-8120, the headphones arrived cracked.\"}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1792136038791457000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"answer\":\"Your refund has been successfully processed! Here's a summary:\\n\\n- **Order:** A-8120 (Over-ear headphones)\\n- **Refund Amount:** $149.00\\n- **Refund ID:** RF-30022\\n- **Status:** Issued \\u2705\\n\\nYou should see the funds returned to your original payment method within a few business days. We're truly sorry about the damaged headphones \\u2014 that's not the experience we want for you. If there's anything else I can help with, don't hesitate to ask! \\ud83d\\ude0a\"}"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1792136038791515000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_CLIENT",
+              "name": "invoke_agent orderbot",
+              "spanId": "o8QRKSfiwSs=",
+              "startTimeUnixNano": "1792136038791451000",
+              "status": {},
+              "traceId": "f5VIGbaNl9lDJa13VPoeDA=="
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "abTestArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-variant-both",
+  "abTestId": "fixture-abtest-variant-both",
+  "createdAt": "2026-10-28T18:30:00+00:00",
+  "currentRunId": "run-0001",
+  "description": "synthetic",
+  "errorDetails": [],
+  "evaluationConfig": {
+    "onlineEvaluationConfigArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:online-evaluation-config/fixture-oec-AbCdEf1234"
+  },
+  "executionStatus": "STOPPED",
+  "gatewayArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:gateway/fixture-gateway-AbCdEf1234",
+  "gatewayFilter": {
+    "targetPaths": [
+      "/fixture-runtime-target/*"
+    ]
+  },
+  "maxDurationExpiresAt": "2026-11-04T19:00:00+00:00",
+  "name": "fixture-abtest",
+  "results": {
+    "analysisTimestamp": "2026-10-29T19:00:00+00:00",
+    "evaluatorMetrics": [
+      {
+        "controlStats": {
+          "mean": 0.71,
+          "sampleSize": 120,
+          "variantName": "C"
+        },
+        "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness",
+        "variantResults": [
+          {
+            "absoluteChange": 0.07,
+            "confidenceInterval": {
+              "lower": 0.006,
+              "upper": 0.134
+            },
+            "isSignificant": true,
+            "mean": 0.78,
+            "pValue": 0.031,
+            "percentChange": 9.86,
+            "sampleSize": 118,
+            "variantName": "T1"
+          }
+        ]
+      },
+      {
+        "controlStats": {
+          "mean": 0.64,
+          "sampleSize": 120,
+          "variantName": "C"
+        },
+        "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness",
+        "variantResults": [
+          {
+            "absoluteChange": 0.02,
+            "confidenceInterval": {
+              "lower": -0.035,
+              "upper": 0.075
+            },
+            "isSignificant": false,
+            "mean": 0.66,
+            "pValue": 0.48,
+            "percentChange": 3.13,
+            "sampleSize": 118,
+            "variantName": "T1"
+          }
+        ]
+      }
+    ]
+  },
+  "roleArn": "arn:aws:iam::111122223333:role/fixture-abtest-role",
+  "startedAt": "2026-10-28T19:00:00+00:00",
+  "status": "ACTIVE",
+  "stoppedAt": "2026-10-29T19:00:00+00:00",
+  "updatedAt": "2026-10-29T19:00:05+00:00",
+  "variants": [
+    {
+      "name": "C",
+      "variantConfiguration": {
+        "configurationBundle": {
+          "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+          "bundleVersion": "0a1b2c3d-0000-4000-8000-000000000001"
+        }
+      },
+      "weight": 50
+    },
+    {
+      "name": "T1",
+      "variantConfiguration": {
+        "configurationBundle": {
+          "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+          "bundleVersion": "0a1b2c3d-0000-4000-8000-000000000002"
+        },
+        "target": {
+          "name": "fixture-target-v2"
+        }
+      },
+      "weight": 50
+    }
+  ]
+}

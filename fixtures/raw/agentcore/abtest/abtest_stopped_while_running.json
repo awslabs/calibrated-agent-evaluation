@@ -1,0 +1,46 @@
+{
+  "abTestArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:ab-test/fixture-abtest-stopped",
+  "abTestId": "fixture-abtest-stopped",
+  "createdAt": "2026-10-28T18:30:00+00:00",
+  "currentRunId": "run-0001",
+  "description": "synthetic",
+  "errorDetails": [],
+  "evaluationConfig": {
+    "onlineEvaluationConfigArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:online-evaluation-config/fixture-oec-AbCdEf1234"
+  },
+  "executionStatus": "RUNNING",
+  "gatewayArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:gateway/fixture-gateway-AbCdEf1234",
+  "gatewayFilter": {
+    "targetPaths": [
+      "/fixture-runtime-target/*"
+    ]
+  },
+  "maxDurationExpiresAt": "2026-11-04T19:00:00+00:00",
+  "name": "fixture-abtest",
+  "roleArn": "arn:aws:iam::111122223333:role/fixture-abtest-role",
+  "startedAt": "2026-10-28T19:00:00+00:00",
+  "status": "ACTIVE",
+  "updatedAt": "2026-10-29T10:00:00+00:00",
+  "variants": [
+    {
+      "name": "C",
+      "variantConfiguration": {
+        "configurationBundle": {
+          "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+          "bundleVersion": "0a1b2c3d-0000-4000-8000-000000000001"
+        }
+      },
+      "weight": 50
+    },
+    {
+      "name": "T1",
+      "variantConfiguration": {
+        "configurationBundle": {
+          "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+          "bundleVersion": "0a1b2c3d-0000-4000-8000-000000000002"
+        }
+      },
+      "weight": 50
+    }
+  ]
+}

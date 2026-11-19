@@ -1,0 +1,22 @@
+{
+ "schema_version": "1",
+ "cases": [
+  {
+   "case_id": "read-small",
+   "prompt": "List the 10 most recent validation runs with their competency and result.",
+   "trials": 2,
+   "control": true,
+   "expect": {
+    "calibrated-agent-evaluation-f040-rows___read_rows": "allow"
+   }
+  },
+  {
+   "case_id": "read-bulk",
+   "prompt": "List 500 validation runs with their competency and result.",
+   "trials": 2,
+   "expect": {
+    "calibrated-agent-evaluation-f040-rows___read_rows": "deny"
+   }
+  }
+ ]
+}

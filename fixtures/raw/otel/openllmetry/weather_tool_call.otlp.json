@@ -1,0 +1,104 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "openllmetry-openai"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "openllmetry-openai"
+          },
+          "spans": [
+            {
+              "traceId": "f026f026f026f026f026f026f026f026",
+              "spanId": "f026000000000001",
+              "name": "openai.chat",
+              "kind": "SPAN_KIND_CLIENT",
+              "startTimeUnixNano": "1",
+              "endTimeUnixNano": "2",
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "openai"
+                  }
+                },
+                {
+                  "key": "gen_ai.request.model",
+                  "value": {
+                    "stringValue": "gpt-4"
+                  }
+                },
+                {
+                  "key": "gen_ai.response.model",
+                  "value": {
+                    "stringValue": "gpt-4-0613"
+                  }
+                },
+                {
+                  "key": "llm.request.type",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.prompt.0.role",
+                  "value": {
+                    "stringValue": "user"
+                  }
+                },
+                {
+                  "key": "gen_ai.prompt.0.content",
+                  "value": {
+                    "stringValue": "What's the weather like in Boston?"
+                  }
+                },
+                {
+                  "key": "gen_ai.completion.0.role",
+                  "value": {
+                    "stringValue": "assistant"
+                  }
+                },
+                {
+                  "key": "gen_ai.completion.0.finish_reason",
+                  "value": {
+                    "stringValue": "tool_calls"
+                  }
+                },
+                {
+                  "key": "gen_ai.completion.0.tool_calls.0.id",
+                  "value": {
+                    "stringValue": "call_b4lU3wKOqwO7Xb2Ksok2XWyB"
+                  }
+                },
+                {
+                  "key": "gen_ai.completion.0.tool_calls.0.name",
+                  "value": {
+                    "stringValue": "get_current_weather"
+                  }
+                },
+                {
+                  "key": "gen_ai.completion.0.tool_calls.0.arguments",
+                  "value": {
+                    "stringValue": "{\n  \"location\": \"Boston\"\n}"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

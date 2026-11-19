@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation run    # without the stats extra
+calibrated-agent-evaluation run: this stage needs an engine that isn't installed: uv sync --inexact --extra stats

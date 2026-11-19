@@ -1,0 +1,41 @@
+{
+  "note": "paired_mcnemar over an OrderBot confirmation slice. small: 8->3 failures over 20 (b=5,c=0 discordant<25 -> mid-p). zero: identical before/after -> undefined (no fabricated p). effect is the Newcombe (1998, method 10) hybrid-score 95% interval on after - before. Acceptance re-runs paired_mcnemar and compares.",
+  "small": {
+    "expected": {
+      "effect": {
+        "hi": -0.029153801179650635,
+        "lo": -0.4489838939133444,
+        "point": -0.25,
+        "refusal_reason": null
+      },
+      "method": "midp",
+      "n_discordant": 5,
+      "p_value": 0.031250000000000014,
+      "undefined_reason": null
+    },
+    "inputs": {
+      "after_fail": 3,
+      "before_fail": 8,
+      "n": 20
+    }
+  },
+  "zero": {
+    "expected": {
+      "effect": {
+        "hi": 0.12060923282248126,
+        "lo": -0.12060923282248126,
+        "point": 0.0,
+        "refusal_reason": null
+      },
+      "method": "undefined",
+      "n_discordant": 0,
+      "p_value": null,
+      "undefined_reason": "zero discordant pairs (no before/after flips); McNemar's test is undefined"
+    },
+    "inputs": {
+      "after_fail": 5,
+      "before_fail": 5,
+      "n": 20
+    }
+  }
+}

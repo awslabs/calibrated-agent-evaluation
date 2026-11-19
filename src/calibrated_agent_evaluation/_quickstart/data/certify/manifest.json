@@ -1,0 +1,43 @@
+{
+  "description": "SYNTHETIC quickstart set. Real OrderBot runs (live Bedrock, frozen) over a generated order book; gold labels derived from the written return policy by a fixed rule, not by a human. Two hunted rounds, each its own locked test, scoped by the `label_round` taxonomy-cell key. Rebuild with `python -m corpus.generate.quickstart_set build`.",
+  "policy": "Final-sale items are never refundable. Any other item is refundable if it was delivered no more than its return_window_days ago. An item the customer reports as damaged, broken, defective or not working is refundable up to 90 days after delivery, even outside its return window.",
+  "per_class_plan": 162,
+  "round_key": "label_round",
+  "rounds": {
+    "1": {
+      "calibration": {
+        "FAIL": 162,
+        "PASS": 162
+      },
+      "hunted_runs_left_out": {
+        "ungradable": 0,
+        "other_failure_mode": 0,
+        "beyond_plan": 56
+      },
+      "bias_probe_trials": {
+        "length": 12,
+        "sycophancy": 12,
+        "self_preference": 12,
+        "compassion_fade": 12
+      }
+    },
+    "2": {
+      "calibration": {
+        "FAIL": 162,
+        "PASS": 162
+      },
+      "hunted_runs_left_out": {
+        "ungradable": 0,
+        "other_failure_mode": 0,
+        "beyond_plan": 136
+      },
+      "bias_probe_trials": {
+        "length": 30,
+        "sycophancy": 30,
+        "self_preference": 30,
+        "compassion_fade": 30
+      }
+    }
+  },
+  "production_sample": 200
+}

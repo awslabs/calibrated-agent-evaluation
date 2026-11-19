@@ -1,0 +1,1890 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "telemetry.sdk.language",
+            "value": {
+              "stringValue": "python"
+            }
+          },
+          {
+            "key": "telemetry.sdk.name",
+            "value": {
+              "stringValue": "opentelemetry"
+            }
+          },
+          {
+            "key": "telemetry.sdk.version",
+            "value": {
+              "stringValue": "1.43.0"
+            }
+          },
+          {
+            "key": "service.instance.id",
+            "value": {
+              "stringValue": "f6bdcdfd-93af-4534-a42a-5674f849b544"
+            }
+          },
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "claims-swarm"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "strands.telemetry.tracer"
+          },
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:13.772681+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:15.570627+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "921"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "921"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "118"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "118"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1039"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "1796"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "1731"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860775570687000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are the claims triage agent in a small claims swarm. Use the classify_claim tool to classify the claim's peril and severity, then hand off to the 'adjuster' agent to make the coverage decision. Always hand off to adjuster after classifying \u2014 do not decide coverage yourself.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860773772691000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860773772697000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "tool_use"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by classifying claim CLM-7720 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"name\": \"classify_claim\", \"input\": {\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860775570610000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "pllrG8cHN5A=",
+              "spanId": "jv4KMxVB/1Q=",
+              "startTimeUnixNano": "1782860773772680000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:15.571249+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "classify_claim"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.call.id",
+                  "value": {
+                    "stringValue": "tooluse_Dlaw2Iu2fTXucMWt4yYCLj"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.description",
+                  "value": {
+                    "stringValue": "Classify a claim's peril and severity."
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.json_schema",
+                  "value": {
+                    "stringValue": "{\"properties\": {\"claim_id\": {\"description\": \"Parameter claim_id\", \"type\": \"string\"}, \"narrative\": {\"description\": \"Parameter narrative\", \"type\": \"string\"}}, \"required\": [\"claim_id\", \"narrative\"], \"type\": \"object\"}"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:15.572351+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860775572386000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "role",
+                      "value": {
+                        "stringValue": "tool"
+                      }
+                    },
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_Dlaw2Iu2fTXucMWt4yYCLj"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860775571322000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"peril\\\": \\\"water_damage\\\", \\\"severity\\\": \\\"moderate\\\"}\"}]"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_Dlaw2Iu2fTXucMWt4yYCLj"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860775572342000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool classify_claim",
+              "parentSpanId": "pllrG8cHN5A=",
+              "spanId": "GGWhuKi+RDA=",
+              "startTimeUnixNano": "1782860775571244000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:13.772577+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "df78d220-be80-4b95-9118-16cb175b3113"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:15.572634+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860775572652000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860773772588000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by classifying claim CLM-7720 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"name\": \"classify_claim\", \"input\": {\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}}}]"
+                      }
+                    },
+                    {
+                      "key": "tool.result",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"peril\\\": \\\"water_damage\\\", \\\"severity\\\": \\\"moderate\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860775572628000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "y2E+WryYRzI=",
+              "spanId": "pllrG8cHN5A=",
+              "startTimeUnixNano": "1782860773772576000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:15.573455+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:20.566927+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1078"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1078"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "337"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "337"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1415"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "4990"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "4962"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860780566987000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are the claims triage agent in a small claims swarm. Use the classify_claim tool to classify the claim's peril and severity, then hand off to the 'adjuster' agent to make the coverage decision. Always hand off to adjuster after classifying \u2014 do not decide coverage yourself.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860775573508000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860775573539000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by classifying claim CLM-7720 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"name\": \"classify_claim\", \"input\": {\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860775573576000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"peril\\\": \\\"water_damage\\\", \\\"severity\\\": \\\"moderate\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860775573609000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "tool_use"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Claim CLM-7720 has been classified. Here's a summary before I hand off to the adjuster:\\n\\n| Field | Details |\\n|---|---|\\n| **Claim ID** | CLM-7720 |\\n| **Amount** | $6,400 |\\n| **Peril** | Water Damage |\\n| **Severity** | Moderate |\\n| **Key Facts** | Supply line failure under upstairs sink; ceiling below soaked; homeowner present and reported same day |\\n\\nNow handing off to the adjuster for the coverage decision! \ud83d\udd01\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\", \"name\": \"handoff_to_agent\", \"input\": {\"agent_name\": \"adjuster\", \"message\": \"Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\", \"context\": {\"claim_id\": \"CLM-7720\", \"amount\": 6400, \"peril\": \"water_damage\", \"severity\": \"moderate\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\", \"notes\": \"Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.\"}}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860780566910000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "DXNjILFNOtk=",
+              "spanId": "HTQk60x52ik=",
+              "startTimeUnixNano": "1782860775573452000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:20.567498+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "handoff_to_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.call.id",
+                  "value": {
+                    "stringValue": "tooluse_6TCViZm7YxVTFeJ6rECZCy"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.description",
+                  "value": {
+                    "stringValue": "Transfer control to another agent in the swarm for specialized help.\n\nReturns:\n    Confirmation of handoff initiation"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.json_schema",
+                  "value": {
+                    "stringValue": "{\"properties\": {\"agent_name\": {\"description\": \"Name of the agent to hand off to\", \"type\": \"string\"}, \"message\": {\"description\": \"Message explaining what needs to be done and why you're handing off\", \"type\": \"string\"}, \"context\": {\"default\": null, \"description\": \"Additional context to share with the next agent\", \"type\": \"object\"}}, \"required\": [\"agent_name\", \"message\"], \"type\": \"object\"}"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:20.568520+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860780568544000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "role",
+                      "value": {
+                        "stringValue": "tool"
+                      }
+                    },
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"agent_name\": \"adjuster\", \"message\": \"Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\", \"context\": {\"claim_id\": \"CLM-7720\", \"amount\": 6400, \"peril\": \"water_damage\", \"severity\": \"moderate\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\", \"notes\": \"Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.\"}}"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_6TCViZm7YxVTFeJ6rECZCy"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860780567574000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Handing off to adjuster: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\"}]"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_6TCViZm7YxVTFeJ6rECZCy"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860780568513000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool handoff_to_agent",
+              "parentSpanId": "DXNjILFNOtk=",
+              "spanId": "XDtRGCfEefs=",
+              "startTimeUnixNano": "1782860780567493000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:15.572894+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "61fd9fec-6a6a-4624-acad-39fa12abc73e"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "df78d220-be80-4b95-9118-16cb175b3113"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:20.568738+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860780568751000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860775572956000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by classifying claim CLM-7720 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"name\": \"classify_claim\", \"input\": {\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860775573010000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"peril\\\": \\\"water_damage\\\", \\\"severity\\\": \\\"moderate\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860775573043000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Claim CLM-7720 has been classified. Here's a summary before I hand off to the adjuster:\\n\\n| Field | Details |\\n|---|---|\\n| **Claim ID** | CLM-7720 |\\n| **Amount** | $6,400 |\\n| **Peril** | Water Damage |\\n| **Severity** | Moderate |\\n| **Key Facts** | Supply line failure under upstairs sink; ceiling below soaked; homeowner present and reported same day |\\n\\nNow handing off to the adjuster for the coverage decision! \ud83d\udd01\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\", \"name\": \"handoff_to_agent\", \"input\": {\"agent_name\": \"adjuster\", \"message\": \"Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\", \"context\": {\"claim_id\": \"CLM-7720\", \"amount\": 6400, \"peril\": \"water_damage\", \"severity\": \"moderate\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\", \"notes\": \"Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.\"}}}}]"
+                      }
+                    },
+                    {
+                      "key": "tool.result",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"status\": \"success\", \"content\": [{\"text\": \"Handing off to adjuster: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\"}], \"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\"}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860780568733000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "y2E+WryYRzI=",
+              "spanId": "DXNjILFNOtk=",
+              "startTimeUnixNano": "1782860775572889000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:20.569413+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:23.774180+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1460"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1460"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "136"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "136"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1596"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "3202"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "3178"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860783774239000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are the claims triage agent in a small claims swarm. Use the classify_claim tool to classify the claim's peril and severity, then hand off to the 'adjuster' agent to make the coverage decision. Always hand off to adjuster after classifying \u2014 do not decide coverage yourself.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860780569448000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860780569479000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by classifying claim CLM-7720 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"name\": \"classify_claim\", \"input\": {\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860780569502000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"peril\\\": \\\"water_damage\\\", \\\"severity\\\": \\\"moderate\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860780569521000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Claim CLM-7720 has been classified. Here's a summary before I hand off to the adjuster:\\n\\n| Field | Details |\\n|---|---|\\n| **Claim ID** | CLM-7720 |\\n| **Amount** | $6,400 |\\n| **Peril** | Water Damage |\\n| **Severity** | Moderate |\\n| **Key Facts** | Supply line failure under upstairs sink; ceiling below soaked; homeowner present and reported same day |\\n\\nNow handing off to the adjuster for the coverage decision! \ud83d\udd01\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\", \"name\": \"handoff_to_agent\", \"input\": {\"agent_name\": \"adjuster\", \"message\": \"Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\", \"context\": {\"claim_id\": \"CLM-7720\", \"amount\": 6400, \"peril\": \"water_damage\", \"severity\": \"moderate\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\", \"notes\": \"Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.\"}}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860780569566000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"status\": \"success\", \"content\": [{\"text\": \"Handing off to adjuster: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\"}], \"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\"}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860780569590000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"\u2705 **Handoff complete!** Here's what was done:\\n\\n1. **Classified** claim CLM-7720 as **Water Damage / Moderate severity** using the classification tool.\\n2. **Forwarded** all relevant context to the **adjuster agent**, including:\\n   - The $6,400 claim amount\\n   - The peril and severity classification\\n   - The full narrative and key favorable facts (sudden/accidental loss, same-day reporting, homeowner present)\\n\\nThe adjuster will now review the classification and make the final coverage determination. \ud83c\udfe0\ud83d\udca7\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860783774163000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "zNpkI7neBvA=",
+              "spanId": "punVf9UK8Xs=",
+              "startTimeUnixNano": "1782860780569411000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:20.568920+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "f1f98fd3-579a-46c1-abd6-881edfd45c4b"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "61fd9fec-6a6a-4624-acad-39fa12abc73e"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:23.774532+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860783774548000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860780568960000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by classifying claim CLM-7720 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"name\": \"classify_claim\", \"input\": {\"claim_id\": \"CLM-7720\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860780568994000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_Dlaw2Iu2fTXucMWt4yYCLj\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"peril\\\": \\\"water_damage\\\", \\\"severity\\\": \\\"moderate\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860780569017000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Claim CLM-7720 has been classified. Here's a summary before I hand off to the adjuster:\\n\\n| Field | Details |\\n|---|---|\\n| **Claim ID** | CLM-7720 |\\n| **Amount** | $6,400 |\\n| **Peril** | Water Damage |\\n| **Severity** | Moderate |\\n| **Key Facts** | Supply line failure under upstairs sink; ceiling below soaked; homeowner present and reported same day |\\n\\nNow handing off to the adjuster for the coverage decision! \ud83d\udd01\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\", \"name\": \"handoff_to_agent\", \"input\": {\"agent_name\": \"adjuster\", \"message\": \"Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\", \"context\": {\"claim_id\": \"CLM-7720\", \"amount\": 6400, \"peril\": \"water_damage\", \"severity\": \"moderate\", \"narrative\": \"A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\", \"notes\": \"Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.\"}}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860780569063000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"status\": \"success\", \"content\": [{\"text\": \"Handing off to adjuster: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\"}], \"toolUseId\": \"tooluse_6TCViZm7YxVTFeJ6rECZCy\"}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860780569082000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "y2E+WryYRzI=",
+              "spanId": "zNpkI7neBvA=",
+              "startTimeUnixNano": "1782860780568918000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:13.772502+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "triage"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.tools",
+                  "value": {
+                    "stringValue": "[\"classify_claim\", \"handoff_to_agent\"]"
+                  }
+                },
+                {
+                  "key": "system_prompt",
+                  "value": {
+                    "stringValue": "You are the claims triage agent in a small claims swarm. Use the classify_claim tool to classify the claim's peril and severity, then hand off to the 'adjuster' agent to make the coverage decision. Always hand off to adjuster after classifying \u2014 do not decide coverage yourself."
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:23.774775+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "3459"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "591"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "3459"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "591"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "4050"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_read_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_write_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860783774800000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nOther agents available for collaboration:\\nAgent name: adjuster.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860773772517000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "\u2705 **Handoff complete!** Here's what was done:\n\n1. **Classified** claim CLM-7720 as **Water Damage / Moderate severity** using the classification tool.\n2. **Forwarded** all relevant context to the **adjuster agent**, including:\n   - The $6,400 claim amount\n   - The peril and severity classification\n   - The full narrative and key favorable facts (sudden/accidental loss, same-day reporting, homeowner present)\n\nThe adjuster will now review the classification and make the final coverage determination. \ud83c\udfe0\ud83d\udca7\n"
+                      }
+                    },
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860783774740000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "invoke_agent triage",
+              "parentSpanId": "TCd9bX5yd58=",
+              "spanId": "y2E+WryYRzI=",
+              "startTimeUnixNano": "1782860773772501000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:23.776090+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:25.561278+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1082"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1082"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "119"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "119"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1201"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "1784"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "1760"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860785561345000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are the claims adjuster in a small claims swarm. Use the assess_and_decide tool to assess the classified claim and produce the final coverage decision and amount. Summarize the decision for the customer.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860783776128000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nHandoff Message: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\\n\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nPrevious agents who worked on this: triage\\n\\nShared knowledge from previous agents:\\n\u2022 triage: {'claim_id': 'CLM-7720', 'amount': 6400, 'peril': 'water_damage', 'severity': 'moderate', 'narrative': 'A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.', 'notes': 'Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.'}\\n\\nOther agents available for collaboration:\\nAgent name: triage.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860783776160000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "tool_use"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I have all the information needed to adjudicate this claim. Let me run the assessment now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"name\": \"assess_and_decide\", \"input\": {\"claim_id\": \"CLM-7720\", \"peril\": \"water_damage\", \"severity\": \"moderate\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860785561258000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "/iIz3d88lJI=",
+              "spanId": "gRDOldbB454=",
+              "startTimeUnixNano": "1782860783776088000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:25.561928+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "assess_and_decide"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.call.id",
+                  "value": {
+                    "stringValue": "tooluse_JbjSI6KdeJQ2KS7oVkoDdh"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.description",
+                  "value": {
+                    "stringValue": "Assess a classified claim and decide."
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.json_schema",
+                  "value": {
+                    "stringValue": "{\"properties\": {\"claim_id\": {\"description\": \"Parameter claim_id\", \"type\": \"string\"}, \"peril\": {\"description\": \"Parameter peril\", \"type\": \"string\"}, \"severity\": {\"description\": \"Parameter severity\", \"type\": \"string\"}}, \"required\": [\"claim_id\", \"peril\", \"severity\"], \"type\": \"object\"}"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:25.563020+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860785563049000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "role",
+                      "value": {
+                        "stringValue": "tool"
+                      }
+                    },
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"claim_id\": \"CLM-7720\", \"peril\": \"water_damage\", \"severity\": \"moderate\"}"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_JbjSI6KdeJQ2KS7oVkoDdh"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860785561999000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"decision\\\": \\\"COVERED\\\", \\\"amount_usd\\\": 6400, \\\"basis\\\": \\\"water_damage (moderate); dwelling occupied at loss, no exclusion applies\\\"}\"}]"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_JbjSI6KdeJQ2KS7oVkoDdh"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860785563011000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool assess_and_decide",
+              "parentSpanId": "/iIz3d88lJI=",
+              "spanId": "WNOQyW7GCYI=",
+              "startTimeUnixNano": "1782860785561922000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:23.775709+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "f709a4eb-1744-4dce-b574-300e12fca472"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "61fd9fec-6a6a-4624-acad-39fa12abc73e"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:25.563277+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860785563295000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nHandoff Message: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\\n\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nPrevious agents who worked on this: triage\\n\\nShared knowledge from previous agents:\\n\u2022 triage: {'claim_id': 'CLM-7720', 'amount': 6400, 'peril': 'water_damage', 'severity': 'moderate', 'narrative': 'A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.', 'notes': 'Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.'}\\n\\nOther agents available for collaboration:\\nAgent name: triage.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860783775760000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I have all the information needed to adjudicate this claim. Let me run the assessment now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"name\": \"assess_and_decide\", \"input\": {\"claim_id\": \"CLM-7720\", \"peril\": \"water_damage\", \"severity\": \"moderate\"}}}]"
+                      }
+                    },
+                    {
+                      "key": "tool.result",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"decision\\\": \\\"COVERED\\\", \\\"amount_usd\\\": 6400, \\\"basis\\\": \\\"water_damage (moderate); dwelling occupied at loss, no exclusion applies\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860785563270000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "d3HhdbRAAiI=",
+              "spanId": "/iIz3d88lJI=",
+              "startTimeUnixNano": "1782860783775707000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:25.564149+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:33.138634+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1262"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1262"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "408"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "408"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1670"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "7570"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "7547"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860793138678000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are the claims adjuster in a small claims swarm. Use the assess_and_decide tool to assess the classified claim and produce the final coverage decision and amount. Summarize the decision for the customer.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860785564198000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nHandoff Message: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\\n\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nPrevious agents who worked on this: triage\\n\\nShared knowledge from previous agents:\\n\u2022 triage: {'claim_id': 'CLM-7720', 'amount': 6400, 'peril': 'water_damage', 'severity': 'moderate', 'narrative': 'A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.', 'notes': 'Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.'}\\n\\nOther agents available for collaboration:\\nAgent name: triage.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860785564245000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I have all the information needed to adjudicate this claim. Let me run the assessment now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"name\": \"assess_and_decide\", \"input\": {\"claim_id\": \"CLM-7720\", \"peril\": \"water_damage\", \"severity\": \"moderate\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860785564284000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"decision\\\": \\\"COVERED\\\", \\\"amount_usd\\\": 6400, \\\"basis\\\": \\\"water_damage (moderate); dwelling occupied at loss, no exclusion applies\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860785564316000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"## \u2705 Coverage Decision \u2014 Claim CLM-7720\\n\\nHere is a full summary of the adjudication outcome:\\n\\n| Field | Details |\\n|---|---|\\n| **Claim ID** | CLM-7720 |\\n| **Peril** | Water Damage |\\n| **Severity** | Moderate |\\n| **Decision** | \u2705 **COVERED** |\\n| **Approved Amount** | **$6,400.00** |\\n\\n---\\n\\n### \ud83d\udccb Basis for Decision\\n\\n1. **Sudden & Accidental Loss** \u2014 The damage was caused by a supply line failure, which is a sudden and accidental event \u2014 a covered peril under standard homeowners policies.\\n2. **No Exclusions Apply** \u2014 There is no evidence of neglect, long-term seepage, or pre-existing damage that would trigger a policy exclusion.\\n3. **Dwelling Was Occupied** \u2014 The homeowner was present at the time of loss, which supports the claim's credibility and rules out vacancy-related exclusions.\\n4. **Prompt Reporting** \u2014 The claim was reported the same day as the incident, satisfying timely-notice requirements.\\n\\n---\\n\\n### \ud83d\udcac Message to Customer\\n\\n> **Dear Policyholder,**\\n>\\n> We are pleased to inform you that your water damage claim **(CLM-7720)** has been **approved in full** for **$6,400.00**. The damage resulting from the failed supply line under your upstairs sink qualifies as a sudden and accidental loss under your homeowners policy. Your prompt reporting and presence at the time of the incident were noted favorably during review.\\n>\\n> A claims representative will be in touch shortly to coordinate payment and any next steps for repairs. Thank you for your cooperation throughout this process.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860793138619000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "GMULakEjkgE=",
+              "spanId": "jkv3JkCy3W0=",
+              "startTimeUnixNano": "1782860785564147000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:25.563532+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "fdbc8760-8ab6-4129-a4a1-6006aa77440d"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "f709a4eb-1744-4dce-b574-300e12fca472"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:33.138905+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860793138924000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nHandoff Message: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\\n\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nPrevious agents who worked on this: triage\\n\\nShared knowledge from previous agents:\\n\u2022 triage: {'claim_id': 'CLM-7720', 'amount': 6400, 'peril': 'water_damage', 'severity': 'moderate', 'narrative': 'A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.', 'notes': 'Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.'}\\n\\nOther agents available for collaboration:\\nAgent name: triage.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860785563645000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I have all the information needed to adjudicate this claim. Let me run the assessment now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"name\": \"assess_and_decide\", \"input\": {\"claim_id\": \"CLM-7720\", \"peril\": \"water_damage\", \"severity\": \"moderate\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860785563687000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_JbjSI6KdeJQ2KS7oVkoDdh\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"claim_id\\\": \\\"CLM-7720\\\", \\\"decision\\\": \\\"COVERED\\\", \\\"amount_usd\\\": 6400, \\\"basis\\\": \\\"water_damage (moderate); dwelling occupied at loss, no exclusion applies\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860785563719000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "d3HhdbRAAiI=",
+              "spanId": "GMULakEjkgE=",
+              "startTimeUnixNano": "1782860785563529000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:23.775420+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "adjuster"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.tools",
+                  "value": {
+                    "stringValue": "[\"assess_and_decide\", \"handoff_to_agent\"]"
+                  }
+                },
+                {
+                  "key": "system_prompt",
+                  "value": {
+                    "stringValue": "You are the claims adjuster in a small claims swarm. Use the assess_and_decide tool to assess the classified claim and produce the final coverage decision and amount. Summarize the decision for the customer."
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:33.139091+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "2344"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "527"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "2344"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "527"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "2871"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_read_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_write_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860793139112000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Context:\\nHandoff Message: Please make the coverage decision for claim CLM-7720. The claim has been classified and is ready for adjudication.\\n\\nUser Request: Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.\\n\\nPrevious agents who worked on this: triage\\n\\nShared knowledge from previous agents:\\n\u2022 triage: {'claim_id': 'CLM-7720', 'amount': 6400, 'peril': 'water_damage', 'severity': 'moderate', 'narrative': 'A supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day.', 'notes': 'Sudden and accidental loss; prompt reporting; no indication of neglect or pre-existing damage.'}\\n\\nOther agents available for collaboration:\\nAgent name: triage.\\n\\nYou have access to swarm coordination tools if you need help from other agents. If you don't hand off to another agent, the swarm will consider the task complete.\\n\\n\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860783775491000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "## \u2705 Coverage Decision \u2014 Claim CLM-7720\n\nHere is a full summary of the adjudication outcome:\n\n| Field | Details |\n|---|---|\n| **Claim ID** | CLM-7720 |\n| **Peril** | Water Damage |\n| **Severity** | Moderate |\n| **Decision** | \u2705 **COVERED** |\n| **Approved Amount** | **$6,400.00** |\n\n---\n\n### \ud83d\udccb Basis for Decision\n\n1. **Sudden & Accidental Loss** \u2014 The damage was caused by a supply line failure, which is a sudden and accidental event \u2014 a covered peril under standard homeowners policies.\n2. **No Exclusions Apply** \u2014 There is no evidence of neglect, long-term seepage, or pre-existing damage that would trigger a policy exclusion.\n3. **Dwelling Was Occupied** \u2014 The homeowner was present at the time of loss, which supports the claim's credibility and rules out vacancy-related exclusions.\n4. **Prompt Reporting** \u2014 The claim was reported the same day as the incident, satisfying timely-notice requirements.\n\n---\n\n### \ud83d\udcac Message to Customer\n\n> **Dear Policyholder,**\n>\n> We are pleased to inform you that your water damage claim **(CLM-7720)** has been **approved in full** for **$6,400.00**. The damage resulting from the failed supply line under your upstairs sink qualifies as a sudden and accidental loss under your homeowners policy. Your prompt reporting and presence at the time of the incident were noted favorably during review.\n>\n> A claims representative will be in touch shortly to coordinate payment and any next steps for repairs. Thank you for your cooperation throughout this process.\n"
+                      }
+                    },
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860793139063000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "invoke_agent adjuster",
+              "parentSpanId": "TCd9bX5yd58=",
+              "spanId": "d3HhdbRAAiI=",
+              "startTimeUnixNano": "1782860783775415000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:13.772355+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_swarm"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "swarm"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860793139278000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "Adjudicate water-damage claim CLM-7720 for $6,400. Narrative: a supply line under the upstairs sink failed and soaked the ceiling below; homeowner was present and reported it the same day."
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860773772376000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_CLIENT",
+              "name": "invoke_swarm",
+              "spanId": "TCd9bX5yd58=",
+              "startTimeUnixNano": "1782860773772350000",
+              "status": {},
+              "traceId": "EAJX33kdzv5gDTljy5+mfg=="
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

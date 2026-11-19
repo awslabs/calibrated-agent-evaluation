@@ -1,0 +1,12 @@
+{
+  "judge_id": "orderbot-vibe",
+  "axes": [
+    {"name": "helpfulness", "scale": "likert"},
+    {"name": "tone", "scale": "likert"}
+  ],
+  "output_fields": ["critique", "verdict"],
+  "scorer": null,
+  "checklist": [],
+  "weighted_collapse": false,
+  "schema_version": "1"
+}

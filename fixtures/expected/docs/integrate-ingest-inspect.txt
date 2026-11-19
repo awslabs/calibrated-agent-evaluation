@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation ingest fixtures/raw/inspect/ORD-1001.eval
+calibrated-agent-evaluation ingest: 1 ingested, 0 refused, 0 skipped
+  [ok] fixtures/raw/inspect/ORD-1001.eval → ORD-1001 (inspect, 1 span(s), 3 tool call(s), owned)

@@ -1,0 +1,11 @@
+{
+  "note": "Oracle for probing the OrderBot SSE endpoint: the observed tools and probed-trace shape.",
+  "observed_tools": ["lookup_order"],
+  "observed_tools_are_lower_bound": true,
+  "probed_trace": {
+    "ownership": "probed",
+    "spans": [],
+    "endpoint_fingerprint_present": true
+  },
+  "min_failure_hypotheses": 1
+}

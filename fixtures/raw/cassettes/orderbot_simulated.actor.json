@@ -1,0 +1,37 @@
+{
+  "schema": "calibrated-agent-evaluation-actor-cassette/1",
+  "turns": [
+    {
+      "agent_reply_sha256": "68e6259a896b000000e285257159d930dcdecca9bedb58642990a3d6a560278e",
+      "message": "Thank you! Could you let me know which card the refund is going back to, and give me a more specific timeframe for when it will arrive?",
+      "scenario_id": "ORD-1001-sim",
+      "stop": false,
+      "stop_reason": null,
+      "turn": 2
+    },
+    {
+      "agent_reply_sha256": "5b286a1dcfd154a9732d7afe6677c4fe368e12a686c73dbdf3a8ab45fd6b20f0",
+      "message": "I appreciate the info, but I'm a bit disappointed that you can't see which card it's going back to — that's important for me to track. Is there any way to escalate this so someone can confirm those details for me?",
+      "scenario_id": "ORD-1001-sim",
+      "stop": false,
+      "stop_reason": null,
+      "turn": 3
+    },
+    {
+      "agent_reply_sha256": "49574f001225d1538c011dabf58a330f714c2f049e51fc6df9f89c9ef970f09a",
+      "message": "Thanks for the guidance, I'll reach out to the support team to get those card details confirmed. Just to clarify, should I expect the refund to show up within 3–5 business days regardless of the card type?",
+      "scenario_id": "ORD-1001-sim",
+      "stop": false,
+      "stop_reason": null,
+      "turn": 4
+    },
+    {
+      "agent_reply_sha256": "508fc5817e003b35898fd88339fb683622f185f7b76f56d94ba75fa421434a7b",
+      "message": null,
+      "scenario_id": "ORD-1002-sim",
+      "stop": true,
+      "stop_reason": "goal_completed",
+      "turn": 2
+    }
+  ]
+}

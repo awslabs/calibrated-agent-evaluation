@@ -1,0 +1,4 @@
+$ calibrated-agent-evaluation cluster --ratify ratify.json
+ratified 2 failure mode(s) under codebook version '1' (by alice) and tagged 2 FAIL label(s).
+Next: `calibrated-agent-evaluation cluster` counts the named modes; `calibrated-agent-evaluation label --serve --rater <id> --codebook-version 1` offers them in the review form.
+Run with --explain for the numbers behind this.

@@ -1,0 +1,7 @@
+$ calibrated-agent-evaluation judge \
+    --judge demo/quickstart/judge-v2.json \
+    --frame production-representative \
+    --cassette demo/quickstart/judge.cassette.json
+Wrote 200 verdict(s) for trusted_broken_policy_tool on 200 trace(s): 38 FAIL, 162 PASS.
+Next: turn these into a failure rate with `calibrated-agent-evaluation run --judge demo/quickstart/judge-v2.json`.
+Run with --explain for the numbers behind this.

@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation results --out results.csv
+Wrote 14 estimate(s) from 6 record(s) (2 calibration, 1 run, 2 bias, 1 judge) to results.csv.
+Run with --explain for the numbers behind this.

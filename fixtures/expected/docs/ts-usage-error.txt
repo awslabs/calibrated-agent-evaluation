@@ -1,0 +1,10 @@
+$ calibrated-agent-evaluation run --verdicts bogus
+usage: calibrated-agent-evaluation run [-h] [--trace TRACE_ID] [--ci] [--threshold THRESHOLD]
+                                       [--verdicts {judge,scorer,human}] [--judge FILE]
+                                       [--profile PROFILE] [--region REGION] [--seed SEED]
+                                       [--n-resamples N_RESAMPLES] [--publish {local,langfuse}]
+                                       [--drift-baseline STORE]
+                                       [--drift-feature {input-chars,turns,tool-calls}]
+                                       [--fail-on-drift] [--atoms FILE]
+                                       [--backend {local,langfuse}] [--root PATH] [--explain]
+calibrated-agent-evaluation run: error: argument --verdicts: invalid choice: 'bogus' (choose from judge, scorer, human)

@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation calibrate \
+    --check \
+    --judge demo/quickstart/judge-v2.json \
+    --cassette demo/quickstart/judge.cassette.json
+calibrated-agent-evaluation calibrate: not enough fresh gold to re-check judge 'orderbot-refund-policy': a drop to 0.80 against 'calib-orderbot-refund-policy-gold-60968d-807cc1ffd3ff' is detected with 10 FAIL and 5 PASS gold labels on traces no calibration of this mode used, and the store has 0 FAIL and 0 PASS. Label 10 more FAIL and 5 more PASS on new traces, then check again. No judge was run
+  left out: 648 gold label(s) on traces a calibration or an earlier check of this mode used

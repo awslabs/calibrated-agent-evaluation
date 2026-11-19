@@ -1,0 +1,19 @@
+$ calibrated-agent-evaluation --root store calibrate --judge store/quickstart/judge-v2.json --cassette store/quickstart/judge.cassette.json --rate-safe --cell label_round=2 --explain
+Judge certified on 324 gold label(s) (synthetic, from the sample policy rule): it agrees with them well enough to trust (it caught 97% of the failures and cleared 100% of the passes).
+Next: check it for bias with `calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v2.json --probes DIR --thresholds FILE --cassette store/quickstart/judge.cassette.json`.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+
+calibrated judge 'orderbot-refund-policy' (bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0@v2) for trusted_broken_policy_tool on 324 gold label(s) (synthetic, from the sample policy rule) from 324 stored trace(s) in cell label_round=2: CERTIFIED
+  TPR 0.969 (95% lower bound 0.938, n=162 FAIL); TNR 1.000 (95% lower bound 0.984, n=162 PASS); Youden's J 0.969
+  gate: both 95% lower bounds must reach 0.80
+  rate-safe plan at expected accuracy 0.90: 162 gold label(s) per class (55 certify the judge; 162 keep the corrected rate's interval covering at every certifying accuracy); this set has 162 FAIL and 162 PASS, enough
+  raters: one (in the gold: synthetic-rule-oracle), so the gold needs no agreement overlap
+  looks: 1 (the first test of this judge on this gold)
+  rater agreement on the gold: not measured (the gold has one rater)
+  judge vs gold: raw agreement 0.985 (95% interval 0.964 to 0.993)
+  judge drift: no earlier record for this judge id to compare with
+  the 324 calibration verdict(s) were not written to the store: they certify the judge and are not scores
+recorded calib-orderbot-refund-policy-gold-60968d-807cc1ffd3ff in store/records/calibration
+next: `calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v2.json --probes DIR --thresholds FILE --cassette store/quickstart/judge.cassette.json` runs its bias battery
+(exit 0)
+

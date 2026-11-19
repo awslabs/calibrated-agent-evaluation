@@ -1,0 +1,16 @@
+{
+  "agents": [
+    "supervisor",
+    "intake",
+    "policy-checker",
+    "fraud-scorer",
+    "payout",
+    "escalation"
+  ],
+  "handoffs": [
+    "intake->policy-checker",
+    "policy-checker->fraud-scorer",
+    "fraud-scorer->payout",
+    "fraud-scorer->escalation"
+  ]
+}

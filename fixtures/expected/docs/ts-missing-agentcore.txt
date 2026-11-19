@@ -1,0 +1,4 @@
+$ calibrated-agent-evaluation doctor --agentcore --region us-west-2    # without the agentcore extra
+calibrated-agent-evaluation doctor: This needs the [agentcore] extra, which isn't installed.
+Next: uv sync --inexact --extra agentcore
+(Run with --explain for the details.)

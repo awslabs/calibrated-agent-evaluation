@@ -1,0 +1,7 @@
+$ CALIBRATED_AGENT_EVALUATION_CASSETTE_MODE=replay calibrated-agent-evaluation generate \
+    --run \
+    --executor agentcore \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 \
+    --payload-format agentcore_sse \
+    --frame fixtures/raw/frames/agentcore_CLM-4471.frame.json
+calibrated-agent-evaluation generate: replay needs a cassette: CALIBRATED_AGENT_EVALUATION_CASSETTE_MODE is replay, but no --cassette was given, so nothing was run. Pass --cassette PATH, or set CALIBRATED_AGENT_EVALUATION_CASSETTE_MODE to auto or record to call AWS

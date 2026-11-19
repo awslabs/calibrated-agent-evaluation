@@ -1,0 +1,52 @@
+name: Live AWS integration tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      max-billed-calls:
+        description: Cap on billed AgentCore calls for the run (empty for no cap)
+        required: false
+        default: "200"
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  agentcore-live:
+    name: AgentCore live tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment: aws-integration
+    permissions:
+      contents: read
+      id-token: write # OIDC for the AWS role
+    env:
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_LIVE: "1"
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_LIVE_ROLE_ARN: ${{ vars.AWS_INTEGRATION_ROLE_ARN }}
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_REGION: ${{ vars.AWS_REGION }}
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_MAX_BILLED_CALLS: ${{ inputs.max-billed-calls }}
+      # Optional: a test whose variable is unset skips and names it.
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_RUNTIME_ARN: ${{ vars.AGENTCORE_RUNTIME_ARN }}
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_PAYLOAD_FORMAT: ${{ vars.AGENTCORE_PAYLOAD_FORMAT }}
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_QUESTION: ${{ vars.AGENTCORE_QUESTION }}
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_EXPECTED_AGENTS: ${{ vars.AGENTCORE_EXPECTED_AGENTS }}
+      CALIBRATED_AGENT_EVALUATION_AGENTCORE_EVAL_ROLE_ARN: ${{ vars.AGENTCORE_EVAL_ROLE_ARN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.9"
+          enable-cache: false
+      - run: uv sync --locked --extra agentcore
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_INTEGRATION_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-session-name: calibrated-agent-evaluation-live
+          mask-aws-account-id: true
+      - run: uv run --extra agentcore pytest -m "integration and agentcore" tests/integration/agentcore

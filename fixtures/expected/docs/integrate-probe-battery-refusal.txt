@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation probe --endpoint http://127.0.0.1:9/chat --authorized --battery agentdojo --trials 20
+calibrated-agent-evaluation probe: 'agentdojo' scores an agent inside a tool environment it sets up (a shell, files, a mailbox), and a black-box probe can only send text to an endpoint and read text back. Running it here would score the target on a task it never received. Probe with strong_reject or xstest, or evaluate the agent through its own executor

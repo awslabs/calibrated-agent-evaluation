@@ -1,0 +1,12 @@
+{
+  "judge_id": "orderbot-refund-resolved",
+  "axes": [{"name": "resolved", "scale": "binary"}],
+  "output_fields": ["critique", "verdict"],
+  "scorer": null,
+  "checklist": [
+    {"name": "policy_cited", "critical": true},
+    {"name": "greeting_present", "critical": false}
+  ],
+  "weighted_collapse": false,
+  "schema_version": "1"
+}

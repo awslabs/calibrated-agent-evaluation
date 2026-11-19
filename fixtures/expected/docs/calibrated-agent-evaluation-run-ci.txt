@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation run --verdicts human --ci
+calibrated-agent-evaluation run: CI gate failed: 4 of 4 failure mode(s) don't clear the bar yet: intake/dropped_material_fact, orderbot/trusted_broken_policy_tool, policy-checker/trusted_broken_policy_tool, vacancy_threshold_margin_mishandled.
+  (The bar: at least 80% of each mode's traces must pass, even at the cautious end of what this many traces can show.)
+No failure rate estimated: pass --judge FILE to correct a judge's verdicts.
+Next: fix the failing modes, or label more traces where a mode has too few to show its pass rate.
+Run with --explain for the numbers behind this.

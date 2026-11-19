@@ -1,0 +1,105 @@
+{
+ "traces": [
+  {
+   "trace_id": "h1-d00",
+   "input": {
+    "answer": "What was the average basket size in store 00 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d01",
+   "input": {
+    "answer": "What was the average basket size in store 01 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d02",
+   "input": {
+    "answer": "What was the average basket size in store 02 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d03",
+   "input": {
+    "answer": "What was the average basket size in store 03 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d04",
+   "input": {
+    "answer": "What was the average basket size in store 04 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d05",
+   "input": {
+    "answer": "What was the average basket size in store 05 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d06",
+   "input": {
+    "answer": "What was the average basket size in store 06 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d07",
+   "input": {
+    "answer": "What was the average basket size in store 07 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d08",
+   "input": {
+    "answer": "What was the average basket size in store 08 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "h1-d09",
+   "input": {
+    "answer": "What was the average basket size in store 09 yesterday?"
+   },
+   "output": {
+    "answer": "draft"
+   }
+  }
+ ],
+ "labels": [
+  {
+   "trace_id": "h1-d03",
+   "kind": "human",
+   "outcome": "FAIL",
+   "failure_mode": "unbounded_scan",
+   "rater_id": null,
+   "critique": "fails unbounded_scan"
+  }
+ ],
+ "run_provenance": []
+}

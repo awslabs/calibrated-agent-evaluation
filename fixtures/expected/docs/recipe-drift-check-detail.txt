@@ -1,0 +1,10 @@
+calibration traces vs production sample, message length (648 vs 200 traces)
+  psi          0.042  p=0.690  bar=0.25  ok
+  jsd          0.008  p=0.684  reported only
+  wasserstein  0.046  p=0.745  bar=0.10  ok
+
+calibration traces vs production sample, days since delivery (648 vs 200 traces)
+  psi          0.523  p=0.001  bar=0.25  DRIFT
+  jsd          0.095  p=0.001  reported only
+  wasserstein  0.363  p=0.001  bar=0.10  DRIFT
+

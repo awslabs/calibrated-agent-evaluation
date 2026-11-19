@@ -1,0 +1,3 @@
+$ LANGFUSE_HOST=http://127.0.0.1:9 calibrated-agent-evaluation --backend langfuse ingest fixtures/raw/strands/CLM-4471.otlp.json
+calibrated-agent-evaluation ingest: Langfuse get_trace('CLM-4471') failed: ConnectError: [Errno N] Connection refused
+(exit 1)

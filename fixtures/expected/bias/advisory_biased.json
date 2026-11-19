@@ -1,0 +1,18 @@
+{
+  "fixture_judge": "advisory_biased",
+  "model": "fixture/advisory-biased-judge",
+  "prompt_version": "v1",
+  "pairwise": false,
+  "verdict": "CLEAR",
+  "failed_biases": [],
+  "expected_error": null,
+  "gate": "returns (promotion permitted despite the advisory exceedance)",
+  "probes": {
+    "length":          {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "threshold": 0.35, "passed": true},
+    "self_preference": {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "threshold": 0.35, "passed": true},
+    "sycophancy":      {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "threshold": 0.35, "passed": true},
+    "compassion_fade": {"status": "run", "is_must_pass": false, "magnitude": 1.0, "magnitude_ub95_min": 0.35, "threshold": 0.35, "passed": false},
+    "positional":      {"status": "not_applicable", "is_must_pass": false, "magnitude": 0.0, "passed": null}
+  },
+  "notes": "The advisory-biased fixture judge softens its verdict under sympathetic framing on every compassion_fade trial (magnitude 1.0), so that advisory probe is recorded as failing its threshold (passed=false). Because compassion_fade is advisory (non-gating in v1), the overall verdict stays CLEAR and enforce_bias_gate permits promotion — the fuller CALM picture is surfaced without a directional bias hard-failing a sound judge."
+}

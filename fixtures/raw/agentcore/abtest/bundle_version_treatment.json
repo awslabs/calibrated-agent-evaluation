@@ -1,0 +1,32 @@
+{
+  "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+  "bundleId": "fixture-bundle-AbCdEf1234",
+  "bundleName": "fixture-bundle",
+  "components": {
+    "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-runtime-AbCdEf1234": {
+      "configuration": {
+        "sql_generator_model_id": "us.anthropic.fixture-model-v1:0",
+        "sql_generator_system_prompt": "You write one read-only SELECT per question, with an explicit date range. F036-CANARY-PROMPT",
+        "supervisor_model_id": "us.anthropic.fixture-model-v1:0",
+        "supervisor_system_prompt": "You route each question to a specialist. F036-CANARY-PROMPT"
+      }
+    },
+    "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-tools-AbCdEf1234": {
+      "configuration": {
+        "tool_description": "Look up an order by id. F036-CANARY-PROMPT"
+      }
+    }
+  },
+  "createdAt": "2026-10-28T18:00:00+00:00",
+  "lineageMetadata": {
+    "branchName": "main",
+    "createdBy": {
+      "name": "fixture-owner"
+    },
+    "parentVersionIds": [
+      "0a1b2c3d-0000-4000-8000-000000000001"
+    ]
+  },
+  "versionCreatedAt": "2026-10-28T18:10:00+00:00",
+  "versionId": "0a1b2c3d-0000-4000-8000-000000000002"
+}

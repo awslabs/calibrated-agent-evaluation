@@ -1,0 +1,269 @@
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. */
+/* SPDX-License-Identifier: Apache-2.0 */
+
+/* Site palette. Material's `custom` primary/accent read these variables;
+   mermaid diagrams derive their node, edge and label colors from them too. */
+:root {
+  --calibrated-agent-evaluation-ink: #1e2440;
+  --calibrated-agent-evaluation-vellum: #f5f0e6;
+  --calibrated-agent-evaluation-verdigris: #2f8a7e;
+  --calibrated-agent-evaluation-verdigris-700: #287a70;
+  --calibrated-agent-evaluation-pass: #287a70;
+  --calibrated-agent-evaluation-fail: #c0392b;
+  --calibrated-agent-evaluation-insufficient: #776c59;
+}
+
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: var(--calibrated-agent-evaluation-ink);
+  --md-primary-fg-color--light: #2c3459;
+  --md-primary-fg-color--dark: #141830;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
+[data-md-color-accent="custom"] {
+  --md-accent-fg-color: var(--calibrated-agent-evaluation-verdigris-700);
+  --md-accent-fg-color--transparent: #287a701a;
+  --md-accent-bg-color: #ffffff;
+  --md-accent-bg-color--light: #ffffffb3;
+}
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #fbf9f4;
+  --md-typeset-a-color: var(--calibrated-agent-evaluation-verdigris-700);
+  --md-code-bg-color: var(--calibrated-agent-evaluation-vellum);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 230;
+  --md-default-bg-color: #161a2e;
+  --md-typeset-a-color: #5fb3a6;
+  --md-accent-fg-color: #5fb3a6;
+}
+
+/* Homepage value panel: the judge's raw number, the corrected one, and the answer key. */
+.value-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.value-panel__figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  background: var(--md-code-bg-color);
+}
+
+.value-panel__figure--honest {
+  border-color: var(--calibrated-agent-evaluation-verdigris-700);
+  border-width: 2px;
+}
+
+.value-panel__figure > p {
+  display: contents;
+}
+
+.value-panel__label,
+.value-panel__number,
+.value-panel__note {
+  display: block;
+}
+
+.value-panel__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+
+.value-panel__number {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.value-panel__figure--raw .value-panel__number,
+.value-panel__figure--key .value-panel__number {
+  color: var(--md-default-fg-color--light);
+}
+
+.value-panel__figure--key {
+  border-style: dashed;
+}
+
+.value-panel__figure--honest .value-panel__number {
+  color: var(--calibrated-agent-evaluation-verdigris-700);
+}
+
+[data-md-color-scheme="slate"] .value-panel__figure--honest .value-panel__number,
+[data-md-color-scheme="slate"] .value-panel__figure--honest {
+  color: #5fb3a6;
+  border-color: #5fb3a6;
+}
+
+.value-panel__note {
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Captured CLI output whose lines are sentences: wrap them instead of scrolling. */
+.md-typeset .wrap-output pre > code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.value-panel__why {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .value-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.md-typeset .grid.cards.two-up {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+@media screen and (min-width: 60em) {
+  .md-typeset .grid.cards.two-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Collapsible example blocks in the brand accent instead of Material's purple. */
+.md-typeset .admonition.example,
+.md-typeset details.example {
+  border-color: var(--calibrated-agent-evaluation-verdigris-700);
+}
+
+.md-typeset .example > .admonition-title,
+.md-typeset .example > summary {
+  background-color: #287a701a;
+}
+
+.md-typeset .example > .admonition-title::before,
+.md-typeset .example > summary::before {
+  background-color: var(--calibrated-agent-evaluation-verdigris-700);
+}
+
+/* The collapse chevron takes the admonition color too; keep it in the palette for every type. */
+.md-typeset details > summary::after {
+  color: var(--calibrated-agent-evaluation-verdigris-700);
+}
+
+[data-md-color-scheme="slate"] .md-typeset details > summary::after {
+  color: #5fb3a6;
+}
+
+/* Material draws each diagram inside a shadow root sized to its host, so on a phone a diagram
+   shrinks its text until it can't be read. There, diagrams wrapped in .diagram keep a readable
+   minimum width and scroll sideways instead. */
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .diagram {
+    overflow-x: auto;
+  }
+
+  .md-typeset .diagram > .mermaid {
+    min-width: 36rem;
+  }
+}
+
+/* Homepage: the tagline under the title. */
+.hero-tagline {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--md-default-fg-color--light);
+  margin: 1rem 0 1.5rem;
+}
+
+@media screen and (max-width: 44.9375em) {
+  /* Charts are drawn wide for a desktop column; on a phone they keep a readable width and scroll
+     sideways, like the diagrams. */
+  .md-typeset p:has(> img[src*="assets/charts/"]) {
+    overflow-x: auto;
+  }
+
+  .md-typeset img[src*="assets/charts/"] {
+    min-width: 40rem;
+    max-width: none;
+  }
+}
+
+/* A long reference breadcrumb wraps instead of running past the screen edge. */
+.md-path__list {
+  flex-wrap: wrap;
+}
+
+/* Homepage: the plain-language lead under the tagline. */
+.md-typeset .hero-lead {
+  max-width: 46rem;
+  margin: 1.5rem auto 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.md-typeset .trace-grid {
+  display: block;
+  width: 100%;
+  max-width: 44rem;
+  margin: 1rem auto;
+}
+
+/* Audience router and the three outcomes. */
+.md-typeset .grid.cards.audience,
+.md-typeset .grid.cards.outcomes {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.md-typeset .grid.cards.outcomes > ul > li {
+  text-align: center;
+}
+
+/* Homepage: the four-step strip. */
+.md-typeset .steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  counter-reset: none;
+}
+
+.md-typeset .step {
+  position: relative;
+  padding: 1rem 1rem 0.75rem;
+  border-top: 3px solid var(--calibrated-agent-evaluation-verdigris-700);
+  background: var(--md-code-bg-color);
+  border-radius: 0 0 0.4rem 0.4rem;
+}
+
+.md-typeset .step > p {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.md-typeset .step__n {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--calibrated-agent-evaluation-ink);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .step__n {
+  color: var(--calibrated-agent-evaluation-ink);
+  background: var(--calibrated-agent-evaluation-vellum);
+}

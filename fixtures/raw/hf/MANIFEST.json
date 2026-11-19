@@ -1,0 +1,68 @@
+{
+  "source": "https://huggingface.co/datasets/Exgentic/agent-llm-traces",
+  "revision": "70036b93a04e61b0ea2706a68b962f4f26774587",
+  "license": "CDLA-Permissive-2.0",
+  "selection": "whole sessions picked by session_id from swebench shards; no row edited",
+  "shards": {
+    "data/train-00012-of-00039.parquet": "b21531f9446828298e26e07d5718e49290a6ecf80ba14b1fc6cb0601f62cca7c",
+    "data/train-00019-of-00039.parquet": "1273811490529293ff9e825efb4232b451e32511c46934826a7a9d830f6d60bf"
+  },
+  "files": {
+    "swebench-slice.parquet": [
+      "e3bfdef4aca3_c0427304",
+      "c0d1d84c7898_35f42bfd",
+      "140646846ae7_8d10c195"
+    ],
+    "renamed-columns-slice.parquet": [
+      "e3bfdef4aca3_c0427304",
+      "c0d1d84c7898_35f42bfd",
+      "140646846ae7_8d10c195"
+    ],
+    "swebench-session.jsonl": [
+      "e3bfdef4aca3_c0427304"
+    ]
+  },
+  "renamed_columns": {
+    "spans": "otel_events",
+    "session_id": "trace_key"
+  },
+  "sessions": [
+    {
+      "session_id": "e3bfdef4aca3_c0427304",
+      "shard": "data/train-00012-of-00039.parquet",
+      "row": 3,
+      "harness": "claude_code",
+      "benchmark": "swebench",
+      "models": [
+        "azure/DeepSeek-V3.2"
+      ],
+      "spans": 2,
+      "exercises": "structured tool_call parts paired by id (TodoWrite, mcp__environment__bash)"
+    },
+    {
+      "session_id": "c0d1d84c7898_35f42bfd",
+      "shard": "data/train-00019-of-00039.parquet",
+      "row": 38,
+      "harness": "tool_calling",
+      "benchmark": "swebench",
+      "models": [
+        "azure/Kimi-K2.5"
+      ],
+      "spans": 12,
+      "exercises": "structured tool_call parts over a longer session (bash x8, finish)"
+    },
+    {
+      "session_id": "140646846ae7_8d10c195",
+      "shard": "data/train-00019-of-00039.parquet",
+      "row": 13,
+      "harness": "smolagents_code",
+      "benchmark": "swebench",
+      "models": [
+        "azure/Kimi-K2.5"
+      ],
+      "spans": 25,
+      "exercises": "code-action harness: tool use embedded in assistant text, no tool_call parts"
+    }
+  ],
+  "regenerate": "uv run --extra datasets --extra hf python fixtures/raw/hf/make_slice.py"
+}

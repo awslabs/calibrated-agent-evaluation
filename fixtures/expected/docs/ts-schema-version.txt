@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation --root restored load dump
+calibrated-agent-evaluation load: dump schema_version '0' != running SCHEMA_VERSION '1'; refusing to load (no coercion)
+(exit 1)

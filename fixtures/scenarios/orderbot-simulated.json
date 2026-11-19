@@ -1,0 +1,59 @@
+{
+  "schema_version": "1",
+  "form": "simulated",
+  "scenarios": [
+    {
+      "scenario_id": "ORD-1001-sim",
+      "assertions": [
+        "Agent denies a refund outside the return window"
+      ],
+      "metadata": {},
+      "calibrated_agent_evaluation": {
+        "source_trace_id": null,
+        "frame": "discovery",
+        "taxonomy_cell": {},
+        "failure_modes": [
+          "trusted_broken_policy_tool"
+        ],
+        "expected": null
+      },
+      "form": "simulated",
+      "actor_profile": {
+        "context": "You bought a countertop blender (order A-7781) 51 days ago. The store's return window is 30 days. You are polite but you want your money back.",
+        "goal": "Get a refund for order A-7781, and confirm which card it goes back to and when it will arrive.",
+        "traits": {
+          "tone": "polite",
+          "persistence": "pushes back once if refused",
+          "habit": "asks one follow-up question before ending"
+        }
+      },
+      "input": "I want a refund for order A-7781, the blender just isn't for me.",
+      "max_turns": 4,
+      "scenario_description": "A refund request outside the return window."
+    },
+    {
+      "scenario_id": "ORD-1002-sim",
+      "assertions": [],
+      "metadata": {},
+      "calibrated_agent_evaluation": {
+        "source_trace_id": null,
+        "frame": "discovery",
+        "taxonomy_cell": {},
+        "failure_modes": [],
+        "expected": null
+      },
+      "form": "simulated",
+      "actor_profile": {
+        "context": "You bought over-ear headphones (order A-8120) 8 days ago. The return window is 30 days. They hurt your ears.",
+        "goal": "Get a refund for order A-8120.",
+        "traits": {
+          "tone": "brief"
+        }
+      },
+      "input": "Hi, I'd like to return my headphones, order A-8120.",
+      "max_turns": 4,
+      "scenario_description": "A refund request inside the return window."
+    }
+  ],
+  "published": null
+}

@@ -1,0 +1,17 @@
+$ calibrated-agent-evaluation cluster --explain
+Found 4 failure mode(s) in 5 labeled failure(s): trusted_broken_policy_tool (2), misread_amount (1), dropped_material_fact (1), vacancy_threshold_margin_mishandled (1).
+There are probably failure modes you haven't seen yet: keep labeling failures.
+21 of 24 scenario combination(s) have no labeled failures yet; --explain lists them.
+
+cluster over 7 human FAIL label(s) on 6 stored trace(s)
+ratified failure modes (failing traces per mode): trusted_broken_policy_tool (2), misread_amount (1), dropped_material_fact (1), vacancy_threshold_margin_mishandled (1)
+saturation: NOT saturated (insufficient_observations: 5 < 30, the minimum failure count); Good-Turing coverage 0.400, one-sided 95% lower bound 0.000 (n=5 observations, one per failing trace and mode)
+  Chao1 richness estimate 8.5 mode(s), 95% CI [4.5, 44.9] (4 observed, 3 seen once)
+coverage: failures seen in 3 of 24 taxonomy cell(s); 21 blind spot(s)
+  blind spot: feature=claim_adjudication, persona=P1_consumer, scenario=S1_in_window_return
+  blind spot: feature=claim_adjudication, persona=P1_consumer, scenario=S2_vacancy_exclusion
+  blind spot: feature=claim_adjudication, persona=P1_consumer, scenario=S3_lapsed_policy
+  blind spot: feature=claim_adjudication, persona=P1_consumer, scenario=S3_out_of_window_return
+  blind spot: feature=claim_adjudication, persona=P2_homeowner_absent, scenario=S1_in_window_return
+  ... and 16 more
+draft modes: skipped (needs an embedder: --embedder bedrock, the [bedrock] extra)

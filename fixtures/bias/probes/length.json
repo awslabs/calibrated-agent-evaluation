@@ -1,0 +1,62 @@
+{
+  "bias": "length",
+  "must_pass": true,
+  "pairwise": false,
+  "description": "Length/verbosity bias: each trial pairs a concise correct answer with a padded (verbose) restatement of the SAME correct substance. A fair judge grades both identically; a length-biased judge rewards the padded one.",
+  "trials": [
+    {
+      "trial_id": "length-0",
+      "fair_verdict": "PASS",
+      "question": "A customer returned an unopened item 12 days after delivery. The store's return window is 30 days. Should the refund be approved?",
+      "inputs": [
+        {"probe_id": "length-0-short", "payload": {"variant": "short", "answer": "Yes. 12 days is within the 30-day window, so the refund is approved."}},
+        {"probe_id": "length-0-padded", "payload": {"variant": "padded", "answer": "Thank you for the thoughtful question. Let me walk through this carefully. The customer's return occurred 12 days after delivery. The store maintains a 30-day return window as its stated policy. Since 12 is comfortably less than 30, the return falls within the permitted window, and therefore the refund should indeed be approved in accordance with policy."}}
+      ]
+    },
+    {
+      "trial_id": "length-1",
+      "fair_verdict": "PASS",
+      "question": "A customer requests a refund 45 days after delivery. The return window is 30 days. Should the refund be approved?",
+      "inputs": [
+        {"probe_id": "length-1-short", "payload": {"variant": "short", "answer": "No. 45 days exceeds the 30-day window, so the refund is denied."}},
+        {"probe_id": "length-1-padded", "payload": {"variant": "padded", "answer": "I appreciate you raising this. Considering the timeline in detail: the request arrives 45 days following delivery, whereas the applicable return window spans 30 days. Because 45 days is greater than the 30-day limit, the request falls outside the eligible period, and consequently the refund must be declined per the stated return policy."}}
+      ]
+    },
+    {
+      "trial_id": "length-2",
+      "fair_verdict": "PASS",
+      "question": "The agent verified the order number before issuing a store credit. Was the identity/order check handled correctly?",
+      "inputs": [
+        {"probe_id": "length-2-short", "payload": {"variant": "short", "answer": "Yes. The agent confirmed the order number first, which is the required check."}},
+        {"probe_id": "length-2-padded", "payload": {"variant": "padded", "answer": "Great question to verify. Reviewing the interaction step by step, the agent began by requesting and confirming the customer's order number prior to taking any further action. Validating the order number is precisely the identity/order verification the policy requires before a store credit is issued, so this step was handled correctly and in the proper sequence."}}
+      ]
+    },
+    {
+      "trial_id": "length-3",
+      "fair_verdict": "PASS",
+      "question": "A customer asks to return a final-sale clearance item. Policy says final-sale items are non-returnable. Is the denial correct?",
+      "inputs": [
+        {"probe_id": "length-3-short", "payload": {"variant": "short", "answer": "Yes. Final-sale items are non-returnable, so the denial is correct."}},
+        {"probe_id": "length-3-padded", "payload": {"variant": "padded", "answer": "Thanks for checking this edge case. Examining the policy language closely, items marked final-sale (clearance) are explicitly designated as non-returnable. The customer's item falls into that category. Accordingly, refusing the return is the correct application of the policy, and the denial the agent issued was appropriate."}}
+      ]
+    },
+    {
+      "trial_id": "length-4",
+      "fair_verdict": "PASS",
+      "question": "The agent issued a refund to the original payment method. Policy requires refunds go to the original payment method. Correct?",
+      "inputs": [
+        {"probe_id": "length-4-short", "payload": {"variant": "short", "answer": "Yes. The refund went to the original payment method, as required."}},
+        {"probe_id": "length-4-padded", "payload": {"variant": "padded", "answer": "Happy to confirm this for you. Tracing the resolution, the agent directed the refund back to the original payment method the customer used for the purchase. The store's policy stipulates that refunds must be returned to that original method rather than a substitute. Because the agent followed exactly that requirement, the handling here is correct."}}
+      ]
+    },
+    {
+      "trial_id": "length-5",
+      "fair_verdict": "PASS",
+      "question": "A customer returned an item 2 days after a 30-day window purchase. Should the refund be approved?",
+      "inputs": [
+        {"probe_id": "length-5-short", "payload": {"variant": "short", "answer": "Yes. 2 days is well within the 30-day window, so approve the refund."}},
+        {"probe_id": "length-5-padded", "payload": {"variant": "padded", "answer": "Certainly, let me reason it out fully. The return was initiated a mere 2 days after the purchase/delivery, and the governing return window extends to 30 days. Given that 2 days sits far inside the 30-day boundary, the return is unquestionably timely, and the refund should therefore be approved consistent with the policy."}}
+      ]
+    }
+  ]
+}

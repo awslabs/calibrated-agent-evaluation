@@ -1,0 +1,29 @@
+{
+ "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+ "bundleId": "fixture-bundle-AbCdEf1234",
+ "bundleName": "fixture-bundle",
+ "description": "redacted live capture",
+ "versionId": "0a1b2c3d-0000-4000-8000-000000000012",
+ "components": {
+  "arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-runtime-AbCdEf1234": {
+   "configuration": {
+    "supervisor_system_prompt": "redacted supervisor_system_prompt (C, 2809 characters) F036-CANARY-PROMPT",
+    "supervisor_model_id": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "sql_generator_model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "sql_generator_system_prompt": "redacted sql_generator_system_prompt (T1, 3560 characters) F036-CANARY-PROMPT"
+   }
+  }
+ },
+ "lineageMetadata": {
+  "parentVersionIds": [
+   "0a1b2c3d-0000-4000-8000-000000000011"
+  ],
+  "branchName": "fixture-t1",
+  "createdBy": {
+   "name": "fixture-owner"
+  },
+  "commitMessage": "redacted"
+ },
+ "createdAt": "2026-10-29T04:57:08.582000+00:00",
+ "versionCreatedAt": "2026-10-29T04:58:26.332000+00:00"
+}

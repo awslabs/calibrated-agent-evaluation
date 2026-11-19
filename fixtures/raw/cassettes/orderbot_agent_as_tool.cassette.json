@@ -1,0 +1,5786 @@
+{
+  "entries": [
+    {
+      "fingerprint": "150f67d753f98cf9",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "I'll start"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " by consulting"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the policy advisor to determine if this order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " qualifies for a refund."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Let me check that"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " right"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " away!"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "contentBlockStart": {
+              "contentBlockIndex": 1,
+              "start": {
+                "toolUse": {
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "{\"input\": \""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "Custom"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "er C-"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "91002 is req"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "uesting a"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": " refund fo"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "r ord"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "er A"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "-3310, "
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "a $129."
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "00 espre"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "sso grinde"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "r.\"}"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 1
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "tool_use"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 1807
+              },
+              "usage": {
+                "inputTokens": 775,
+                "outputTokens": 108,
+                "totalTokens": 883
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "1b167dfdb6dd56a7",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.",
+        "tool_specs": [
+          {
+            "description": "Check whether an order is refundable.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "check_refund_policy"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Let"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " me check the refund policy for order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " A-3310 "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "right"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " away!"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "contentBlockStart": {
+              "contentBlockIndex": 1,
+              "start": {
+                "toolUse": {
+                  "name": "check_refund_policy",
+                  "toolUseId": "tooluse_zVWFjYPRyRJDRuUpEoBqN7"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "{\"order"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "_id\":"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": " \"A-3310\"}"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 1
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "tool_use"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 2706
+              },
+              "usage": {
+                "inputTokens": 640,
+                "outputTokens": 79,
+                "totalTokens": 719
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "90415853a5d73be8",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "Let me check the refund policy for order A-3310 right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "order_id": "A-3310"
+                  },
+                  "name": "check_refund_policy",
+                  "toolUseId": "tooluse_6ajbcvQRDG4eVOF3Ohfxeh"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"order_id\": \"A-3310\", \"days_since_delivery\": 6, \"return_window_days\": 30, \"within_window\": true, \"policy_verdict\": \"WITHIN_WINDOW_REFUND_ALLOWED\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_6ajbcvQRDG4eVOF3Ohfxeh"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.",
+        "tool_specs": [
+          {
+            "description": "Check whether an order is refundable.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "check_refund_policy"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " C-91002! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s the refund policy assessment"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "A-3310**:\n\n|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Detail"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " | Info"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " |\n|---|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "---|\n| **Order ID** |"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " A-3310 |\n|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Item"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "** | Espresso"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Grinder ($"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00) |\n| **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Since"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Delivery** | 6 days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " |\n| **Return Window**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " | 30 days |\n|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Allowed?"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "** | "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\u2705 **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Yes** |\n\n**Reason"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " The order was"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " delivered only"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "6 days ago**,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " which is well within the **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "30-day return window**. Per"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " policy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ", the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ref"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "und is approved"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nYou"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " may"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " proceed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " with processing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "$"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00 ref"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "und** for customer C-91002"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ". Be"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " sure to follow"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " standard"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " return"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "shipping"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " instructions"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " as"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " applicable"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3751
+              },
+              "usage": {
+                "inputTokens": 788,
+                "outputTokens": 188,
+                "totalTokens": 976
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "b88111ffc03eb71c",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_Pk3zMs11NzwJ9vuSV2Obzh"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n| Detail | Info |\n|---|---|\n| **Order ID** | A-3310 |\n| **Item** | Espresso Grinder ($129.00) |\n| **Days Since Delivery** | 6 days |\n| **Return Window** | 30 days |\n| **Refund Allowed?** | \u2705 **Yes** |\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\n\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_Pk3zMs11NzwJ9vuSV2Obzh"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " policy advisor has"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " confirmed the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund is approved!"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order is"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " only"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 6 days old, well"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " within the 30-day return window"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ". Let"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " me issue"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the refund now"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "contentBlockStart": {
+              "contentBlockIndex": 1,
+              "start": {
+                "toolUse": {
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_4btwMX8g2wx8S19VZ3AKJE"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "{\"o"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "rder_id"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "\":"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": " \"A-3310\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ", \""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "amount"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "_usd\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ": 12"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "9.0}"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 1
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "tool_use"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3463
+              },
+              "usage": {
+                "inputTokens": 1081,
+                "outputTokens": 121,
+                "totalTokens": 1202
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "d5ca072414e95a0d",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_Pk3zMs11NzwJ9vuSV2Obzh"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n| Detail | Info |\n|---|---|\n| **Order ID** | A-3310 |\n| **Item** | Espresso Grinder ($129.00) |\n| **Days Since Delivery** | 6 days |\n| **Return Window** | 30 days |\n| **Refund Allowed?** | \u2705 **Yes** |\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\n\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_Pk3zMs11NzwJ9vuSV2Obzh"
+                }
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "The policy advisor has confirmed the refund is approved! The order is only 6 days old, well within the 30-day return window. Let me issue the refund now."
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "amount_usd": 129.0,
+                    "order_id": "A-3310"
+                  },
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_4btwMX8g2wx8S19VZ3AKJE"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"refund_id\": \"RF-44190\", \"order_id\": \"A-3310\", \"amount_usd\": 129.0, \"status\": \"issued\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_4btwMX8g2wx8S19VZ3AKJE"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " summary for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "C-91002**:\n\n-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\u2705 **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund Approved &"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Issued**\n- **Order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " A-3310 (Esp"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "resso Grinder)\n- **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund Amount:** $129."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "00\n- **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund ID:** RF-44190"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- **Status:** Issued"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nYour"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund of"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "$129.00** has been successfully"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " processed."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Please"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " allow"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " few business days for the amount"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to reflect"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " on"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " your original"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " payment method. If"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " you have any further"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " questions,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " don"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'t hesitate to reach out!"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\ude0a"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 2467
+              },
+              "usage": {
+                "inputTokens": 1252,
+                "outputTokens": 135,
+                "totalTokens": 1387
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "b8605f4e417eac74",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "Let me check the refund policy for order A-3310 right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "order_id": "A-3310"
+                  },
+                  "name": "check_refund_policy",
+                  "toolUseId": "tooluse_3dkh6pSmfm3MzZbMH7GQBj"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"order_id\": \"A-3310\", \"days_since_delivery\": 6, \"return_window_days\": 30, \"within_window\": true, \"policy_verdict\": \"WITHIN_WINDOW_REFUND_ALLOWED\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_3dkh6pSmfm3MzZbMH7GQBj"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.",
+        "tool_specs": [
+          {
+            "description": "Check whether an order is refundable.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "check_refund_policy"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " C-91002! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s the refund policy assessment"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "A-3310**:"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\n\u2705 **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund is"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ALLOWED**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nHere"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " are"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the details:\n- **Order ID"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":** A-3310\n- **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Item"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Espresso"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Grinder ($"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00)\n- **Days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Since"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Delivery:** 6 days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- **Return Window:** 30 "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "days\n- **Status"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":** Within the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " return window"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\n**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Reason"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " The order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " was"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " delivered only"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "6 days ago**,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " which is well within the **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "30-day return window**. Per"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " policy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ", the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer is fully"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " eligible"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for a refund."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " You"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " may"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " proceed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " with processing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " $"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00 refund for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " C-91002."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3413
+              },
+              "usage": {
+                "inputTokens": 788,
+                "outputTokens": 165,
+                "totalTokens": 953
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "76799b820fdfee88",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_C6H17est2wnXiQXtvjFqI0"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n\u2705 **Refund is ALLOWED**\n\nHere are the details:\n- **Order ID:** A-3310\n- **Item:** Espresso Grinder ($129.00)\n- **Days Since Delivery:** 6 days\n- **Return Window:** 30 days\n- **Status:** Within the return window\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the customer is fully eligible for a refund. You may proceed with processing the $129.00 refund for customer C-91002.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_C6H17est2wnXiQXtvjFqI0"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "The policy advisor confirms the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund is approved"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "! Now I'll issue the refund"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " immediately"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "contentBlockStart": {
+              "contentBlockIndex": 1,
+              "start": {
+                "toolUse": {
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_psRMNZvdHhYuykoGPcZhhr"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "{\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "or"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "der"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "_id\": \"A"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "-3310\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ", \"amou"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "nt_usd"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "\": 12"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "9.0}"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 1
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "tool_use"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 1624
+              },
+              "usage": {
+                "inputTokens": 1058,
+                "outputTokens": 101,
+                "totalTokens": 1159
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "69bd0f7a8b78b60d",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_C6H17est2wnXiQXtvjFqI0"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n\u2705 **Refund is ALLOWED**\n\nHere are the details:\n- **Order ID:** A-3310\n- **Item:** Espresso Grinder ($129.00)\n- **Days Since Delivery:** 6 days\n- **Return Window:** 30 days\n- **Status:** Within the return window\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the customer is fully eligible for a refund. You may proceed with processing the $129.00 refund for customer C-91002.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_C6H17est2wnXiQXtvjFqI0"
+                }
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "The policy advisor confirms the refund is approved! Now I'll issue the refund immediately."
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "amount_usd": 129.0,
+                    "order_id": "A-3310"
+                  },
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_psRMNZvdHhYuykoGPcZhhr"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"refund_id\": \"RF-44190\", \"order_id\": \"A-3310\", \"amount_usd\": 129.0, \"status\": \"issued\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_psRMNZvdHhYuykoGPcZhhr"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer C-91002!"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " summary of your"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund:\n\n-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\u2705 **Refund Status"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Issued"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83e\uddfe"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ID:** A-3310 "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "(Espresso Grinder)"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\udcb5"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund Amount:** $129.00"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\udd16"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Refund"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Confirmation"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ID"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":** RF-44190"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nYour"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund of"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "$129.00** has been successfully"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " processed."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Since"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " your"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order was delivered only"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 6 days ago, it"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " fell"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " well"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " within our"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 30-day return window. Please"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " allow"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " few business days for the funds"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to appear back"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " in your account."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " If"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " you have any further"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " questions,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " don"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'t hesitate to reach out!"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\ude0a"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3720
+              },
+              "usage": {
+                "inputTokens": 1209,
+                "outputTokens": 168,
+                "totalTokens": 1377
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "fa07a00ebb9ffa5c",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "Let me check the refund policy for order A-3310 right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "order_id": "A-3310"
+                  },
+                  "name": "check_refund_policy",
+                  "toolUseId": "tooluse_7sAxf4G2JFd4erJmgok8t4"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"order_id\": \"A-3310\", \"days_since_delivery\": 6, \"return_window_days\": 30, \"within_window\": true, \"policy_verdict\": \"WITHIN_WINDOW_REFUND_ALLOWED\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_7sAxf4G2JFd4erJmgok8t4"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.",
+        "tool_specs": [
+          {
+            "description": "Check whether an order is refundable.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "check_refund_policy"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " C-91002! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s the refund policy assessment"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "A-3310**:"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\n\u2705 **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund is"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ALLOWED**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nHere"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s why:\n- **Days Since"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Delivery:** 6 days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- **Return Window:**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 30 days\n- **Status"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":** The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order is well"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " within the "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "30-day return window,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " with"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "24"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " remaining"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "**."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nSince"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the policy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " verdict"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " is **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "WITHIN_WINDOW_REF"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "UND_ALLOWED**, you"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " can proceed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " with processing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "$"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00 ref"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "und**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " espresso grinder."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Please"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ensure"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the customer follows"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the standard"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " return"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "shipping"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " process"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " item"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " before"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund is fin"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "alized."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3607
+              },
+              "usage": {
+                "inputTokens": 788,
+                "outputTokens": 156,
+                "totalTokens": 944
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "382c94a9b094da2b",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_LVM3KbObWwhbXBCB6FKsO1"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n\u2705 **Refund is ALLOWED**\n\nHere's why:\n- **Days Since Delivery:** 6 days\n- **Return Window:** 30 days\n- **Status:** The order is well within the 30-day return window, with **24 days remaining**.\n\nSince the policy verdict is **WITHIN_WINDOW_REFUND_ALLOWED**, you can proceed with processing the **$129.00 refund** for the espresso grinder. Please ensure the customer follows the standard return/shipping process for the item before the refund is finalized.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_LVM3KbObWwhbXBCB6FKsO1"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " qual"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "ifies for a refund! Now"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " I'll issue it"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " immediately"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "contentBlockStart": {
+              "contentBlockIndex": 1,
+              "start": {
+                "toolUse": {
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_teeH8N7wOF7q9DJ4flcaKf"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "{\"order_"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "id\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ": \"A-3310\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ", "
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "\"amount_us"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "d\":"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": " 129."
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "0}"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 1
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "tool_use"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 1684
+              },
+              "usage": {
+                "inputTokens": 1049,
+                "outputTokens": 98,
+                "totalTokens": 1147
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "fce24ef436f54f11",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_LVM3KbObWwhbXBCB6FKsO1"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n\u2705 **Refund is ALLOWED**\n\nHere's why:\n- **Days Since Delivery:** 6 days\n- **Return Window:** 30 days\n- **Status:** The order is well within the 30-day return window, with **24 days remaining**.\n\nSince the policy verdict is **WITHIN_WINDOW_REFUND_ALLOWED**, you can proceed with processing the **$129.00 refund** for the espresso grinder. Please ensure the customer follows the standard return/shipping process for the item before the refund is finalized.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_LVM3KbObWwhbXBCB6FKsO1"
+                }
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "The order qualifies for a refund! Now I'll issue it immediately."
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "amount_usd": 129.0,
+                    "order_id": "A-3310"
+                  },
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_teeH8N7wOF7q9DJ4flcaKf"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"refund_id\": \"RF-44190\", \"order_id\": \"A-3310\", \"amount_usd\": 129.0, \"status\": \"issued\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_teeH8N7wOF7q9DJ4flcaKf"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Customer"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " C-91002! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " summary of your"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund:\n\n-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\u2705 **Refund"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Approved"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " &"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Issued**\n- "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\udce6"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " A-3310 (Esp"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "resso Grinder)\n- "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\udcb5"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Refund Amount:** $"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00\n- "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\ud83d\udd16"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Refund ID:** RF"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "-44190"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nYour"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund has been successfully processed. Please"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " note that you"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'ll need"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to follow the standard return/shipping process"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " send"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the item"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " back."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " If"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " you have any questions or"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " need further"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " assistance, don"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'t hesitate to reach out!"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3002
+              },
+              "usage": {
+                "inputTokens": 1197,
+                "outputTokens": 139,
+                "totalTokens": 1336
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "d3839cb7f87644c9",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "Let me check the refund policy for order A-3310 right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "order_id": "A-3310"
+                  },
+                  "name": "check_refund_policy",
+                  "toolUseId": "tooluse_zVWFjYPRyRJDRuUpEoBqN7"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"order_id\": \"A-3310\", \"days_since_delivery\": 6, \"return_window_days\": 30, \"within_window\": true, \"policy_verdict\": \"WITHIN_WINDOW_REFUND_ALLOWED\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_zVWFjYPRyRJDRuUpEoBqN7"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.",
+        "tool_specs": [
+          {
+            "description": "Check whether an order is refundable.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "check_refund_policy"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " C-91002! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s the refund policy assessment"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "A-3310**:\n\n|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Detail"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " | Info"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " |\n|---|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "---|\n| **Order ID** |"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " A-3310 |\n|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **Item"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "** | Espresso"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Grinder ($"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00) |\n| **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Since"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Delivery** | 6 days"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " |\n| **Return Window**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " | 30 days |\n|"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Allowed?"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "** | "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\u2705 **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Yes** |\n\n**Reason"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " The order was"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " delivered only"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "6 days ago**,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " which is well within the **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "30-day return window**. Per"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " policy"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ", the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " ref"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "und is approved"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nYou"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " may"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " proceed"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " with processing"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "$"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "129.00 ref"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "und** for customer C-91002"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ". Be"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " sure to follow"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " standard"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " return"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "/"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "shipping"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " instructions"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " as"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " applicable"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 3427
+              },
+              "usage": {
+                "inputTokens": 788,
+                "outputTokens": 188,
+                "totalTokens": 976
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "39b6e86a6292c265",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n| Detail | Info |\n|---|---|\n| **Order ID** | A-3310 |\n| **Item** | Espresso Grinder ($129.00) |\n| **Days Since Delivery** | 6 days |\n| **Return Window** | 30 days |\n| **Refund Allowed?** | \u2705 **Yes** |\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\n\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " policy advisor has"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " confirmed the"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund is approved!"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " The"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " order is"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " only"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " 6 days old, well"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " within the 30-day return window"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ". Let"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " me issue"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " the refund now"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "."
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "contentBlockStart": {
+              "contentBlockIndex": 1,
+              "start": {
+                "toolUse": {
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_gMpEgKnzQYkuJVfU08ul5J"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "{\"order_id\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ": "
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "\"A-3"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "310\""
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": ", \"am"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "ount_"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": "usd\":"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 1,
+              "delta": {
+                "toolUse": {
+                  "input": " 129.0}"
+                }
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 1
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "tool_use"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 1991
+              },
+              "usage": {
+                "inputTokens": 1081,
+                "outputTokens": 121,
+                "totalTokens": 1202
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fingerprint": "88b12dba5c415d78",
+      "request": {
+        "messages": [
+          {
+            "content": [
+              {
+                "text": "Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it."
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!"
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "input": "Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder."
+                  },
+                  "name": "policy_advisor",
+                  "toolUseId": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n| Detail | Info |\n|---|---|\n| **Order ID** | A-3310 |\n| **Item** | Espresso Grinder ($129.00) |\n| **Days Since Delivery** | 6 days |\n| **Return Window** | 30 days |\n| **Refund Allowed?** | \u2705 **Yes** |\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\n\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\n"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                }
+              }
+            ],
+            "role": "user"
+          },
+          {
+            "content": [
+              {
+                "text": "The policy advisor has confirmed the refund is approved! The order is only 6 days old, well within the 30-day return window. Let me issue the refund now."
+              },
+              {
+                "toolUse": {
+                  "input": {
+                    "amount_usd": 129.0,
+                    "order_id": "A-3310"
+                  },
+                  "name": "issue_refund",
+                  "toolUseId": "tooluse_gMpEgKnzQYkuJVfU08ul5J"
+                }
+              }
+            ],
+            "role": "assistant"
+          },
+          {
+            "content": [
+              {
+                "toolResult": {
+                  "content": [
+                    {
+                      "text": "{\"refund_id\": \"RF-44190\", \"order_id\": \"A-3310\", \"amount_usd\": 129.0, \"status\": \"issued\"}"
+                    }
+                  ],
+                  "status": "success",
+                  "toolUseId": "tooluse_gMpEgKnzQYkuJVfU08ul5J"
+                }
+              }
+            ],
+            "role": "user"
+          }
+        ],
+        "system_prompt": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.",
+        "tool_specs": [
+          {
+            "description": "Advises whether an order qualifies for a refund under policy.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "input": {
+                    "description": "The input to send to the agent tool.",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "input"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "policy_advisor"
+          },
+          {
+            "description": "Issue a refund for an order.",
+            "inputSchema": {
+              "json": {
+                "properties": {
+                  "amount_usd": {
+                    "description": "Parameter amount_usd",
+                    "type": "number"
+                  },
+                  "order_id": {
+                    "description": "Parameter order_id",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "order_id",
+                  "amount_usd"
+                ],
+                "type": "object"
+              }
+            },
+            "name": "issue_refund"
+          }
+        ]
+      },
+      "response": {
+        "events": [
+          {
+            "messageStart": {
+              "role": "assistant"
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Great"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " news! Here"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'s a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " summary for"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " customer **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "C-91002**:\n\n-"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " "
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\u2705 **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund Approved &"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Issued**\n- **Order"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": ":**"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " A-3310 (Esp"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "resso Grinder)\n- **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund Amount:** $129."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "00\n- **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "Refund ID:** RF-44190"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n- **Status:** Issued"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "\n\nYour"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " refund of"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " **"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "$129.00** has been successfully"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " processed."
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " Please"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " allow"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " a"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " few business days for the amount"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " to reflect"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " on"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " your original"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " payment method. If"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " you have any further"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " questions,"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": " don"
+              }
+            }
+          },
+          {
+            "contentBlockDelta": {
+              "contentBlockIndex": 0,
+              "delta": {
+                "text": "'t hesitate to reach out!"
+              }
+            }
+          },
+          {
+            "contentBlockStop": {
+              "contentBlockIndex": 0
+            }
+          },
+          {
+            "messageStop": {
+              "stopReason": "end_turn"
+            }
+          },
+          {
+            "metadata": {
+              "metrics": {
+                "latencyMs": 2527
+              },
+              "usage": {
+                "inputTokens": 1252,
+                "outputTokens": 132,
+                "totalTokens": 1384
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "version": 1
+}

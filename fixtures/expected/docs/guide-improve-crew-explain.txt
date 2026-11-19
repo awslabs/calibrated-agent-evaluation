@@ -1,0 +1,46 @@
+$ calibrated-agent-evaluation --root store improve --register wrong_claim_decision --min-reduction 0.05 --crew
+Pre-registered 'wrong_claim_decision': the fix must cut its failure rate by at least 5 percentage points. The threshold is now frozen.
+Next: after the fix, compare the run before it with the run after it: `calibrated-agent-evaluation improve --evaluate wrong_claim_decision --before-root A --after-root B --development FILE --crew-file CREW.json --touched-agent NAME`.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store improve --evaluate wrong_claim_decision --crew-file crew.json --touched-agent intake --verdicts human --before-root before --after-root after --development dev.txt --explain
+calibrated-agent-evaluation improve: Fix not accepted: the agent you changed fails less, but the crew as a whole doesn't: the failures moved to another step instead of going away.
+Next: check where the failures went before shipping the change.
+Not measured by the human verdicts, so not guarded: escalation, fraud-scorer->escalation.
+Not checked: whether the target was registered before the after run began (no trace in after records a time).
+
+improve 'wrong_claim_decision': REJECTED
+  paired fail-rate change (after - before) +0.000, 95% CI [-0.054, +0.054] (newcombe_paired_hybrid_score, n=40); McNemar undefined, 0 discordant pair(s), no p-value
+  pre-registered minimum reduction 0.05: the interval's upper bound must be at or below -0.050
+  guard panel: 9 slice(s), Holm; regressed: policy-checker
+  zero discordant pairs (no before/after flips); McNemar's test is undefined
+  reason: paired test undefined (no discordant pairs) -- no improvement shown
+  reason: paired effect upper bound +0.0537 does not clear the pre-registered reduction in fail rate of 0.05 (needs <= -0.05)
+  reason: guard slices regressed: policy-checker
+  reason: failure relocation: the touched agent's failures fell but the workflow outcome rate did not improve (the failures moved from 'intake')
+  paired 40 trace(s) by id between before (before) and after (after), human verdicts
+  pre-registration frozen at <time>; not checked against the after run: no trace in after records a time
+  crew crew.json (sha256 17d3611be14e), touched agent 'intake': workflow failures 14 of 40 before, 14 of 40 after
+  relocation check: relocation
+    agent supervisor: 0 failed trace(s) before, 0 after
+    agent intake: 14 failed trace(s) before, 2 after (touched)
+    agent policy-checker: 0 failed trace(s) before, 12 after
+    agent fraud-scorer: 0 failed trace(s) before, 0 after
+    agent payout: 0 failed trace(s) before, 0 after
+    handoff intake->policy-checker: 0 failed trace(s) before, 0 after
+    handoff policy-checker->fraud-scorer: 0 failed trace(s) before, 0 after
+    handoff fraud-scorer->payout: 0 failed trace(s) before, 0 after
+  guard slices:
+    supervisor: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.000 [0.000, 0.088] (n=40) after; one-sided McNemar regression p=1
+    policy-checker: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.300 [0.181, 0.454] (n=40) after; one-sided McNemar regression p=0.0001221
+    fraud-scorer: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.000 [0.000, 0.088] (n=40) after; one-sided McNemar regression p=1
+    payout: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.000 [0.000, 0.088] (n=40) after; one-sided McNemar regression p=1
+    escalation (agent): not measured by the human verdicts; held at p=1
+    intake->policy-checker: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.000 [0.000, 0.088] (n=40) after; one-sided McNemar regression p=1
+    policy-checker->fraud-scorer: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.000 [0.000, 0.088] (n=40) after; one-sided McNemar regression p=1
+    fraud-scorer->payout: fail rate 0.000 [0.000, 0.088] (n=40) before, 0.000 [0.000, 0.088] (n=40) after; one-sided McNemar regression p=1
+    fraud-scorer->escalation (handoff): not measured by the human verdicts; held at p=1
+recorded improve-<id> in store/records/improve
+(exit 1)
+

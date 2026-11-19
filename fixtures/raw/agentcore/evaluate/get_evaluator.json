@@ -1,0 +1,39 @@
+{
+  "createdAt": "2026-01-01T00:00:00+00:00",
+  "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness",
+  "evaluatorConfig": {
+    "llmAsAJudge": {
+      "instructions": "Judge whether the agent's final answer is factually correct.",
+      "modelConfig": {
+        "bedrockEvaluatorModelConfig": {
+          "modelId": "aws-managed"
+        }
+      },
+      "ratingScale": {
+        "numerical": [
+          {
+            "definition": "The response contains a factual error or a claim its context refutes.",
+            "label": "Incorrect",
+            "value": 0.0
+          },
+          {
+            "definition": "The response is partly right but misses or misstates a fact.",
+            "label": "Partially Correct",
+            "value": 0.5
+          },
+          {
+            "definition": "Every claim in the response is supported by its context.",
+            "label": "Perfectly Correct",
+            "value": 1.0
+          }
+        ]
+      }
+    }
+  },
+  "evaluatorId": "Builtin.Correctness",
+  "evaluatorName": "Builtin.Correctness",
+  "evaluatorType": "Builtin",
+  "level": "TRACE",
+  "status": "ACTIVE",
+  "updatedAt": "2026-01-01T00:00:00+00:00"
+}

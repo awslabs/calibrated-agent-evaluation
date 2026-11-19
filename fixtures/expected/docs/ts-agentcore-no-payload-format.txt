@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation generate \
+    --run \
+    --executor agentcore \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 \
+    --frame fixtures/raw/frames/agentcore_CLM-4471.frame.json
+calibrated-agent-evaluation generate: --executor agentcore needs --payload-format NAME, the request body its agent reads: one of generic_message, openai, agentcore_sse, nested_agentcore

@@ -1,0 +1,106 @@
+[
+ {
+  "otlp": {
+   "resourceSpans": [
+    {
+     "resource": {
+      "attributes": []
+     },
+     "scopeSpans": [
+      {
+       "spans": [
+        {
+         "attributes": {
+          "http.route": "/invocations",
+          "session.id": "s-u"
+         },
+         "kind": "SERVER",
+         "name": "POST /invocations",
+         "spanId": "0000000000000000",
+         "traceId": "873af429fe4b7b2abf2de4db69fbbcf5"
+        },
+        {
+         "attributes": {
+          "session.id": "s-u"
+         },
+         "name": "nl_sql_agent.run",
+         "spanId": "aaaaaaaaaaaaaaaa",
+         "traceId": "873af429fe4b7b2abf2de4db69fbbcf5"
+        },
+        {
+         "attributes": {
+          "session.id": "873af429fe4b7b2abf2de4db69fbbcf5"
+         },
+         "name": "agent.node0",
+         "spanId": "b000000000000000",
+         "traceId": "873af429fe4b7b2abf2de4db69fbbcf5"
+        },
+        {
+         "attributes": {
+          "session.id": "873af429fe4b7b2abf2de4db69fbbcf5"
+         },
+         "name": "agent.node1",
+         "spanId": "b000000000000001",
+         "traceId": "873af429fe4b7b2abf2de4db69fbbcf5"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "source_id": "873af429fe4b7b2abf2de4db69fbbcf5"
+ },
+ {
+  "otlp": {
+   "resourceSpans": [
+    {
+     "resource": {
+      "attributes": []
+     },
+     "scopeSpans": [
+      {
+       "spans": [
+        {
+         "attributes": {
+          "http.route": "/invocations",
+          "session.id": "s-u2"
+         },
+         "kind": "SERVER",
+         "name": "POST /invocations",
+         "spanId": "0000000000000000",
+         "traceId": "90c539eb4112852b670a6a8721623f54"
+        },
+        {
+         "attributes": {
+          "session.id": "s-u2"
+         },
+         "name": "nl_sql_agent.run",
+         "spanId": "aaaaaaaaaaaaaaaa",
+         "traceId": "90c539eb4112852b670a6a8721623f54"
+        },
+        {
+         "attributes": {
+          "session.id": "90c539eb4112852b670a6a8721623f54"
+         },
+         "name": "agent.node0",
+         "spanId": "b000000000000000",
+         "traceId": "90c539eb4112852b670a6a8721623f54"
+        },
+        {
+         "attributes": {
+          "session.id": "90c539eb4112852b670a6a8721623f54"
+         },
+         "name": "agent.node1",
+         "spanId": "b000000000000001",
+         "traceId": "90c539eb4112852b670a6a8721623f54"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "source_id": "90c539eb4112852b670a6a8721623f54"
+ }
+]

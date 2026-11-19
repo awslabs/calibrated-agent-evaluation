@@ -1,0 +1,9 @@
+{
+  "criterion": "claim decision letter",
+  "objective": [
+    {"name": "cites_exclusion", "description": "names the policy exclusion the decision rests on"}
+  ],
+  "subjective": [
+    {"name": "tone", "description": "courteous and plain to a claimant who is not getting paid"}
+  ]
+}

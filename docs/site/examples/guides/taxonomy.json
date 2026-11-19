@@ -1,0 +1,5 @@
+{
+  "feature": ["refunds", "exchanges", "order_status"],
+  "persona": ["new_customer", "returning", "reseller"],
+  "channel": ["chat", "email"]
+}

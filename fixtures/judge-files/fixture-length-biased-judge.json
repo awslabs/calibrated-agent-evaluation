@@ -1,0 +1,8 @@
+{
+  "judge_id": "fixture-length-biased-judge",
+  "model": "fixture/length-biased-judge",
+  "prompt_version": "v1",
+  "level": "workflow",
+  "prompt_template": "You are a grader of refund resolutions (fixture: length-biased variant). Write your critique first, then a binary verdict: 'pass' or 'fail'.",
+  "failure_mode": "wrong_refund_decision"
+}

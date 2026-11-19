@@ -1,0 +1,43 @@
+{
+ "recommendationId": "fixture-rec-live",
+ "recommendationArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:recommendation/fixture-rec-live",
+ "name": "fixture-rec-live",
+ "description": "redacted live capture",
+ "type": "SYSTEM_PROMPT_RECOMMENDATION",
+ "recommendationConfig": {
+  "systemPromptRecommendationConfig": {
+   "systemPrompt": {
+    "text": "redacted input system prompt F036-CANARY-PROMPT"
+   },
+   "agentTraces": {
+    "cloudwatchLogs": {
+     "logGroupArns": [
+      "arn:aws:logs:us-west-2:111122223333:log-group:/aws/bedrock-agentcore/runtimes/fixture-runtime-AbCdEf1234-DEFAULT",
+      "arn:aws:logs:us-west-2:111122223333:log-group:aws/spans"
+     ],
+     "serviceNames": [
+      "fixture-runtime.DEFAULT"
+     ],
+     "startTime": "2026-11-03T06:14:44.645505+00:00",
+     "endTime": "2026-11-03T06:23:22.507461+00:00"
+    }
+   },
+   "evaluationConfig": {
+    "evaluators": [
+     {
+      "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness"
+     }
+    ]
+   }
+  }
+ },
+ "status": "COMPLETED",
+ "createdAt": "2026-11-03T06:43:04.078000+00:00",
+ "updatedAt": "2026-11-03T06:51:16.980000+00:00",
+ "recommendationResult": {
+  "systemPromptRecommendationResult": {
+   "recommendedSystemPrompt": "redacted recommended system prompt F036-CANARY-PROMPT",
+   "explanation": "redacted explanation F036-CANARY-PROMPT"
+  }
+ }
+}

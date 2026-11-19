@@ -1,0 +1,14 @@
+$ calibrated-agent-evaluation audit abtest --ab-test-id fixture-abtest-stopped --region us-west-2
+AgentCore reported (vendor claim, not evidence)
+  A/B test fixture-abtest-stopped (fixture-abtest): status ACTIVE, execution STOPPED
+  read at <time>; claim record abtest-<id>
+  arm C (weight 50): bundle arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234 version 0a1b2c3d-0000-4000-8000-000000000001
+  arm T1 (weight 50): bundle arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234 version 0a1b2c3d-0000-4000-8000-000000000002
+  differs between the arms: component arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/fixture-runtime-AbCdEf1234: key sql_generator_system_prompt
+  2 evaluator comparison(s) by an undocumented test, with no documented correction across them
+  evaluator arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness
+    C: mean 0.71, sample size 120 (the number of sessions evaluated)
+    T1: mean 0.78, sample size 118; change 0.07 (9.86%), interval [0.006, 0.134] (level not stated by AgentCore), p 0.031, significant True
+  evaluator arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness
+    C: mean 0.64, sample size 120 (the number of sessions evaluated)
+    T1: mean 0.66, sample size 118; change 0.02 (3.13%), interval [-0.035, 0.075] (level not stated by AgentCore), p 0.48, significant False

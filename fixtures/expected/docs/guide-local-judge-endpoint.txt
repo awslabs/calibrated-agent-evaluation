@@ -1,0 +1,2 @@
+judge 'orderbot-refund-policy-local' uses model 'ollama/llama3.1'
+  provider OllamaAPI, endpoint http://localhost:11434/v1

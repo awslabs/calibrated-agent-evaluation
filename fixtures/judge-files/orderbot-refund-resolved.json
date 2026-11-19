@@ -1,0 +1,8 @@
+{
+  "judge_id": "orderbot-refund-resolved",
+  "model": "bedrock/global.anthropic.claude-sonnet-4-6",
+  "prompt_version": "demo-v1",
+  "level": "workflow",
+  "prompt_template": "You are grading whether an OrderBot agent resolved a customer's refund request correctly, per the store's return policy. A refund is correct only if the return is within the stated return window. Write your critique first (cite the policy and the facts), then give a binary verdict: 'pass' if the agent handled the refund correctly, 'fail' if it did not.",
+  "failure_mode": "trusted_broken_policy_tool"
+}

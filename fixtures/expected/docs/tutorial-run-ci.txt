@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation run --judge demo/quickstart/judge-v2.json --ci
+calibrated-agent-evaluation run: CI gate failed: 1 of 1 failure mode(s) don't clear the bar yet: trusted_broken_policy_tool.
+  (The bar: at least 80% of each mode's traces must pass, even at the cautious end of what this many traces can show.)
+trusted_broken_policy_tool failure rate: 20% (likely between 14% and 26%).
+Next: fix the failing modes, or label more traces where a mode has too few to show its pass rate.
+Run with --explain for the numbers behind this.

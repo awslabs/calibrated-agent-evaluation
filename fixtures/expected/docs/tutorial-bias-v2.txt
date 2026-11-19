@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation bias \
+    --judge demo/quickstart/judge-v2.json \
+    --probes demo/quickstart/bias-probes-2 \
+    --thresholds demo/quickstart/bias-thresholds.json \
+    --cassette demo/quickstart/judge.cassette.json
+Bias check passed: the judge's verdicts held steady across every must-pass check.
+Next: score traces with `calibrated-agent-evaluation judge --judge demo/quickstart/judge-v2.json --cassette demo/quickstart/judge.cassette.json`.
+Run with --explain for the numbers behind this.

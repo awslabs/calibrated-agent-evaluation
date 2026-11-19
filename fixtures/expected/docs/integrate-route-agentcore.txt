@@ -1,0 +1,8 @@
+$ CALIBRATED_AGENT_EVALUATION_CASSETTE_MODE=replay calibrated-agent-evaluation generate \
+    --run \
+    --executor agentcore \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 \
+    --payload-format agentcore_sse \
+    --cassette fixtures/raw/cassettes/agentcore_runtime_CLM-4471.cassette.json \
+    --frame fixtures/raw/frames/agentcore_CLM-4471.frame.json
+routed 1 synthesized input(s) (frame file fixtures/raw/frames/agentcore_CLM-4471.frame.json) through the agentcore executor (runtime arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234): 1 discovery-frame, taxonomy-attributable trace(s) persisted; the run manifest, one record per run, is $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/agentcore/agentcore_run_record.json

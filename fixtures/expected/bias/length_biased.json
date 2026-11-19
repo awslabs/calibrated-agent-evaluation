@@ -1,0 +1,18 @@
+{
+  "fixture_judge": "length_biased",
+  "model": "fixture/length-biased-judge",
+  "prompt_version": "v1",
+  "pairwise": false,
+  "verdict": "BIASED",
+  "failed_biases": ["length"],
+  "expected_error": "BiasedJudgeError",
+  "gate": "raises BiasedJudgeError (promotion refused despite calibration)",
+  "probes": {
+    "length":          {"status": "run", "is_must_pass": true,  "magnitude": 1.0, "magnitude_ub95_min": 0.35, "threshold": 0.35, "passed": false},
+    "self_preference": {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "threshold": 0.35, "passed": true},
+    "sycophancy":      {"status": "run", "is_must_pass": true,  "magnitude": 0.0, "threshold": 0.35, "passed": true},
+    "compassion_fade": {"status": "run", "is_must_pass": false, "magnitude": 0.0, "threshold": 0.35, "passed": true},
+    "positional":      {"status": "not_applicable", "is_must_pass": false, "magnitude": 0.0, "passed": null}
+  },
+  "notes": "The length-biased fixture judge rewards the padded variant and fails the equally-correct short variant on every length trial (magnitude 1.0); its Wilson upper bound (1.0) exceeds the 0.35 threshold, so the must-pass length probe fails and the overall verdict is BIASED with failed_biases=[length]. It is fair on self_preference/sycophancy/compassion_fade (magnitude 0.0). enforce_bias_gate raises BiasedJudgeError even though the judge holds a CERTIFIED calibration record (the bias gate is orthogonal to accuracy)."
+}

@@ -1,0 +1,41 @@
+{
+ "guard_cells": [
+  3,
+  1,
+  2,
+  34
+ ],
+ "mcnemar": {
+  "effect": {
+   "hi": -0.02995926279121025,
+   "lo": -0.35891388867969665,
+   "n": 40,
+   "point": -0.19999999999999998
+  },
+  "method": "midp",
+  "n_discordant": 12,
+  "p_value": 0.02246093749999997
+ },
+ "min_reduction": 0.1,
+ "panel": {
+  "m": 1,
+  "method": "holm",
+  "regressed": [],
+  "slices": [
+   {
+    "name": "wrong_join",
+    "regression_p": 0.31249999999999983
+   }
+  ]
+ },
+ "reasons": [
+  "threshold"
+ ],
+ "target_cells": [
+  4,
+  10,
+  2,
+  24
+ ],
+ "verdict": "rejected"
+}

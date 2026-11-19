@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation run --trace NOPE
+calibrated-agent-evaluation run: no trace with trace_id 'NOPE' in local store

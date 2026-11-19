@@ -1,0 +1,7 @@
+{
+  "judge_id": "orderbot-refund-resolved",
+  "lint_context": {"ci": false, "allow_likert": false},
+  "expected_error": null,
+  "expected_decisions": [],
+  "note": "A clean binary/critique-first definition (single binary axis, critique before verdict, critical/non-critical checklist, no generic scorer) lints with NO refusal and NO decisions."
+}

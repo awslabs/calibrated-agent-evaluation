@@ -1,0 +1,24 @@
+{
+  "note": "RunGateDecision computed by the shipped run_ci_gate at threshold 0.80. over_refund (48/50) clears its pass-rate lb95; dropped (10/20) does not -> gate fails, names dropped, over n_modes=2. The gate is an intersection-union test (every mode must clear its bound), so no multiplicity family is recorded. Acceptance re-runs run_ci_gate on these inputs and compares.",
+  "threshold": 0.8,
+  "inputs": {
+    "trusted_broken_policy_tool": {
+      "n_total": 50,
+      "pass": 48
+    },
+    "intake/dropped_material_fact": {
+      "n_total": 20,
+      "pass": 10
+    }
+  },
+  "expected": {
+    "passed": false,
+    "failing_modes": [
+      {
+        "failure_type": "dropped_material_fact",
+        "agent": "intake"
+      }
+    ],
+    "n_modes": 2
+  }
+}

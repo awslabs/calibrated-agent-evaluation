@@ -1,0 +1,4 @@
+{"codebook_version": "1", "ratified_by": "alice", "assign": [
+  {"trace_id": "ORD-1001", "mode": "trusted_broken_policy_tool"},
+  {"trace_id": "CLM-4471", "mode": "dropped_material_fact"}
+]}

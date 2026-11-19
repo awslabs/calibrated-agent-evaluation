@@ -1,0 +1,4 @@
+$ calibrated-agent-evaluation ingest --require-owned fixtures/raw/otel/ORD-DEGRADED.otlp.json
+trace ORD-DEGRADED degraded to ownership='probed': only a terminal input/output envelope was instrumented (no per-step tool spans and no per-step gen_ai message events)
+calibrated-agent-evaluation ingest: 0 ingested, 1 refused, 0 skipped
+  [REFUSED] fixtures/raw/otel/ORD-DEGRADED.otlp.json: trace 'ORD-DEGRADED' degraded to ownership='probed' and --require-owned was set; it carries terminal input/output only, with no per-step spans, so step-level attribution and per-agent rates have nothing to read; re-capture with tool/agent instrumentation, or drop --require-owned to accept outcome-only data

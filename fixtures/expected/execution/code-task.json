@@ -1,0 +1,4 @@
+{
+  "passing": {"outcome": "PASS"},
+  "failing": {"outcome": "FAIL", "critique_contains": "add returned the wrong value"}
+}

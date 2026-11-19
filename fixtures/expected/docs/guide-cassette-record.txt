@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation calibrate --judge judge-local.json --cell label_round=1 --cassette judge-local.cassette.json --cassette-mode record
+calibrated-agent-evaluation calibrate: Judge not certified on 324 gold label(s) (synthetic, from the sample policy rule): it disagrees with them too often (it caught 100% of the failures and cleared 0% of the passes).
+Next: revise the judge prompt, then certify the new version on freshly labeled traces.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+Run with --explain for the numbers behind this.
+exit 1
+
+judge-local.cassette.json holds 324 recorded replies

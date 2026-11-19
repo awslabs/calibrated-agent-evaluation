@@ -1,0 +1,4 @@
+$ calibrated-agent-evaluation dataset pull --dataset-id orderbot_regressions-AbCdEf1234 --version DRAFT --out slice.json
+calibrated-agent-evaluation dataset: Version 'DRAFT' can't be pulled: only published versions (1, 2, ...) can, because the DRAFT can still change
+Next: pull a published version number, such as the one `calibrated-agent-evaluation dataset publish` printed.
+(Run with --explain for the details.)

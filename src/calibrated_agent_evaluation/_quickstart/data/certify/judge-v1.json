@@ -1,0 +1,8 @@
+{
+  "judge_id": "orderbot-refund-policy",
+  "model": "bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0",
+  "prompt_version": "v1",
+  "level": "workflow",
+  "prompt_template": "You are grading whether an OrderBot customer-support agent handled a refund request correctly under the store's return policy. The policy: Final-sale items are never refundable. Any other item is refundable if it was delivered no more than its return_window_days ago. An item the customer reports as damaged, broken, defective or not working is refundable up to 90 days after delivery, even outside its return window. Write your critique first, citing the facts from the trace, then give a binary verdict: 'pass' if the agent's handling followed the policy, 'fail' if it did not.",
+  "failure_mode": "trusted_broken_policy_tool"
+}

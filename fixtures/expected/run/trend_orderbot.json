@@ -1,0 +1,68 @@
+{
+  "note": "Per-mode Rogan-Gladen corrected rate + CI (seed=0), computed by the shipped trend_report over a documented scenario. The weak-judge (J=0.40) mode surfaces point=null + refusal_reason. Acceptance re-runs trend_report on these inputs and compares. Each point also pins raw_rate: the judge's uncorrected FAIL fraction on the same rate sample with its two-sided 95% Wilson interval, reported beside the corrected rate and kept when the correction is refused.",
+  "seed": 0,
+  "inputs": {
+    "over_refund": {
+      "n_total": 200,
+      "raw_fail": 32,
+      "tpr": 0.95,
+      "tnr": 0.95,
+      "youden_j": 0.9
+    },
+    "intake/dropped_material_fact": {
+      "n_total": 160,
+      "raw_fail": 80,
+      "tpr": 0.7,
+      "tnr": 0.7,
+      "youden_j": 0.4
+    }
+  },
+  "expected_points": [
+    {
+      "mode": {
+        "failure_type": "trusted_broken_policy_tool",
+        "agent": null
+      },
+      "n_total": 200,
+      "corrected_rate": {
+        "point": 0.12222222222222219,
+        "lo": 0.036584,
+        "hi": 0.192331,
+        "refusal_reason": null
+      },
+      "calib_id": "calib-orderbot-refund",
+      "raw_rate": {
+        "point": 0.16,
+        "lo": 0.115674,
+        "hi": 0.217141,
+        "method": "wilson",
+        "level": 0.95,
+        "sided": "two-sided",
+        "n": 200
+      }
+    },
+    {
+      "mode": {
+        "failure_type": "dropped_material_fact",
+        "agent": "intake"
+      },
+      "n_total": 160,
+      "corrected_rate": {
+        "point": null,
+        "lo": 0.212565,
+        "hi": 0.788094,
+        "refusal_reason": "youden_j=0.400<0.5"
+      },
+      "calib_id": "calib-intake-dropped",
+      "raw_rate": {
+        "point": 0.5,
+        "lo": 0.423439,
+        "hi": 0.576561,
+        "method": "wilson",
+        "level": 0.95,
+        "sided": "two-sided",
+        "n": 160
+      }
+    }
+  ]
+}

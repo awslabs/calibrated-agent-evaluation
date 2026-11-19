@@ -1,0 +1,14 @@
+$ calibrated-agent-evaluation prefer --rank tone --explain
+'tone' for 'claim decision letter', human preferences (9 comparison(s)), tracked, never gated:
+  1. CLM-4471  1677 (95% interval 1388 to 1965), 5 comparison(s)
+  2. CLM-4475  1490 (95% interval 1216 to 1765), 4 comparison(s)
+  3. CLM-4473  1462 (95% interval 1213 to 1712), 5 comparison(s)
+  4. CLM-4477  1371 (95% interval 1067 to 1675), 4 comparison(s)
+These ratings are tracked, never gated. Gate on the objective atoms with `calibrated-agent-evaluation run`; collect more comparisons to narrow the intervals.
+
+'claim decision letter' / human: Bradley-Terry maximum likelihood (bradley_terry_mle_wald), 95% Wald intervals from the Fisher information under a sum-to-zero constraint, on the Elo scale 1500 + 400 * log-strength / ln 10 (a 400-point gap is 10:1 odds); order-invariant
+  sequential Elo, display only (K=32, start 1500, in stored order; it changes with the order and has no interval):
+    CLM-4471: 1540 (5 comparison(s))
+    CLM-4475: 1502 (4 comparison(s))
+    CLM-4473: 1483 (5 comparison(s))
+    CLM-4477: 1474 (4 comparison(s))

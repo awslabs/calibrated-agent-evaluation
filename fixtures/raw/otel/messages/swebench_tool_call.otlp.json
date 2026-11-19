@@ -1,0 +1,68 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "litellm"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "litellm"
+          },
+          "spans": [
+            {
+              "traceId": "f026f026f026f026f026f026f026f026",
+              "spanId": "f026000000000001",
+              "name": "chat",
+              "kind": "SPAN_KIND_CLIENT",
+              "startTimeUnixNano": "1",
+              "endTimeUnixNano": "2",
+              "attributes": [
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "azure"
+                  }
+                },
+                {
+                  "key": "gen_ai.request.model",
+                  "value": {
+                    "stringValue": "azure/DeepSeek-V3.2"
+                  }
+                },
+                {
+                  "key": "gen_ai.input.messages",
+                  "value": {
+                    "stringValue": "[{\"role\": \"user\", \"parts\": [{\"type\": \"text\", \"content\": \"Complete this task using the available environment tools. Each tool corresponds to an action  you can take in the task environment.\\n# Important: You are on solo mode. Do not reply back or message unless its through a dedicated environment tool call, every such attempt will finish the session with failure.\\nAll your actions on with regard to the task must go through environment tool calls. Use the designated finish tool(s): finish. Always conclude by invoking the designated finish tool for this task environment.\\nResolve the given issue by editing the repository files directly on a remote machine.\\n\\nRepository directory on the remote machine: /testbed\\n\\n## Issue to resolve:\\nDecimalField.to_python() raises TypeError on dict values.\\nDescription\\n\\t\\nA call to DecimalField.to_python() with a dictionary as the value parameter produces TypeError instead of ValidationError. This is a problem, for example, when you try to save a model object, and a decimal field got set to a dictionary by mistake. The TypeError exception that comes back makes it hard to track the problem to the field if the object has a lot of fields.\\nI am proposing a patch to fix it:\\n\\u200bhttps://github.com/django/django/pull/13023\\n\\n\\n## Execution Environment & Access (STRICT):\\nAll commands are executed on a remote machine that already contains the full\\nrepository and all required system dependencies and prerequisites.\\n\\nThe remote machine is accessible **ONLY** via the `bash` action.\\nAll interactions with the filesystem and environment \\u2014 including reading files,\\nediting files, and running scripts \\u2014 can be performed by definition only by using `bash`.\\nEach command is executed in a separate shell invocation; working directory changes\\nand environment variables do not persist between commands. Only files written to disk persist.\\nAll bash commands are executed with the working directory set to the root of the remote machine (/).\\n\\n## Instructions:\\nYou must fix the issue by directly modifying files in this repository, in place.\\n\\n**ALL file edits MUST be performed using `bash` commands on the remote machine.**\\nExplanations or code snippets in chat are not sufficient.\\n\\nOnly changes written to files on disk and present in the working tree will be\\nincluded in the final patch. Any fix not reflected in repository files is ignored.\\n\\nMake changes only to non-test source files in a way that is general and consistent\\nwith the existing codebase.\\n\\n## Hard Boundaries:\\n- MODIFY ONLY: regular source code files in /testbed\\n- DO NOT MODIFY: tests or configuration files (pyproject.toml, setup.cfg, etc.)\\n- DO NOT use interactive editors (vi, nano, etc.)\\n- DO NOT suggest changes without implementing them\\n\\n## Patch & Submission Mechanics:\\nSubmission captures the entire working tree using:\\n\\n  `git add -A && git diff --staged C0`\\n\\nThis means:\\n- All intended fixes MUST appear in repository files\\n- Any file present at submission time WILL be included in the patch\\n- Temporary files, debug artifacts, or helper scripts MUST be removed before submission\\n\\n## Recommended Workflow:\\n1. Analyze the codebase\\n2. Reproduce the issue\\n3. Edit source files using `bash`\\n4. Verify the fix\\n5. Test edge cases\\n\\n## Submission (FINAL STEP):\\nWhen finished, use `submit_patch` exactly once with a short summary.\\nEnsure the repository contains ONLY the intended final changes.\\nAfter submission, no further reading, editing, or testing is allowed.\\n\\n## Evaluation:\\nYour patch will be applied and validated using a hidden test suite.\\n\\nThe evaluation verifies that:\\n1. The reported issue is fully resolved\\n2. All previously passing functionality and tests remain unbroken\\n\\nSuccess requires all tests to pass.\\n\"}]}]"
+                  }
+                },
+                {
+                  "key": "gen_ai.output.messages",
+                  "value": {
+                    "stringValue": "[{\"role\": \"assistant\", \"finish_reason\": \"tool_calls\", \"parts\": [{\"type\": \"text\", \"content\": \"I'll analyze the issue and fix it. Let me start by exploring the repository structure and understanding the problem\"}, {\"type\": \"tool_call\", \"id\": \"call_72d5bcdede8f45dea0769d07\", \"name\": \"TodoWrite\", \"arguments\": {\"todos\": [{\"content\": \"Explore repository structure and locate DecimalField\", \"status\": \"in_progress\", \"activeForm\": \"Exploring repository structure and locating DecimalField\"}, {\"content\": \"Analyze the issue in DecimalField.to_python()\", \"status\": \"pending\", \"activeForm\": \"Analyzing the issue in DecimalField.to_python()\"}, {\"content\": \"Examine the proposed patch from PR #13023\", \"status\": \"pending\", \"activeForm\": \"Examining the proposed patch from PR #13023\"}, {\"content\": \"Implement fix for TypeError in DecimalField.to_python()\", \"status\": \"pending\", \"activeForm\": \"Implementing fix for TypeError in DecimalField.to_python()\"}, {\"content\": \"Test the fix\", \"status\": \"pending\", \"activeForm\": \"Testing the fix\"}, {\"content\": \"Submit patch\", \"status\": \"pending\", \"activeForm\": \"Submitting patch\"}]}}]}]"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

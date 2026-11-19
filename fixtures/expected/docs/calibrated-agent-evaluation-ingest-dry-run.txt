@@ -1,0 +1,14 @@
+$ calibrated-agent-evaluation ingest --dry-run fixtures/raw/otel
+trace ORD-DEGRADED degraded to ownership='probed': only a terminal input/output envelope was instrumented (no per-step tool spans and no per-step gen_ai message events)
+trace degraded_v2 degraded to ownership='probed': no gen_ai.input/output.messages content and no tool calls recovered from the gen_ai/messages session
+calibrated-agent-evaluation ingest: 7 would ingest (2 probed), 2 refused, 1 skipped
+  [ok] fixtures/raw/otel/ORD-1001.attrs.otlp.json → 411234653c440f74f9c7bd885663e509 (gen_ai/latest, 1 span(s), 3 tool call(s), owned)
+  [ok] fixtures/raw/otel/ORD-1001.build2.otlp.json → 180fed21d2542a2cee4e99fc1f050396 (gen_ai/latest, 1 span(s), 3 tool call(s), owned)
+  [ok] fixtures/raw/otel/ORD-1001.events.otlp.json → ad66fcf93d899366e10b923c366a42cb (gen_ai/latest, 1 span(s), 3 tool call(s), owned)
+  [ok] fixtures/raw/otel/ORD-1002.events.otlp.json → ORD-1002 (gen_ai/latest, 1 span(s), 3 tool call(s), owned)
+  [ok] fixtures/raw/otel/ORD-DEGRADED.otlp.json → ORD-DEGRADED (gen_ai/latest, 0 span(s), 0 tool call(s), probed)
+  [ok] fixtures/raw/otel/degraded_v2.otlp.json → degraded_v2 (gen_ai/messages, 0 span(s), 0 tool call(s), probed)
+  [ok] fixtures/raw/otel/messages/swebench_tool_call.otlp.json → swebench_tool_call (gen_ai/messages, 1 span(s), 1 tool call(s), owned)
+  [REFUSED] fixtures/raw/otel/openinference/weather_tool_call.otlp.json: 2 sources in this batch resolve to trace id 'f026f026f026f026f026f026f026f026' ('fixtures/raw/otel/openinference/weather_tool_call.otlp.json', 'fixtures/raw/otel/openllmetry/weather_tool_call.otlp.json') and the store is keyed on it, so persisting them would overwrite one with the other; rename them so their first dotted filename segments differ, or tag each with a distinct calibrated_agent_evaluation.trace_id span attribute
+  [REFUSED] fixtures/raw/otel/openllmetry/weather_tool_call.otlp.json: 2 sources in this batch resolve to trace id 'f026f026f026f026f026f026f026f026' ('fixtures/raw/otel/openinference/weather_tool_call.otlp.json', 'fixtures/raw/otel/openllmetry/weather_tool_call.otlp.json') and the store is keyed on it, so persisting them would overwrite one with the other; rename them so their first dotted filename segments differ, or tag each with a distinct calibrated_agent_evaluation.trace_id span attribute
+  [skipped] fixtures/raw/otel/unknown/unrecognized.otlp.json: could not detect an OTel GenAI convention: no gen_ai.input/output.messages, openinference.span.kind/llm.*_messages, gen_ai.prompt/completion.*, invoke_agent/execute_tool, or legacy gen_ai.* message-event signal found. Declare `semconv=` on the source (`calibrated-agent-evaluation ingest --convention <name>`) to force one, or register a custom convention.

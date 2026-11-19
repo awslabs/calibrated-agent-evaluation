@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation probe \
+    --executor agentcore \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 \
+    --payload-format agentcore_sse \
+    --authorized \
+    --policy-cases fixtures/raw/agentcore/policy/cases.json
+calibrated-agent-evaluation probe: this run can call AWS. It runs 3 policy case(s), 9 trial(s), against the AgentCore runtime arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 at qualifier DEFAULT: each trial is one billed invocation, retried with the same session when it is busy or throttled, after read-only calls that check the runtime. Then read-only Logs Insights and FilterLogEvents reads of aws/spans fetch each trial's Policy decisions. After the last trial they are read every 10 s until, for each trial, the span index holds every span the log store has on two reads in a row, for at most 390 s (300 s plus 10 s per trial); a trial whose spans are still arriving then refuses the battery. The findings go to the probe record. Trace store: local root; each trial's reply, or the error code of a trial whose agent reported an error, is stored there as a probed trace, and each trace with a denied call gets one policy-engine label. Each run's record goes to the run manifest $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/agentcore/agentcore_run_record.json; the first trial that fails for any reason but an error the agent reported stops the battery, and no probe record is written.
+calibrated-agent-evaluation probe: nothing was sent: this battery makes the billed AWS calls listed above, so it needs --yes. Pass --yes to go ahead

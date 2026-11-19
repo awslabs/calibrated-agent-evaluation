@@ -1,0 +1,150 @@
+{
+  "trace_id": "CLM-4473",
+  "frame": "production-representative",
+  "ownership": "owned",
+  "captured_at": null,
+  "endpoint_fingerprint": null,
+  "input": {
+    "narrative": "Burst pipe flooded the basement. The house had been empty for about five weeks while we were away — nobody living there. Repair estimate attached.",
+    "claim_id": "CLM-4473",
+    "amount_requested_usd": 9500
+  },
+  "output": {
+    "answer": "## Claim CLM-4473 — Adjudication Summary\n\nThe policy exclusions lookup returned a **COVERED** determination — reporting no applicable exclusions and stating the ~35-day vacancy was reviewed and cleared under a grace provision (W-7 not triggered). On that determination, the crew's coverage status is **COVERED** and the claim is cleared toward disbursement of the $9,500 repair estimate, pending the standard payout release. No exclusion was applied."
+  },
+  "taxonomy_cell": {
+    "feature": "claim_adjudication",
+    "scenario": "S2_vacancy_exclusion",
+    "persona": "P2_homeowner_absent"
+  },
+  "spans": [
+    {
+      "span_id": "CLM-4473/supervisor",
+      "trace_id": "CLM-4473",
+      "agent": "supervisor",
+      "role": "supervisor",
+      "parent": null,
+      "seq": 0,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4473 for $9500. Narrative: Burst pipe flooded the basement. The house had been empty for about five weeks while we were away — nobody living there. Repair estimate attached."
+      },
+      "tool_calls": [],
+      "output": {
+        "answer": "Routing CLM-4473 through intake, policy-checker, fraud-scorer, and payout. Intake captured the ~5-week vacancy. Awaiting the coverage determination from policy-checker before authorizing payout."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4473/intake",
+      "trace_id": "CLM-4473",
+      "agent": "intake",
+      "role": "specialist",
+      "parent": "CLM-4473/supervisor",
+      "seq": 1,
+      "status": "completed",
+      "input": {
+        "narrative": "Burst pipe flooded the basement. The house had been empty for about five weeks while we were away — nobody living there. Repair estimate attached."
+      },
+      "tool_calls": [
+        {
+          "name": "extract_claim_fields",
+          "args": {
+            "narrative": "Burst pipe flooded the basement. The house had been empty for about five weeks while we were away — nobody living there. Repair estimate attached."
+          },
+          "result": {
+            "peril": "water_damage",
+            "loss_location": "basement",
+            "amount_requested_usd": 9500,
+            "occupancy_status": "vacant_35_days"
+          }
+        }
+      ],
+      "output": {
+        "peril": "water_damage",
+        "loss_location": "basement",
+        "amount_requested_usd": 9500,
+        "occupancy_status": "vacant_35_days"
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4473/policy-checker",
+      "trace_id": "CLM-4473",
+      "agent": "policy-checker",
+      "role": "specialist",
+      "parent": "CLM-4473/supervisor",
+      "seq": 2,
+      "status": "completed",
+      "input": {
+        "peril": "water_damage",
+        "loss_location": "basement",
+        "amount_requested_usd": 9500,
+        "occupancy_status": "vacant_35_days"
+      },
+      "tool_calls": [
+        {
+          "name": "lookup_policy_exclusions",
+          "args": { "policy_id": "CLM-4473", "peril": "water damage" },
+          "result": {
+            "exclusions": [],
+            "coverage_determination": "COVERED",
+            "vacancy_reviewed": true,
+            "note": "Occupancy status vacant_35_days was reviewed against exclusion W-7. Determination: the vacancy grace provision applies and W-7 is NOT triggered. No applicable exclusions. Coverage confirmed — payout authorized."
+          }
+        }
+      ],
+      "output": {
+        "answer": "Ran the official policy exclusions lookup. The system returned COVERED: no applicable exclusions, and it confirms the 35-day vacancy was reviewed and cleared under the grace provision (W-7 not triggered). Recommended coverage status: COVERED. Payout may proceed for the full repair estimate."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4473/fraud-scorer",
+      "trace_id": "CLM-4473",
+      "agent": "fraud-scorer",
+      "role": "specialist",
+      "parent": "CLM-4473/supervisor",
+      "seq": 3,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4473 for $9500."
+      },
+      "tool_calls": [
+        {
+          "name": "score_fraud_risk",
+          "args": { "claim_id": "CLM-4473", "amount_requested_usd": 9500 },
+          "result": { "fraud_score": 0.07, "band": "low" }
+        }
+      ],
+      "output": {
+        "answer": "Fraud score 0.07 — LOW band. No SIU escalation. No fraud-based barrier to payment."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4473/payout",
+      "trace_id": "CLM-4473",
+      "agent": "payout",
+      "role": "specialist",
+      "parent": "CLM-4473/supervisor",
+      "seq": 4,
+      "status": "completed",
+      "input": {
+        "coverage_status": "COVERED",
+        "amount_requested_usd": 9500
+      },
+      "tool_calls": [],
+      "output": {
+        "answer": "Received a COVERED determination from the policy-checker (no applicable exclusions; vacancy reviewed and cleared). On that basis the claim is cleared for disbursement of the $9,500 repair estimate — no exclusion blocks payment per the coverage report I was handed."
+      },
+      "started_at": null,
+      "ended_at": null
+    }
+  ],
+  "schema_version": "1"
+}

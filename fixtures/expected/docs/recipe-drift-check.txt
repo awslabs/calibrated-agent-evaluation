@@ -1,0 +1,2 @@
+message length (648 vs 200 traces): no drift: the two samples look alike
+days since delivery (648 vs 200 traces): drifted: the two samples differ by more than chance and by enough to matter

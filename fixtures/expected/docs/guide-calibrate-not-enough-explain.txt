@@ -1,0 +1,16 @@
+$ calibrated-agent-evaluation calibrate --judge fixtures/judge-files/orderbot-refund-resolved.json --cassette fixtures/raw/cassettes/judge_orderbot_resolved.cassette.json --cell feature=refund_handling --explain
+calibrated-agent-evaluation calibrate: Not enough labels yet to trust this judge (checked on 2 gold label(s)).
+Next: label 54 more FAIL and 54 more PASS traces, then run `calibrated-agent-evaluation calibrate` again.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+
+calibrated judge 'orderbot-refund-resolved' (bedrock/global.anthropic.claude-sonnet-4-6@demo-v1) for trusted_broken_policy_tool on 2 human gold label(s) from 2 stored trace(s) in cell feature=refund_handling: REFUSED
+  TPR 1.000 (95% lower bound 0.270, n=1 FAIL); TNR 1.000 (95% lower bound 0.270, n=1 PASS); Youden's J 1.000
+  gate: both 95% lower bounds must reach 0.80
+  plan at expected accuracy 0.90: 55 gold label(s) per class; this set has 1 FAIL and 1 PASS, short by 54 FAIL and 54 PASS
+  raters: one (in the gold: rater-1), so the gold needs no agreement overlap
+  looks: 1 (the first test of this judge on this gold)
+  rater agreement on the gold: not measured (the gold has one rater)
+  judge vs gold: raw agreement 1.000 (95% interval 0.342 to 1.000)
+  judge drift: no earlier record for this judge id to compare with
+  the 2 calibration verdict(s) were not written to the store: they certify the judge and are not scores
+recorded calib-orderbot-refund-resolved-gold-60968d-12d55faec393 in $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/calibration

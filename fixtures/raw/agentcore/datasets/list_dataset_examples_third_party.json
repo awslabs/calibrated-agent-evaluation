@@ -1,0 +1,23 @@
+{
+  "datasetArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:dataset/test-AbCdEf1234",
+  "datasetId": "test-AbCdEf1234",
+  "datasetVersion": "DRAFT",
+  "examples": [
+    {
+      "exampleId": "00000000-0000-4000-8000-000000000001",
+      "expected_output": "<expected_output>",
+      "expected_trajectory": [
+        "<expected_trajectory>",
+        "<expected_trajectory>"
+      ],
+      "input": "<input>",
+      "metadata": {
+        "framework": "OpenInference",
+        "latencyMs": 7511.158016,
+        "sourceTraceId": "<sourceTraceId>",
+        "startTime": 1790885876633.9998
+      },
+      "scenario_id": "00000000-0000-4000-8000-000000000002"
+    }
+  ]
+}

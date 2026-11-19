@@ -1,0 +1,27 @@
+$ calibrated-agent-evaluation --root store calibrate --judge store/quickstart/judge-v2.json --cassette store/quickstart/judge.cassette.json --rate-safe --cell label_round=2
+Judge certified on 324 gold label(s) (synthetic, from the sample policy rule): it agrees with them well enough to trust (it caught 97% of the failures and cleared 100% of the passes).
+Next: check it for bias with `calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v2.json --probes DIR --thresholds FILE --cassette store/quickstart/judge.cassette.json`.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v2.json --probes store/quickstart/bias-probes-2 --thresholds store/quickstart/bias-thresholds.json --cassette store/quickstart/judge.cassette.json
+Bias check passed: the judge's verdicts held steady across every must-pass check.
+Next: score traces with `calibrated-agent-evaluation --root store judge --judge store/quickstart/judge-v2.json --cassette store/quickstart/judge.cassette.json`.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store judge --judge store/quickstart/judge-v2.json --frame production-representative --cassette store/quickstart/judge.cassette.json
+Wrote 200 verdict(s) for trusted_broken_policy_tool on 200 trace(s): 38 FAIL, 162 PASS.
+Next: turn these into a failure rate with `calibrated-agent-evaluation --root store run --judge store/quickstart/judge-v2.json`.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store run --judge store/quickstart/judge-v2.json --ci
+calibrated-agent-evaluation run: CI gate failed: 1 of 1 failure mode(s) don't clear the bar yet: trusted_broken_policy_tool.
+  (The bar: at least 80% of each mode's traces must pass, even at the cautious end of what this many traces can show.)
+trusted_broken_policy_tool failure rate: 20% (likely between 14% and 26%).
+Next: fix the failing modes, or label more traces where a mode has too few to show its pass rate.
+Run with --explain for the numbers behind this.
+(exit 1)
+

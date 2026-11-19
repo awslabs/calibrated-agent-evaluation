@@ -1,0 +1,10 @@
+{
+  "note": "Cluster-stage oracle for OrderBot. The single-agent corpus carries one trace-level FAIL mode (the headline over-refund). The ground truth is the human-ratified failure-mode taxonomy on fixtures/labels/gold.json: one distinct mode. Authored from the human gold, NOT from an LLM label. Acceptance re-derives the mode taxonomy from gold.json and compares.",
+  "expected": {
+    "n_modes": 1,
+    "modes": {
+      "trusted_broken_policy_tool": 1
+    },
+    "n_fail_labels": 1
+  }
+}

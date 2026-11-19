@@ -1,0 +1,234 @@
+{
+ "6ae4faac85090eea7712d00a1d9482a6": [],
+ "6ae4faacb753ee5e683540f47020a2f4": [],
+ "6ae4faacfcef1f633406c8f89fbdf607": [],
+ "6ae4faad07862a440667cf821cac77cc": [],
+ "6ae4faad30d91bcd6273144b53960d74": [],
+ "6ae4faad492c7a9ffc9f00eb9ffaec18": [],
+ "6ae4faad84c22412f5003f73d5f4284d": [],
+ "6ae4faada44f64ec9ead0842cbf1adda": [],
+ "6ae4faadbb77e1ae489a3c1ae89e9e28": [],
+ "6ae4fbb913c03eec6a23eeddf4cc98da": [],
+ "6ae4fbb95e61db9b0b6926b893860760": [],
+ "6ae4fbb9c96e91e47c456ceec247306b": [],
+ "6ae4fbba0440c9b8cef001d3fe955bd3": [],
+ "6ae4fbba0528d0cfa6dfb1f5a74e79ec": [],
+ "6ae4fbba3eebd1f96fa5c3dab98641e1": [],
+ "6ae4fbba5fea04cc24fbee146ff9de8b": [],
+ "6ae4fbba7a47284777d99e418a7b0ecd": [],
+ "6ae4fbba7bf48d2be9fbbd998740391a": [],
+ "6ae4fbbbed4d4cac536ed4e63970a3a0": [],
+ "6ae5011300af98fc869168b40559892c": [],
+ "6ae50113afc4caa6de47460c9fe2eeaf": [],
+ "6ae5011438347bf03126acdd7ab81002": [],
+ "6ae50114393d2d2001fc708d25616439": [],
+ "6ae501143ac62f9a1a014a1ce073fbf3": [],
+ "6ae501146e1bef16f20947a9e83d74e0": [],
+ "6ae50114849ae25e3359072aee2ed7ff": [],
+ "6ae50114a898767781bccc128c8379f0": [],
+ "6ae50114b7550631076481a335d407b8": [],
+ "6ae501152099246d40be90924cb72127": [],
+ "6ae5020c5d11922e80a5e70cd72e85cc": [],
+ "6ae5020c61fdb335b0817fd3d58a8b66": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5020c8e788574fae36c4bcf395e71": [
+  {
+   "decision": "deny",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_forbid_delete-abcdef1234"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___delete_rows"
+  }
+ ],
+ "6ae5020ca524c3bbdc7ab1be5aadb604": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5020d1f56a7c434f61529bcd49ae8": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5020d419e82c3d4bb5c6c3e1189f1": [
+  {
+   "decision": "deny",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_forbid_delete-abcdef1234"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___delete_rows"
+  }
+ ],
+ "6ae5020d781038af3dc56e3e660f0fe9": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5020da876fd07e5563ee756def0fd": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5020dd8b550d8a8bdd846b54fc1cd": [
+  {
+   "decision": "deny",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_forbid_delete-abcdef1234"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___delete_rows"
+  }
+ ],
+ "6ae5020df7c4da114c23f8de61a276c8": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5030472c85bea39cd84525a9bee5c": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae50304c72b74a2882664eb7b1be2b5": [],
+ "6ae503052e86e616dcc360c1ff56a4e6": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae503054ad9a57c0e543edd48fe4474": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5030576f239467013d9bd25bc4a31": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae5030585f6b10da49ff881a9672216": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "6ae503059f31d8473d9890fa5e89a305": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [
+    "calibrated_agent_evaluation_f040_forbid_delete-abcdef1234"
+   ],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___delete_rows"
+  }
+ ],
+ "6ae50305d3d19761e0a89ed3893c843c": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [
+    "calibrated_agent_evaluation_f040_forbid_delete-abcdef1234"
+   ],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___delete_rows"
+  }
+ ],
+ "6ae5030650be67ef44fa4b8d27a4553f": [
+  {
+   "decision": "allow",
+   "determining_policies": [
+    "calibrated_agent_evaluation_f040_permit_rows-abcdef5678"
+   ],
+   "log_only_flipping_policies": [
+    "calibrated_agent_evaluation_f040_forbid_delete-abcdef1234"
+   ],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___delete_rows"
+  }
+ ],
+ "6ae50306e80cc05e1c5726fb6b788e5d": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ],
+ "f0400000000000000000000000000003": [
+  {
+   "decision": "deny",
+   "determining_policies": [],
+   "log_only_flipping_policies": [],
+   "mode": "enforce",
+   "tool": "calibrated-agent-evaluation-f040-rows___read_rows"
+  }
+ ]
+}

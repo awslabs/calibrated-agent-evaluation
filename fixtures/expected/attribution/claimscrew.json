@@ -1,0 +1,23 @@
+{
+  "note": "Attribution-stage transform oracle for ClaimsCrew. Derived from the human gold in fixtures/labels/gold.json: the counterfactual walk-back result validate_walkback() must reproduce for each crew FAIL -- the culprit span (first divergence) distinct from the manifestation span (where the harm surfaced). CLM-4471 is the marquee manifestation != origination case (culprit=intake, manifestation=payout); CLM-4473 is the same failure family, opposite culprit (policy-checker); CLM-4477 is the disputed-culprit case (both defensible culprits recorded, never collapsed to one). Values are the real validate_walkback() output over the seeded crew traces; acceptance runs it and compares.",
+  "expected": {
+    "CLM-4471": {
+      "status": "single",
+      "culprit_spans": ["CLM-4471/intake"],
+      "manifestation_span": "CLM-4471/payout",
+      "handoff_implicated": "intake->policy-checker"
+    },
+    "CLM-4473": {
+      "status": "single",
+      "culprit_spans": ["CLM-4473/policy-checker"],
+      "manifestation_span": "CLM-4473/payout",
+      "handoff_implicated": null
+    },
+    "CLM-4477": {
+      "status": "disputed",
+      "culprit_spans": ["CLM-4477/intake", "CLM-4477/policy-checker"],
+      "manifestation_span": "CLM-4477/payout",
+      "handoff_implicated": "intake->policy-checker"
+    }
+  }
+}

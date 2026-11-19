@@ -1,0 +1,22 @@
+{
+  "by_failure_mode": {
+    "dropped_material_fact": {
+      "assertions": [],
+      "expected_trajectory": []
+    },
+    "trusted_broken_policy_tool": {
+      "assertions": [
+        "Agent denies a refund outside the return window"
+      ],
+      "expected_trajectory": [
+        "lookup_order",
+        "check_refund_policy"
+      ]
+    },
+    "vacancy_threshold_margin_mishandled": {
+      "assertions": [],
+      "expected_trajectory": []
+    }
+  },
+  "by_trace": {}
+}

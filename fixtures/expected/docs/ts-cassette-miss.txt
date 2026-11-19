@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation calibrate --judge fixtures/judge-files/orderbot-refund-resolved.json --cassette fixtures/raw/cassettes/judge_orderbot_resolved.cassette.json
+calibrated-agent-evaluation calibrate: judge 'orderbot-refund-resolved' on trace 'CLM-4473': no recorded verdict (cassette miss); judge cassette judge_orderbot_resolved.cassette.json: no recorded verdict for fingerprint 509742225a4f7106 (REPLAY mode does not fall through to a live call)

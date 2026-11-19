@@ -1,0 +1,32 @@
+{
+  "bias": "positional",
+  "must_pass": false,
+  "pairwise": true,
+  "description": "Positional bias (pairwise-only): each trial is the SAME candidate pair shown in both orders (AB and BA). A fair pairwise judge picks the same underlying better candidate regardless of order; a position-biased judge picks whichever candidate is shown first, so the two orderings disagree and are resolved as a tie (order-swap-and-tie).",
+  "trials": [
+    {
+      "trial_id": "positional-0",
+      "question": "Which refund resolution is better?",
+      "inputs": [
+        {"probe_id": "positional-0-ab", "payload": {"order": "AB", "first": "cand-correct", "second": "cand-wrong", "better": "cand-correct", "first_text": "Approved — 10 days is within the 30-day window.", "second_text": "Denied — 10 days is within the 30-day window."}},
+        {"probe_id": "positional-0-ba", "payload": {"order": "BA", "first": "cand-wrong", "second": "cand-correct", "better": "cand-correct", "first_text": "Denied — 10 days is within the 30-day window.", "second_text": "Approved — 10 days is within the 30-day window."}}
+      ]
+    },
+    {
+      "trial_id": "positional-1",
+      "question": "Which resolution is better?",
+      "inputs": [
+        {"probe_id": "positional-1-ab", "payload": {"order": "AB", "first": "cand-correct", "second": "cand-wrong", "better": "cand-correct", "first_text": "Denied — 40 days exceeds the 30-day window.", "second_text": "Approved — 40 days exceeds the 30-day window."}},
+        {"probe_id": "positional-1-ba", "payload": {"order": "BA", "first": "cand-wrong", "second": "cand-correct", "better": "cand-correct", "first_text": "Approved — 40 days exceeds the 30-day window.", "second_text": "Denied — 40 days exceeds the 30-day window."}}
+      ]
+    },
+    {
+      "trial_id": "positional-2",
+      "question": "Which resolution is better?",
+      "inputs": [
+        {"probe_id": "positional-2-ab", "payload": {"order": "AB", "first": "cand-correct", "second": "cand-wrong", "better": "cand-correct", "first_text": "Refund to original payment method per policy.", "second_text": "Refund issued as store credit against policy."}},
+        {"probe_id": "positional-2-ba", "payload": {"order": "BA", "first": "cand-wrong", "second": "cand-correct", "better": "cand-correct", "first_text": "Refund issued as store credit against policy.", "second_text": "Refund to original payment method per policy."}}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+CLM-4471 (dropped_material_fact): single
+  harm appeared at  CLM-4471/payout
+  caused by         CLM-4471/intake
+  handoff           intake->policy-checker
+CLM-4473 (trusted_broken_policy_tool): single
+  harm appeared at  CLM-4473/payout
+  caused by         CLM-4473/policy-checker
+CLM-4477 (vacancy_threshold_margin_mishandled): disputed
+  harm appeared at  CLM-4477/payout
+  caused by         CLM-4477/intake, CLM-4477/policy-checker
+  handoff           intake->policy-checker

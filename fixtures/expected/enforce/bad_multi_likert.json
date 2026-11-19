@@ -1,0 +1,7 @@
+{
+  "judge_id": "orderbot-vibe",
+  "lint_context": {"ci": false, "allow_likert": true},
+  "expected_error": "MultiAxisLikertError",
+  "expected_decisions": [{"rule": "ENF-2", "tier": "hard_refusal", "outcome": "refused"}],
+  "note": "Two non-binary (Likert) axes in one call is the specifically-attested-harmful pattern: a hard lint-time refusal, fired even when allow_likert is enabled. The single recorded decision is the one attached to the raised error (err.decision)."
+}

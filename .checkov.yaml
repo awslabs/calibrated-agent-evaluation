@@ -1,0 +1,13 @@
+# Checkov config for Calibrated Agent Evaluation.
+#
+# docker/langfuse/ is a vendored, unmodified Langfuse OSS docker-compose stack used ONLY to stand
+# up throwaway LOCAL containers for the opt-in integration test and the both-worlds acceptance
+# (see docker/langfuse/README.md). Its credentials are `${VAR:-<obvious placeholder>}` dev defaults
+# that MUST be overridden via the environment for any non-local deployment — they are not secrets.
+# The CKV_SECRET_* (high-entropy / basic-auth) findings on this stack are therefore false positives
+# on a dev-only fixture. Langfuse also validates ENCRYPTION_KEY as 64 hex chars, so any placeholder
+# is necessarily high-entropy and re-trips the entropy detector regardless of value.
+#
+# Scope: skip only this vendored dev-stack path. Every other path is scanned with the full ruleset.
+skip-path:
+  - docker/langfuse

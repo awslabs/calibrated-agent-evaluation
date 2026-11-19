@@ -1,0 +1,53 @@
+{
+  "improved": {
+    "expected": {
+      "relocated_from": null,
+      "verdict": "improved"
+    },
+    "inputs": {
+      "after": {
+        "per_agent_failures": {
+          "intake": 2,
+          "policy-checker": 2
+        },
+        "workflow_failures": 2,
+        "workflow_total": 20
+      },
+      "before": {
+        "per_agent_failures": {
+          "intake": 8,
+          "policy-checker": 2
+        },
+        "workflow_failures": 8,
+        "workflow_total": 20
+      },
+      "touched_agent": "intake"
+    }
+  },
+  "note": "crew_panel relocation fold-in via relocation_check, which reads 95% intervals on the after-minus-before rates. relocation: intake failures 60->20 of 200 (interval below 0) but the workflow rate flat at 0.30 -> 'relocation'. improved: workflow rate 0.40->0.10 of 20 (interval below 0) -> 'improved'. Acceptance re-runs crew_panel and compares the relocation verdict.",
+  "relocation": {
+    "expected": {
+      "relocated_from": "intake",
+      "verdict": "relocation"
+    },
+    "inputs": {
+      "after": {
+        "per_agent_failures": {
+          "intake": 20,
+          "policy-checker": 30
+        },
+        "workflow_failures": 60,
+        "workflow_total": 200
+      },
+      "before": {
+        "per_agent_failures": {
+          "intake": 60,
+          "policy-checker": 30
+        },
+        "workflow_failures": 60,
+        "workflow_total": 200
+      },
+      "touched_agent": "intake"
+    }
+  }
+}

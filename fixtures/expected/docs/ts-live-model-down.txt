@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation calibrate --judge fixtures/judge-files/orderbot-refund-resolved.json --cell feature=refund_handling
+calibrated-agent-evaluation calibrate: judge 'orderbot-refund-resolved' on trace 'ORD-1001': model failed after 3 attempts; judge model 'bedrock/global.anthropic.claude-sonnet-4-6' failed to generate a structured verdict: The config profile (calibrated-agent-evaluation-docs-no-such-profile) could not be found

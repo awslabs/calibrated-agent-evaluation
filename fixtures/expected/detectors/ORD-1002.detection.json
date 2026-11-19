@@ -1,0 +1,25 @@
+{
+  "below_threshold": 0,
+  "failures": [],
+  "provenance": {
+    "confidence_threshold": "low",
+    "detector_package": "strands-agents-evals",
+    "detector_version": "1.6.0",
+    "model_config_sent": {},
+    "model_id": "global.anthropic.claude-sonnet-4-6",
+    "prompt_sha256": "30d6baa2559a514b87e9477f58afefb977371cc413f5c841eaa3ad9798c809a9",
+    "prompt_template": "v0",
+    "stamp": {
+      "dep_versions": {
+        "strands-agents-evals": "1.6.0"
+      },
+      "n_resamples": null,
+      "sampling": {},
+      "seed": null,
+      "thresholds": {}
+    }
+  },
+  "times": "placeholder",
+  "trace_id": "ORD-1002",
+  "trace_sha256": "6c57197952896d94b33efe463b68750f2ef9806d0838f93b3164c6e4a0562a7c"
+}

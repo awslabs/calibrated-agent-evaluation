@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation --root store improve --evaluate wrong_claim_decision --verdicts human --before-root before --after-root after --development dev.txt
+Fix accepted: the failure rate dropped by at least the 10 percentage points you pre-registered, and nothing it was checked against got worse.
+Not checked: whether the target was registered before the after run began (no trace in after records a time).
+Run with --explain for the numbers behind this.
+(exit 0)
+

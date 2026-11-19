@@ -1,0 +1,1 @@
+In the bundled judge kit's run on the OrderBot sample, the revised judge flagged 19.0% of 200 sample traces (38 of them). Calibrated Agent Evaluation reports 19.6%, likely between 14.2% and 25.8%, and the rule that made the sample's labels says 19.5% (39 of 200).

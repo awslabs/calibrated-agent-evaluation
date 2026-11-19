@@ -1,0 +1,69 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.13.9"
+          enable-cache: false
+      - name: Check that the tag matches the project version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="$(uv version --short)"
+          if [ "v$version" != "$TAG" ]; then
+            echo "::error::tag $TAG does not match project version $version"
+            exit 1
+          fi
+      - run: uv build
+      - name: Smoke-test the wheel in a clean venv
+        run: |
+          smoke="$RUNNER_TEMP/smoke"
+          uv venv --python 3.11 "$smoke"
+          uv pip install --python "$smoke/bin/python" dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$smoke/bin/calibrated-agent-evaluation" --help
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/project/calibrated-agent-evaluation/
+    permissions:
+      id-token: write # Trusted Publishing and attestations
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+        with:
+          attestations: true

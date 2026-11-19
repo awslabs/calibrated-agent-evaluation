@@ -1,0 +1,13 @@
+$ calibrated-agent-evaluation --root store calibrate --judge store/quickstart/judge-v1.json --cassette store/quickstart/judge.cassette.json --rate-safe --cell label_round=1
+Judge certified on 324 gold label(s) (synthetic, from the sample policy rule): it agrees with them well enough to trust (it caught 95% of the failures and cleared 98.8% of the passes).
+Next: check it for bias with `calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v1.json --probes DIR --thresholds FILE --cassette store/quickstart/judge.cassette.json`.
+Rater agreement on the gold was not measured (the gold has one rater); have a second rater label the same gold (at least 130 of its traces) so the gold itself is checked.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store bias --judge store/quickstart/judge-v1.json --probes store/quickstart/bias-probes-1 --thresholds store/quickstart/bias-thresholds.json --cassette store/quickstart/judge.cassette.json
+calibrated-agent-evaluation bias: Bias check failed: the judge changes its verdict when answers get longer and goes along with claims asserted in the conversation.
+Next: revise the judge prompt to address this, then run `calibrated-agent-evaluation calibrate` and `calibrated-agent-evaluation bias` on the new version (with fresh labels).
+Run with --explain for the numbers behind this.
+(exit 1)
+

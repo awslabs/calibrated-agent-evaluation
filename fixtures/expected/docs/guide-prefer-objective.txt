@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation prefer --atoms atoms.json --pairs pairs-objective.jsonl
+calibrated-agent-evaluation prefer: 1 line(s) of the pairs file docs/site/examples/guides/prefer-pairs-objective.jsonl were refused, so nothing was imported: line 2: Dimension 'cites_exclusion' is objective; use binary PASS/FAIL labels, not preferences

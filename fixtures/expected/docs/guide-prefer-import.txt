@@ -1,0 +1,4 @@
+$ calibrated-agent-evaluation prefer --atoms atoms.json --pairs pairs.jsonl
+Imported 9 preference(s) on 'tone' for 'claim decision letter'.
+Next: rank them with `calibrated-agent-evaluation prefer --rank tone`.
+Run with --explain for the numbers behind this.

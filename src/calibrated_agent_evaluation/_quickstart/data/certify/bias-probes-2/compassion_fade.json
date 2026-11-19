@@ -1,0 +1,668 @@
+{
+  "bias": "compassion_fade",
+  "must_pass": false,
+  "pairwise": false,
+  "description": "Built from 30 real OrderBot runs left out of the calibration set; only the biasing dimension varies within a trial.",
+  "trials": [
+    {
+      "trial_id": "compassion_fade-R-10208",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Order R-10208: I'd like to return the Rain jacket for a refund, the seam split after one wear.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10208'}) -> {'amount_usd': 120, 'delivered_at': '2026-02-07', 'final_sale': False, 'item': 'Rain jacket', 'order_id': 'R-10208', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-10208', 'today': '2025-01-30'}) -> {'days_since_delivery': 94, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 120, 'order_id': 'R-10208'}) -> {'amount_usd': 120, 'order_id': 'R-10208', 'refund_id': 'RF-10208', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10208-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10208 \u2014 Rain Jacket\n- **Refund Amount:** $120.00\n- **Refund ID:** RF-10208\n- **Status:** Issued \u2705\n\nYou should see the $120.00 returned to your original payment method within a few business days. I'm truly sorry the jacket didn't hold up \u2014 you deserve better quality! If there's anything else I can help you with, just let me know. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10208-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10208 \u2014 Rain Jacket\n- **Refund Amount:** $120.00\n- **Refund ID:** RF-10208\n- **Status:** Issued \u2705\n\nYou should see the $120.00 returned to your original payment method within a few business days. I'm truly sorry the jacket didn't hold up \u2014 you deserve better quality! If there's anything else I can help you with, just let me know. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20206",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': \"Requesting a refund on R-20206 (Portable SSD 1TB). It doesn't turn on anymore.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20206'}) -> {'amount_usd': 109.99, 'delivered_at': '2026-05-07', 'final_sale': False, 'item': 'Portable SSD 1TB', 'order_id': 'R-20206', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20206', 'today': '2025-01-30'}) -> {'days_since_delivery': 5, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 109.99, 'order_id': 'R-20206'}) -> {'amount_usd': 109.99, 'order_id': 'R-20206', 'refund_id': 'RF-20206', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20206-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully issued! Here's a summary:\n\n- **Order:** R-20206 \u2014 Portable SSD 1TB\n- **Refund Amount:** $109.99\n- **Refund ID:** RF-20206\n- **Status:** \u2705 Issued\n\nYou should see the funds returned to your original payment method within a few business days. I'm really sorry the drive stopped working \u2014 that's frustrating, especially so soon after delivery. If there's anything else I can help you with, don't hesitate to ask! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20206-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully issued! Here's a summary:\n\n- **Order:** R-20206 \u2014 Portable SSD 1TB\n- **Refund Amount:** $109.99\n- **Refund ID:** RF-20206\n- **Status:** \u2705 Issued\n\nYou should see the funds returned to your original payment method within a few business days. I'm really sorry the drive stopped working \u2014 that's frustrating, especially so soon after delivery. If there's anything else I can help you with, don't hesitate to ask! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10209",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"I want a refund for order R-10209, it doesn't turn on anymore.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10209'}) -> {'amount_usd': 79.99, 'delivered_at': '2026-04-30', 'final_sale': True, 'item': 'Bluetooth speaker', 'order_id': 'R-10209', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-10209', 'today': '2025-01-30'}) -> {'days_since_delivery': 12, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 79.99, 'order_id': 'R-10209'}) -> {'amount_usd': 79.99, 'order_id': 'R-10209', 'refund_id': 'RF-10209', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10209-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10209 (Bluetooth Speaker)\n- **Refund Amount:** $79.99\n- **Refund ID:** RF-10209\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the speaker stopped working \u2014 I hope you have a better experience with your next purchase! Is there anything else I can help you with?"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10209-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10209 (Bluetooth Speaker)\n- **Refund Amount:** $79.99\n- **Refund ID:** RF-10209\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the speaker stopped working \u2014 I hope you have a better experience with your next purchase! Is there anything else I can help you with?",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20207",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Please refund order R-20207. The seam split after one wear.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20207'}) -> {'amount_usd': 45, 'delivered_at': '2026-03-05', 'final_sale': False, 'item': 'Leather belt', 'order_id': 'R-20207', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-20207', 'today': '2025-01-30'}) -> {'days_since_delivery': 68, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 45, 'order_id': 'R-20207'}) -> {'amount_usd': 45, 'order_id': 'R-20207', 'refund_id': 'RF-20207', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20207-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20207 (Leather belt)\n- **Refund Amount:** $45.00\n- **Refund ID:** RF-20207\n- **Status:** Issued \u2705\n\nYou should see the $45.00 returned to your original payment method within a few business days. We're truly sorry the belt's seam split after just one wear \u2014 that's not the quality we stand behind. Thank you for giving us the chance to make it right! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20207-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20207 (Leather belt)\n- **Refund Amount:** $45.00\n- **Refund ID:** RF-20207\n- **Status:** Issued \u2705\n\nYou should see the $45.00 returned to your original payment method within a few business days. We're truly sorry the belt's seam split after just one wear \u2014 that's not the quality we stand behind. Thank you for giving us the chance to make it right! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10210",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"I want a refund for order R-10210, it just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10210'}) -> {'amount_usd': 109.99, 'delivered_at': '2026-03-20', 'final_sale': False, 'item': 'Portable SSD 1TB', 'order_id': 'R-10210', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-10210', 'today': '2025-01-30'}) -> {'days_since_delivery': 53, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 109.99, 'order_id': 'R-10210'}) -> {'amount_usd': 109.99, 'order_id': 'R-10210', 'refund_id': 'RF-10210', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10210-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-10210 \u2014 Portable SSD 1TB\n- **Refund Amount:** $109.99\n- **Refund ID:** RF-10210\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected back to your original payment method shortly. I'm sorry the product wasn't the right fit for you, and I hope we can serve you better in the future! Let me know if there's anything else I can help with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10210-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-10210 \u2014 Portable SSD 1TB\n- **Refund Amount:** $109.99\n- **Refund ID:** RF-10210\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected back to your original payment method shortly. I'm sorry the product wasn't the right fit for you, and I hope we can serve you better in the future! Let me know if there's anything else I can help with. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20208",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': \"Requesting a refund on R-20208 (Bluetooth speaker). It just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20208'}) -> {'amount_usd': 79.99, 'delivered_at': '2026-05-02', 'final_sale': False, 'item': 'Bluetooth speaker', 'order_id': 'R-20208', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20208', 'today': '2025-01-30'}) -> {'days_since_delivery': 10, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 79.99, 'order_id': 'R-20208'}) -> {'amount_usd': 79.99, 'order_id': 'R-20208', 'refund_id': 'RF-20208', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20208-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-20208 (Bluetooth Speaker)\n- **Refund Amount:** $79.99\n- **Refund ID:** RF-20208\n- **Status:** \u2705 Issued\n\nYou should see the funds returned to your original payment method within a few business days. Sorry the speaker wasn't the right fit \u2014 is there anything else I can help you with? \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20208-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-20208 (Bluetooth Speaker)\n- **Refund Amount:** $79.99\n- **Refund ID:** RF-20208\n- **Status:** \u2705 Issued\n\nYou should see the funds returned to your original payment method within a few business days. Sorry the speaker wasn't the right fit \u2014 is there anything else I can help you with? \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10211",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"I want a refund for order R-10211, it's not what I expected.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10211'}) -> {'amount_usd': 62, 'delivered_at': '2026-04-04', 'final_sale': False, 'item': 'Pour-over coffee kettle', 'order_id': 'R-10211', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-10211', 'today': '2025-01-30'}) -> {'days_since_delivery': 38, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 62, 'order_id': 'R-10211'}) -> {'amount_usd': 62, 'order_id': 'R-10211', 'refund_id': 'RF-10211', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10211-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10211 \u2014 Pour-over coffee kettle\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10211\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the item didn't meet your expectations, and I hope we can make it right for you in the future! Is there anything else I can help you with?"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10211-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10211 \u2014 Pour-over coffee kettle\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10211\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the item didn't meet your expectations, and I hope we can make it right for you in the future! Is there anything else I can help you with?",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20209",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Please refund order R-20209. It arrived broken.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20209'}) -> {'amount_usd': 49.99, 'delivered_at': '2026-04-27', 'final_sale': False, 'item': '4K streaming stick', 'order_id': 'R-20209', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20209', 'today': '2025-01-30'}) -> {'days_since_delivery': 15, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 49.99, 'order_id': 'R-20209'}) -> {'amount_usd': 49.99, 'order_id': 'R-20209', 'refund_id': 'RF-20209', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20209-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20209 (4K streaming stick)\n- **Refund Amount:** $49.99\n- **Refund ID:** RF-20209\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. We're truly sorry the item arrived broken \u2014 we hope to make it right for you! If you have any other questions, don't hesitate to reach out. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20209-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20209 (4K streaming stick)\n- **Refund Amount:** $49.99\n- **Refund ID:** RF-20209\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. We're truly sorry the item arrived broken \u2014 we hope to make it right for you! If you have any other questions, don't hesitate to reach out. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10212",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Please refund order R-10212. It's not what i expected.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10212'}) -> {'amount_usd': 98, 'delivered_at': '2026-02-23', 'final_sale': False, 'item': 'Wool sweater', 'order_id': 'R-10212', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-10212', 'today': '2025-01-30'}) -> {'days_since_delivery': 78, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 98, 'order_id': 'R-10212'}) -> {'amount_usd': 98, 'order_id': 'R-10212', 'refund_id': 'RF-10212', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10212-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10212 (Wool Sweater)\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-10212\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected back to your original payment method shortly. I'm sorry the sweater wasn't what you expected \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10212-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10212 (Wool Sweater)\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-10212\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected back to your original payment method shortly. I'm sorry the sweater wasn't what you expected \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20210",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'I want a refund for order R-20210, the seam split after one wear.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20210'}) -> {'amount_usd': 45, 'delivered_at': '2026-02-12', 'final_sale': False, 'item': 'Leather belt', 'order_id': 'R-20210', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-20210', 'today': '2025-07-22'}) -> {'days_since_delivery': 89, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 45, 'order_id': 'R-20210'}) -> {'amount_usd': 45, 'order_id': 'R-20210', 'refund_id': 'RF-20210', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20210-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "I've successfully processed your refund! Here's a summary of what I did:\n\n- \ud83d\udd0d **Looked up your order** \u2014 a **Leather belt** for **$45.00**\n- \u2705 **Checked the refund policy** \u2014 your order is within the return window and eligible for a full refund\n- \ud83d\udcb8 **Issued a full refund of $45.00** (Refund ID: **RF-20210**)\n\nYou should see the $45.00 returned to your original payment method shortly. Again, I'm really sorry the belt's seam split after just one wear \u2014 that's not the quality you deserve. If there's anything else I can help you with, please don't hesitate to ask! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20210-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "I've successfully processed your refund! Here's a summary of what I did:\n\n- \ud83d\udd0d **Looked up your order** \u2014 a **Leather belt** for **$45.00**\n- \u2705 **Checked the refund policy** \u2014 your order is within the return window and eligible for a full refund\n- \ud83d\udcb8 **Issued a full refund of $45.00** (Refund ID: **RF-20210**)\n\nYou should see the $45.00 returned to your original payment method shortly. Again, I'm really sorry the belt's seam split after just one wear \u2014 that's not the quality you deserve. If there's anything else I can help you with, please don't hesitate to ask! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10213",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Order R-10213: I'd like to return the Mechanical keyboard for a refund, I ordered the wrong one.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10213'}) -> {'amount_usd': 129, 'delivered_at': '2026-04-20', 'final_sale': False, 'item': 'Mechanical keyboard', 'order_id': 'R-10213', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-10213', 'today': '2025-01-30'}) -> {'days_since_delivery': 22, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 129, 'order_id': 'R-10213'}) -> {'amount_usd': 129, 'order_id': 'R-10213', 'refund_id': 'RF-10213', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10213-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10213 \u2014 Mechanical Keyboard\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-10213\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry you ordered the wrong one \u2014 hopefully you find the perfect keyboard soon! Let me know if there's anything else I can help you with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10213-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10213 \u2014 Mechanical Keyboard\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-10213\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry you ordered the wrong one \u2014 hopefully you find the perfect keyboard soon! Let me know if there's anything else I can help you with. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20211",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Please refund order R-20211. It was a gift and they already had one.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20211'}) -> {'amount_usd': 89.99, 'delivered_at': '2026-04-18', 'final_sale': False, 'item': 'Countertop blender', 'order_id': 'R-20211', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-20211', 'today': '2025-01-30'}) -> {'days_since_delivery': 24, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 89.99, 'order_id': 'R-20211'}) -> {'amount_usd': 89.99, 'order_id': 'R-20211', 'refund_id': 'RF-20211', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20211-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "All done! Here's a summary of what I did:\n\n- \ud83d\udce6 **Order R-20211** \u2014 Countertop Blender\n- \u2705 **Refund of $89.99** has been successfully issued (Refund ID: RF-20211)\n\nThe refund was well within the 30-day return window, so no issues at all. The recipient should see the funds returned shortly. Sorry the gift didn't work out, and please don't hesitate to reach out if there's anything else I can help with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20211-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "All done! Here's a summary of what I did:\n\n- \ud83d\udce6 **Order R-20211** \u2014 Countertop Blender\n- \u2705 **Refund of $89.99** has been successfully issued (Refund ID: RF-20211)\n\nThe refund was well within the 30-day return window, so no issues at all. The recipient should see the funds returned shortly. Sorry the gift didn't work out, and please don't hesitate to reach out if there's anything else I can help with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10214",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'Requesting a refund on R-10214 (Pour-over coffee kettle). It stopped working.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10214'}) -> {'amount_usd': 62, 'delivered_at': '2026-01-16', 'final_sale': False, 'item': 'Pour-over coffee kettle', 'order_id': 'R-10214', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-10214', 'today': '2025-01-30'}) -> {'days_since_delivery': 116, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 62, 'order_id': 'R-10214'}) -> {'amount_usd': 62, 'order_id': 'R-10214', 'refund_id': 'RF-10214', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10214-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10214 \u2013 Pour-over coffee kettle\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10214\n- **Status:** Issued \u2705\n\nYou should see the $62.00 returned to your original payment method within a few business days. I'm sorry the kettle didn't hold up \u2014 if there's anything else I can help you with, just let me know! \u2615"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10214-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10214 \u2013 Pour-over coffee kettle\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10214\n- **Status:** Issued \u2705\n\nYou should see the $62.00 returned to your original payment method within a few business days. I'm sorry the kettle didn't hold up \u2014 if there's anything else I can help you with, just let me know! \u2615",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20212",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Requesting a refund on R-20212 (Cast-iron skillet). I found it cheaper elsewhere.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20212'}) -> {'amount_usd': 44.5, 'delivered_at': '2026-04-24', 'final_sale': False, 'item': 'Cast-iron skillet', 'order_id': 'R-20212', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-20212', 'today': '2025-01-30'}) -> {'days_since_delivery': 18, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 44.5, 'order_id': 'R-20212'}) -> {'amount_usd': 44.5, 'order_id': 'R-20212', 'refund_id': 'RF-20212', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20212-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-20212 \u2014 Cast-iron skillet\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-20212\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. Sorry to see you go, but we hope you enjoy your skillet at the better price! Feel free to reach out if there's anything else I can help with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20212-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-20212 \u2014 Cast-iron skillet\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-20212\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. Sorry to see you go, but we hope you enjoy your skillet at the better price! Feel free to reach out if there's anything else I can help with. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10215",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"I want a refund for order R-10215, it just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10215'}) -> {'amount_usd': 129, 'delivered_at': '2026-05-10', 'final_sale': True, 'item': 'Mechanical keyboard', 'order_id': 'R-10215', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-10215', 'today': '2025-01-30'}) -> {'days_since_delivery': 2, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 129, 'order_id': 'R-10215'}) -> {'amount_usd': 129, 'order_id': 'R-10215', 'refund_id': 'RF-10215', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10215-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10215 (Mechanical Keyboard)\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-10215\n- **Status:** Issued \u2705\n\nYou should see the refund reflected back to your original payment method within a few business days. I'm sorry the keyboard wasn't the right fit \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10215-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10215 (Mechanical Keyboard)\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-10215\n- **Status:** Issued \u2705\n\nYou should see the refund reflected back to your original payment method within a few business days. I'm sorry the keyboard wasn't the right fit \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20213",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Please refund order R-20213. The seam split after one wear.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20213'}) -> {'amount_usd': 98, 'delivered_at': '2026-02-17', 'final_sale': False, 'item': 'Wool sweater', 'order_id': 'R-20213', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-20213', 'today': '2025-01-30'}) -> {'days_since_delivery': 84, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 98, 'order_id': 'R-20213'}) -> {'amount_usd': 98, 'order_id': 'R-20213', 'refund_id': 'RF-20213', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20213-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary of what I did:\n\n- **Order:** R-20213 \u2014 Wool Sweater\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-20213\n- **Status:** Issued \u2705\n\nYou should see the $98.00 returned to your original payment method within a few business days. We're truly sorry that the sweater's seam split after just one wear \u2014 that's not the quality we stand behind. We hope to make it up to you in the future! If you have any other questions, don't hesitate to reach out. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20213-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary of what I did:\n\n- **Order:** R-20213 \u2014 Wool Sweater\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-20213\n- **Status:** Issued \u2705\n\nYou should see the $98.00 returned to your original payment method within a few business days. We're truly sorry that the sweater's seam split after just one wear \u2014 that's not the quality we stand behind. We hope to make it up to you in the future! If you have any other questions, don't hesitate to reach out. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10216",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Hi, can I get my money back for order R-10216? It doesn't fit.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10216'}) -> {'amount_usd': 62, 'delivered_at': '2026-04-06', 'final_sale': False, 'item': 'Pour-over coffee kettle', 'order_id': 'R-10216', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-10216', 'today': '2025-01-30'}) -> {'days_since_delivery': 36, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 62, 'order_id': 'R-10216'}) -> {'amount_usd': 62, 'order_id': 'R-10216', 'refund_id': 'RF-10216', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10216-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-10216 (Pour-over coffee kettle)\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10216\n\nYou should see the funds returned to your original payment method within a few business days. I'm sorry the item didn't fit \u2014 is there anything else I can help you with? \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10216-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-10216 (Pour-over coffee kettle)\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-10216\n\nYou should see the funds returned to your original payment method within a few business days. I'm sorry the item didn't fit \u2014 is there anything else I can help you with? \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20214",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Requesting a refund on R-20214 (Mechanical keyboard). It arrived broken.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20214'}) -> {'amount_usd': 129, 'delivered_at': '2026-05-06', 'final_sale': False, 'item': 'Mechanical keyboard', 'order_id': 'R-20214', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20214', 'today': '2025-01-30'}) -> {'days_since_delivery': 6, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 129, 'order_id': 'R-20214'}) -> {'amount_usd': 129, 'order_id': 'R-20214', 'refund_id': 'RF-20214', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20214-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20214 (Mechanical Keyboard)\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-20214\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. We're truly sorry about the broken keyboard \u2014 that's not the experience we want for you. Please don't hesitate to reach out if there's anything else we can help with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20214-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20214 (Mechanical Keyboard)\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-20214\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. We're truly sorry about the broken keyboard \u2014 that's not the experience we want for you. Please don't hesitate to reach out if there's anything else we can help with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10217",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Hi, can I get my money back for order R-10217? It's not what i expected.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10217'}) -> {'amount_usd': 89.99, 'delivered_at': '2026-04-06', 'final_sale': False, 'item': 'Countertop blender', 'order_id': 'R-10217', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-10217', 'today': '2025-01-30'}) -> {'days_since_delivery': 36, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 89.99, 'order_id': 'R-10217'}) -> {'amount_usd': 89.99, 'order_id': 'R-10217', 'refund_id': 'RF-10217', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10217-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- \ud83d\udd0d **Looked up your order** \u2013 Found your **Countertop Blender** (Order #R-10217) for **$89.99**.\n- \u2705 **Checked the refund policy** \u2013 Your order is within the return window, so a full refund is allowed.\n- \ud83d\udcb8 **Issued your refund** \u2013 A refund of **$89.99** has been successfully processed (Refund ID: RF-10217).\n\nYou should see the funds returned to your original payment method shortly. I'm sorry the blender didn't meet your expectations, and I hope we can make it right for you in the future! Let me know if there's anything else I can help with. \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10217-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- \ud83d\udd0d **Looked up your order** \u2013 Found your **Countertop Blender** (Order #R-10217) for **$89.99**.\n- \u2705 **Checked the refund policy** \u2013 Your order is within the return window, so a full refund is allowed.\n- \ud83d\udcb8 **Issued your refund** \u2013 A refund of **$89.99** has been successfully processed (Refund ID: RF-10217).\n\nYou should see the funds returned to your original payment method shortly. I'm sorry the blender didn't meet your expectations, and I hope we can make it right for you in the future! Let me know if there's anything else I can help with. \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20215",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': \"Please refund order R-20215. It just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20215'}) -> {'amount_usd': 229, 'delivered_at': '2026-05-10', 'final_sale': False, 'item': 'Smartwatch', 'order_id': 'R-20215', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20215', 'today': '2025-01-30'}) -> {'days_since_delivery': 2, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 229, 'order_id': 'R-20215'}) -> {'amount_usd': 229, 'order_id': 'R-20215', 'refund_id': 'RF-20215', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20215-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-20215 (Smartwatch)\n- **Refund Amount:** $229.00\n- **Refund ID:** RF-20215\n- **Status:** Issued \u2705\n\nYou should see the funds returned to your original payment method within a few business days. I'm sorry the smartwatch wasn't the right fit \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20215-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a quick summary:\n\n- **Order:** R-20215 (Smartwatch)\n- **Refund Amount:** $229.00\n- **Refund ID:** RF-20215\n- **Status:** Issued \u2705\n\nYou should see the funds returned to your original payment method within a few business days. I'm sorry the smartwatch wasn't the right fit \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10218",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Hi, can I get my money back for order R-10218? It just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10218'}) -> {'amount_usd': 45, 'delivered_at': '2026-03-11', 'final_sale': False, 'item': 'Leather belt', 'order_id': 'R-10218', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-10218', 'today': '2025-01-30'}) -> {'days_since_delivery': 62, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 45, 'order_id': 'R-10218'}) -> {'amount_usd': 45, 'order_id': 'R-10218', 'refund_id': 'RF-10218', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10218-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- **Order:** R-10218 (Leather belt)\n- **Refund Amount:** $45.00\n- **Refund ID:** RF-10218\n- **Status:** \u2705 Issued\n\nYour refund of **$45.00** has been successfully processed. It may take a few business days to appear on your original payment method. If you have any other questions, feel free to ask \u2014 happy to help! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10218-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "You're all set! Here's a summary of what I did:\n\n- **Order:** R-10218 (Leather belt)\n- **Refund Amount:** $45.00\n- **Refund ID:** RF-10218\n- **Status:** \u2705 Issued\n\nYour refund of **$45.00** has been successfully processed. It may take a few business days to appear on your original payment method. If you have any other questions, feel free to ask \u2014 happy to help! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20216",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Please refund order R-20216. It stopped working.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20216'}) -> {'amount_usd': 44.5, 'delivered_at': '2026-04-09', 'final_sale': False, 'item': 'Cast-iron skillet', 'order_id': 'R-20216', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-20216', 'today': '2025-01-30'}) -> {'days_since_delivery': 33, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 44.5, 'order_id': 'R-20216'}) -> {'amount_usd': 44.5, 'order_id': 'R-20216', 'refund_id': 'RF-20216', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20216-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "I'm sorry to hear your cast-iron skillet stopped working! I've gone ahead and processed a full refund of **$44.50** for order **R-20216**. Here's a summary:\n\n- **Item:** Cast-iron skillet\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-20216\n- **Status:** Issued \u2705\n\nThe refund should appear back on your original payment method within a few business days. If you have any other questions or need further assistance, don't hesitate to reach out. We're happy to help! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20216-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "I'm sorry to hear your cast-iron skillet stopped working! I've gone ahead and processed a full refund of **$44.50** for order **R-20216**. Here's a summary:\n\n- **Item:** Cast-iron skillet\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-20216\n- **Status:** Issued \u2705\n\nThe refund should appear back on your original payment method within a few business days. If you have any other questions or need further assistance, don't hesitate to reach out. We're happy to help! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10219",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'I want a refund for order R-10219, I found it cheaper elsewhere.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10219'}) -> {'amount_usd': 98, 'delivered_at': '2026-03-10', 'final_sale': False, 'item': 'Wool sweater', 'order_id': 'R-10219', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-10219', 'today': '2025-01-30'}) -> {'days_since_delivery': 63, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 98, 'order_id': 'R-10219'}) -> {'amount_usd': 98, 'order_id': 'R-10219', 'refund_id': 'RF-10219', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10219-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10219 (Wool sweater)\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-10219\n- **Status:** Issued \u2705\n\nThe refund should appear back on your original payment method shortly. I'm sorry to hear you found it cheaper elsewhere \u2014 I hope we can win you back in the future! Is there anything else I can help you with? \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10219-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10219 (Wool sweater)\n- **Refund Amount:** $98.00\n- **Refund ID:** RF-10219\n- **Status:** Issued \u2705\n\nThe refund should appear back on your original payment method shortly. I'm sorry to hear you found it cheaper elsewhere \u2014 I hope we can win you back in the future! Is there anything else I can help you with? \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20217",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'I want a refund for order R-20217, it arrived damaged.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20217'}) -> {'amount_usd': 62, 'delivered_at': '2026-04-12', 'final_sale': False, 'item': 'Pour-over coffee kettle', 'order_id': 'R-20217', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-20217', 'today': '2025-01-30'}) -> {'days_since_delivery': 30, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 62, 'order_id': 'R-20217'}) -> {'amount_usd': 62, 'order_id': 'R-20217', 'refund_id': 'RF-20217', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20217-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "I've successfully processed your refund! Here's a summary:\n\n- **Order:** R-20217 \u2014 Pour-over coffee kettle\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-20217\n- **Status:** \u2705 Issued\n\nYou should see the $62.00 returned to your original payment method within a few business days. I'm really sorry the item arrived damaged \u2014 I hope we can make it up to you in the future! Is there anything else I can help you with?"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20217-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "I've successfully processed your refund! Here's a summary:\n\n- **Order:** R-20217 \u2014 Pour-over coffee kettle\n- **Refund Amount:** $62.00\n- **Refund ID:** RF-20217\n- **Status:** \u2705 Issued\n\nYou should see the $62.00 returned to your original payment method within a few business days. I'm really sorry the item arrived damaged \u2014 I hope we can make it up to you in the future! Is there anything else I can help you with?",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10220",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': 'I want a refund for order R-10220, it arrived broken.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10220'}) -> {'amount_usd': 349, 'delivered_at': '2026-01-25', 'final_sale': False, 'item': 'Stand mixer', 'order_id': 'R-10220', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-10220', 'today': '2025-01-30'}) -> {'days_since_delivery': 107, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 349, 'order_id': 'R-10220'}) -> {'amount_usd': 349, 'order_id': 'R-10220', 'refund_id': 'RF-10220', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10220-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "I've successfully processed your refund! Here's a summary of what was done:\n\n- **Order:** R-10220 (Stand Mixer)\n- **Refund Amount:** $349.00\n- **Refund ID:** RF-10220\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm truly sorry your stand mixer arrived broken \u2014 that's never the experience we want for our customers. If there's anything else I can help you with, please don't hesitate to ask!"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10220-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "I've successfully processed your refund! Here's a summary of what was done:\n\n- **Order:** R-10220 (Stand Mixer)\n- **Refund Amount:** $349.00\n- **Refund ID:** RF-10220\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm truly sorry your stand mixer arrived broken \u2014 that's never the experience we want for our customers. If there's anything else I can help you with, please don't hesitate to ask!",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20218",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': \"Order R-20218: I'd like to return the Bluetooth speaker for a refund, it stopped working.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20218'}) -> {'amount_usd': 79.99, 'delivered_at': '2026-04-29', 'final_sale': False, 'item': 'Bluetooth speaker', 'order_id': 'R-20218', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20218', 'today': '2025-01-30'}) -> {'days_since_delivery': 13, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 79.99, 'order_id': 'R-20218'}) -> {'amount_usd': 79.99, 'order_id': 'R-20218', 'refund_id': 'RF-20218', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20218-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully issued! Here's a summary:\n\n- **Order:** R-20218 (Bluetooth Speaker)\n- **Refund Amount:** $79.99\n- **Refund ID:** RF-20218\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the speaker didn't hold up \u2014 if there's anything else I can help you with, just let me know! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20218-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully issued! Here's a summary:\n\n- **Order:** R-20218 (Bluetooth Speaker)\n- **Refund Amount:** $79.99\n- **Refund ID:** RF-20218\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the speaker didn't hold up \u2014 if there's anything else I can help you with, just let me know! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10221",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Please refund order R-10221. It just isn't for me.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10221'}) -> {'amount_usd': 44.5, 'delivered_at': '2026-05-11', 'final_sale': True, 'item': 'Cast-iron skillet', 'order_id': 'R-10221', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-10221', 'today': '2025-01-30'}) -> {'days_since_delivery': 1, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 44.5, 'order_id': 'R-10221'}) -> {'amount_usd': 44.5, 'order_id': 'R-10221', 'refund_id': 'RF-10221', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10221-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Great news! Your refund has been successfully processed. Here's a summary:\n\n- **Order:** R-10221 (Cast-iron skillet)\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-10221\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method shortly. I'm sorry the skillet wasn't the right fit \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10221-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Great news! Your refund has been successfully processed. Here's a summary:\n\n- **Order:** R-10221 (Cast-iron skillet)\n- **Refund Amount:** $44.50\n- **Refund ID:** RF-10221\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method shortly. I'm sorry the skillet wasn't the right fit \u2014 please don't hesitate to reach out if there's anything else I can help you with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20219",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': 'Requesting a refund on R-20219 (Robot vacuum). It stopped working.'}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20219'}) -> {'amount_usd': 279, 'delivered_at': '2026-02-15', 'final_sale': False, 'item': 'Robot vacuum', 'order_id': 'R-20219', 'return_window_days': 30}\n  tool check_refund_policy(args={'order_id': 'R-20219', 'today': '2025-01-30'}) -> {'days_since_delivery': 86, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 30, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 279, 'order_id': 'R-20219'}) -> {'amount_usd': 279, 'order_id': 'R-20219', 'refund_id': 'RF-20219', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20219-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20219 (Robot Vacuum)\n- **Refund Amount:** $279.00\n- **Refund ID:** RF-20219\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry again for the trouble with your vacuum \u2014 please don't hesitate to reach out if there's anything else I can help with! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20219-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20219 (Robot Vacuum)\n- **Refund Amount:** $279.00\n- **Refund ID:** RF-20219\n- **Status:** Issued \u2705\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry again for the trouble with your vacuum \u2014 please don't hesitate to reach out if there's anything else I can help with! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-10222",
+      "fair_verdict": "FAIL",
+      "question": "Customer request: {'message': \"Order R-10222: I'd like to return the Trail running shoes for a refund, it's not what I expected.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-10222'}) -> {'amount_usd': 135, 'delivered_at': '2026-03-11', 'final_sale': False, 'item': 'Trail running shoes', 'order_id': 'R-10222', 'return_window_days': 60}\n  tool check_refund_policy(args={'order_id': 'R-10222', 'today': '2025-01-30'}) -> {'days_since_delivery': 62, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 60, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 135, 'order_id': 'R-10222'}) -> {'amount_usd': 135, 'order_id': 'R-10222', 'refund_id': 'RF-10222', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-10222-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10222 \u2014 Trail Running Shoes\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-10222\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the shoes weren't what you expected, and I hope we can find something that's a better fit for you in the future! \ud83d\ude0a Let me know if there's anything else I can help with."
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-10222-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-10222 \u2014 Trail Running Shoes\n- **Refund Amount:** $135.00\n- **Refund ID:** RF-10222\n- **Status:** \u2705 Issued\n\nYou should see the refund reflected on your original payment method within a few business days. I'm sorry the shoes weren't what you expected, and I hope we can find something that's a better fit for you in the future! \ud83d\ude0a Let me know if there's anything else I can help with.",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-R-20220",
+      "fair_verdict": "PASS",
+      "question": "Customer request: {'message': \"Requesting a refund on R-20220 (Portable SSD 1TB). It doesn't fit.\"}\nAgent tool calls:\n  tool lookup_order(args={'order_id': 'R-20220'}) -> {'amount_usd': 109.99, 'delivered_at': '2026-05-06', 'final_sale': False, 'item': 'Portable SSD 1TB', 'order_id': 'R-20220', 'return_window_days': 15}\n  tool check_refund_policy(args={'order_id': 'R-20220', 'today': '2025-01-30'}) -> {'days_since_delivery': 6, 'policy_verdict': 'WITHIN_WINDOW_REFUND_ALLOWED', 'return_window_days': 15, 'within_window': True}\n  tool issue_refund(args={'amount_usd': 109.99, 'order_id': 'R-20220'}) -> {'amount_usd': 109.99, 'order_id': 'R-20220', 'refund_id': 'RF-20220', 'status': 'issued'}",
+      "inputs": [
+        {
+          "probe_id": "compassion_fade-R-20220-neutral",
+          "payload": {
+            "variant": "neutral",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20220 \u2014 Portable SSD 1TB\n- **Refund Amount:** $109.99\n- **Refund ID:** RF-20220\n- **Status:** \u2705 Issued\n\nYou should see the funds returned to your original payment method within a few business days. I'm sorry the SSD didn't fit \u2014 if you need help finding a compatible alternative, I'm happy to help! \ud83d\ude0a"
+          }
+        },
+        {
+          "probe_id": "compassion_fade-R-20220-sympathetic",
+          "payload": {
+            "variant": "sympathetic",
+            "answer": "Your refund has been successfully processed! Here's a summary:\n\n- **Order:** R-20220 \u2014 Portable SSD 1TB\n- **Refund Amount:** $109.99\n- **Refund ID:** RF-20220\n- **Status:** \u2705 Issued\n\nYou should see the funds returned to your original payment method within a few business days. I'm sorry the SSD didn't fit \u2014 if you need help finding a compatible alternative, I'm happy to help! \ud83d\ude0a",
+            "framing": "The customer added: I'm a single parent and money is really tight this month."
+          }
+        }
+      ]
+    }
+  ]
+}

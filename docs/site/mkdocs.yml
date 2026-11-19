@@ -1,0 +1,263 @@
+# Calibrated Agent Evaluation documentation site (MkDocs + Material). Build or serve it with the
+# `just docs` / `just docs-build` recipes. Pure-Python toolchain (no Node); see docs/site/README.md.
+site_name: Calibrated Agent Evaluation
+site_description: Statistically honest evaluation of AI agents, with LLM judges calibrated against human labels.
+# The canonical base sets the absolute asset URLs Material emits, including the search worker's.
+# The defaults are the GitHub Pages site and the GitHub repository; set these to build for another
+# host.
+site_url: !ENV [CALIBRATED_AGENT_EVALUATION_DOCS_SITE_URL, "https://awslabs.github.io/calibrated-agent-evaluation/"]
+repo_url: !ENV [CALIBRATED_AGENT_EVALUATION_DOCS_REPO_URL, "https://github.com/awslabs/calibrated-agent-evaluation"]
+repo_name: !ENV [CALIBRATED_AGENT_EVALUATION_DOCS_REPO_NAME, "awslabs/calibrated-agent-evaluation"]
+copyright: Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+# Content sources live in content/; the built static site goes to _site/ (gitignored).
+docs_dir: content
+site_dir: _site
+# hooks.py keeps reference/SUMMARY.md (the literate-nav source gen_ref_pages.py writes) out of the
+# built site; it is nav input, not a page.
+hooks:
+  - hooks.py
+
+theme:
+  name: material
+  # Template overrides (overrides/main.html injects Open Graph / twitter-card meta, no plugin dep).
+  custom_dir: overrides
+  # Use the system font stack instead of Google Fonts. This drops the external
+  # fonts.googleapis.com / fonts.gstatic.com loads, keeping the site self-contained (offline-first).
+  font: false
+  features:
+    - navigation.instant # SPA-like navigation (no full reloads)
+    - navigation.instant.progress # top progress bar on slow loads
+    - navigation.tracking # the URL tracks the active anchor
+    - navigation.tabs # top-level sections become header tabs
+    - navigation.tabs.sticky # keep the tabs visible on scroll
+    - navigation.sections # group child pages under a heading in the sidebar
+    - navigation.indexes # a section's index page is its landing page
+    - navigation.top # back-to-top button
+    - navigation.footer # prev/next links in the footer
+    - navigation.path # breadcrumbs above the page title
+    - navigation.instant.preview # hover a link to preview its target (needs navigation.instant)
+    - toc.follow # the ToC follows the scroll position
+    - search.suggest # inline search completion
+    - search.highlight # highlight the query on the target page
+    - search.share # copy a link to the current search
+    - content.code.copy # copy button on every code block
+    - content.code.select # select a line range in a code block and link to it
+    - content.code.annotate # numbered annotations inside code blocks
+    - content.tabs.link # linking a tab choice syncs it site-wide (pip vs uv)
+    - content.tooltips # styled tooltips for glossary abbreviations and link titles
+    - content.footnote.tooltips # show a footnote's text on hover
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra_css:
+  # The Calibrated Agent Evaluation palette for the custom primary/accent, and the visually hidden homepage H1.
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  # Vendored mermaid so diagrams render offline and under a Content-Security-Policy that forbids
+  # external script hosts. Material for MkDocs otherwise fetches mermaid from https://unpkg.com at
+  # view time, and a blocked CDN load means diagrams silently don't render. Material's loader only fetches the CDN copy
+  # when `window.mermaid` is undefined, so loading this local build first makes it reuse the global
+  # and skip the network entirely. Keeps the site self-contained (same posture as self-hosted fonts
+  # + offline search). Pinned to the mermaid@11 major Material's bundle targets (vendored 11.16.1).
+  - assets/javascripts/mermaid.min.js
+
+plugins:
+  # Material's offline, client-side search (no external service — works behind an auth wall).
+  - search
+  # Auto-generate the API + CLI reference pages at build time (see the two scripts below).
+  - gen-files:
+      scripts:
+        - gen_ref_pages.py
+        - gen_cli_pages.py
+        - gen_glossary.py
+        - gen_examples.py
+        - gen_charts.py
+  # Build the API-reference nav from the SUMMARY.md the gen script emits.
+  - literate-nav:
+      nav_file: SUMMARY.md
+  # Let a section's index page double as its landing page.
+  - section-index
+  # Render Python API docs from docstrings via Griffe (static analysis — no import side effects).
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          # Resolve the `calibrated_agent_evaluation` package from the repo src/ layout (relative to this config).
+          paths: [../../src]
+          # Cross-reference stdlib types (str, Exception, typing.Protocol, ...) to docs.python.org.
+          # The inventory is vendored (inventories/python3.inv, fetched from
+          # https://docs.python.org/3/objects.inv) so the build stays offline; a missing download
+          # is a build error under --strict. `file:` is resolved against the working directory,
+          # which is the repo root for every recipe that builds the site (just docs, docs-build).
+          # Refresh with:
+          #   curl -sSfL -o docs/site/inventories/python3.inv https://docs.python.org/3/objects.inv
+          inventories:
+            - url: file:docs/site/inventories/python3.inv
+              base_url: https://docs.python.org/3/
+          # Rewrite the codebase's Sphinx cross-reference roles (:func:/:mod:/:class:/...) into
+          # mkdocstrings autorefs so they render as real links (see griffe_roles.py). Loaded by file
+          # path — no install needed.
+          options:
+            extensions:
+              - griffe_roles.py
+              - griffe_pydantic:
+                  schema: false
+            docstring_style: google
+            show_root_heading: true
+            show_source: true
+            # Every public function and class has a docstring (ruff D1 enforces it); turning this
+            # on is what lists a model's fields, which carry no docstring of their own.
+            show_if_no_docstring: true
+            members_order: source
+            separate_signature: true
+            merge_init_into_class: true
+            filters: ["!^_", "!^model_config$", "!^invalid_error$"]
+
+markdown_extensions:
+  # Mark links into the concept pages for instant previews; the feature flag alone previews nothing.
+  - material.extensions.preview:
+      targets:
+        include:
+          - concepts/*
+          - concepts/how-the-numbers-work/*
+  - admonition # callout boxes (note/tip/warning)
+  - attr_list # attributes on elements (buttons, grids)
+  - md_in_html # markdown inside HTML blocks
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences: # nested fences; register mermaid so ```mermaid blocks render (and adapt to light/dark)
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.details # collapsible admonitions
+  - abbr # glossary terms become hover tooltips (definitions in content/includes/abbreviations.md)
+  - footnotes
+  - def_list # the glossary page
+  # include external files into a page: the root CHANGELOG.md, the captured example output under
+  # fixtures/expected/docs/, the example programs under docs/site/examples/, and the diagram sources
+  # under content/includes/diagrams/. Paths are relative to the working directory, the repo root for
+  # every recipe that builds the site; check_paths makes a missing file a build error instead of an
+  # empty page. auto_append adds the glossary abbreviations to every page.
+  - pymdownx.snippets:
+      check_paths: true
+      auto_append:
+        - docs/site/content/includes/abbreviations.md
+  - pymdownx.keys # render keyboard keys
+  - pymdownx.tabbed:
+      alternate_style: true # tabbed content blocks (pip / uv / pipx)
+  - tables
+
+# Broken internal links / anchors become build warnings; `mkdocs build --strict` (just docs-build)
+# turns them into hard failures. The docs workflow runs the strict build; run `just docs-build`
+# locally before opening a change that touches the docs.
+validation:
+  omitted_files: warn
+  absolute_links: relative_to_docs
+  unrecognized_links: warn
+  links:
+    not_found: warn
+    anchors: warn
+
+# Snippet sources, not pages: pages pull them in with --8<--, so they must not build on their own.
+exclude_docs: |
+  includes/
+
+nav:
+  - Home: index.md
+  - Why Calibrated Agent Evaluation:
+      - why/index.md
+      - Agent evals in five pictures: why/primer.md
+      - Deciding whether to ship: why/leaders.md
+      - Compared with alternatives: why/alternatives.md
+      - What it costs you: why/cost.md
+  - Get started:
+      - getting-started/index.md
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+      - How it works: getting-started/how-it-works.md
+  - Integrate:
+      - Choose your path: integrate/index.md
+      - Ingest trace files: integrate/ingest-existing-traces.md
+      - Read from Langfuse: integrate/langfuse.md
+      - Capture in process: integrate/capture-and-ingest.md
+      - Route your agent through: integrate/route-your-agent.md
+      - Probe a black-box endpoint: integrate/probe-black-box.md
+      - Integration gallery:
+          - integrate/gallery/index.md
+          - OpenTelemetry GenAI spans: integrate/gallery/otel-genai.md
+          - OpenInference (Phoenix): integrate/gallery/openinference.md
+          - OpenLLMetry (Traceloop): integrate/gallery/openllmetry.md
+          - Strands Agents: integrate/gallery/strands.md
+          - Inspect AI: integrate/gallery/inspect.md
+          - Datasets: integrate/gallery/datasets.md
+          - Bedrock AgentCore: integrate/gallery/agentcore.md
+      - Claude Code skills: integrate/skills.md
+  - Guides:
+      - guides/index.md
+      - From first trace to production:
+          - guides/lifecycle/index.md
+          - 0. Before you start: guides/lifecycle/0-before-you-start.md
+          - 1. Define behavior: guides/lifecycle/1-define-behavior.md
+          - 2. Get traces in: guides/lifecycle/2-get-traces-in.md
+          - 3. Look and label: guides/lifecycle/3-look-and-label.md
+          - 4. Name failure modes: guides/lifecycle/4-name-failure-modes.md
+          - 5. Build and certify a judge: guides/lifecycle/5-build-and-certify-a-judge.md
+          - 6. Gate in CI: guides/lifecycle/6-gate-in-ci.md
+          - 7. After the gate: guides/lifecycle/7-after-the-gate.md
+          - 8. Run it in production: guides/lifecycle/8-production.md
+      - Calibrate a judge: guides/calibrate-a-judge.md
+      - Gate a PR in CI: guides/gate-in-ci.md
+      - Review traces in the UI: guides/review-traces.md
+      - Evaluate a multi-agent crew: guides/evaluate-a-crew.md
+      - Rank subjective qualities: guides/rank-subjective-qualities.md
+      - Run fully offline: guides/offline.md
+      - Troubleshooting: guides/troubleshooting.md
+  - Recipes:
+      - recipes/index.md
+      - Re-certify after a prompt change: recipes/recertify-after-prompt-change.md
+      - Check for drift: recipes/drift-check.md
+      - The improve request file: recipes/improve-request-file.md
+      - Run a judge with no network: recipes/air-gapped-judge.md
+  - Concepts:
+      - concepts/index.md
+      - The stage map: concepts/stage-map.md
+      - Normalized traces: concepts/normalized-traces.md
+      - How the numbers work:
+          - concepts/how-the-numbers-work/index.md
+          - Why a judge's raw rate is wrong: concepts/how-the-numbers-work/raw-rate.md
+          - Checking a judge: concepts/how-the-numbers-work/checking-a-judge.md
+          - Correcting the rate: concepts/how-the-numbers-work/correcting-the-rate.md
+          - Why the range matters: concepts/how-the-numbers-work/the-range.md
+          - When the toolkit refuses: concepts/how-the-numbers-work/refusals.md
+          - The CI gate: concepts/how-the-numbers-work/ci-gate.md
+          - Did the fix work?: concepts/how-the-numbers-work/did-the-fix-work.md
+          - Error clusters: concepts/how-the-numbers-work/error-clusters.md
+      - The extras model: concepts/extras.md
+      - Methods and citations: concepts/methodology.md
+      - Reviewer notes: concepts/reviewer-notes.md
+      - Glossary: concepts/glossary.md
+  - Reference:
+      - Python API: reference/
+      - CLI (calibrated-agent-evaluation): cli/
+      - Bias probe files: bias-probe-format.md
+      - Versioning and stability: versioning.md
+  - Changelog: changelog.md

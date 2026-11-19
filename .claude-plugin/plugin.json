@@ -1,0 +1,16 @@
+{
+  "name": "calibrated-agent-evaluation",
+  "version": "0.1.0",
+  "description": "Skills that help a coding agent drive the Calibrated Agent Evaluation pipeline: audit an eval setup, run error analysis, draft a binary judge, take it through the calibration gate, and open the review surface. Each skill hands off to the CLI command that enforces the gate.",
+  "author": {
+    "name": "Amazon Web Services"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "evaluation",
+    "llm-judge",
+    "error-analysis",
+    "calibration",
+    "agents"
+  ]
+}

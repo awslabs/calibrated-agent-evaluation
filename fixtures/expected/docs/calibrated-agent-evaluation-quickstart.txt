@@ -1,0 +1,30 @@
+$ calibrated-agent-evaluation quickstart
+calibrated-agent-evaluation quickstart: a first error-analysis pass on the bundled sample corpus
+
+Seeded 6 agent traces + 9 gold labels into an offline local store
+  ($CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT)
+
+First-pass result: 5 of 6 traces have a labeled failure.
+Failure modes found:
+    - trusted_broken_policy_tool: 2
+    - dropped_material_fact: 1
+    - misread_amount: 1
+    - vacancy_threshold_margin_mishandled: 1
+
+Those counts come from the gold labels that ship with the corpus: nothing has been
+judged yet. Next steps:
+  - calibrated-agent-evaluation doctor
+    see which optional extras are installed
+  - uv sync --inexact --extra ui, then
+    calibrated-agent-evaluation --root $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT label --serve --rater YOUR_ID
+    review traces in the UI
+  - uv sync --inexact --extra stats
+    unlocks calibrated judges and honest rates
+  - calibrated-agent-evaluation --root $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT cluster
+    check failure-mode saturation and coverage
+  - calibrated-agent-evaluation --root $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT run --verdicts human --ci
+    the CI gate over the gold labels
+  - calibrated-agent-evaluation calibrate, calibrated-agent-evaluation bias, calibrated-agent-evaluation judge
+    certify a judge, then score with it
+  - calibrated-agent-evaluation quickstart --certify
+    a set big enough to certify one, offline

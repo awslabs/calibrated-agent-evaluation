@@ -1,0 +1,14 @@
+$ calibrated-agent-evaluation --root store improve --register wrong_claim_decision --min-reduction 0.05 --crew
+Pre-registered 'wrong_claim_decision': the fix must cut its failure rate by at least 5 percentage points. The threshold is now frozen.
+Next: after the fix, compare the run before it with the run after it: `calibrated-agent-evaluation improve --evaluate wrong_claim_decision --before-root A --after-root B --development FILE --crew-file CREW.json --touched-agent NAME`.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store improve --evaluate wrong_claim_decision --crew-file crew.json --touched-agent intake --verdicts human --before-root before --after-root after --development dev.txt
+calibrated-agent-evaluation improve: Fix not accepted: the agent you changed fails less, but the crew as a whole doesn't: the failures moved to another step instead of going away.
+Next: check where the failures went before shipping the change.
+Not measured by the human verdicts, so not guarded: escalation, fraud-scorer->escalation.
+Not checked: whether the target was registered before the after run began (no trace in after records a time).
+Run with --explain for the numbers behind this.
+(exit 1)
+

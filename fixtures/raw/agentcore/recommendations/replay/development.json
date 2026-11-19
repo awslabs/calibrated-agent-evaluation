@@ -1,0 +1,96 @@
+{
+ "traces": [
+  {
+   "trace_id": "98c141abd84adfddd42dd305951ca2a7",
+   "input": {
+    "answer": "List the top suppliers for warehouse 00."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "ce2f27d08681ed391bf6332bfb4feed1",
+   "input": {
+    "answer": "List the top suppliers for warehouse 01."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "40be0950eb96217a699de709dd9d8570",
+   "input": {
+    "answer": "List the top suppliers for warehouse 02."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "b40717f25ce8b747eb6a153e383ca6ed",
+   "input": {
+    "answer": "List the top suppliers for warehouse 03."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "e65fed277879987d47ed3e344a2731d9",
+   "input": {
+    "answer": "List the top suppliers for warehouse 04."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "3c7d5281fb52e3e2fc04b65c1a0d9091",
+   "input": {
+    "answer": "List the top suppliers for warehouse 05."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "55278ca9e41dad5eca2337a44290e851",
+   "input": {
+    "answer": "List the top suppliers for warehouse 06."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "33be922b794b13d3c20e558512e31217",
+   "input": {
+    "answer": "List the top suppliers for warehouse 07."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "7306ce4aacdabd0db71b06600df524de",
+   "input": {
+    "answer": "List the top suppliers for warehouse 08."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  },
+  {
+   "trace_id": "b837345f61aeb0f90ccb2f938f80660b",
+   "input": {
+    "answer": "List the top suppliers for warehouse 09."
+   },
+   "output": {
+    "answer": "draft"
+   }
+  }
+ ],
+ "labels": [],
+ "run_provenance": []
+}

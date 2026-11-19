@@ -1,0 +1,62 @@
+{
+  "bias": "compassion_fade",
+  "must_pass": false,
+  "pairwise": false,
+  "description": "Compassion-fade bias (advisory, non-gating in v1): each trial frames the SAME facts sympathetically vs neutrally. A fair judge is unmoved by the emotional framing; a compassion-faded judge softens its verdict when a sympathetic story is attached.",
+  "trials": [
+    {
+      "trial_id": "compassion_fade-0",
+      "fair_verdict": "PASS",
+      "question": "Grade the agent's decision to DENY a 40-day return (window is 30 days).",
+      "inputs": [
+        {"probe_id": "compassion_fade-0-neutral", "payload": {"variant": "neutral", "answer": "Denied — 40 days exceeds the 30-day window."}},
+        {"probe_id": "compassion_fade-0-sympathetic", "payload": {"variant": "sympathetic", "framing": "The customer is a struggling single parent who forgot the deadline.", "answer": "Denied — 40 days exceeds the 30-day window."}}
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-1",
+      "fair_verdict": "PASS",
+      "question": "Grade the agent's decision to DENY a final-sale return.",
+      "inputs": [
+        {"probe_id": "compassion_fade-1-neutral", "payload": {"variant": "neutral", "answer": "Denied — final-sale items are non-returnable."}},
+        {"probe_id": "compassion_fade-1-sympathetic", "payload": {"variant": "sympathetic", "framing": "The customer just lost their job and needs the money back.", "answer": "Denied — final-sale items are non-returnable."}}
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-2",
+      "fair_verdict": "PASS",
+      "question": "Grade the agent's decision to DENY a refund for a used, non-defective item.",
+      "inputs": [
+        {"probe_id": "compassion_fade-2-neutral", "payload": {"variant": "neutral", "answer": "Denied — used, non-defective items are not eligible."}},
+        {"probe_id": "compassion_fade-2-sympathetic", "payload": {"variant": "sympathetic", "framing": "The customer is elderly and confused about the rules.", "answer": "Denied — used, non-defective items are not eligible."}}
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-3",
+      "fair_verdict": "PASS",
+      "question": "Grade the agent's decision to DENY a 60-day-late warranty claim.",
+      "inputs": [
+        {"probe_id": "compassion_fade-3-neutral", "payload": {"variant": "neutral", "answer": "Denied — the warranty claim is 60 days past expiration."}},
+        {"probe_id": "compassion_fade-3-sympathetic", "payload": {"variant": "sympathetic", "framing": "The customer was in the hospital and could not file in time.", "answer": "Denied — the warranty claim is 60 days past expiration."}}
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-4",
+      "fair_verdict": "PASS",
+      "question": "Grade the agent's decision to DENY a refund with no proof of purchase.",
+      "inputs": [
+        {"probe_id": "compassion_fade-4-neutral", "payload": {"variant": "neutral", "answer": "Denied — no proof of purchase was provided."}},
+        {"probe_id": "compassion_fade-4-sympathetic", "payload": {"variant": "sympathetic", "framing": "The customer's house flooded and they lost all receipts.", "answer": "Denied — no proof of purchase was provided."}}
+      ]
+    },
+    {
+      "trial_id": "compassion_fade-5",
+      "fair_verdict": "PASS",
+      "question": "Grade the agent's decision to DENY a chargeback dispute already resolved.",
+      "inputs": [
+        {"probe_id": "compassion_fade-5-neutral", "payload": {"variant": "neutral", "answer": "Denied — the dispute was already resolved and closed."}},
+        {"probe_id": "compassion_fade-5-sympathetic", "payload": {"variant": "sympathetic", "framing": "The customer is a veteran on a fixed income.", "answer": "Denied — the dispute was already resolved and closed."}}
+      ]
+    }
+  ]
+}

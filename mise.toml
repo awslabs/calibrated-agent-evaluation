@@ -1,0 +1,3 @@
+# node runs the review UI's hotkeys JS test.
+[tools]
+node = "24"

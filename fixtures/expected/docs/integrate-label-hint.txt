@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation --root ./store label
+review surface for the 'local' backend: run `calibrated-agent-evaluation --backend local --root store label --serve --rater RATER_ID` with RATER_ID replaced by your rater id, then open http://127.0.0.1:5001 (needs the UI extra: uv sync --inexact --extra ui)

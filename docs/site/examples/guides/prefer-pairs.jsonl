@@ -1,0 +1,9 @@
+{"trace_id_a": "CLM-4473", "trace_id_b": "CLM-4471", "dimension": "tone", "winner": "b", "judge_kind": "human"}
+{"trace_id_a": "CLM-4471", "trace_id_b": "CLM-4475", "dimension": "tone", "winner": "a", "judge_kind": "human"}
+{"trace_id_a": "CLM-4477", "trace_id_b": "CLM-4471", "dimension": "tone", "winner": "b", "judge_kind": "human"}
+{"trace_id_a": "CLM-4473", "trace_id_b": "CLM-4475", "dimension": "tone", "winner": "a", "judge_kind": "human"}
+{"trace_id_a": "CLM-4477", "trace_id_b": "CLM-4473", "dimension": "tone", "winner": "b", "judge_kind": "human"}
+{"trace_id_a": "CLM-4475", "trace_id_b": "CLM-4477", "dimension": "tone", "winner": "a", "judge_kind": "human"}
+{"trace_id_a": "CLM-4471", "trace_id_b": "CLM-4477", "dimension": "tone", "winner": "b", "judge_kind": "human"}
+{"trace_id_a": "CLM-4475", "trace_id_b": "CLM-4473", "dimension": "tone", "winner": "a", "judge_kind": "human"}
+{"trace_id_a": "CLM-4473", "trace_id_b": "CLM-4471", "dimension": "tone", "winner": "b", "judge_kind": "human"}

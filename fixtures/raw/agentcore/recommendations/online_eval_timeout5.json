@@ -1,0 +1,33 @@
+{
+ "onlineEvaluationConfigArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:online-evaluation-config/fixture-oec-rec-AbCdEf1234",
+ "onlineEvaluationConfigId": "fixture-oec-rec-AbCdEf1234",
+ "onlineEvaluationConfigName": "fixture-oec-rec",
+ "rule": {
+  "samplingConfig": {
+   "samplingPercentage": 100.0
+  },
+  "sessionConfig": {
+   "sessionTimeoutMinutes": 5
+  }
+ },
+ "dataSourceConfig": {
+  "cloudWatchLogs": {
+   "serviceNames": [
+    "fixture-runtime"
+   ],
+   "logGroupNames": [
+    "aws/spans",
+    "/aws/bedrock-agentcore/runtimes/fixture-runtime-DEFAULT"
+   ]
+  }
+ },
+ "evaluators": [
+  {
+   "evaluatorId": "Builtin.Helpfulness"
+  }
+ ],
+ "status": "ACTIVE",
+ "executionStatus": "ENABLED",
+ "createdAt": "2026-10-29T09:00:00+00:00",
+ "updatedAt": "2026-10-30T08:54:00+00:00"
+}

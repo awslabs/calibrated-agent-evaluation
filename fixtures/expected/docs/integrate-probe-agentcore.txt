@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation probe \
+    --executor agentcore \
+    --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 \
+    --payload-format agentcore_sse \
+    --authorized \
+    --prompt "What can you help me with?"
+calibrated-agent-evaluation probe: this run can call AWS. It sends up to 1 prompt to the AgentCore Runtime agent arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 (qualifier DEFAULT), each a billed invocation (retried when the session is busy or the runtime throttles), and no spans are read, so the replies are stored as probed, outcome-only traces. It stops at the first prompt that fails, and none of the replies are then stored: only their run records in the run manifest $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/agentcore/agentcore_run_record.json are kept.
+calibrated-agent-evaluation probe: nothing was sent: this probe makes the billed AWS calls listed above, so it needs --yes. Pass --yes to go ahead

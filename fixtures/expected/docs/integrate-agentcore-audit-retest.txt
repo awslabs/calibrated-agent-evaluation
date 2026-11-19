@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation audit retest missing_date_range --ab-test-id fixture-abtest-stopped \
+    --before-root replay/control --after-root replay/treatment \
+    --development-root replay/development --verdicts human
+Fix accepted: the failure rate dropped by at least the 10 percentage points you pre-registered, and nothing it was checked against got worse.
+Not checked: whether the target was registered before the after run began (no trace in $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/replay/treatment records a time).
+Run with --explain for the numbers behind this.

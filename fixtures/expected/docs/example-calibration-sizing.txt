@@ -1,0 +1,13 @@
+about 90% observed accuracy, by labels per class:
+  18/20 correct (90.0%): lower bound 0.738
+  32/35 correct (91.4%): lower bound 0.804
+  45/50 correct (90.0%): lower bound 0.808
+
+labels per class to clear the 0.80 gate:
+  expected accuracy 0.95: clears from  28 on, plan  80
+  expected accuracy 0.90: clears from  55 on, plan  55
+  expected accuracy 0.85: clears from 208 on, plan 208
+
+the same judge, certified twice:
+  18/20 per class: TPR lower bound 0.738, TNR lower bound 0.738: REFUSED
+  32/35 per class: TPR lower bound 0.804, TNR lower bound 0.804: CERTIFIED

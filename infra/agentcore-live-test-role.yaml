@@ -1,0 +1,407 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  Least-privilege role for the opt-in live AgentCore tests of Calibrated Agent Evaluation
+  (`just test-agentcore-live`): the read-only `doctor --agentcore` checks; invocations, session
+  stops and endpoint reads on one runtime endpoint; span reads (logs:StartQuery,
+  logs:GetQueryResults, logs:FilterLogEvents) on the shared aws/spans group, which holds every
+  runtime's spans in the account and region, and on that endpoint's own log group, and CloudWatch
+  Omni queries in the stack's region; the built-in Code Interpreter;
+  reads and runs of the built-in Correctness and GoalSuccessRate evaluators and the Price List
+  lookup; creating, editing, versioning and deleting calibrated_agent_evaluation_live_* datasets;
+  and, for the online judge, calibrated_agent_evaluation_live_* evaluators, online configs and
+  result log groups, passing the one evaluation role, invoking the one judge model, and
+  CalibratedAgentEvaluation/Judges metrics.
+
+Parameters:
+  TrustedPrincipalArn:
+    Type: String
+    Description: The IAM role or user allowed to assume this role (for example your SSO role ARN).
+    AllowedPattern: "^arn:aws[a-z-]*:iam::[0-9]{12}:(role|user)/.+$"
+  AgentRuntimeId:
+    Type: String
+    Description: The AgentCore Runtime id the live tests read (for example nl_sql_agent-AbCdEf1234).
+    AllowedPattern: "^[A-Za-z][A-Za-z0-9_]{0,99}-[A-Za-z0-9]{10}$"
+  AgentRuntimeEndpointName:
+    Type: String
+    Description: >-
+      The endpoint (qualifier) of that runtime the live tests invoke, stop sessions on and read
+      (for example DEFAULT or live).
+    AllowedPattern: "^[A-Za-z][A-Za-z0-9_]{0,47}$"
+  EvaluationRoleArn:
+    Type: String
+    Description: >-
+      The IAM role AgentCore assumes to run the live tests' online evaluation configs; the only
+      role this role may pass.
+    AllowedPattern: "^arn:aws[a-z-]*:iam::[0-9]{12}:role/.+$"
+  JudgeInferenceProfileId:
+    Type: String
+    Default: global.anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: >-
+      The inference profile the online judge's evaluators run. CreateEvaluator checks the caller
+      may use it, and a Custom evaluator's Evaluate runs it.
+    AllowedPattern: "^[a-z]+\\.[A-Za-z0-9.:-]+$"
+  JudgeFoundationModelId:
+    Type: String
+    Default: anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: The foundation model behind JudgeInferenceProfileId.
+    AllowedPattern: "^[A-Za-z0-9.:-]+$"
+  RoleName:
+    Type: String
+    Default: calibrated-agent-evaluation-agentcore-live-test
+    AllowedPattern: "^[A-Za-z0-9+=,.@_-]{1,64}$"
+  MaxSessionSeconds:
+    Type: Number
+    Default: 3600
+    MinValue: 3600
+    MaxValue: 43200
+  # The A/B audit's four reads, each granted on one exact ARN and only when that ARN is given. Left
+  # empty (the default), a parameter adds no statement, so a redeploy without them is unchanged.
+  AbTestArn:
+    Type: String
+    Default: ""
+    Description: The A/B test the audit reads (GetABTest), or empty to grant nothing.
+    AllowedPattern: "^$|^arn:aws[a-z-]*:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:ab-test/[A-Za-z0-9_-]+$"
+  RecommendationArn:
+    Type: String
+    Default: ""
+    Description: The recommendation the audit reads (GetRecommendation), or empty.
+    AllowedPattern: "^$|^arn:aws[a-z-]*:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:recommendation/[A-Za-z0-9_-]+$"
+  ConfigurationBundleArn:
+    Type: String
+    Default: ""
+    Description: >-
+      The configuration bundle whose versions the audit reads (GetConfigurationBundleVersion), or
+      empty.
+    AllowedPattern: "^$|^arn:aws[a-z-]*:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:configuration-bundle/[A-Za-z0-9_-]+$"
+  OnlineEvaluationConfigArn:
+    Type: String
+    Default: ""
+    Description: >-
+      The online evaluation configuration the audit reads (GetOnlineEvaluationConfig), or empty.
+    AllowedPattern: "^$|^arn:aws[a-z-]*:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:online-evaluation-config/[A-Za-z0-9_-]+$"
+
+Conditions:
+  ReadTheAbTest: !Not [!Equals [!Ref AbTestArn, ""]]
+  ReadTheRecommendation: !Not [!Equals [!Ref RecommendationArn, ""]]
+  ReadTheConfigurationBundle: !Not [!Equals [!Ref ConfigurationBundleArn, ""]]
+  ReadTheOnlineEvaluationConfig: !Not [!Equals [!Ref OnlineEvaluationConfigArn, ""]]
+
+Resources:
+  LiveTestRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref RoleName
+      Description: >-
+        Calibrated Agent Evaluation live AgentCore tests (read-only account checks; invoke, stop sessions on and read
+        the named runtime endpoint; logs:StartQuery, logs:GetQueryResults and logs:FilterLogEvents
+        on the shared aws/spans group, which holds every runtime's spans in the account and region,
+        and on the named endpoint's own log group; Omni telemetry queries; read and run the built-in
+        Correctness and GoalSuccessRate evaluators and look up their Price List rates; create
+        datasets, and edit, version and delete calibrated_agent_evaluation_live_* ones; create, run, read and delete
+        calibrated_agent_evaluation_live_* evaluators and online configs, read their result log groups, pass the one
+        evaluation role to AgentCore, invoke the one judge model, and publish metrics to the
+        CalibratedAgentEvaluation/Judges namespace only; when their ARNs are given, the A/B audit's reads of one A/B
+        test, recommendation, configuration bundle and online evaluation configuration).
+      MaxSessionDuration: !Ref MaxSessionSeconds
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: TrustOnlyTheNamedPrincipal
+            Effect: Allow
+            Principal:
+              AWS: !Ref TrustedPrincipalArn
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: calibrated-agent-evaluation-agentcore-live-test
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: ReadTheNamedRuntime
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:GetAgentRuntime
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}"
+              # The Service Authorization Reference requires both the runtime and the
+              # runtime-endpoint resource for these three actions, so each names both ARNs.
+              # InvokeAgentRuntimeForUser is not granted: it is needed only with the runtime
+              # user-id header (runtimeUserId), which the runtime executor never sends.
+              - Sid: InvokeTheNamedRuntimeEndpoint
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:InvokeAgentRuntime
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}"
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}/runtime-endpoint/${AgentRuntimeEndpointName}"
+              - Sid: StopSessionsOnTheNamedRuntimeEndpoint
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:StopRuntimeSession
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}"
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}/runtime-endpoint/${AgentRuntimeEndpointName}"
+              - Sid: ReadTheNamedRuntimeEndpoint
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:GetAgentRuntimeEndpoint
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}"
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:runtime/${AgentRuntimeId}/runtime-endpoint/${AgentRuntimeEndpointName}"
+              # The span reader's Logs Insights reads. Spans come from aws/spans, the group
+              # Transaction Search writes for every runtime in the account, so this grant reads
+              # every runtime's spans there; IAM cannot narrow it to one runtime. Content comes
+              # from the named endpoint's own log group. Each group is named as is and with ":*",
+              # the form CloudWatch Logs checks some calls against, which covers only that group's
+              # own streams. FilterLogEvents lets the reader tell a lagging Logs Insights index
+              # from a group with no content, and the Service Authorization Reference lists it
+              # against StartQuery and GetQueryResults too, so it is granted on both groups; it reads
+              # nothing the queries cannot. StopQuery is not granted: the reader never stops a query.
+              - Sid: ReadTheSpanAndRuntimeLogGroups
+                Effect: Allow
+                Action:
+                  - logs:StartQuery
+                  - logs:GetQueryResults
+                  - logs:FilterLogEvents
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:aws/spans"
+                  - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:aws/spans:*"
+                  - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/bedrock-agentcore/runtimes/${AgentRuntimeId}-${AgentRuntimeEndpointName}"
+                  - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/bedrock-agentcore/runtimes/${AgentRuntimeId}-${AgentRuntimeEndpointName}:*"
+              # The dataset actions that take a dataset ARN. AgentCore generates a dataset's id
+              # (its name plus a random suffix) when it is created, so no exact ARN exists in
+              # advance; the live test names its datasets calibrated_agent_evaluation_live_<random>, and
+              # this grant covers only those, in this account and region. AgentCore names are at most
+              # 48 characters ([a-zA-Z][a-zA-Z0-9_]{0,47}), so the 33-character prefix leaves the
+              # tests 15 for the random part; they use 12 or fewer.
+              - Sid: ManageLiveTestDatasets
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:GetDataset
+                  - bedrock-agentcore:ListDatasetVersions
+                  - bedrock-agentcore:ListDatasetExamples
+                  - bedrock-agentcore:AddDatasetExamples
+                  - bedrock-agentcore:DeleteDatasetExamples
+                  - bedrock-agentcore:CreateDatasetVersion
+                  - bedrock-agentcore:DeleteDataset
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:dataset/calibrated_agent_evaluation_live_*"
+              # CreateDataset takes no resource ARN (AWS Service Authorization Reference), so it can
+              # only be granted on "*". It is the one write here, so it has its own statement,
+              # pinned to this stack's region; the live test then manages only calibrated_agent_evaluation_live_* above.
+              - Sid: CreateDatasetsWithoutResourceLevelPermissions
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:CreateDataset
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: !Ref AWS::Region
+              # The span reader's CloudWatch Omni path (use_omni=True). These telemetry-query actions
+              # take no resource ARN (AWS Service Authorization Reference, prefix cloudwatch), and
+              # StartTelemetryQuery also authorizes GetMetricData, GetRecords and ListMetrics, whose
+              # optional dataset resource is not known in advance, so all are granted on "*",
+              # pinned to this stack's region. They read telemetry; none writes.
+              - Sid: QueryTelemetryThroughOmni
+                Effect: Allow
+                Action:
+                  - cloudwatch:StartTelemetryQuerySession
+                  - cloudwatch:StartTelemetryQuery
+                  - cloudwatch:GetTelemetryQueryResults
+                  - cloudwatch:StopTelemetryQuerySession
+                  - cloudwatch:GetMetricData
+                  - cloudwatch:GetRecords
+                  - cloudwatch:ListMetrics
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: !Ref AWS::Region
+              # The code-execution scorer's live parity test runs on the built-in System Code
+              # Interpreter (aws.codeinterpreter.v1), which needs these three session actions. The
+              # built-in resource lives in the AWS-owned account, so its ARN carries the literal
+              # `aws` account segment rather than this stack's account id.
+              - Sid: UseTheBuiltInCodeInterpreter
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:StartCodeInterpreterSession
+                  - bedrock-agentcore:InvokeCodeInterpreter
+                  - bedrock-agentcore:StopCodeInterpreterSession
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:aws:code-interpreter/aws.codeinterpreter.v1"
+              # The AgentCore judge's live test reads and runs the built-in Correctness evaluator.
+              # Evaluate and GetEvaluator both require the evaluator resource (AWS Service
+              # Authorization Reference). Although a built-in evaluator is AWS-owned and Evaluate
+              # returns its ARN with no region or account, IAM checks it in the caller's own region
+              # and account (seen on a deployed role), so that one form is named, for this
+              # one evaluator only.
+              - Sid: RunTheBuiltInCorrectnessEvaluator
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:Evaluate
+                  - bedrock-agentcore:GetEvaluator
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:evaluator/Builtin.Correctness"
+              # The online judge's live tests create Custom evaluators and online configs named
+              # calibrated_agent_evaluation_live_<random>. AgentCore generates each id as that name, "-" and 10 more
+              # characters (seen live), so calibrated_agent_evaluation_live_* covers only these, in this account and
+              # region. Evaluate runs a created evaluator over the calibration set and bias probes.
+              - Sid: ManageLiveTestEvaluators
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:GetEvaluator
+                  - bedrock-agentcore:DeleteEvaluator
+                  - bedrock-agentcore:Evaluate
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:evaluator/calibrated_agent_evaluation_live_*"
+              - Sid: ManageLiveTestOnlineEvaluationConfigs
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:GetOnlineEvaluationConfig
+                  - bedrock-agentcore:DeleteOnlineEvaluationConfig
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:online-evaluation-config/calibrated_agent_evaluation_live_*"
+              # CreateEvaluator checks that the caller may invoke the evaluator's model, and a
+              # Custom evaluator's Evaluate runs it (seen live). This grants that one judge model:
+              # its inference profile in this stack's region, and the foundation model behind it
+              # in every region the profile routes to (a global profile's model ARN also has no
+              # region).
+              - Sid: InvokeOnlyTheJudgeModel
+                Effect: Allow
+                Action:
+                  - bedrock:InvokeModel
+                  - bedrock:InvokeModelWithResponseStream
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${JudgeInferenceProfileId}"
+                  - !Sub "arn:${AWS::Partition}:bedrock:*::foundation-model/${JudgeFoundationModelId}"
+                  - !Sub "arn:${AWS::Partition}:bedrock:::foundation-model/${JudgeFoundationModelId}"
+              # CreateEvaluator and CreateOnlineEvaluationConfig take no resource ARN (AWS Service
+              # Authorization Reference), so they can only be granted on "*". They are the writes
+              # here, so they have their own statement, pinned to this stack's region.
+              - Sid: CreateEvaluatorsAndOnlineConfigsWithoutResourceLevelPermissions
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:CreateEvaluator
+                  - bedrock-agentcore:CreateOnlineEvaluationConfig
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: !Ref AWS::Region
+              # An online config names the role AgentCore assumes to run it. This role may pass that
+              # one role, and only to AgentCore.
+              - Sid: PassOnlyTheEvaluationRoleToAgentCore
+                Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource:
+                  - !Ref EvaluationRoleArn
+                Condition:
+                  StringEquals:
+                    iam:PassedToService: bedrock-agentcore.amazonaws.com
+              # AgentCore writes an online config's results to a log group named after its id; the
+              # read-back reads those of calibrated_agent_evaluation_live_* configs only, as the span reader reads spans.
+              - Sid: ReadTheLiveTestOnlineEvaluationResults
+                Effect: Allow
+                Action:
+                  - logs:StartQuery
+                  - logs:GetQueryResults
+                  - logs:FilterLogEvents
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/bedrock-agentcore/evaluations/results/calibrated_agent_evaluation_live_*"
+                  - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/bedrock-agentcore/evaluations/results/calibrated_agent_evaluation_live_*:*"
+              # PutMetricData takes an optional dataset ARN that a metric publish names no value
+              # for, so it is granted on "*" like GetMetricData; the namespace condition limits it
+              # to the corrected pass-rate metrics Calibrated Agent Evaluation publishes. No alarm, dashboard or SNS call is
+              # granted: the operator sets any alarm on these metrics.
+              - Sid: PublishOnlyCalibratedAgentEvaluationJudgeMetrics
+                Effect: Allow
+                Action:
+                  - cloudwatch:PutMetricData
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: !Ref AWS::Region
+                    cloudwatch:namespace: CalibratedAgentEvaluation/Judges
+              # The simulated-run live test judges a conversation with the built-in session-level
+              # GoalSuccessRate evaluator, named in the same caller-region, caller-account form.
+              - Sid: RunTheBuiltInGoalSuccessRateEvaluator
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:Evaluate
+                  - bedrock-agentcore:GetEvaluator
+                Resource:
+                  - !Sub "arn:${AWS::Partition}:bedrock-agentcore:${AWS::Region}:${AWS::AccountId}:evaluator/Builtin.GoalSuccessRate"
+              # The judge's cost estimate reads AgentCore's rates from the AWS Price List API.
+              # GetProducts takes no resource ARN and reads public prices only. The Price List API
+              # answers from a few endpoint regions, and the judge always calls us-east-1, so this
+              # statement is pinned to that endpoint rather than to this stack's region.
+              - Sid: ReadAgentCorePricesFromThePriceList
+                Effect: Allow
+                Action:
+                  - pricing:GetProducts
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: us-east-1
+              # The A/B audit's reads (calibrated-agent-evaluation audit). Each read takes exactly one resource type
+              # (AWS Service Authorization Reference), so each is granted on the one ARN its
+              # parameter names, and only when it is set. No list, write or trace read is added.
+              - !If
+                - ReadTheAbTest
+                - Sid: AuditReadTheAbTest
+                  Effect: Allow
+                  Action:
+                    - bedrock-agentcore:GetABTest
+                  Resource:
+                    - !Sub "${AbTestArn}"
+                - !Ref AWS::NoValue
+              - !If
+                - ReadTheRecommendation
+                - Sid: AuditReadTheRecommendation
+                  Effect: Allow
+                  Action:
+                    - bedrock-agentcore:GetRecommendation
+                  Resource:
+                    - !Sub "${RecommendationArn}"
+                - !Ref AWS::NoValue
+              - !If
+                - ReadTheConfigurationBundle
+                - Sid: AuditReadTheConfigurationBundle
+                  Effect: Allow
+                  Action:
+                    - bedrock-agentcore:GetConfigurationBundleVersion
+                  Resource:
+                    - !Sub "${ConfigurationBundleArn}"
+                - !Ref AWS::NoValue
+              - !If
+                - ReadTheOnlineEvaluationConfig
+                - Sid: AuditReadTheOnlineEvaluationConfig
+                  Effect: Allow
+                  Action:
+                    - bedrock-agentcore:GetOnlineEvaluationConfig
+                  Resource:
+                    - !Sub "${OnlineEvaluationConfigArn}"
+                - !Ref AWS::NoValue
+              # These actions take no resource ARN (AWS Service Authorization Reference), so they
+              # can only be granted on "*". They are pinned to this stack's region.
+              - Sid: ReadAccountSettingsWithoutResourceLevelPermissions
+                Effect: Allow
+                Action:
+                  - bedrock-agentcore:ListAgentRuntimes
+                  - bedrock-agentcore:ListDatasets
+                  - bedrock-agentcore:ListEvaluators
+                  - bedrock-agentcore:ListOnlineEvaluationConfigs
+                  - cloudwatch:ListDomains
+                  - logs:DescribeLogGroups
+                  - xray:GetIndexingRules
+                  - xray:GetTraceSegmentDestination
+                Resource: "*"
+                Condition:
+                  StringEquals:
+                    aws:RequestedRegion: !Ref AWS::Region
+      Tags:
+        - Key: purpose
+          Value: calibrated-agent-evaluation-agentcore-live-test
+
+Outputs:
+  LiveTestRoleArn:
+    Description: Set CALIBRATED_AGENT_EVALUATION_AGENTCORE_LIVE_ROLE_ARN to this.
+    Value: !GetAtt LiveTestRole.Arn

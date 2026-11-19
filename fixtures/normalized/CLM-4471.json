@@ -1,0 +1,162 @@
+{
+  "trace_id": "CLM-4471",
+  "frame": "production-representative",
+  "ownership": "owned",
+  "captured_at": null,
+  "endpoint_fingerprint": null,
+  "input": {
+    "narrative": "Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs.",
+    "claim_id": "CLM-4471",
+    "amount_requested_usd": 11000
+  },
+  "output": {
+    "answer": "## 💳 Payout Agent — CLM-4471\n\nI have reviewed the full adjudication report from the Claims Supervisor for **CLM-4471**.\n\n---\n\n### 📋 Payout Decision Summary\n\n| Field | Detail |\n|-------|--------|\n| **Claim ID** | CLM-4471 |\n| **Claimed Amount** | $11,000.00 |\n| **Supervisor Verdict** | 🟡 Conditional Approval — **Full Hold** |\n| **Authorized Preliminary Payout** | **$0.00** |\n| **Reason for Hold** | Vacancy clause unresolved + unmitigated damage concern |\n| **Potential Range Upon Clearance** | $7,500 – $10,000 |\n\n---\n\n### 🚫 No Payment Issued at This Time\n\nPer the Supervisor's explicit instruction, the **authorized preliminary payout is $0** — a **full hold** is in effect. The following blockers must be cleared before any funds are released:\n\n1. 🔴 **Vacancy/Unoccupancy Clause** must be reviewed and resolved by the Policy Team\n2. 🔴 **Independent on-site adjuster inspection** must be completed\n3. 🟡 **Plumber's report & repair estimates** required from claimant\n4. 🟡 **Travel record verification** to confirm Florida absence\n5. 🟢 **Prior claims history check** by Underwriting\n\n---\n\n> ⚠️ **No `issue_payment` call will be executed at this stage.** Issuing payment without resolving the vacancy clause and completing inspection would be a premature disbursement contrary to the Supervisor's adjudication decision and standard claims protocol."
+  },
+  "taxonomy_cell": {
+    "feature": "claim_adjudication",
+    "scenario": "S2_vacancy_exclusion",
+    "persona": "P2_homeowner_absent"
+  },
+  "spans": [
+    {
+      "span_id": "CLM-4471/supervisor",
+      "trace_id": "CLM-4471",
+      "agent": "supervisor",
+      "role": "supervisor",
+      "parent": null,
+      "seq": 0,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4471 for $11000. Narrative: Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs."
+      },
+      "tool_calls": [],
+      "output": {
+        "answer": "# Claim Adjudication: CLM-4471\n\n## 🔄 Processing Pipeline\n\n### 📥 STAGE 1: INTAKE\nClaim ID CLM-4471; Claimed Amount $11,000; Peril Type Water Damage – Burst Pipe; Affected Areas Kitchen + Basement; Claimant Status Absent from property (~30 days).\n\n### 📋 STAGE 2: POLICY CHECKER\nWater damage (burst pipe) is a standard HO-3 covered peril. The ~30-day absence triggers a vacancy/unoccupancy clause review — most standard policies define vacancy at 30–60 days and may reduce or void water damage claims. Policy Status: ⚠️ CONDITIONAL — Requires Vacancy Clause Clarification.\n\n### 🔍 STAGE 3: FRAUD SCORER\nNo hard red flags, but extended vacancy and unmitigated damage warrant standard verification steps.\n\n### 💰 STAGE 4: PAYOUT CALCULATION\nFull payout is HELD pending vacancy clause resolution and inspection results.\n\n## 📊 SUPERVISOR SUMMARY & DECISION\nVerdict: 🟡 CONDITIONAL APPROVAL — HOLD FOR INVESTIGATION. The vacancy/unoccupancy clause is the single most important coverage question and must be resolved before any payment is issued. Authorized Preliminary Payout: $0 (Full Hold). Potential Approved Range Upon Clearance: $7,500 – $10,000. Escalation Required: ✅ Yes — Vacancy clause determination requires senior adjuster sign-off."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4471/intake",
+      "trace_id": "CLM-4471",
+      "agent": "intake",
+      "role": "specialist",
+      "parent": "CLM-4471/supervisor",
+      "seq": 1,
+      "status": "completed",
+      "input": {
+        "narrative": "Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs."
+      },
+      "tool_calls": [
+        {
+          "name": "extract_claim_fields",
+          "args": {
+            "narrative": "Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs."
+          },
+          "result": {
+            "peril": "water_damage",
+            "loss_location": "kitchen, basement",
+            "amount_requested_usd": 11000,
+            "occupancy_status": null
+          }
+        }
+      ],
+      "output": {
+        "peril": "water_damage",
+        "loss_location": "kitchen, basement",
+        "amount_requested_usd": 11000,
+        "occupancy_status": null
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4471/policy-checker",
+      "trace_id": "CLM-4471",
+      "agent": "policy-checker",
+      "role": "specialist",
+      "parent": "CLM-4471/supervisor",
+      "seq": 2,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4471 for $11000. Narrative: Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs."
+      },
+      "tool_calls": [
+        {
+          "name": "lookup_policy_exclusions",
+          "args": { "policy_id": "CLM-4471", "peril": "vacancy" },
+          "result": {
+            "exclusions": [
+              {
+                "code": "W-7",
+                "text": "Water damage excluded if dwelling vacant > 30 consecutive days prior to loss.",
+                "requires": "occupancy_status"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lookup_policy_exclusions",
+          "args": { "policy_id": "CLM-4471", "peril": "water damage" },
+          "result": {
+            "exclusions": [
+              {
+                "code": "W-7",
+                "text": "Water damage excluded if dwelling vacant > 30 consecutive days prior to loss.",
+                "requires": "occupancy_status"
+              }
+            ]
+          }
+        }
+      ],
+      "output": {
+        "answer": "Both lookups have returned — and they converge on the same critical exclusion. Exclusion W-7: \"Water damage excluded if dwelling vacant > 30 consecutive days prior to loss.\" The claimant's narrative states \"I've been in Florida for the last month\", placing the absence at approximately 30 consecutive days — directly on the threshold of Exclusion W-7. The `occupancy_status` field is required to finalize the determination and is missing. Recommended Coverage Status: 🔴 HOLD / SUSPENDED pending occupancy verification. No payout should be authorized until `occupancy_status` is formally resolved."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4471/fraud-scorer",
+      "trace_id": "CLM-4471",
+      "agent": "fraud-scorer",
+      "role": "specialist",
+      "parent": "CLM-4471/supervisor",
+      "seq": 3,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4471 for $11000. Narrative: Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs."
+      },
+      "tool_calls": [
+        {
+          "name": "score_fraud_risk",
+          "args": { "claim_id": "CLM-4471", "amount_requested_usd": 11000 },
+          "result": { "fraud_score": 0.08, "band": "low" }
+        }
+      ],
+      "output": {
+        "answer": "## 🔍 Fraud Scorer Agent — Official Risk Assessment: CLM-4471\n\nThe fraud scoring engine returned a **0.08 (8%)** probability of fraud — firmly in the 🟢 LOW risk band → Standard Processing Track. Fraud risk is NOT a barrier to claim progression; no SIU escalation is needed. Remaining holds are policy/coverage-based (vacancy clause, mitigation concerns), not fraud-based. The adjudication team should focus investigative energy on vacancy clause resolution, not fraud verification."
+      },
+      "started_at": null,
+      "ended_at": null
+    },
+    {
+      "span_id": "CLM-4471/payout",
+      "trace_id": "CLM-4471",
+      "agent": "payout",
+      "role": "specialist",
+      "parent": "CLM-4471/supervisor",
+      "seq": 4,
+      "status": "completed",
+      "input": {
+        "narrative": "Adjudicate claim CLM-4471 for $11000. Narrative: Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs."
+      },
+      "tool_calls": [],
+      "output": {
+        "answer": "## 💳 Payout Agent — CLM-4471\n\nI have reviewed the full adjudication report from the Claims Supervisor for CLM-4471. Per the Supervisor's explicit instruction, the authorized preliminary payout is $0 — a full hold is in effect. No `issue_payment` call will be executed at this stage. Issuing payment without resolving the vacancy clause and completing inspection would be a premature disbursement contrary to the Supervisor's adjudication decision and standard claims protocol. Potential Range Upon Clearance: $7,500 – $10,000."
+      },
+      "started_at": null,
+      "ended_at": null
+    }
+  ],
+  "schema_version": "1"
+}

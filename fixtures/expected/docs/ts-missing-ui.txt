@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation label --serve --rater me    # without the ui extra
+calibrated-agent-evaluation label: the review surface needs the UI extra; uv sync --inexact --extra ui

@@ -1,0 +1,27 @@
+{
+  "createdAt": "2025-12-01T18:00:00-06:00",
+  "description": "Task Completion Metric. Evaluates whether the conversation successfully meets the user's goals",
+  "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.GoalSuccessRate",
+  "evaluatorConfig": {
+    "llmAsAJudge": {
+      "ratingScale": {
+        "numerical": [
+          {
+            "label": "No",
+            "value": 0.0
+          },
+          {
+            "label": "Yes",
+            "value": 1.0
+          }
+        ]
+      }
+    }
+  },
+  "evaluatorId": "Builtin.GoalSuccessRate",
+  "evaluatorName": "Builtin.GoalSuccessRate",
+  "level": "SESSION",
+  "lockedForModification": true,
+  "status": "ACTIVE",
+  "updatedAt": "2026-09-30T19:00:00-05:00"
+}

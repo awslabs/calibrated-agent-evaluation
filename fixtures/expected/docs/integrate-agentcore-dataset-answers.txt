@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation dataset answers --out answer-key.json
+Wrote an answer key for 3 failure mode(s) to answer-key.json: dropped_material_fact, trusted_broken_policy_tool, vacancy_threshold_margin_mishandled.
+Next: fill in each mode's expected_trajectory (the tool names, in order) and assertions (plain-language checks), then run `calibrated-agent-evaluation dataset build --answers answer-key.json --out slice.json`.

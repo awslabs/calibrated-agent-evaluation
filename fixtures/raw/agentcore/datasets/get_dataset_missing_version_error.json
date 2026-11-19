@@ -1,0 +1,7 @@
+{
+  "Error": {
+    "Code": "ResourceNotFoundException",
+    "Message": "Dataset version 99 not found for datasetId=test-AbCdEf1234"
+  },
+  "HTTPStatusCode": 404
+}

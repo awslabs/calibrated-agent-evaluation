@@ -1,0 +1,151 @@
+{
+  "schema_version": "1",
+  "form": "predefined",
+  "scenarios": [
+    {
+      "scenario_id": "CLM-4471",
+      "assertions": [],
+      "metadata": {},
+      "calibrated_agent_evaluation": {
+        "source_trace_id": "CLM-4471",
+        "frame": "production-representative",
+        "taxonomy_cell": {
+          "feature": "claim_adjudication",
+          "scenario": "S2_vacancy_exclusion",
+          "persona": "P2_homeowner_absent"
+        },
+        "failure_modes": [
+          "dropped_material_fact"
+        ],
+        "expected": {
+          "decision": "DENIED",
+          "amount_paid_usd": 0,
+          "basis": "exclusion W-7 (dwelling vacant > 30 days)"
+        }
+      },
+      "form": "predefined",
+      "turns": [
+        {
+          "input": {
+            "narrative": "Burst pipe flooded the kitchen and basement. I've been in Florida for the last month visiting family, came back to the mess. Filing for repairs.",
+            "claim_id": "CLM-4471",
+            "amount_requested_usd": 11000
+          },
+          "expected_response": "{\"amount_paid_usd\":0,\"basis\":\"exclusion W-7 (dwelling vacant > 30 days)\",\"decision\":\"DENIED\"}"
+        }
+      ],
+      "expected_trajectory": []
+    },
+    {
+      "scenario_id": "CLM-4473",
+      "assertions": [
+        "Agent denies a refund outside the return window"
+      ],
+      "metadata": {},
+      "calibrated_agent_evaluation": {
+        "source_trace_id": "CLM-4473",
+        "frame": "production-representative",
+        "taxonomy_cell": {
+          "feature": "claim_adjudication",
+          "scenario": "S2_vacancy_exclusion",
+          "persona": "P2_homeowner_absent"
+        },
+        "failure_modes": [
+          "trusted_broken_policy_tool"
+        ],
+        "expected": {
+          "decision": "DENIED",
+          "amount_paid_usd": 0,
+          "basis": "exclusion W-7 (dwelling vacant > 30 days; occupancy_status was present and correct)"
+        }
+      },
+      "form": "predefined",
+      "turns": [
+        {
+          "input": {
+            "narrative": "Burst pipe flooded the basement. The house had been empty for about five weeks while we were away — nobody living there. Repair estimate attached.",
+            "claim_id": "CLM-4473",
+            "amount_requested_usd": 9500
+          },
+          "expected_response": "{\"amount_paid_usd\":0,\"basis\":\"exclusion W-7 (dwelling vacant > 30 days; occupancy_status was present and correct)\",\"decision\":\"DENIED\"}"
+        }
+      ],
+      "expected_trajectory": [
+        "lookup_order",
+        "check_refund_policy"
+      ]
+    },
+    {
+      "scenario_id": "CLM-4477",
+      "assertions": [],
+      "metadata": {},
+      "calibrated_agent_evaluation": {
+        "source_trace_id": "CLM-4477",
+        "frame": "production-representative",
+        "taxonomy_cell": {
+          "feature": "claim_adjudication",
+          "scenario": "S2_vacancy_exclusion",
+          "persona": "P2_homeowner_absent"
+        },
+        "failure_modes": [
+          "vacancy_threshold_margin_mishandled"
+        ],
+        "expected": {
+          "decision": "DENIED",
+          "amount_paid_usd": 0,
+          "basis": "exclusion W-7 (dwelling vacant > 30 days; recorded as exactly 30 at the threshold margin)"
+        }
+      },
+      "form": "predefined",
+      "turns": [
+        {
+          "input": {
+            "narrative": "Water heater failed and flooded the hallway. We'd been staying at our daughter's place since early last month while the kitchen was being remodeled. Estimate is $8,200.",
+            "claim_id": "CLM-4477",
+            "amount_requested_usd": 8200
+          },
+          "expected_response": "{\"amount_paid_usd\":0,\"basis\":\"exclusion W-7 (dwelling vacant > 30 days; recorded as exactly 30 at the threshold margin)\",\"decision\":\"DENIED\"}"
+        }
+      ],
+      "expected_trajectory": []
+    },
+    {
+      "scenario_id": "ORD-1001",
+      "assertions": [
+        "Agent denies a refund outside the return window"
+      ],
+      "metadata": {},
+      "calibrated_agent_evaluation": {
+        "source_trace_id": "ORD-1001",
+        "frame": "production-representative",
+        "taxonomy_cell": {
+          "feature": "refund_handling",
+          "scenario": "S3_out_of_window_return",
+          "persona": "P1_consumer"
+        },
+        "failure_modes": [
+          "trusted_broken_policy_tool"
+        ],
+        "expected": {
+          "action": "REFUND_DENIED",
+          "amount_usd": 0,
+          "basis": "out-of-window: days_since_delivery=51 > 30-day return window (despite the tool's within_window=true)"
+        }
+      },
+      "form": "predefined",
+      "turns": [
+        {
+          "input": {
+            "message": "I want a refund for order A-7781, the blender just isn't for me."
+          },
+          "expected_response": "{\"action\":\"REFUND_DENIED\",\"amount_usd\":0,\"basis\":\"out-of-window: days_since_delivery=51 > 30-day return window (despite the tool's within_window=true)\"}"
+        }
+      ],
+      "expected_trajectory": [
+        "lookup_order",
+        "check_refund_policy"
+      ]
+    }
+  ],
+  "published": null
+}

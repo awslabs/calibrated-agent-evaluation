@@ -1,0 +1,5 @@
+$ calibrated-agent-evaluation cluster
+Found 4 failure mode(s) in 5 labeled failure(s): trusted_broken_policy_tool (2), misread_amount (1), dropped_material_fact (1), vacancy_threshold_margin_mishandled (1).
+There are probably failure modes you haven't seen yet: keep labeling failures.
+21 of 24 scenario combination(s) have no labeled failures yet; --explain lists them.
+Run with --explain for the numbers behind this.

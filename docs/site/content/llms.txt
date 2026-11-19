@@ -1,0 +1,71 @@
+# Calibrated Agent Evaluation
+
+> Statistically honest evaluation of AI agents. It reads an agent's traces, checks the LLM judge used to grade them against human labels, and reports only the numbers that evidence supports. When a number isn't ready, it refuses and says what to collect next. It is offline by default and ships as a Python library and CLI with no hosted service.
+
+Calibrated Agent Evaluation evaluates agents from their traces rather than their code, so a hand-coded loop, an LLM+MCP composition, a single agent, and a crew all reduce to the same `Trace` and one gold label. A judge scores only after it agrees with human labels on both failures and passes, and after its verdicts hold steady under a bias battery. Failure rates are reported with the judge's measured error removed and a 95% range, and refused when the judge is too weak, the labels too few, or the rate sample under 150 traces. The base install has one runtime dependency (Pydantic); every capability beyond the offline local backend is an opt-in extra. Distribution name `calibrated-agent-evaluation`, CLI `calibrated-agent-evaluation`, import name `calibrated_agent_evaluation`, License Apache-2.0.
+
+The pipeline is one command per stage, in workflow order: `probe → define → generate → label → cluster → calibrate → bias → judge → run → improve`, with `ingest` / `capture` to bring existing traces in.
+
+## Why Calibrated Agent Evaluation
+
+- [The problem, with numbers](why/): three captured runs showing how a judge's own mistakes inflate a failure rate, why a handful of labels can't vouch for a judge, and how the same verdicts give different CI decisions depending on how they're read.
+- [Agent evals in five pictures](why/primer/): a primer for newcomers on what a trace, a label, an LLM judge and a failure mode are, why the judge's mistakes end up in the number, and what the range means.
+- [Deciding whether to ship](why/leaders/): for team leads: the three answers (pass, fail, not enough evidence) and what each asks of the team, the label and model cost, what it guards against, and its current status.
+- [What it costs you](why/cost/): human labels per stage from the shipped planner (55 per class at an expected 90% agreement, 162 for a corrected rate, a 150-trace rate sample), extras, credentials and model calls.
+- [Compared with alternatives](why/alternatives/): Inspect, Langfuse, Ragas, DeepEval, Phoenix, AgentCore Evaluations and Strands Evals, with sourced claims.
+
+## Getting started
+
+- [Getting started](getting-started/): from nothing to a working evaluation, plus the first two commands to run.
+- [Installation](getting-started/installation/): installing from PyPI or a checkout, Python 3.11+, the one runtime dependency, and the extras each command needs.
+- [Quickstart](getting-started/quickstart/): a first result over the bundled sample corpus, fully offline, then a certified judge and a corrected failure rate with `calibrated-agent-evaluation quickstart --certify`.
+- [How it works](getting-started/how-it-works/): five diagrams covering where traces come from, the order of the work, how a run becomes a verdict, the checks a judge passes before it scores, and the checks before a failure rate is reported.
+
+## Integrate
+
+- [Choose your path](integrate/): five ways to get an agent's runs in, picked with a short decision tree, and what each gives you.
+- [Ingest trace files](integrate/ingest-existing-traces/): OpenTelemetry (GenAI, OpenLLMetry, OpenInference), Strands, Inspect, JSONL and parquet traces you already export, with `calibrated-agent-evaluation ingest`.
+- [Read from Langfuse](integrate/langfuse/): ingest traces from a Langfuse project.
+- [Capture in process](integrate/capture-and-ingest/): `calibrated-agent-evaluation capture` and `capture_and_ingest` run your agent once and store the spans it emitted.
+- [Route your agent through](integrate/route-your-agent/): hand the library a Strands topology, an Inspect solver or an AgentCore Runtime and let it drive your agent over generated inputs, with offline cassette replay.
+- [Probe a black-box endpoint](integrate/probe-black-box/): sample an HTTP or WebSocket endpoint you don't own, or an agent on AgentCore Runtime by its runtime ARN, with the limits of what can be inferred stated.
+- [Integration gallery](integrate/gallery/): one recipe per source: OpenTelemetry GenAI, OpenInference, OpenLLMetry, Strands, Inspect, datasets, and AgentCore (trace ingest, the Runtime executor, the Runtime probe and evaluation datasets).
+- [Claude Code skills](integrate/skills/): the plugin that teaches a coding agent the evaluation workflow.
+
+## Guides
+
+- [From first trace to production](guides/lifecycle/): your own agent through every stage in nine phases: setup, defining behavior, getting traces in, labeling with an agreement check, naming failure modes, certifying a judge, gating CI, after the gate, and the scheduled production check with drift and re-certification.
+
+- [Guides](guides/): task-oriented how-tos for putting the individual stages to work.
+- [Calibrate a judge](guides/calibrate-a-judge/): check a judge against human labels, read each outcome, and fix a judge that is refused.
+- [Gate a PR in CI](guides/gate-in-ci/): fail a build when a failure mode regresses, with `calibrated-agent-evaluation run --ci`, and GitHub Actions and GitLab snippets.
+- [Review traces in the UI](guides/review-traces/): the keyboard-driven, critique-first labeling surface that produces the human labels judges are checked against.
+- [Evaluate a multi-agent crew](guides/evaluate-a-crew/): which agent caused a failure versus where it showed up, and gating on the workflow outcome rate.
+- [Run fully offline](guides/offline/): the air-gapped path, a local judge model, and which extras reach the network.
+- [Troubleshooting](guides/troubleshooting/): each refusal `calibrated-agent-evaluation` prints, what causes it, and what to do.
+
+## Recipes
+
+- [Recipes](recipes/): short tasks: re-certify after a prompt change, check for drift, write an improve request file, and run a judge with no network.
+
+## Concepts
+
+- [Concepts](concepts/): the ideas behind the tool, for understanding why it works the way it does.
+- [The stage map](concepts/stage-map/): what each stage does, from getting traces in to proving a fix, using the bundled OrderBot and ClaimsCrew as running examples.
+- [Normalized traces](concepts/normalized-traces/): the single `Trace` shape that makes a custom loop, an LLM+MCP composition and a crew evaluable the same way.
+- [How the numbers work](concepts/how-the-numbers-work/): the statistics behind every number, explained from worked examples: why a raw judge rate is wrong, how many labels to collect, correcting the rate, what the range promises and where it falls short, every refusal, the CI gate, before/after fixes, and when to stop labeling.
+- [Checking a judge](concepts/how-the-numbers-work/checking-a-judge/): how a judge is certified against human labels, the label-count planner and its guarantee, the single-use test set rules, and version pinning.
+- [The extras model](concepts/extras/): the one runtime dependency, how a missing capability fails with the install command, the license guarantee, and vendor isolation.
+- [Glossary](concepts/glossary/): every term the docs use with a specific meaning, in everyday and statistical groups.
+- [Methodology and prior art](concepts/methodology/): every statistical method the library ships, the published work each step follows, its code location and its primary source, for reviewers.
+- [Reviewer notes](concepts/reviewer-notes/): where the corrected-rate interval was measured to cover less often than 95%, the 150-trace rate-sample minimum, the boundary rows, and the evidence files.
+
+## Reference
+
+- [CLI (calibrated-agent-evaluation)](cli/): every `calibrated-agent-evaluation` command and flag.
+- [Python API](reference/): the library surface (`calibrated_agent_evaluation.normalize`, `calibrate`, `judges`, `run`, `improve`, `attribution`, and the rest), generated from docstrings.
+- [Versioning and stability](versioning/): the current release, 0.1.0, on PyPI; no deprecation window before 1.0; the schema version of each persisted record; the narrow dependency pins.
+
+## Optional
+
+- [Changelog](changelog/): notable changes in each release, starting with 0.1.0.

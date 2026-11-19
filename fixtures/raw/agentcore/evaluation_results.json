@@ -1,0 +1,98 @@
+[
+ {
+  "resource": {
+   "attributes": {
+    "aws.service.type": "gen_ai_agent",
+    "aws.local.service": "SupportAgent.DEFAULT",
+    "service.name": "SupportAgent.DEFAULT"
+   }
+  },
+  "traceId": "6adf7dc33c6467c957f1b14b36da0ed3",
+  "timeUnixNano": 1793031628252710316,
+  "observedTimeUnixNano": 1793035430401495512,
+  "severityNumber": 17,
+  "name": "gen_ai.evaluation.result",
+  "attributes": {
+   "gen_ai.evaluation.name": "Builtin.Correctness",
+   "session.id": "calibrated_agent_evaluation_omnie807542fe39f47a18ef745930131294d",
+   "gen_ai.response.id": "6adf7dc33c6467c957f1b14b36da0ed3",
+   "error.type": "LogEventMissingException",
+   "error.message": "Session span data is incomplete. Span with ID: b450bd402d2985c2 and name: invoke_agent Strands Agents is missing a corresponding log event. Please retry the request with the complete span data",
+   "error": 1,
+   "throttle": 0,
+   "aws.bedrock_agentcore.evaluation_job.arn": "arn:aws:bedrock-agentcore:us-east-1:111122223333:batch-evaluate/calibrated_agent_evaluation_f029_scoretest_2-b1ef09b5c9",
+   "aws.bedrock_agentcore.evaluation_job.name": "calibrated_agent_evaluation_f029_scoretest_2",
+   "aws.bedrock_agentcore.evaluation_job.run_id": "calibrated_agent_evaluation_f029_scoretest_2-b1ef09b5c9",
+   "aws.bedrock_agentcore.evaluator.arn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness",
+   "aws.bedrock_agentcore.evaluator.rating_scale": "Numerical",
+   "aws.bedrock_agentcore.evaluation_level": "Trace"
+  },
+  "evaluationJobId": "arn:aws:bedrock-agentcore:us-east-1:111122223333:batch-evaluate/calibrated_agent_evaluation_f029_scoretest_2-b1ef09b5c9",
+  "runId": "calibrated_agent_evaluation_f029_scoretest_2-b1ef09b5c9"
+ },
+ {
+  "resource": {
+   "attributes": {
+    "aws.service.type": "gen_ai_agent",
+    "aws.local.service": "SupportAgent.DEFAULT",
+    "service.name": "SupportAgent.DEFAULT"
+   }
+  },
+  "traceId": "6adf916231b6b36c42bb631d78e66aad",
+  "timeUnixNano": 1793036651213195050,
+  "observedTimeUnixNano": 1793037853253291123,
+  "severityNumber": 9,
+  "name": "gen_ai.evaluation.result",
+  "attributes": {
+   "gen_ai.evaluation.name": "Builtin.Correctness",
+   "session.id": "calibrated_agent_evaluation_score9fb8d5d337ba44ed9e56349a119ce935",
+   "gen_ai.response.id": "6adf916231b6b36c42bb631d78e66aad",
+   "gen_ai.evaluation.score.value": 1.0,
+   "gen_ai.evaluation.explanation": "The response states that sale items can be returned within 30 days in original condition, refunds post to original payment method within 5-7 business days after inspection, and returns start from Your Orders with a prepaid label emailed. These claims align directly with the tool outputs from FAQ-RETURN, FAQ-REFUND, and ask_knowledge. No factual errors or contradictions are present; the response is slightly less detailed (doesn't mention the 1-2 day refund for cancelled unshipped orders) but that is a completeness issue, not a correctness one.",
+   "gen_ai.evaluation.score.label": "Perfectly Correct",
+   "aws.bedrock_agentcore.evaluation_job.arn": "arn:aws:bedrock-agentcore:us-east-1:111122223333:batch-evaluate/calibrated_agent_evaluation_f029_scoretest_6-c9b5f4a1f9",
+   "aws.bedrock_agentcore.evaluation_job.name": "calibrated_agent_evaluation_f029_scoretest_6",
+   "aws.bedrock_agentcore.evaluation_job.run_id": "calibrated_agent_evaluation_f029_scoretest_6-c9b5f4a1f9",
+   "aws.bedrock_agentcore.evaluator.arn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Correctness",
+   "aws.bedrock_agentcore.evaluator.rating_scale": "Numerical",
+   "aws.bedrock_agentcore.evaluation_level": "Trace"
+  },
+  "evaluationJobId": "arn:aws:bedrock-agentcore:us-east-1:111122223333:batch-evaluate/calibrated_agent_evaluation_f029_scoretest_6-c9b5f4a1f9",
+  "runId": "calibrated_agent_evaluation_f029_scoretest_6-c9b5f4a1f9",
+  "service.name": "SupportAgent.DEFAULT",
+  "label": "Perfectly Correct",
+  "_aws": {
+   "Timestamp": 1793036651213,
+   "CloudWatchMetrics": [
+    {
+     "Namespace": "Bedrock-AgentCore/Evaluations",
+     "Dimensions": [
+      [
+       "service.name"
+      ],
+      [
+       "label",
+       "service.name"
+      ],
+      [
+       "service.name",
+       "evaluationJobId"
+      ],
+      [
+       "label",
+       "service.name",
+       "evaluationJobId"
+      ]
+     ],
+     "Metrics": [
+      {
+       "Name": "Builtin.Correctness",
+       "Unit": "None"
+      }
+     ]
+    }
+   ]
+  },
+  "Builtin.Correctness": 1.0
+ }
+]

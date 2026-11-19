@@ -1,0 +1,18 @@
+$ calibrated-agent-evaluation --root store improve --register trusted_broken_policy_tool --min-reduction 0.02
+Pre-registered 'trusted_broken_policy_tool': the fix must cut its failure rate by at least 2 percentage points. The threshold is now frozen.
+Next: after the fix, compare the run before it with the run after it: `calibrated-agent-evaluation improve --evaluate trusted_broken_policy_tool --before-root A --after-root B --development FILE`.
+Run with --explain for the numbers behind this.
+(exit 0)
+
+$ calibrated-agent-evaluation --root store improve --request request.json --explain
+Fix accepted: the failure rate dropped by at least the 2 percentage points you pre-registered, and nothing it was checked against got worse.
+Not checked: whether the target was registered before the after run began (a request file carries no run times).
+
+improve 'trusted_broken_policy_tool': ACCEPTED
+  paired fail-rate change (after - before) -0.250, 95% CI [-0.449, -0.029] (newcombe_paired_hybrid_score, n=20); McNemar midp, 5 discordant pair(s), p=0.03125
+  pre-registered minimum reduction 0.02: the interval's upper bound must be at or below -0.020
+  guard panel: 1 slice(s), Holm; regressed: none
+  pre-registration frozen at <time>; not checked against the after run: a request file carries no run times
+recorded improve-<id> in store/records/improve
+(exit 0)
+

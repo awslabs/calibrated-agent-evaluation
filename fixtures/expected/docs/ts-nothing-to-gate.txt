@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation run --ci
+calibrated-agent-evaluation run: no judge verdicts with a failure mode on 6 stored trace(s) to gate (--verdicts judge); score the traces with `calibrated-agent-evaluation judge` first, or gate another source with --verdicts scorer or --verdicts human

@@ -1,0 +1,378 @@
+[project]
+name = "calibrated-agent-evaluation"
+version = "0.1.0"
+description = "Statistically honest evaluation of AI agents, with LLM judges calibrated against human labels."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE", "THIRD-PARTY-LICENSES"]
+authors = [{ name = "Amazon Web Services" }]
+keywords = [
+    "ai",
+    "agents",
+    "evaluation",
+    "evals",
+    "llm",
+    "error-analysis",
+    "langfuse",
+    "inspect-ai",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+dependencies = ["pydantic>=2.8,<3"]
+
+[project.urls]
+Homepage = "https://github.com/awslabs/calibrated-agent-evaluation"
+Documentation = "https://awslabs.github.io/calibrated-agent-evaluation/"
+Repository = "https://github.com/awslabs/calibrated-agent-evaluation"
+Issues = "https://github.com/awslabs/calibrated-agent-evaluation/issues"
+Changelog = "https://github.com/awslabs/calibrated-agent-evaluation/blob/main/CHANGELOG.md"
+
+[project.scripts]
+calibrated-agent-evaluation = "calibrated_agent_evaluation.cli:main"
+
+# Optional installs. The runtime tree stays at pydantic alone so the local backend works offline
+# with no other third-party dependency. Every extra is vetted by the license scan
+# (scripts/license_scan.py) before it can ship. Floors are the versions whose API was checked
+# against the installed package; majors (minors, pre-1.0) are capped so a breaking release cannot
+# arrive unreviewed.
+[project.optional-dependencies]
+# The trace-review web UI (`calibrated-agent-evaluation label --serve`). python-fasthtml is Apache-2.0, checked at
+# 0.14.2. uvicorn serves the app and is declared rather than left to arrive through python-fasthtml,
+# whose dependency on it is not a contract; floor = the checked `uvicorn.run`. starlette is imported
+# directly by the review app, routes and guards, so it is declared for the same reason (checked at
+# 1.3.1).
+ui = ["python-fasthtml>=0.14,<0.15", "uvicorn>=0.49,<1", "starlette>=1.3,<2"]
+# The opt-in Langfuse trace-store backend; the local backend (stdlib sqlite3) is the default.
+# Langfuse Python SDK v3, MIT-licensed OSS build, checked at 3.15.0.
+langfuse = ["langfuse>=3.15,<4"]
+# Trajectory-normalizer source readers:
+#   pip install "calibrated-agent-evaluation[inspect]"  # read Inspect AI .eval logs (normalize/inspect_adapter)
+#   pip install "calibrated-agent-evaluation[otel]"     # decode binary OTLP protobuf (normalize/otel_adapter)
+# inspect-ai (MIT) checked at 0.3.242, opentelemetry-proto (Apache-2.0) at 1.43.0. OTLP-JSON reads
+# with the stdlib json module; [otel] is needed only for binary .otlp.
+inspect = ["inspect-ai>=0.3.242,<0.4"]
+otel = ["opentelemetry-proto>=1.43,<2"]
+# Deterministic structured-target scorers (ExactMatch, Levenshtein, NumericDiff, JSONDiff,
+# ValidJSON) wrapping the MIT `autoevals` library, checked at 0.3.0.
+scorers = ["autoevals>=0.3.0,<1"]
+# The judge-calibration statistics core (the Wilson lower-bound gate and the Rogan–Gladen interval)
+# and failure-mode clustering (scipy.cluster.hierarchy linkage + fcluster). These are numeric
+# engines, not trace-store or executor vendors, so they live in the methodology plane. scipy>=1.15
+# has the `rng=` kwarg and multi-sample `bootstrap`; statsmodels>=0.14 has the one-sided Wilson
+# `proportion_confint` and `multipletests` fdr_by/holm. numpy is imported directly by the stats,
+# drift and clustering modules, so it is declared rather than left to arrive through scipy; its floor
+# is the oldest numpy the lock resolves (2.4.6, on Python 3.11). All BSD-3-Clause. Cohen's kappa is
+# reimplemented rather than depending on scikit-learn (about 30 MiB for one function), which stays
+# a dev-only test oracle. The saturation estimators (Good-Turing, Chao1) are pure stdlib.
+stats = ["scipy>=1.15,<2", "statsmodels>=0.14,<1", "numpy>=2.4,<3"]
+# Dataset ingestion:
+#   pip install "calibrated-agent-evaluation[datasets]"  # read local parquet datasets (normalize/datasets/parquet)
+#   pip install "calibrated-agent-evaluation[hf]"        # resolve a HuggingFace-hub dataset by repo id (datasets/hf)
+# JSONL ingestion uses the stdlib `json`. The HF `datasets` library is deliberately not a
+# dependency: pyarrow and huggingface-hub cover streaming and resolution. Both Apache-2.0, checked at
+# pyarrow 24.0.0 (`iter_batches`/`read_row_group`) and huggingface-hub 1.21.0
+# (`hf_hub_download`/`HfFileSystem`); the floors are older than the checked versions. The [hf]
+# transitive tree (e.g. hf-xet) is license-vetted per extra and never enters the default install.
+datasets = ["pyarrow>=17,<25"]
+hf = ["huggingface-hub>=0.24,<2"]
+# Covering-array discovery frames (allpairspy, MIT, checked at 2.5.1).
+sampling = ["allpairspy>=2.5,<3"]
+# Input synthesis borrows strands-agents-evals' ActorSimulator for multi-turn persona route-through.
+# Apache-2.0. Floor is 1.6.0, the release whose simulator surface was re-introspected; the files the
+# borrow uses are unchanged since 1.0.0, and tests/test_synth_borrow_surface.py fails if a later 1.x
+# moves them. Opt-in only; the vendor SDK is confined to `synth/borrow/` and `agentcore/`.
+synth = ["strands-agents-evals>=1.6.0,<2"]
+# Run Strands Agent/Graph/Swarm programmatically into normalized Traces via StrandsExecutor.
+# Apache-2.0, checked at 1.45.0; the same package the `corpus` group pins. The vendor SDK is
+# confined to `execute/`. `execute/strands_capture.py` (behind both `calibrated-agent-evaluation capture` and
+# StrandsExecutor) imports the OTel SDK and the official OTLP encoder directly, and strands-agents
+# does not depend on the encoder, so both are declared here; protobuf arrives with the encoder.
+# Their floors are the checked 1.43.0 surfaces; tests/test_extras_closure.py checks the closure.
+strands = [
+    "strands-agents>=1.45,<2",
+    "opentelemetry-sdk>=1.43,<2",
+    "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
+]
+# The three-layer agent-security benchmark battery (AgentDojo/StrongREJECT/XSTest and substitutes)
+# from `inspect_evals` (MIT), checked at 0.14.3, where benchmark modules resolve as
+# `inspect_evals.<name>.<name>`. The sole import is `execute/benchmark_tasks.py`, never `probe/`.
+# Per-benchmark license gating lives in code, not the install: `cyberseceval` (LGPL via semgrep) is
+# refused and AgentHarm (AI-safety-only use clause) is opt-in only.
+probe = ["inspect_evals>=0.14.3,<0.15"]
+# WebSocket transport for probing `ws://`/`wss://` agents; the HTTP path is stdlib-only.
+# `websockets` (BSD-3-Clause) is a network-transport library like stdlib `urllib`, not a vendor SDK;
+# `probe/ws_adapter.py` is the only module that imports it. Checked at 16.0
+# (`websockets.sync.client.connect` with `additional_headers`/`subprotocols`/`open_timeout`, and the
+# `ClientConnection` context manager).
+probe-ws = ["websockets>=16,<17"]
+# The opt-in LLM renderer and Titan embedder `calibrated-agent-evaluation generate` and `calibrated-agent-evaluation cluster` use. Both
+# adapters live in `execute/`. `boto3` (Apache-2.0) is the Bedrock Runtime transport for Titan
+# `invoke_model`; `inspect-ai` (MIT, the same package as [inspect]) is the model layer the
+# renderer's `generate_text` builds on. Floors match the `corpus` boto3 pin and the [inspect] pin.
+bedrock = ["boto3>=1.40,<2", "inspect-ai>=0.3.242,<0.4"]
+# Amazon Bedrock AgentCore plug-in (`calibrated_agent_evaluation.agentcore`): trace ingest, runtime executor, evaluator
+# judges, datasets codec, `calibrated-agent-evaluation doctor --agentcore` and the `strands-agents-evals` failure
+# detector. Never a default; a bare install imports none of these. Apache-2.0, except urllib3 (MIT).
+# bedrock-agentcore's floor, 1.24.2, is the version whose AgentCoreActorSimulator and Evaluate
+# client surfaces the simulated-run adapter was checked against.
+# The boto3/botocore floor is the lowest bedrock-agentcore 1.24.1 (and so 1.24.2) accepts (CloudWatch Omni's
+# `cloudwatchomni` client first ships in botocore 1.43.100). urllib3 comes with botocore, so it
+# adds no package; it is declared because the runtime executor catches
+# `urllib3.exceptions.HTTPError` while it sends a request or reads a response. Its floor, 1.26.5,
+# imports on Python 3.11 to 3.14, while 1.26.4 fails to import on 3.12 and 3.13, from the six it
+# vendors. The rest is botocore's own range.
+#   pip install "calibrated-agent-evaluation[agentcore]"
+agentcore = [
+    "boto3>=1.43.103,<2",
+    "botocore>=1.43.103,<2",
+    "bedrock-agentcore>=1.24.2,<2",
+    # BSD-3-Clause, checked at 3.1.6: the AgentCore simulated user renders bedrock-agentcore's
+    # actor prompt template with it (the SDK's own `simulation` extra declares it too).
+    "jinja2>=3.1.6,<4",
+    "strands-agents-evals>=1.6.0,<2",
+    "urllib3>=1.26.5,!=2.2.0,<3",
+    # Apache-2.0, checked at 1.45.0. The failure detector subclasses strands' Model and builds
+    # BedrockModel, so the extra declares strands-agents itself, with the same range as [strands].
+    "strands-agents>=1.45,<2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/calibrated_agent_evaluation"]
+
+# The sdist carries the package source, the license files and the files the build reads. Docs,
+# fixtures, tests and internal tooling stay in the repository.
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src",
+    "LICENSE",
+    "NOTICE",
+    "THIRD-PARTY-LICENSES",
+    "README.md",
+    "CHANGELOG.md",
+    "pyproject.toml",
+]
+
+# Dev tooling (PEP 735 dependency group). `just install` syncs it with every extra and the corpus
+# group, so the whole suite runs against the real engines.
+[dependency-groups]
+dev = [
+    "pytest>=9",
+    "pytest-cov>=7",
+    "ruff>=0.15",
+    "pyright>=1.1.400",
+    "pre-commit>=4",
+    "nox>=2025.5",
+    "hypothesis>=6.150",
+    # The review-surface tests exercise the FastHTML app, and the boundary test imports review/.
+    "python-fasthtml>=0.14,<0.15",
+    "uvicorn>=0.49,<1",
+    # starlette arrives through python-fasthtml; the review tests use its TestClient, whose httpx
+    # fallback is deprecated. Capped so a major that drops the fallback cannot land unreviewed.
+    "starlette>=1.3,<2",
+    # The calibration engine is the real numeric engine; it cannot be stubbed and still tested.
+    "scipy>=1.15",
+    "statsmodels>=0.14",
+    # The covering-array generator behind the sampling engine.
+    "allpairspy>=2.5",
+    # Test oracles only, never runtime dependencies: scikit-learn cross-checks the reimplemented
+    # Cohen's kappa, and judgy's (MIT) eval-rate-fixed bootstrap is the foil the corrected-rate
+    # interval beats.
+    "scikit-learn>=1.5",
+    "judgy>=0.1",
+    # The parquet and frozen-slice tests run the real pyarrow reader; a stub cannot prove one Trace
+    # per row against the committed fixture.
+    "pyarrow>=17,<25",
+    "huggingface-hub>=0.24,<2",
+    # The [synth] and [agentcore] extras must be importable for `just check` so the borrow adapter
+    # and `calibrated_agent_evaluation.agentcore` are type-checked and tested against the real SDK surfaces. Floors match
+    # the runtime extras.
+    "strands-agents-evals>=1.6.0,<2",
+    "boto3>=1.43.103,<2",
+    "botocore>=1.43.103,<2",
+    "bedrock-agentcore>=1.24.2,<2",
+    "urllib3>=1.26.5,!=2.2.0,<3",
+    # inspect-ai's OpenAI-compatible providers (Ollama, vLLM), which the air-gapped judge guide and
+    # its docs example use, need openai 3.4 or later as of inspect-ai 0.3.282.
+    "openai>=3.4,<4",
+    # The heuristic and batch scorer tests run against the real autoevals library; the
+    # deterministic scorers cannot be stubbed and still prove the Score to Label mapping.
+    "autoevals>=0.3.0,<1",
+    # `pip-licenses` (MIT) runs the license scan over the resolved tree (default install and each
+    # optional extra). Dev-only. Floor within the checked 5.x line (5.5.5 introspected).
+    "pip-licenses>=5.4,<6",
+]
+
+# Corpus-generation group. These run the reference agents in `corpus/` and emit the traces frozen
+# into `fixtures/raw/`. They never enter the shipped runtime tree: they are not a `calibrated-agent-evaluation`
+# extra and `src/calibrated_agent_evaluation` imports none of them; `normalize/` reads these frameworks' output.
+# Permissive apart from the unmodified MPL-2.0 certifi that the HTTP clients require. Floors are the versions the agents were run with.
+#   uv sync --group corpus   # then: AWS_PROFILE=<your-profile> uv run python corpus/generate/record.py
+corpus = [
+    "strands-agents>=1.45,<2",       # Apache-2.0: run ClaimsCrew (Swarm/Graph), emit OTel-native traces
+    "anthropic>=0.114,<1",           # MIT: Bedrock/Anthropic Messages client (the second OrderBot loop)
+    "boto3>=1.40,<2",                # Apache-2.0: Bedrock transport (botocore Converse)
+    "opentelemetry-sdk>=1.43,<2",    # Apache-2.0: emit spans (decoding is the runtime [otel] extra)
+    # Apache-2.0: the official OTLP encoder, SDK ReadableSpan to protobuf to canonical OTLP-JSON
+    # (`resourceSpans/scopeSpans/spans`, `KeyValue/AnyValue`). Frozen so `fixtures/raw/otel/*.otlp.json`
+    # is the wire format a production OTLP/HTTP exporter emits, not the SDK's debug `to_json()`
+    # shape, which is what the normalizer's stdlib reader is coded against.
+    "opentelemetry-exporter-otlp-proto-common>=1.43,<2",
+    "inspect-ai>=0.3.242,<0.4",      # MIT: mint the OrderBot/ClaimsCrew .eval (also the [inspect] extra)
+    "mcp>=1.28,<2",                  # MIT: real stdio MCP server for the second OrderBot
+]
+# Documentation-site toolchain (`uv sync --group docs`). Builds the static site under `docs/site/`
+# (see `docs/site/README.md`). Build-only: none of these enter the shipped wheel. All-Python and
+# permissive (MkDocs/mkdocs-* BSD-2/MIT, Material MIT, mkdocstrings ISC, Griffe ISC), apart from the
+# unmodified MPL-2.0 certifi that requests requires. Floors are
+# the resolved versions the site was built with; majors are capped.
+#   mkdocstrings[python]: API reference from docstrings via Griffe (docs/site/gen_ref_pages.py)
+#   mkdocs-gen-files/literate-nav/section-index: the mkdocstrings "whole-API" recipe (auto nav)
+#   matplotlib: the data charts docs/site/gen_charts.py renders to SVG at build time
+#   No versioned-docs publisher (mike): the site is one unreleased version until a release exists
+#   (docs/site/content/versioning.md).
+docs = [
+    "mkdocs>=1.6.1,<2",
+    "mkdocs-material>=9.7.7,<10",
+    "mkdocstrings[python]>=1.0.6,<2",
+    "mkdocs-gen-files>=0.6.1,<1",
+    "mkdocs-literate-nav>=0.6.3,<1",
+    "mkdocs-section-index>=0.3.12,<1",
+    "matplotlib>=3.11.2,<4",
+    "griffe-pydantic>=1.3.2",
+]
+
+# ---------------------------------------------------------------------------
+# Tooling configuration
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "F",     # pyflakes
+    "I",     # isort
+    "UP",    # pyupgrade
+    "B",     # flake8-bugbear
+    "SIM",   # flake8-simplify
+    "C4",    # flake8-comprehensions
+    "PT",    # flake8-pytest-style
+    "RUF",   # ruff-specific rules
+    # --- production-hardening families (machine-enforce the conventions) ---
+    "S",     # flake8-bandit: security (eval, subprocess shell, pickle, yaml.load, hardcoded creds)
+    "BLE",   # flake8-blind-except: a bare `except Exception` must re-raise, never swallow (no silent failure)
+    "TRY",   # tryceratops: exception antipatterns (raise-vanilla, re-raise, use logging.exception)
+    "LOG",   # flake8-logging: logger misuse
+    "G",     # flake8-logging-format: lazy %-formatting, no f-strings/concatenation in log calls
+    "ASYNC", # flake8-async: blocking calls in async code (load-bearing for the executors)
+    "PTH",   # flake8-use-pathlib: prefer pathlib over os.path
+    "DTZ",   # flake8-datetimez: timezone-aware datetimes only
+    "ARG",   # flake8-unused-arguments: catch genuinely-dead parameters
+    "D",     # pydocstyle: the API reference is generated from these docstrings
+    # A text file opened without an encoding takes the locale's, so non-ASCII content breaks on a
+    # non-UTF-8 locale. Preview-only in the pinned ruff; `explicit-preview-rules` keeps every other
+    # preview rule and behavior off.
+    "PLW1514",
+]
+explicit-preview-rules = true
+preview = true
+ignore = [
+    # The refusal message IS a feature here: errors carry contextual f-strings naming the offending
+    # value and the next action. TRY003 wants messages baked into exception classes, which would
+    # drop that context, so it is off.
+    "TRY003",
+    # Dunder methods (`__repr__`, `__len__`, ...) do what their name says.
+    "D105",
+    # `__init__` is documented on the class: the reference merges it into the class page.
+    "D107",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+# Docstring rules apply to the shipped library only; its docstrings become the API reference.
+"!src/**" = ["D"]
+# Test code legitimately trips security/arg/blind-except heuristics: asserts (S101), controlled
+# subprocesses (S603/S607), stubs that MUST mirror a real vendor signature down to unused params
+# (ARG), and polling retry loops that swallow during readiness waits (BLE001). Scripts are held to
+# the full security bar (they read credentials from the environment, the correct pattern, and pass).
+"tests/**" = ["S", "ARG", "BLE001", "SIM117", "RUF043"]
+# The flagship runner script.
+"scripts/flagship/**" = ["S101", "TRY300"]
+# The MCP/Strands tool functions declare real parameters (order_id, narrative, ...) so the framework
+# can build the tool's input schema and the model calls them naturally; the deterministic example
+# backend does not read them: the same "stub must mirror the real signature" case waived for tests.
+"corpus/agents/orderbot_mcp_server.py" = ["ARG001"]
+"corpus/agents/claimscrew_strands.py" = ["ARG001"]
+"corpus/agents/claimscrew_swarm.py" = ["ARG001"]
+"corpus/agents/orderbot_agent_as_tool.py" = ["ARG001"]
+"corpus/agents/orderbot_inspect.py" = ["ARG001"]
+# The docs-site Griffe extension overrides Griffe's hook methods (on_module/on_class/on_function/
+# on_attribute), which MUST mirror the real vendor signature down to the unused `loader`/`**kwargs`
+# params, the same "stub mirrors the real signature" case waived for tests/corpus. The gen-files
+# scripts import `calibrated_agent_evaluation` after a sys.path insert (E402, the scripts/ pattern). Docs tooling is
+# build-only (never shipped) and outside the pyright include.
+"docs/site/griffe_roles.py" = ["ARG002"]
+"docs/site/gen_cli_pages.py" = ["E402"]
+
+[tool.bandit]
+# Bandit is run standalone by the Probe scanner (it does NOT read ruff's `# noqa`). Mirror the ruff
+# `per-file-ignores` posture: the shipped library (`src/`) is held to the full security bar (its few
+# genuine false positives carry inline `# nosec <id>` with a rationale), while the non-shipped trees
+# (tests, the human-run flagship script, and the corpus-generation agents) are excluded. Their
+# findings are all false positives already exempted for ruff's `S` family: B106/B105 on env-var
+# NAMES (`token_env="CALIBRATED_AGENT_EVALUATION_TOKEN"`) and message/ID constants, B603/B404 on static-list
+# subprocess calls, and B108 on static test arg-parser paths. `src/calibrated_agent_evaluation` is NOT excluded.
+exclude_dirs = ["tests", "scripts", "corpus", "docs", ".venv", "build"]
+
+[tool.pyright]
+# `corpus/` is the corpus-generation tree (companion spec): not shipped, not imported by
+# src/calibrated_agent_evaluation, but type-checked so the capture harness stays honest. extraPaths lets pyright
+# resolve `corpus.*` imports (the package lives at the repo root, not under src/).
+include = ["src", "tests", "corpus"]
+extraPaths = ["."]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+# Default run is hermetic/offline: deselect the opt-in integration suite (it needs the
+# docker/langfuse stack + network) and the fresh-venv wheel checks. Run them explicitly with
+# `just test-integration` and `just test-extras`.
+addopts = "-ra --strict-markers --strict-config -m 'not integration and not wheel'"
+testpaths = ["tests"]
+markers = [
+    "integration: opt-in tests that require external services (e.g. the docker/langfuse stack); skipped by default",
+    "agentcore: opt-in live tests against a real AgentCore account; run with `just test-agentcore-live`",
+    "slow: offline but tens of seconds (e.g. re-measuring named cells of the coverage map); runs by default",
+    "wheel: builds the wheel and installs each extra into a fresh venv; run with `just test-extras`",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true

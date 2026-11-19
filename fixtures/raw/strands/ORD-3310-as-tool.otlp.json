@@ -1,0 +1,1833 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "telemetry.sdk.language",
+            "value": {
+              "stringValue": "python"
+            }
+          },
+          {
+            "key": "telemetry.sdk.name",
+            "value": {
+              "stringValue": "opentelemetry"
+            }
+          },
+          {
+            "key": "telemetry.sdk.version",
+            "value": {
+              "stringValue": "1.43.0"
+            }
+          },
+          {
+            "key": "service.instance.id",
+            "value": {
+              "stringValue": "f6bdcdfd-93af-4534-a42a-5674f849b544"
+            }
+          },
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "orderbot-as-tool"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "strands.telemetry.tracer"
+          },
+          "spans": [
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:34.432649+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:36.284991+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "775"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "775"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "108"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "108"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "883"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "1851"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "1807"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860796285037000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860794432659000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860794432664000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "tool_use"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"name\": \"policy_advisor\", \"input\": {\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860796284979000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "ZfGWpkSdumM=",
+              "spanId": "rGG3eLbIs58=",
+              "startTimeUnixNano": "1782860794432648000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:36.286480+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:39.018749+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "640"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "640"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "79"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "79"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "719"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "2729"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "2706"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860799018805000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860796286507000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860796286522000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "tool_use"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Let me check the refund policy for order A-3310 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"name\": \"check_refund_policy\", \"input\": {\"order_id\": \"A-3310\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860799018735000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "Os+DoK+8OXU=",
+              "spanId": "RRQxjfrgcss=",
+              "startTimeUnixNano": "1782860796286478000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:39.019318+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "check_refund_policy"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.call.id",
+                  "value": {
+                    "stringValue": "tooluse_zVWFjYPRyRJDRuUpEoBqN7"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.description",
+                  "value": {
+                    "stringValue": "Check whether an order is refundable."
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.json_schema",
+                  "value": {
+                    "stringValue": "{\"properties\": {\"order_id\": {\"description\": \"Parameter order_id\", \"type\": \"string\"}}, \"required\": [\"order_id\"], \"type\": \"object\"}"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:39.020172+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860799020199000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "role",
+                      "value": {
+                        "stringValue": "tool"
+                      }
+                    },
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"order_id\": \"A-3310\"}"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_zVWFjYPRyRJDRuUpEoBqN7"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860799019388000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"{\\\"order_id\\\": \\\"A-3310\\\", \\\"days_since_delivery\\\": 6, \\\"return_window_days\\\": 30, \\\"within_window\\\": true, \\\"policy_verdict\\\": \\\"WITHIN_WINDOW_REFUND_ALLOWED\\\"}\"}]"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_zVWFjYPRyRJDRuUpEoBqN7"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860799020165000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool check_refund_policy",
+              "parentSpanId": "Os+DoK+8OXU=",
+              "spanId": "NTKTRJbky7w=",
+              "startTimeUnixNano": "1782860799019313000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:36.286258+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "31692518-6d54-4b28-b9b4-0981ecb4acfb"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:39.020461+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860799020476000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860796286290000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Let me check the refund policy for order A-3310 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"name\": \"check_refund_policy\", \"input\": {\"order_id\": \"A-3310\"}}}]"
+                      }
+                    },
+                    {
+                      "key": "tool.result",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"order_id\\\": \\\"A-3310\\\", \\\"days_since_delivery\\\": 6, \\\"return_window_days\\\": 30, \\\"within_window\\\": true, \\\"policy_verdict\\\": \\\"WITHIN_WINDOW_REFUND_ALLOWED\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860799020456000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "XhHOhuKwtJw=",
+              "spanId": "Os+DoK+8OXU=",
+              "startTimeUnixNano": "1782860796286256000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:39.021393+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.488457+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "788"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "788"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "188"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "188"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "976"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "3456"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "3427"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860802488512000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860799021440000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860799021459000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Let me check the refund policy for order A-3310 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"name\": \"check_refund_policy\", \"input\": {\"order_id\": \"A-3310\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860799021485000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"order_id\\\": \\\"A-3310\\\", \\\"days_since_delivery\\\": 6, \\\"return_window_days\\\": 30, \\\"within_window\\\": true, \\\"policy_verdict\\\": \\\"WITHIN_WINDOW_REFUND_ALLOWED\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860799021508000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860802488441000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "XUCT8iRuBMU=",
+              "spanId": "DzH+nk89txY=",
+              "startTimeUnixNano": "1782860799021390000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:39.020945+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "3e3fff56-9605-40e8-a07a-b8b3ae4b3bf6"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "31692518-6d54-4b28-b9b4-0981ecb4acfb"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.488848+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860802488866000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860799021010000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Let me check the refund policy for order A-3310 right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"name\": \"check_refund_policy\", \"input\": {\"order_id\": \"A-3310\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860799021044000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_zVWFjYPRyRJDRuUpEoBqN7\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"order_id\\\": \\\"A-3310\\\", \\\"days_since_delivery\\\": 6, \\\"return_window_days\\\": 30, \\\"within_window\\\": true, \\\"policy_verdict\\\": \\\"WITHIN_WINDOW_REFUND_ALLOWED\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860799021072000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "XhHOhuKwtJw=",
+              "spanId": "XUCT8iRuBMU=",
+              "startTimeUnixNano": "1782860799020940000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:36.285867+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "policy_advisor"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.tools",
+                  "value": {
+                    "stringValue": "[\"check_refund_policy\"]"
+                  }
+                },
+                {
+                  "key": "system_prompt",
+                  "value": {
+                    "stringValue": "You are a refund-policy advisor. Use the check_refund_policy tool for the order in question and report whether a refund is allowed and why."
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.489066+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1428"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "267"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1428"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "267"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1695"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_read_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_write_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860802489091000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860796285902000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\n\n| Detail | Info |\n|---|---|\n| **Order ID** | A-3310 |\n| **Item** | Espresso Grinder ($129.00) |\n| **Days Since Delivery** | 6 days |\n| **Return Window** | 30 days |\n| **Refund Allowed?** | \u2705 **Yes** |\n\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\n\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\n"
+                      }
+                    },
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860802489029000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "invoke_agent policy_advisor",
+              "parentSpanId": "lZbUwBVC6J8=",
+              "spanId": "XhHOhuKwtJw=",
+              "startTimeUnixNano": "1782860796285865000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:36.285455+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "policy_advisor"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.call.id",
+                  "value": {
+                    "stringValue": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.description",
+                  "value": {
+                    "stringValue": "Advises whether an order qualifies for a refund under policy."
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.json_schema",
+                  "value": {
+                    "stringValue": "{\"type\": \"object\", \"properties\": {\"input\": {\"type\": \"string\", \"description\": \"The input to send to the agent tool.\"}}, \"required\": [\"input\"]}"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.489443+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860802489463000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "role",
+                      "value": {
+                        "stringValue": "tool"
+                      }
+                    },
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860796285508000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\\n\"}]"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_3KFhZoZndJDn9OeQa0bNMb"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860802489436000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool policy_advisor",
+              "parentSpanId": "ZfGWpkSdumM=",
+              "spanId": "lZbUwBVC6J8=",
+              "startTimeUnixNano": "1782860796285450000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:34.432557+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "edb4a873-45e2-4320-9e47-eb33aae3e177"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.489664+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860802489678000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860794432568000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"name\": \"policy_advisor\", \"input\": {\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}}}]"
+                      }
+                    },
+                    {
+                      "key": "tool.result",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"status\": \"success\", \"content\": [{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\\n\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860802489658000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "66kaNZiW8tQ=",
+              "spanId": "ZfGWpkSdumM=",
+              "startTimeUnixNano": "1782860794432556000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.490312+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:44.503749+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1081"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1081"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "121"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "121"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1202"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "2012"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "1991"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860804503816000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860802490344000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860802490364000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"name\": \"policy_advisor\", \"input\": {\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860802490387000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"status\": \"success\", \"content\": [{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\\n\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860802490415000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "tool_use"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"The policy advisor has confirmed the refund is approved! The order is only 6 days old, well within the 30-day return window. Let me issue the refund now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"name\": \"issue_refund\", \"input\": {\"order_id\": \"A-3310\", \"amount_usd\": 129.0}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860804503727000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "jqAHEXXN4Os=",
+              "spanId": "apa8xJ2ZuhM=",
+              "startTimeUnixNano": "1782860802490310000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:44.504402+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_tool"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.name",
+                  "value": {
+                    "stringValue": "issue_refund"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.call.id",
+                  "value": {
+                    "stringValue": "tooluse_gMpEgKnzQYkuJVfU08ul5J"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.description",
+                  "value": {
+                    "stringValue": "Issue a refund for an order."
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.json_schema",
+                  "value": {
+                    "stringValue": "{\"properties\": {\"order_id\": {\"description\": \"Parameter order_id\", \"type\": \"string\"}, \"amount_usd\": {\"description\": \"Parameter amount_usd\", \"type\": \"number\"}}, \"required\": [\"order_id\", \"amount_usd\"], \"type\": \"object\"}"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:44.505428+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.tool.status",
+                  "value": {
+                    "stringValue": "success"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860804505453000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "role",
+                      "value": {
+                        "stringValue": "tool"
+                      }
+                    },
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "{\"order_id\": \"A-3310\", \"amount_usd\": 129.0}"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_gMpEgKnzQYkuJVfU08ul5J"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860804504475000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"{\\\"refund_id\\\": \\\"RF-44190\\\", \\\"order_id\\\": \\\"A-3310\\\", \\\"amount_usd\\\": 129.0, \\\"status\\\": \\\"issued\\\"}\"}]"
+                      }
+                    },
+                    {
+                      "key": "id",
+                      "value": {
+                        "stringValue": "tooluse_gMpEgKnzQYkuJVfU08ul5J"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860804505421000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_tool issue_refund",
+              "parentSpanId": "jqAHEXXN4Os=",
+              "spanId": "uzvsyrjoVT8=",
+              "startTimeUnixNano": "1782860804504395000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:42.489916+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "bcf6a235-a63c-4dd2-960e-6c6bd6dbb351"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "edb4a873-45e2-4320-9e47-eb33aae3e177"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:44.505683+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860804505700000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860802489952000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"name\": \"policy_advisor\", \"input\": {\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860802489981000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"status\": \"success\", \"content\": [{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\\n\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860802490013000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"The policy advisor has confirmed the refund is approved! The order is only 6 days old, well within the 30-day return window. Let me issue the refund now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"name\": \"issue_refund\", \"input\": {\"order_id\": \"A-3310\", \"amount_usd\": 129.0}}}]"
+                      }
+                    },
+                    {
+                      "key": "tool.result",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"refund_id\\\": \\\"RF-44190\\\", \\\"order_id\\\": \\\"A-3310\\\", \\\"amount_usd\\\": 129.0, \\\"status\\\": \\\"issued\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860804505674000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "66kaNZiW8tQ=",
+              "spanId": "jqAHEXXN4Os=",
+              "startTimeUnixNano": "1782860802489912000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:44.506612+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "chat"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:47.058257+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "1252"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "1252"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "132"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "132"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "1384"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.time_to_first_token",
+                  "value": {
+                    "intValue": "2550"
+                  }
+                },
+                {
+                  "key": "gen_ai.server.request.duration",
+                  "value": {
+                    "intValue": "2527"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860807058328000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.system.message",
+                  "timeUnixNano": "1782860804506658000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860804506682000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"name\": \"policy_advisor\", \"input\": {\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860804506720000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"status\": \"success\", \"content\": [{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\\n\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860804506763000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"The policy advisor has confirmed the refund is approved! The order is only 6 days old, well within the 30-day return window. Let me issue the refund now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"name\": \"issue_refund\", \"input\": {\"order_id\": \"A-3310\", \"amount_usd\": 129.0}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860804506805000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"refund_id\\\": \\\"RF-44190\\\", \\\"order_id\\\": \\\"A-3310\\\", \\\"amount_usd\\\": 129.0, \\\"status\\\": \\\"issued\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860804506834000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    },
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Great news! Here's a summary for customer **C-91002**:\\n\\n- \u2705 **Refund Approved & Issued**\\n- **Order:** A-3310 (Espresso Grinder)\\n- **Refund Amount:** $129.00\\n- **Refund ID:** RF-44190\\n- **Status:** Issued\\n\\nYour refund of **$129.00** has been successfully processed. Please allow a few business days for the amount to reflect on your original payment method. If you have any further questions, don't hesitate to reach out!\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860807058235000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "chat",
+              "parentSpanId": "QuflluifGWY=",
+              "spanId": "Y/TpRj81O74=",
+              "startTimeUnixNano": "1782860804506610000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:44.505931+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "execute_event_loop_cycle"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "event_loop.cycle_id",
+                  "value": {
+                    "stringValue": "f118b32b-200e-426e-9095-a529a440e856"
+                  }
+                },
+                {
+                  "key": "event_loop.parent_cycle_id",
+                  "value": {
+                    "stringValue": "bcf6a235-a63c-4dd2-960e-6c6bd6dbb351"
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:47.058657+00:00"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860807058680000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860804505980000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"I'll start by consulting the policy advisor to determine if this order qualifies for a refund. Let me check that right away!\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"name\": \"policy_advisor\", \"input\": {\"input\": \"Customer C-91002 is requesting a refund for order A-3310, a $129.00 espresso grinder.\"}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860804506019000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_3KFhZoZndJDn9OeQa0bNMb\", \"status\": \"success\", \"content\": [{\"text\": \"Great news for customer C-91002! Here's the refund policy assessment for order **A-3310**:\\n\\n| Detail | Info |\\n|---|---|\\n| **Order ID** | A-3310 |\\n| **Item** | Espresso Grinder ($129.00) |\\n| **Days Since Delivery** | 6 days |\\n| **Return Window** | 30 days |\\n| **Refund Allowed?** | \u2705 **Yes** |\\n\\n**Reason:** The order was delivered only **6 days ago**, which is well within the **30-day return window**. Per policy, the refund is approved.\\n\\nYou may proceed with processing the **$129.00 refund** for customer C-91002. Be sure to follow the standard return/shipping instructions as applicable.\\n\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860804506076000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"The policy advisor has confirmed the refund is approved! The order is only 6 days old, well within the 30-day return window. Let me issue the refund now.\"}, {\"toolUse\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"name\": \"issue_refund\", \"input\": {\"order_id\": \"A-3310\", \"amount_usd\": 129.0}}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.assistant.message",
+                  "timeUnixNano": "1782860804506115000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"toolResult\": {\"toolUseId\": \"tooluse_gMpEgKnzQYkuJVfU08ul5J\", \"status\": \"success\", \"content\": [{\"text\": \"{\\\"refund_id\\\": \\\"RF-44190\\\", \\\"order_id\\\": \\\"A-3310\\\", \\\"amount_usd\\\": 129.0, \\\"status\\\": \\\"issued\\\"}\"}]}}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.tool.message",
+                  "timeUnixNano": "1782860804506145000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "execute_event_loop_cycle",
+              "parentSpanId": "66kaNZiW8tQ=",
+              "spanId": "QuflluifGWY=",
+              "startTimeUnixNano": "1782860804505927000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            },
+            {
+              "attributes": [
+                {
+                  "key": "gen_ai.event.start_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:34.432464+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.operation.name",
+                  "value": {
+                    "stringValue": "invoke_agent"
+                  }
+                },
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "strands-agents"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.name",
+                  "value": {
+                    "stringValue": "orderbot"
+                  }
+                },
+                {
+                  "key": "gen_ai.agent.tools",
+                  "value": {
+                    "stringValue": "[\"policy_advisor\", \"issue_refund\"]"
+                  }
+                },
+                {
+                  "key": "system_prompt",
+                  "value": {
+                    "stringValue": "You are OrderBot, a customer-service refund agent. First consult the policy_advisor tool to determine whether the order qualifies for a refund. If it does, use the issue_refund tool to issue it. Then reply to the customer."
+                  }
+                },
+                {
+                  "key": "gen_ai.event.end_time",
+                  "value": {
+                    "stringValue": "2026-06-30T23:06:47.058904+00:00"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.prompt_tokens",
+                  "value": {
+                    "intValue": "3108"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.completion_tokens",
+                  "value": {
+                    "intValue": "361"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.input_tokens",
+                  "value": {
+                    "intValue": "3108"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.output_tokens",
+                  "value": {
+                    "intValue": "361"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.total_tokens",
+                  "value": {
+                    "intValue": "3469"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_read_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                },
+                {
+                  "key": "gen_ai.usage.cache_write_input_tokens",
+                  "value": {
+                    "intValue": "0"
+                  }
+                }
+              ],
+              "endTimeUnixNano": "1782860807058935000",
+              "events": [
+                {
+                  "attributes": [
+                    {
+                      "key": "content",
+                      "value": {
+                        "stringValue": "[{\"text\": \"Customer C-91002 wants a refund for order A-3310 (a $129.00 espresso grinder). Decide whether to refund and, if so, issue it.\"}]"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.user.message",
+                  "timeUnixNano": "1782860794432494000"
+                },
+                {
+                  "attributes": [
+                    {
+                      "key": "message",
+                      "value": {
+                        "stringValue": "Great news! Here's a summary for customer **C-91002**:\n\n- \u2705 **Refund Approved & Issued**\n- **Order:** A-3310 (Espresso Grinder)\n- **Refund Amount:** $129.00\n- **Refund ID:** RF-44190\n- **Status:** Issued\n\nYour refund of **$129.00** has been successfully processed. Please allow a few business days for the amount to reflect on your original payment method. If you have any further questions, don't hesitate to reach out!\n"
+                      }
+                    },
+                    {
+                      "key": "finish_reason",
+                      "value": {
+                        "stringValue": "end_turn"
+                      }
+                    }
+                  ],
+                  "name": "gen_ai.choice",
+                  "timeUnixNano": "1782860807058861000"
+                }
+              ],
+              "flags": 256,
+              "kind": "SPAN_KIND_INTERNAL",
+              "name": "invoke_agent orderbot",
+              "spanId": "66kaNZiW8tQ=",
+              "startTimeUnixNano": "1782860794432460000",
+              "status": {
+                "code": "STATUS_CODE_OK"
+              },
+              "traceId": "vFuAS+heWJrqKkGcEqk9BQ=="
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

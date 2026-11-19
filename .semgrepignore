@@ -1,0 +1,19 @@
+# semgrep path ignores for Calibrated Agent Evaluation. Mirrors the ruff `per-file-ignores` posture in pyproject.toml:
+# the shipped library (`src/`) is held to the full bar (findings there are suppressed inline, per
+# finding, with a written rationale), while non-shipped trees are ignored wholesale here.
+#
+# These trees are NOT part of the `calibrated-agent-evaluation` wheel (`[tool.hatch.build.targets.wheel]`
+# packages only `src/calibrated_agent_evaluation`):
+#
+#   docs/     Spec markdown + the docs site. The `detect-insecure-websocket` hits are prose/examples
+#             pairing `ws://`/`wss://` as accepted schemes (the endpoint scheme is user-supplied);
+#             not runnable code, nothing to secure.
+#   scripts/  Demo + flagship harnesses (human-run, not shipped): arbitrary-sleep polling for async
+#             Langfuse ingestion, manual defaultdict, controlled subprocess in license_scan.py.
+#   corpus/   Corpus-generation reference agents (companion spec, not shipped): MCP `@server.tool`
+#             handlers flagged as "useless inner function", `is_single_agent` property reads.
+#   tests/    Test suite (not shipped): mirrors the ruff `tests/** = ["S", ...]` exemption.
+docs/
+scripts/
+corpus/
+tests/

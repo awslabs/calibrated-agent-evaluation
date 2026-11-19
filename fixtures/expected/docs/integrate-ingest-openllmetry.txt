@@ -1,0 +1,3 @@
+$ calibrated-agent-evaluation ingest fixtures/raw/otel/openllmetry/weather_tool_call.otlp.json
+calibrated-agent-evaluation ingest: 1 ingested, 0 refused, 0 skipped
+  [ok] fixtures/raw/otel/openllmetry/weather_tool_call.otlp.json → weather_tool_call (openllmetry, 1 span(s), 1 tool call(s), owned)

@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation bias \
+    --judge demo/quickstart/judge-v1.json \
+    --probes demo/quickstart/bias-probes-1 \
+    --thresholds demo/quickstart/bias-thresholds.json \
+    --cassette demo/quickstart/judge.cassette.json
+calibrated-agent-evaluation bias: Bias check failed: the judge changes its verdict when answers get longer and goes along with claims asserted in the conversation.
+Next: revise the judge prompt to address this, then run `calibrated-agent-evaluation calibrate` and `calibrated-agent-evaluation bias` on the new version (with fresh labels).
+Run with --explain for the numbers behind this.

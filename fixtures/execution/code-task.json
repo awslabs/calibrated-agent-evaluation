@@ -1,0 +1,11 @@
+{
+  "language": "python",
+  "passing": {
+    "code": "def add(a, b):\n    return a + b\n",
+    "tests": "assert add(2, 3) == 5\nassert add(-1, 1) == 0\n"
+  },
+  "failing": {
+    "code": "def add(a, b):\n    return a - b\n",
+    "tests": "assert add(2, 3) == 5, 'add returned the wrong value'\n"
+  }
+}

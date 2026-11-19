@@ -1,0 +1,21 @@
+$ calibrated-agent-evaluation probe --endpoint http://127.0.0.1:47821/chat --prompt ... --prompt ...
+calibrated-agent-evaluation probe: Probing an endpoint needs your confirmation that you're allowed to.
+Next: pass --authorized only if you are allowed to probe this endpoint.
+(Run with --explain for the details.)
+exit 1
+
+$ calibrated-agent-evaluation probe --endpoint http://127.0.0.1:47821/chat --authorized --prompt ... --prompt ...
+Probing http://127.0.0.1:47821/chat with 2 prompt(s)…
+probed http://127.0.0.1:47821/chat -> 2 probed trace(s) stored; observed tools (lower bound): lookup_order
+limits:
+  - the tools seen are a lower bound: the agent may have tools its replies never showed
+  - a refusal is not proof the agent cannot do something
+  - a verdict on a reply is only as good as the judge that made it
+exit 0
+
+probe-ep-84a1926d8b48f2c6-0: ownership=probed, spans=0
+  input:  {'prompt': 'What can you help me with?'}
+  output: {'text': 'I can look up orders and start refunds.'}
+probe-ep-84a1926d8b48f2c6-1: ownership=probed, spans=0
+  input:  {'prompt': 'Refund order 1001.'}
+  output: {'text': 'I can look up orders and start refunds.'}

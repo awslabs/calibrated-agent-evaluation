@@ -1,0 +1,194 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "openinference-openai"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "openinference-openai"
+          },
+          "spans": [
+            {
+              "traceId": "f026f026f026f026f026f026f026f026",
+              "spanId": "f026000000000001",
+              "name": "ChatCompletion",
+              "kind": "SPAN_KIND_CLIENT",
+              "startTimeUnixNano": "1",
+              "endTimeUnixNano": "2",
+              "attributes": [
+                {
+                  "key": "openinference.span.kind",
+                  "value": {
+                    "stringValue": "LLM"
+                  }
+                },
+                {
+                  "key": "llm.model_name",
+                  "value": {
+                    "stringValue": "gpt-4-0613"
+                  }
+                },
+                {
+                  "key": "llm.system",
+                  "value": {
+                    "stringValue": "openai"
+                  }
+                },
+                {
+                  "key": "llm.provider",
+                  "value": {
+                    "stringValue": "openai"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.0.message.role",
+                  "value": {
+                    "stringValue": "user"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.0.message.contents.0.message_content.type",
+                  "value": {
+                    "stringValue": "text"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.0.message.contents.0.message_content.text",
+                  "value": {
+                    "stringValue": "Weather in Paris?"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.1.message.role",
+                  "value": {
+                    "stringValue": "assistant"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.1.message.contents.0.message_content.type",
+                  "value": {
+                    "stringValue": "text"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.1.message.contents.0.message_content.text",
+                  "value": {
+                    "stringValue": "Absolutely! Let me check the weather for you."
+                  }
+                },
+                {
+                  "key": "llm.input_messages.1.message.tool_calls.0.tool_call.id",
+                  "value": {
+                    "stringValue": "1234"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.1.message.tool_calls.0.tool_call.function.name",
+                  "value": {
+                    "stringValue": "get_weather"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.1.message.tool_calls.0.tool_call.function.arguments",
+                  "value": {
+                    "stringValue": "{\"location\":\"Paris\"}"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.2.message.role",
+                  "value": {
+                    "stringValue": "tool"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.2.message.content",
+                  "value": {
+                    "stringValue": "rainy, 57°F"
+                  }
+                },
+                {
+                  "key": "llm.input_messages.2.message.tool_call_id",
+                  "value": {
+                    "stringValue": "1234"
+                  }
+                },
+                {
+                  "key": "input.value",
+                  "value": {
+                    "stringValue": "{\"model\":\"gpt-4\",\"messages\":[{\"role\":\"user\"}]}"
+                  }
+                },
+                {
+                  "key": "input.mime_type",
+                  "value": {
+                    "stringValue": "application/json"
+                  }
+                },
+                {
+                  "key": "llm.output_messages.0.message.role",
+                  "value": {
+                    "stringValue": "assistant"
+                  }
+                },
+                {
+                  "key": "llm.output_messages.0.message.contents.0.message_content.type",
+                  "value": {
+                    "stringValue": "text"
+                  }
+                },
+                {
+                  "key": "llm.output_messages.0.message.contents.0.message_content.text",
+                  "value": {
+                    "stringValue": "The weather in Paris is currently rainy with a temperature of 57°F."
+                  }
+                },
+                {
+                  "key": "output.value",
+                  "value": {
+                    "stringValue": "{\"text\":\"The weather in Paris is currently rainy, 57°F.\"}"
+                  }
+                },
+                {
+                  "key": "output.mime_type",
+                  "value": {
+                    "stringValue": "application/json"
+                  }
+                },
+                {
+                  "key": "llm.token_count.completion",
+                  "value": {
+                    "intValue": "52"
+                  }
+                },
+                {
+                  "key": "llm.token_count.prompt",
+                  "value": {
+                    "intValue": "97"
+                  }
+                },
+                {
+                  "key": "llm.token_count.total",
+                  "value": {
+                    "intValue": "149"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

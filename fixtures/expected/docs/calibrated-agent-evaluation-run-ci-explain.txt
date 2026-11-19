@@ -1,0 +1,14 @@
+$ calibrated-agent-evaluation run --verdicts human --ci --explain
+calibrated-agent-evaluation run: CI gate failed: 4 of 4 failure mode(s) don't clear the bar yet: intake/dropped_material_fact, orderbot/trusted_broken_policy_tool, policy-checker/trusted_broken_policy_tool, vacancy_threshold_margin_mishandled.
+  (The bar: at least 80% of each mode's traces must pass, even at the cautious end of what this many traces can show.)
+No failure rate estimated: pass --judge FILE to correct a judge's verdicts.
+Next: fix the failing modes, or label more traces where a mode has too few to show its pass rate.
+
+CI gate over 9 human verdicts on 6 stored trace(s), threshold 0.80 on each mode's pass-rate 95% lower bound: FAILED, 4 of 4 mode(s) did not: intake/dropped_material_fact, orderbot/trusted_broken_policy_tool, policy-checker/trusted_broken_policy_tool, vacancy_threshold_margin_mishandled
+  intake/dropped_material_fact: 1 FAIL of 2, pass-rate 95% lower bound 0.121 vs threshold 0.80: FAILED
+  orderbot/trusted_broken_policy_tool: 1 FAIL of 2, pass-rate 95% lower bound 0.121 vs threshold 0.80: FAILED
+  policy-checker/trusted_broken_policy_tool: 1 FAIL of 2, pass-rate 95% lower bound 0.121 vs threshold 0.80: FAILED
+  vacancy_threshold_margin_mishandled: 1 FAIL of 3, pass-rate 95% lower bound 0.254 vs threshold 0.80: FAILED
+trend: none (calibration records read from $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/calibration)
+  note: no trend: pass --judge FILE for each judge whose verdicts to correct
+recorded run run-<id> in $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT/records/run

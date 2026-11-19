@@ -1,0 +1,8 @@
+$ calibrated-agent-evaluation prefer --rank tone
+'tone' for 'claim decision letter', human preferences (9 comparison(s)), tracked, never gated:
+  1. CLM-4471  1677 (95% interval 1388 to 1965), 5 comparison(s)
+  2. CLM-4475  1490 (95% interval 1216 to 1765), 4 comparison(s)
+  3. CLM-4473  1462 (95% interval 1213 to 1712), 5 comparison(s)
+  4. CLM-4477  1371 (95% interval 1067 to 1675), 4 comparison(s)
+These ratings are tracked, never gated. Gate on the objective atoms with `calibrated-agent-evaluation run`; collect more comparisons to narrow the intervals.
+Run with --explain for the numbers behind this.

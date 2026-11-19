@@ -1,0 +1,62 @@
+{
+  "max_critiques_per_cluster": 10,
+  "namer_prompt_sha256": "14d34f523d690189bb47a4cc98a8342492d4aec6586e7e64276d963d15d37fda",
+  "namer_prompt_version": "namer-v1",
+  "names": [
+    "hallucination-category-fabricate-tool-outputs",
+    "task-instruction-category-problem-id",
+    "hallucination-category-fabricate-tool-outputs #2",
+    "hallucination-category-hall-misunderstand",
+    "incorrect-actions-category-poor-information-retrieval",
+    "hallucination-category-fabricate-tool-outputs #3",
+    "incorrect-actions-category-poor-information-retrieval #2"
+  ],
+  "provenance": {
+    "confidence_threshold": null,
+    "detector_package": "strands-agents-evals",
+    "detector_version": "1.6.0",
+    "model_config_sent": {},
+    "model_id": "global.anthropic.claude-sonnet-4-6",
+    "prompt_sha256": "30d6baa2559a514b87e9477f58afefb977371cc413f5c841eaa3ad9798c809a9",
+    "prompt_template": "v0",
+    "stamp": {
+      "dep_versions": {
+        "strands-agents-evals": "1.6.0"
+      },
+      "n_resamples": null,
+      "sampling": {},
+      "seed": null,
+      "thresholds": {}
+    }
+  },
+  "shown": [
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ]
+}

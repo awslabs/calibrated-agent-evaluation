@@ -1,0 +1,52 @@
+{
+ "recommendationId": "fixture-rec-cloudwatch-extra-group",
+ "recommendationArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:recommendation/fixture-rec-cloudwatch-extra-group",
+ "name": "fixture-rec-cloudwatch-extra-group",
+ "description": "synthetic",
+ "type": "SYSTEM_PROMPT_RECOMMENDATION",
+ "status": "COMPLETED",
+ "createdAt": "2026-10-30T12:00:00+00:00",
+ "updatedAt": "2026-10-30T12:20:00+00:00",
+ "recommendationConfig": {
+  "systemPromptRecommendationConfig": {
+   "systemPrompt": {
+    "configurationBundle": {
+     "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+     "versionId": "0a1b2c3d-0000-4000-8000-000000000001",
+     "systemPromptJsonPath": "$.configuration.sql_generator_system_prompt"
+    }
+   },
+   "agentTraces": {
+    "cloudwatchLogs": {
+     "logGroupArns": [
+      "arn:aws:logs:us-west-2:111122223333:log-group:aws/spans",
+      "arn:aws:logs:us-west-2:111122223333:log-group:/aws/bedrock-agentcore/runtimes/fixture-runtime-DEFAULT:*",
+      "arn:aws:logs:us-west-2:111122223333:log-group:/aws/fixture-other-group"
+     ],
+     "serviceNames": [
+      "fixture-runtime"
+     ],
+     "startTime": "2026-10-30T10:00:00+00:00",
+     "endTime": "2026-10-30T11:00:00+00:00"
+    }
+   },
+   "evaluationConfig": {
+    "evaluators": [
+     {
+      "evaluatorArn": "arn:aws:bedrock-agentcore:::evaluator/Builtin.Helpfulness"
+     }
+    ]
+   }
+  }
+ },
+ "recommendationResult": {
+  "systemPromptRecommendationResult": {
+   "recommendedSystemPrompt": "You write one read-only SELECT per question, with an explicit date range. F036-CANARY-PROMPT",
+   "configurationBundle": {
+    "bundleArn": "arn:aws:bedrock-agentcore:us-west-2:111122223333:configuration-bundle/fixture-bundle-AbCdEf1234",
+    "versionId": "0a1b2c3d-0000-4000-8000-000000000002"
+   },
+   "explanation": "Questions without a date range scanned every partition. F036-CANARY-PROMPT"
+  }
+ }
+}

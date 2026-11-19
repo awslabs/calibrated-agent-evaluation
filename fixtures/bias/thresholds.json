@@ -1,0 +1,23 @@
+{
+  "description": "Per-(fixture-judge model) per-bias maximum-allowed magnitude for the bias battery's acceptance check. The gate compares each probe's one-sided 95% UPPER bound on its disagreement in excess of a placebo that varies nothing (Newcombe's paired interval, which equals the Wilson upper bound when no placebo disagrees, as for these deterministic fixture judges) to the threshold for that judge's model; a must-pass bias with no configured threshold fails closed. Advisory thresholds gate only the recorded flag, never the verdict. Raised from 0.15 to 0.35 on 2026-09-28, when the gate was corrected from the lower bound to the upper bound. These probes have 6 trials each, and wilson_upper(0, 6) is 0.311 -- so under the corrected gate a PERFECTLY clean judge could not clear 0.15, because six trials cannot establish that a rate is below 15%. 0.35 is the tightest ceiling this fixture's trial count can certify. That is a property of the fixture, not a recommended production bar: a real gate wants more trials, not a looser threshold.",
+  "by_model": {
+    "fixture/clean-judge": {
+      "length": 0.35,
+      "self_preference": 0.35,
+      "sycophancy": 0.35,
+      "compassion_fade": 0.35
+    },
+    "fixture/length-biased-judge": {
+      "length": 0.35,
+      "self_preference": 0.35,
+      "sycophancy": 0.35,
+      "compassion_fade": 0.35
+    },
+    "fixture/advisory-biased-judge": {
+      "length": 0.35,
+      "self_preference": 0.35,
+      "sycophancy": 0.35,
+      "compassion_fade": 0.35
+    }
+  }
+}

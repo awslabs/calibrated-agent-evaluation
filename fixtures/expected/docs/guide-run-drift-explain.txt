@@ -1,0 +1,25 @@
+$ calibrated-agent-evaluation run \
+    --judge demo/quickstart/judge-v2.json \
+    --drift-baseline baseline \
+    --drift-feature input-chars \
+    --fail-on-drift \
+    --explain
+CI gate failed: 1 of 1 failure mode(s) don't clear the bar yet: trusted_broken_policy_tool.
+  (The bar: at least 80% of each mode's traces must pass, even at the cautious end of what this many traces can show.)
+trusted_broken_policy_tool failure rate: 20% (likely between 14% and 26%).
+Next: fix the failing modes, or label more traces where a mode has too few to show its pass rate.
+(Without --ci this run is informational and exits 0.)
+Input drift on input-chars: none found (200 current traces against 200 in the baseline).
+  (The mix of taxonomy cells moved by 0.000 on a 0 to 1 scale; shown for reference, it never raises a flag.)
+
+CI gate over 200 judge verdicts on 848 stored trace(s), threshold 0.80 on each mode's pass-rate 95% lower bound: FAILED, 1 of 1 mode(s) did not: trusted_broken_policy_tool
+  trusted_broken_policy_tool: 38 FAIL of 200, pass-rate 95% lower bound 0.760 vs threshold 0.80: FAILED
+trend (1 mode(s), Rogan-Gladen corrected fail rate):
+  trusted_broken_policy_tool: corrected 0.196, 95% CI [0.142, 0.258] (rogan_gladen_jeffreys_posterior_percentile, n=200, calibration calib-orderbot-refund-policy-gold-60968d-807cc1ffd3ff); raw 0.190, 95% CI [0.142, 0.250] (wilson)
+input drift on input-chars: 200 baseline trace(s) from baseline vs 200 in scope, 999 permutations, seed 0
+  psi 0.0000, permutation p = 1.0000, bar 0.25: not flagged (psi_baseline_quantile_bins_add_half)
+  taxonomy-cell JSD 0.0000 over 3 cell(s), permutation p = 1.0000 (jsd_category_counts; reported only, never flags)
+  wasserstein 0.0000, permutation p = 1.0000, bar 0.10: not flagged (wasserstein_iqr_normalized)
+  flags corrected together with fdr_by across m = 2 metrics
+recorded run run-<id> in demo/records/run
+  Known limit: below 150 scored traces, or when a class shows about 2 to 3 judge errors, the rate's range was measured to contain the true rate less often than 95% of the time.

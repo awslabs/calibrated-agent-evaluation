@@ -1,0 +1,5 @@
+$ calibrated-agent-evaluation judge \
+    --judge judge-v2-edited.json \
+    --frame production-representative \
+    --cassette demo/quickstart/judge.cassette.json
+calibrated-agent-evaluation judge: judge 'orderbot-refund-policy' refused, no verdict written: calibration gate refused: record 'calib-orderbot-refund-policy-gold-60968d-807cc1ffd3ff' does not certify judge 'orderbot-refund-policy' at bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0@v2: the judge's prompt changed since it was certified (same prompt version, different content); re-certify on a fresh locked set

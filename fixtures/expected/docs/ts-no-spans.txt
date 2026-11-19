@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation capture --agent os:getcwd
+calibrated-agent-evaluation capture: captured 0 spans from 'os:getcwd': the agent emitted no OpenTelemetry spans (is it instrumented? did it exit before a span closed?), so nothing was stored

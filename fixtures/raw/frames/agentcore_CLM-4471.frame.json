@@ -1,0 +1,15 @@
+{
+  "coverage_strength": 2,
+  "frame": "discovery",
+  "rows": [
+    {
+      "cell": {
+        "feature": "claim_adjudication",
+        "persona": "P2_homeowner_absent",
+        "scenario": "S2_vacancy_exclusion"
+      },
+      "frame": "discovery",
+      "weight": 1.0
+    }
+  ]
+}

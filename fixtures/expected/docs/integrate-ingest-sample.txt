@@ -1,0 +1,6 @@
+$ calibrated-agent-evaluation ingest --sample 3 --seed 7 fixtures/raw/strands
+calibrated-agent-evaluation ingest: 3 ingested, 0 refused, 0 skipped
+  sampled 3 of 6 trace(s) with seed 7, tagged production-representative (record sample-<id>)
+  [ok] fixtures/raw/strands/CLM-4473.otlp.json → CLM-4473 (strands, 5 span(s), 4 tool call(s), owned)
+  [ok] fixtures/raw/strands/CLM-4475.otlp.json → CLM-4475 (strands, 5 span(s), 4 tool call(s), owned)
+  [ok] fixtures/raw/strands/CLM-4477.otlp.json → CLM-4477 (strands, 5 span(s), 4 tool call(s), owned)

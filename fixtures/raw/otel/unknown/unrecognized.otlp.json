@@ -1,0 +1,50 @@
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "mystery-agent"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "mystery-agent"
+          },
+          "spans": [
+            {
+              "traceId": "f026f026f026f026f026f026f026f026",
+              "spanId": "f026000000000009",
+              "name": "vendor.op",
+              "kind": "SPAN_KIND_CLIENT",
+              "startTimeUnixNano": "1",
+              "endTimeUnixNano": "2",
+              "attributes": [
+                {
+                  "key": "gen_ai.system",
+                  "value": {
+                    "stringValue": "some-vendor"
+                  }
+                },
+                {
+                  "key": "some.vendor.blob",
+                  "value": {
+                    "stringValue": "opaque"
+                  }
+                }
+              ],
+              "status": {
+                "code": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

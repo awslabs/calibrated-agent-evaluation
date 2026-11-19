@@ -1,0 +1,5 @@
+$ calibrated-agent-evaluation label --agreement --raters alice,bob --codebook-version 1
+calibrated-agent-evaluation label: alice and bob agree on PASS/FAIL with alpha 0.89 (could be as low as 0.70) over 40 shared unit(s), codebook version '1': not usable yet (top up overlap).
+Next: too few shared traces for the gate to trust alpha: have the second rater label 90 more traces of the calibration gold (no traces beyond the gold are needed) and run this again.
+The gate needs at least 130 traces labeled by two raters before it can say usable (--explain says how that was worked out).
+Run with --explain for the numbers behind this.

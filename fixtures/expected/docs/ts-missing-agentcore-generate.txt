@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation generate --run --executor agentcore --runtime-arn arn:aws:bedrock-agentcore:us-west-2:111122223333:runtime/calibrated_agent_evaluation_fixture-AbCdEf1234 --payload-format agentcore_sse --cassette fixtures/raw/cassettes/agentcore_runtime_CLM-4471.cassette.json --frame fixtures/raw/frames/agentcore_CLM-4471.frame.json    # without the agentcore extra
+calibrated-agent-evaluation generate: --executor agentcore needs the [agentcore] extra, so nothing was run; install it with: uv sync --inexact --extra agentcore

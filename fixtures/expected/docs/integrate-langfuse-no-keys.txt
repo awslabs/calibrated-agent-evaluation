@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation ingest --from-langfuse "My Project"
+calibrated-agent-evaluation ingest: the langfuse backend needs LANGFUSE_PUBLIC_KEY / LANGFUSE_SECRET_KEY in the environment (see https://awslabs.github.io/calibrated-agent-evaluation/integrate/langfuse/)

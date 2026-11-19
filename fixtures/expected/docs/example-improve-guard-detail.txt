@@ -1,0 +1,8 @@
+OrderBot fix: accepted
+  McNemar (midp) p = 6.1e-05
+  change in failure rate -0.350
+
+ClaimsCrew fix to intake: rejected
+  McNemar (midp) p = 6.1e-05
+  change in failure rate -0.350
+  reason: failure relocation: the touched agent's failures fell but the workflow outcome rate did not improve (the failures moved from 'intake')

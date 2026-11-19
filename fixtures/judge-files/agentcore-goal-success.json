@@ -1,0 +1,7 @@
+{
+  "backend": "agentcore",
+  "judge_id": "agentcore-goal-success",
+  "evaluator_id": "Builtin.GoalSuccessRate",
+  "failure_mode": "goal_not_met",
+  "level": "session"
+}
