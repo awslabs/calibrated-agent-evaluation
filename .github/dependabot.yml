@@ -19,6 +19,9 @@ updates:
     groups:
       python-minor-and-patch:
         update-types: [minor, patch]
+      # One weekly PR for every major bump, direct or transitive, so each lands with one CI run.
+      python-major:
+        update-types: [major]
     ignore:
       # The bundled MCP demo agent uses mcp 1.x's FastMCP; port it before taking mcp 2.
       - dependency-name: mcp
