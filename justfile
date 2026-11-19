@@ -81,14 +81,17 @@ flagship *args:
     uv run --all-extras python scripts/flagship/run.py {{args}}
 
 # run the full test matrix across Python versions
+# nox and pre-commit build their own environments, so they run as pinned uv tools rather than
+# project dependencies; that keeps their virtualenv out of uv.lock.
 matrix:
-    uv run nox -s tests
+    uvx nox@2026.10.20 -s tests
 
 # GIT_CONFIG=/dev/null makes pre-commit ignore a system-level core.hooksPath set in /etc/gitconfig,
 # which otherwise makes it refuse to install. No-op when none is set.
 # install the pre-commit hooks
 hooks:
-    GIT_CONFIG=/dev/null uv run pre-commit install
+    uv tool install --quiet pre-commit==4.7.0
+    GIT_CONFIG=/dev/null pre-commit install
 
 # Covers the default install and every optional extra; the scanner (pip-licenses) is itself MIT.
 # fail on any GPL/LGPL/AGPL node in the resolved dependency tree
