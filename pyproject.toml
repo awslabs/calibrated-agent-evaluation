@@ -86,7 +86,7 @@ stats = ["scipy>=1.15,<2", "statsmodels>=0.14,<1", "numpy>=2.4,<3"]
 # (`hf_hub_download`/`HfFileSystem`); the floors are older than the checked versions. The [hf]
 # transitive tree (e.g. hf-xet) is license-vetted per extra and never enters the default install.
 datasets = ["pyarrow>=17,<25"]
-hf = ["huggingface-hub>=0.24,<2"]
+hf = ["huggingface-hub>=0.24,<3"]
 # Covering-array discovery frames (allpairspy, MIT, checked at 2.5.1).
 sampling = ["allpairspy>=2.5,<3"]
 # Input synthesis borrows strands-agents-evals' ActorSimulator for multi-turn persona route-through.
@@ -198,7 +198,7 @@ dev = [
     # The parquet and frozen-slice tests run the real pyarrow reader; a stub cannot prove one Trace
     # per row against the committed fixture.
     "pyarrow>=17,<25",
-    "huggingface-hub>=0.24,<2",
+    "huggingface-hub>=0.24,<3",
     # The [synth] and [agentcore] extras must be importable for `just check` so the borrow adapter
     # and `calibrated_agent_evaluation.agentcore` are type-checked and tested against the real SDK surfaces. Floors match
     # the runtime extras.
