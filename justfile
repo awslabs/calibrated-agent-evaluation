@@ -22,7 +22,7 @@ cov:
 # Needs uv and a package index or a warm uv cache.
 # install each extra alone from the built wheel into a fresh venv and import what it enables
 test-extras *args:
-    uv run pytest -m wheel tests/test_extras_wheel.py {{args}}
+    uv run pytest -m wheel tests/test_extras_wheel.py tests/test_check_pypi_readme.py {{args}}
 
 # run the opt-in integration suite against a running Langfuse stack (see `just langfuse-up`)
 test-integration *args:

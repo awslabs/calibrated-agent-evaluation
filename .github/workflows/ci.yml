@@ -90,6 +90,8 @@ jobs:
       - name: Check that both distributions were built
         run: |
           ls dist/*.tar.gz dist/*.whl
+      - name: Check the PyPI description resolves every image and link
+        run: python3 scripts/check_pypi_readme.py dist/*.whl
       - name: Install the wheel into a clean venv and run the CLI
         run: |
           smoke="$RUNNER_TEMP/smoke"

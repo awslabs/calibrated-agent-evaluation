@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/awslabs/calibrated-agent-evaluation/main/docs/site/content/assets/readme/banner-dark.svg">
-    <img alt="Calibrated Agent Evaluation" src="https://raw.githubusercontent.com/awslabs/calibrated-agent-evaluation/main/docs/site/content/assets/readme/banner-light.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/site/content/assets/readme/banner-dark.svg">
+    <img alt="Calibrated Agent Evaluation" src="docs/site/content/assets/readme/banner-light.svg" width="100%">
   </picture>
 </p>
 
@@ -103,8 +103,8 @@ OpenTelemetry (OpenInference or OpenLLMetry), Inspect AI, Strands, Langfuse, JSO
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/awslabs/calibrated-agent-evaluation/main/docs/site/content/assets/readme/pipeline-dark.svg">
-    <img alt="The pipeline in order: probe, define, generate, label and cluster for error analysis; calibrate and bias as the two trust gates; judge and run for scoring; improve to test a fix" src="https://raw.githubusercontent.com/awslabs/calibrated-agent-evaluation/main/docs/site/content/assets/readme/pipeline-light.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/site/content/assets/readme/pipeline-dark.svg">
+    <img alt="The pipeline in order: probe, define, generate, label and cluster for error analysis; calibrate and bias as the two trust gates; judge and run for scoring; improve to test a fix" src="docs/site/content/assets/readme/pipeline-light.svg" width="100%">
   </picture>
 </p>
 

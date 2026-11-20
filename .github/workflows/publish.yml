@@ -35,6 +35,8 @@ jobs:
             exit 1
           fi
       - run: uv build
+      - name: Check the PyPI description resolves every image and link
+        run: python3 scripts/check_pypi_readme.py dist/*.whl
       - name: Smoke-test the wheel in a clean venv
         run: |
           smoke="$RUNNER_TEMP/smoke"
