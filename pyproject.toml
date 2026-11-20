@@ -2,11 +2,11 @@
 name = "calibrated-agent-evaluation"
 version = "0.1.0"
 description = "Statistically honest evaluation of AI agents, with LLM judges calibrated against human labels."
-readme = "README.md"
 requires-python = ">=3.11.5"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE", "THIRD-PARTY-LICENSES"]
 authors = [{ name = "Amazon Web Services" }]
+dynamic = ["readme"]
 keywords = [
     "ai",
     "agents",
@@ -152,8 +152,30 @@ agentcore = [
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-fancy-pypi-readme>=25.1,<26"]
 build-backend = "hatchling.build"
+
+# The README uses repository-relative paths so its images render on GitHub, in pull requests and in
+# editors. PyPI resolves nothing relative, so the build rewrites every relative image to a raw URL
+# and every relative link to a GitHub URL, both pinned to this release's tag.
+# scripts/check_pypi_readme.py fails the build when anything relative survives.
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "README.md"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '(src|srcset)="(?!https?://)([^"]+)"'
+replacement = '\1="https://raw.githubusercontent.com/awslabs/calibrated-agent-evaluation/v$HFPR_VERSION/\2"'
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = 'href="(?!https?://|#|mailto:)([^"]+)"'
+replacement = 'href="https://github.com/awslabs/calibrated-agent-evaluation/blob/v$HFPR_VERSION/\1"'
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '\]\((?!https?://|#|mailto:)([^)\s]+)\)'
+replacement = '](https://github.com/awslabs/calibrated-agent-evaluation/blob/v$HFPR_VERSION/\1)'
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/calibrated_agent_evaluation"]
