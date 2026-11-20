@@ -42,7 +42,7 @@ pointed at Langfuse's OTLP endpoint, are read like a trace file:
 - a trace with no `agent` observation treats its outermost observation as the agent.
 
 The same checks as file ingest apply. A trace whose tool calls cannot be attached to an agent is
-refused rather than stored with them missing, and a trace that cannot be read at all is reported
+refused, and a trace that cannot be read at all is reported
 as skipped while the rest of the project still comes in. The command exits 1 if anything was
 refused or skipped.
 
@@ -50,7 +50,7 @@ Traces the library itself stored in Langfuse come back exactly as they were writ
 
 ## Use Langfuse as the store
 
-`--backend langfuse` makes Langfuse the store every stage reads and writes, instead of the local
+`--backend langfuse` makes Langfuse the store every command reads and writes, instead of the local
 directory. It is a global flag, so it goes before the subcommand:
 
 ```bash
@@ -58,9 +58,9 @@ calibrated-agent-evaluation --backend langfuse ingest exports/        # ingest f
 calibrated-agent-evaluation --backend langfuse run --ci               # gate over the verdicts stored in Langfuse
 ```
 
-An unreachable host fails at once with a typed error, so a dead backend cannot look like an empty
-one. Langfuse writes are asynchronous; a command waits for each write to become readable before a
-later stage depends on it.
+An unreachable host fails at once with an error that names the host, before any command reads an
+empty result from it. Langfuse writes are asynchronous; a command waits for each write to become readable before the
+next command depends on it.
 
 From Python:
 
@@ -92,5 +92,5 @@ The dev keys in `docker/langfuse/.env.example` are throwaway values for a local 
 ## Next
 
 - [Ingest trace files](ingest-existing-traces.md) for exports that never reach Langfuse.
-- [Look and label](../guides/lifecycle/3-look-and-label.md) for what to do with the traces once
+- [Read and label traces](../walkthrough/label.md) for what to do with the traces once
   they are in.

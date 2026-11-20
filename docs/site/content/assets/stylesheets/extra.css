@@ -1,44 +1,821 @@
 /* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. */
 /* SPDX-License-Identifier: Apache-2.0 */
 
-/* Site palette. Material's `custom` primary/accent read these variables;
-   mermaid diagrams derive their node, edge and label colors from them too. */
+/* A field guide: reading text is set in a serif, and the apparatus around it (navigation, labels,
+   tables, admonition titles, captured output) in a sans and a mono. Fonts are vendored under
+   assets/fonts/ (SIL OFL 1.1, see the LICENSE files there) so the site loads nothing from a
+   third party and works under a self-only Content-Security-Policy. */
+
+/* ---------- Fonts ---------- */
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/SourceSerif4-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/SourceSerif4-It.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../fonts/SourceSerif4-Semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4 Display";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../fonts/SourceSerif4Display-Semibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Serif 4 Display";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/SourceSerif4Display-It.woff2") format("woff2");
+}
+
+/* The Latin-1 split files from the IBM Plex release; their unicode-range matches upstream's CSS, so
+   anything outside it (arrows, math signs) falls back to the system sans. */
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/IBMPlexSans-Regular-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/IBMPlexSans-Italic-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/IBMPlexSans-Medium-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("../fonts/IBMPlexSans-SemiBold-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/IBMPlexMono-Regular-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/IBMPlexMono-Italic-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("../fonts/IBMPlexMono-Medium-Latin1.woff2") format("woff2");
+  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
+    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
+    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
+}
+
+/* ---------- Tokens ---------- */
+
 :root {
-  --calibrated-agent-evaluation-ink: #1e2440;
-  --calibrated-agent-evaluation-vellum: #f5f0e6;
+  --cae-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --cae-display: "Source Serif 4 Display", "Source Serif 4", Georgia, serif;
+  --cae-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  --cae-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Material reads these two for the whole UI and for code. */
+  --md-text-font: "IBM Plex Sans";
+  --md-code-font: "IBM Plex Mono";
+
+  --cae-measure: 37rem;
+
+  /* Kept for pages and charts that name them. */
+  --calibrated-agent-evaluation-ink: #1c2230;
+  --calibrated-agent-evaluation-vellum: #f2f2ed;
   --calibrated-agent-evaluation-verdigris: #2f8a7e;
-  --calibrated-agent-evaluation-verdigris-700: #287a70;
-  --calibrated-agent-evaluation-pass: #287a70;
-  --calibrated-agent-evaluation-fail: #c0392b;
+  --calibrated-agent-evaluation-verdigris-700: #23706a;
+  --calibrated-agent-evaluation-pass: #23706a;
+  --calibrated-agent-evaluation-fail: #b23a2e;
   --calibrated-agent-evaluation-insufficient: #776c59;
 }
 
+[data-md-color-scheme="default"] {
+  --cae-paper: #fbfbf8;
+  --cae-ink: #1c2230;
+  --cae-ink-soft: #4b5263;
+  --cae-rule: #e3e2dc;
+  --cae-accent: #23706a;
+  --cae-accent-tint: #23706a14;
+  --cae-mark: #fde58f;
+  --cae-fail: #b23a2e;
+  --cae-code-bg: #f2f2ed;
+
+  --md-default-bg-color: var(--cae-paper);
+  --md-default-fg-color: #1c2230de;
+  --md-default-fg-color--light: #1c22309c;
+  --md-default-fg-color--lighter: #1c223052;
+  --md-default-fg-color--lightest: #1c22301c;
+  --md-typeset-color: var(--cae-ink);
+  --md-typeset-a-color: var(--cae-accent);
+  --md-code-bg-color: var(--cae-code-bg);
+  --md-code-fg-color: #2a3142;
+  --md-typeset-mark-color: var(--cae-mark);
+  --md-footer-bg-color: #1c2230;
+  --md-footer-bg-color--dark: #151a25;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 220;
+  --cae-paper: #15181d;
+  --cae-ink: #e6e5df;
+  --cae-ink-soft: #a9adb5;
+  --cae-rule: #2b3038;
+  --cae-accent: #6cc2b3;
+  --cae-accent-tint: #6cc2b31a;
+  --cae-mark: #e0a93c66;
+  --cae-fail: #e07a6c;
+  --cae-code-bg: #1d2128;
+
+  --md-default-bg-color: var(--cae-paper);
+  --md-default-fg-color: #e6e5dfde;
+  --md-default-fg-color--light: #e6e5df9c;
+  --md-default-fg-color--lighter: #e6e5df52;
+  --md-default-fg-color--lightest: #e6e5df1c;
+  --md-typeset-color: var(--cae-ink);
+  --md-typeset-a-color: var(--cae-accent);
+  --md-accent-fg-color: var(--cae-accent);
+  --md-code-bg-color: var(--cae-code-bg);
+  --md-code-fg-color: #d9dbe0;
+  --md-typeset-mark-color: var(--cae-mark);
+  --md-footer-bg-color: #101317;
+  --md-footer-bg-color--dark: #0c0e11;
+}
+
+/* The header is paper with a hairline, not a colored bar. */
 [data-md-color-primary="custom"] {
-  --md-primary-fg-color: var(--calibrated-agent-evaluation-ink);
-  --md-primary-fg-color--light: #2c3459;
-  --md-primary-fg-color--dark: #141830;
-  --md-primary-bg-color: #ffffff;
-  --md-primary-bg-color--light: #ffffffb3;
+  --md-primary-fg-color: var(--cae-paper);
+  --md-primary-fg-color--light: var(--cae-paper);
+  --md-primary-fg-color--dark: var(--cae-paper);
+  --md-primary-bg-color: var(--cae-ink);
+  --md-primary-bg-color--light: var(--cae-ink-soft);
 }
 
 [data-md-color-accent="custom"] {
-  --md-accent-fg-color: var(--calibrated-agent-evaluation-verdigris-700);
-  --md-accent-fg-color--transparent: #287a701a;
+  --md-accent-fg-color: var(--cae-accent);
+  --md-accent-fg-color--transparent: var(--cae-accent-tint);
   --md-accent-bg-color: #ffffff;
   --md-accent-bg-color--light: #ffffffb3;
 }
 
-[data-md-color-scheme="default"] {
-  --md-default-bg-color: #fbf9f4;
-  --md-typeset-a-color: var(--calibrated-agent-evaluation-verdigris-700);
-  --md-code-bg-color: var(--calibrated-agent-evaluation-vellum);
+/* ---------- Chrome ---------- */
+
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid var(--cae-rule);
 }
 
-[data-md-color-scheme="slate"] {
-  --md-hue: 230;
-  --md-default-bg-color: #161a2e;
-  --md-typeset-a-color: #5fb3a6;
-  --md-accent-fg-color: #5fb3a6;
+.md-header[data-md-state="shadow"],
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-header__topic:first-child {
+  font-family: var(--cae-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+
+.md-tabs {
+  border-bottom: 1px solid var(--cae-rule);
+}
+
+.md-tabs__link {
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 1;
+  color: var(--cae-ink-soft);
+}
+
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__link:hover {
+  color: var(--cae-ink);
+}
+
+.md-tabs__item--active .md-tabs__link {
+  text-decoration: underline;
+  text-decoration-color: var(--cae-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.5rem;
+}
+
+.md-search__form {
+  background-color: var(--md-default-fg-color--lightest);
+}
+
+.md-nav {
+  font-size: 0.68rem;
+}
+
+.md-nav__title {
+  color: var(--cae-ink-soft);
+}
+
+.md-nav__item--section > .md-nav__link {
+  font-weight: 600;
+  color: var(--cae-ink);
+}
+
+.md-nav__link--active {
+  font-weight: 600;
+}
+
+.md-path {
+  font-size: 0.62rem;
+}
+
+/* A long reference breadcrumb wraps instead of running past the screen edge. */
+.md-path__list {
+  flex-wrap: wrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cae-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Reading text ---------- */
+
+.md-typeset {
+  font-family: var(--cae-serif);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  color: var(--cae-ink);
+  font-feature-settings: "kern", "liga", "onum";
+}
+
+/* Prose keeps a book measure; code, tables, diagrams and grids may use the full column. */
+.md-typeset > p,
+.md-typeset > ul,
+.md-typeset > ol,
+.md-typeset > dl,
+.md-typeset > blockquote,
+.md-typeset > h2,
+.md-typeset > h3,
+.md-typeset > h4,
+.md-typeset > .admonition,
+.md-typeset > details {
+  max-width: var(--cae-measure);
+}
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-family: var(--cae-display);
+  font-weight: 600;
+  color: var(--cae-ink);
+  letter-spacing: -0.012em;
+}
+
+.md-typeset h1 {
+  font-size: 2.05rem;
+  line-height: 1.12;
+  margin: 0.2rem 0 1.4rem;
+  max-width: 30rem;
+}
+
+.md-typeset h2 {
+  font-size: 1.35rem;
+  line-height: 1.25;
+  margin-top: 2.6rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--cae-rule);
+}
+
+.md-typeset h3 {
+  font-family: var(--cae-serif);
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: 0;
+  margin-top: 1.8rem;
+}
+
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-family: var(--cae-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cae-ink-soft);
+}
+
+.md-typeset a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--cae-accent) 40%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.md-typeset a:hover {
+  text-decoration-color: currentcolor;
+}
+
+/* Headings, nav-like links and buttons don't carry the prose underline. */
+.md-typeset .headerlink,
+.md-typeset .md-button,
+.md-typeset .tabbed-labels a,
+.md-typeset .footnote-ref,
+.md-typeset .footnote-backref,
+.md-typeset .grid.cards a,
+.md-typeset h1 a,
+.md-typeset h2 a,
+.md-typeset h3 a {
+  text-decoration: none;
+}
+
+.md-typeset blockquote {
+  border-left: 2px solid var(--cae-rule);
+  color: var(--cae-ink-soft);
+  font-style: italic;
+}
+
+.md-typeset strong {
+  font-weight: 600;
+}
+
+/* The highlighter: a reviewer's mark on the phrase that matters. */
+.md-typeset mark {
+  color: inherit;
+  background: linear-gradient(
+    100deg,
+    transparent 0.1em,
+    var(--cae-mark) 0.15em,
+    var(--cae-mark) calc(100% - 0.15em),
+    transparent calc(100% - 0.1em)
+  );
+  background-size: 100% 62%;
+  background-position: 0 72%;
+  background-repeat: no-repeat;
+  padding: 0 0.12em;
+  border-radius: 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ---------- Apparatus: code, tables, admonitions ---------- */
+
+.md-typeset code,
+.md-typeset kbd,
+.md-typeset pre {
+  font-family: var(--cae-mono);
+  font-feature-settings: normal;
+}
+
+.md-typeset code {
+  font-size: 0.82em;
+  border-radius: 0.15rem;
+}
+
+.md-typeset pre > code {
+  font-size: 0.72rem;
+  line-height: 1.55;
+  border-left: 2px solid var(--cae-rule);
+}
+
+.md-typeset table:not([class]) {
+  font-family: var(--cae-sans);
+  font-size: 0.7rem;
+  border: none;
+  border-top: 1px solid var(--cae-ink);
+  border-bottom: 1px solid var(--cae-ink);
+  border-radius: 0;
+  box-shadow: none;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.md-typeset table:not([class]) th {
+  font-weight: 600;
+  background: transparent;
+  border-bottom: 1px solid var(--cae-ink);
+}
+
+.md-typeset table:not([class]) td {
+  border-top: 1px solid var(--cae-rule);
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background: var(--cae-accent-tint);
+  box-shadow: none;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: 0.8rem;
+  border-width: 0 0 0 2px;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  font-family: var(--cae-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+}
+
+.md-typeset :is(.admonition, details) > :is(.admonition-title, summary) {
+  background-color: transparent;
+}
+
+.md-typeset .admonition.example,
+.md-typeset details.example {
+  border-color: var(--cae-accent);
+}
+
+.md-typeset .example > .admonition-title::before,
+.md-typeset .example > summary::before {
+  background-color: var(--cae-accent);
+}
+
+.md-typeset :is(details, .admonition) > summary::after {
+  color: var(--cae-accent);
+}
+
+.md-typeset .tabbed-labels {
+  font-family: var(--cae-sans);
+}
+
+.md-typeset .tabbed-labels > label {
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.md-typeset .footnote {
+  font-family: var(--cae-sans);
+  font-size: 0.68rem;
+}
+
+.md-typeset abbr {
+  text-decoration-color: var(--md-default-fg-color--lighter);
+}
+
+/* Captured CLI output whose lines are sentences: wrap them instead of scrolling. */
+.md-typeset .wrap-output pre > code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Buttons ---------- */
+
+.md-typeset .md-button {
+  font-family: var(--cae-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.55em 1.3em;
+  border: 1px solid var(--cae-ink);
+  border-radius: 0.15rem;
+  color: var(--cae-ink);
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.md-typeset .md-button:hover,
+.md-typeset .md-button:focus {
+  background-color: var(--cae-ink);
+  border-color: var(--cae-ink);
+  color: var(--cae-paper);
+}
+
+.md-typeset .md-button--primary {
+  background-color: var(--cae-ink);
+  border-color: var(--cae-ink);
+  color: var(--cae-paper);
+}
+
+.md-typeset .md-button--primary:hover,
+.md-typeset .md-button--primary:focus {
+  background-color: var(--cae-accent);
+  border-color: var(--cae-accent);
+  color: var(--cae-paper);
+}
+
+.md-typeset .cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.6rem 0 0.5rem;
+}
+
+.md-typeset .cta > p {
+  display: contents;
+}
+
+.md-typeset .cta .md-button {
+  margin: 0;
+}
+
+/* ---------- Cards ---------- */
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--cae-rule);
+  border-radius: 0.15rem;
+  box-shadow: none;
+  font-family: var(--cae-sans);
+  font-size: 0.74rem;
+  line-height: 1.55;
+  transition: border-color 120ms ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--cae-ink-soft);
+  box-shadow: none;
+}
+
+.md-typeset .grid.cards > ul > li > :first-child strong,
+.md-typeset .grid.cards > ul > li > p:first-child {
+  font-family: var(--cae-serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.md-typeset .grid.cards > ul > li hr {
+  border-bottom-color: var(--cae-rule);
+}
+
+.md-typeset .grid.cards.two-up {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+@media screen and (min-width: 60em) {
+  .md-typeset .grid.cards.two-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.md-typeset .grid.cards.audience,
+.md-typeset .grid.cards.outcomes {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+.md-typeset .grid.cards.outcomes > ul > li {
+  text-align: center;
+}
+
+/* ---------- Home ---------- */
+
+/* The hero is left-aligned like a title page: the claim in display type, the key phrase marked
+   the way a reviewer marks a trace. */
+.md-typeset .hero {
+  margin: 1.5rem 0 3.5rem;
+}
+
+.md-typeset .hero-eyebrow {
+  font-family: var(--cae-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cae-ink-soft);
+  margin: 0 0 1rem;
+}
+
+.md-typeset .hero-title,
+.md-typeset .hero h1 {
+  font-family: var(--cae-display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 5.4vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  max-width: 17ch;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  border: 0;
+  color: var(--cae-ink);
+}
+
+.md-typeset .hero-title > p {
+  margin: 0;
+  font: inherit;
+}
+
+.md-typeset .hero-title mark {
+  background-size: 100% 42%;
+  background-position: 0 88%;
+  animation: cae-highlight 900ms cubic-bezier(0.3, 0.7, 0.2, 1) 250ms both;
+}
+
+@keyframes cae-highlight {
+  from {
+    background-size: 0% 42%;
+  }
+  to {
+    background-size: 100% 42%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .hero-title mark {
+    animation: none;
+  }
+}
+
+.md-typeset .hero-lead,
+.md-typeset .hero .hero-lead {
+  max-width: 34rem;
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--cae-ink-soft);
+  text-align: left;
+}
+
+/* The old centered tagline, while pages still use it. */
+.hero-tagline {
+  font-family: var(--cae-sans);
+  font-size: 0.9rem;
+  color: var(--md-default-fg-color--light);
+  margin: 1rem 0 1.5rem;
+}
+
+/* The four ways a judge's number misleads. Not a sequence, so no numbers: each card is named by
+   what the team saw. */
+.md-typeset .burns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 46rem;
+  margin: 1.4rem 0 2rem;
+  border-top: 1px solid var(--cae-ink);
+}
+
+.md-typeset .grid.cards.burns > ul {
+  display: contents;
+}
+
+.md-typeset .burns > ul > li,
+.md-typeset .burns > div,
+.md-typeset .grid.cards.burns > ul > li {
+  margin: 0;
+  padding: 1rem 1.1rem 1.2rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--cae-rule);
+  border-radius: 0;
+  font-family: var(--cae-serif);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  list-style: none;
+}
+
+.md-typeset .grid.cards.burns > ul > li:hover {
+  border-color: var(--cae-rule);
+}
+
+.md-typeset .burns > ul > li > :first-child,
+.md-typeset .burns > div > :first-child {
+  margin-top: 0;
+}
+
+.md-typeset .burns strong:first-child,
+.md-typeset .burns h3 {
+  display: block;
+  margin: 0 0 0.35rem;
+  padding: 0.55rem 0 0;
+  font-family: var(--cae-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--cae-ink);
+  background: linear-gradient(var(--cae-fail), var(--cae-fail)) 0 0 / 1.4rem 2px no-repeat;
+}
+
+@media screen and (min-width: 45em) {
+  .md-typeset .burns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .md-typeset .burns > ul > li:nth-child(even),
+  .md-typeset .burns > div:nth-child(even) {
+    padding-left: 1.4rem;
+    border-left: 1px solid var(--cae-rule);
+  }
+
+  .md-typeset .burns > ul > li:nth-child(odd),
+  .md-typeset .burns > div:nth-child(odd) {
+    padding-right: 1.4rem;
+  }
+}
+
+/* The new-hire analogy: a margin note set in italic beside a rule. */
+.md-typeset .analogy {
+  max-width: var(--cae-measure);
+  margin: 2rem 0;
+  padding: 0.2rem 0 0.2rem 1.3rem;
+  border-left: 3px solid var(--cae-mark);
+  font-family: var(--cae-display);
+  font-style: italic;
+  font-size: 1.12rem;
+  line-height: 1.5;
+  color: var(--cae-ink);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .analogy {
+  border-left-color: #f6d35a;
+}
+
+.md-typeset .analogy > p {
+  margin: 0.4rem 0;
+}
+
+.md-typeset .analogy cite,
+.md-typeset .analogy .analogy-source {
+  display: block;
+  margin-top: 0.6rem;
+  font-family: var(--cae-sans);
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--cae-ink-soft);
+}
+
+/* ---------- Figures ---------- */
+
+.md-typeset .trace-grid {
+  display: block;
+  width: 100%;
+  max-width: 44rem;
+  margin: 1rem auto;
+}
+
+.md-typeset img.figure,
+.md-typeset .figure img {
+  display: block;
+  width: 100%;
+  max-width: 44rem;
+  margin: 1.2rem 0;
+}
+
+.md-typeset figcaption,
+.md-typeset .caption {
+  font-family: var(--cae-sans);
+  font-size: 0.68rem;
+  color: var(--cae-ink-soft);
+  max-width: var(--cae-measure);
 }
 
 /* Homepage value panel: the judge's raw number, the corrected one, and the answer key. */
@@ -54,14 +831,11 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem 1.25rem;
-  border-radius: 0.4rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  background: var(--md-code-bg-color);
+  border-top: 1px solid var(--cae-ink);
 }
 
 .value-panel__figure--honest {
-  border-color: var(--calibrated-agent-evaluation-verdigris-700);
-  border-width: 2px;
+  border-top: 3px solid var(--cae-accent);
 }
 
 .value-panel__figure > p {
@@ -75,100 +849,91 @@
 }
 
 .value-panel__label {
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-family: var(--cae-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--md-default-fg-color--light);
+  color: var(--cae-ink-soft);
 }
 
 .value-panel__number {
+  font-family: var(--cae-display);
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .value-panel__figure--raw .value-panel__number,
 .value-panel__figure--key .value-panel__number {
-  color: var(--md-default-fg-color--light);
-}
-
-.value-panel__figure--key {
-  border-style: dashed;
+  color: var(--cae-ink-soft);
 }
 
 .value-panel__figure--honest .value-panel__number {
-  color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-[data-md-color-scheme="slate"] .value-panel__figure--honest .value-panel__number,
-[data-md-color-scheme="slate"] .value-panel__figure--honest {
-  color: #5fb3a6;
-  border-color: #5fb3a6;
+  color: var(--cae-accent);
 }
 
 .value-panel__note {
-  font-size: 0.8rem;
-  color: var(--md-default-fg-color--light);
-}
-
-/* Captured CLI output whose lines are sentences: wrap them instead of scrolling. */
-.md-typeset .wrap-output pre > code {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  font-family: var(--cae-sans);
+  font-size: 0.74rem;
+  color: var(--cae-ink-soft);
 }
 
 .value-panel__why {
   grid-column: 1 / -1;
+  max-width: var(--cae-measure);
   font-size: 0.8rem;
 }
 
+/* The four-step strip some pages still use. */
+.md-typeset .steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.md-typeset .step {
+  padding: 0.9rem 0 0.75rem;
+  border-top: 1px solid var(--cae-ink);
+  font-family: var(--cae-sans);
+  font-size: 0.74rem;
+}
+
+.md-typeset .step > p {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.md-typeset .step__n {
+  font-family: var(--cae-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--cae-accent);
+}
+
+/* ---------- Small screens ---------- */
+
 @media screen and (max-width: 44.9375em) {
+  .md-typeset {
+    font-size: 0.82rem;
+  }
+
+  .md-typeset h1 {
+    font-size: 1.65rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.2rem;
+  }
+
   .value-panel {
     grid-template-columns: 1fr;
   }
-}
 
-.md-typeset .grid.cards.two-up {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-}
-
-@media screen and (min-width: 60em) {
-  .md-typeset .grid.cards.two-up {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Collapsible example blocks in the brand accent instead of Material's purple. */
-.md-typeset .admonition.example,
-.md-typeset details.example {
-  border-color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-.md-typeset .example > .admonition-title,
-.md-typeset .example > summary {
-  background-color: #287a701a;
-}
-
-.md-typeset .example > .admonition-title::before,
-.md-typeset .example > summary::before {
-  background-color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-/* The collapse chevron takes the admonition color too; keep it in the palette for every type. */
-.md-typeset details > summary::after {
-  color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-[data-md-color-scheme="slate"] .md-typeset details > summary::after {
-  color: #5fb3a6;
-}
-
-/* Material draws each diagram inside a shadow root sized to its host, so on a phone a diagram
-   shrinks its text until it can't be read. There, diagrams wrapped in .diagram keep a readable
-   minimum width and scroll sideways instead. */
-@media screen and (max-width: 44.9375em) {
+  /* Material draws each diagram inside a shadow root sized to its host, so on a phone a diagram
+     shrinks its text until it can't be read. Diagrams wrapped in .diagram keep a readable minimum
+     width and scroll sideways instead. */
   .md-typeset .diagram {
     overflow-x: auto;
   }
@@ -176,17 +941,7 @@
   .md-typeset .diagram > .mermaid {
     min-width: 36rem;
   }
-}
 
-/* Homepage: the tagline under the title. */
-.hero-tagline {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--md-default-fg-color--light);
-  margin: 1rem 0 1.5rem;
-}
-
-@media screen and (max-width: 44.9375em) {
   /* Charts are drawn wide for a desktop column; on a phone they keep a readable width and scroll
      sideways, like the diagrams. */
   .md-typeset p:has(> img[src*="assets/charts/"]) {
@@ -199,71 +954,21 @@
   }
 }
 
-/* A long reference breadcrumb wraps instead of running past the screen edge. */
-.md-path__list {
-  flex-wrap: wrap;
+@media print {
+  .md-typeset {
+    font-size: 10.5pt;
+  }
 }
 
-/* Homepage: the plain-language lead under the tagline. */
-.md-typeset .hero-lead {
-  max-width: 46rem;
-  margin: 1.5rem auto 0.5rem;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  text-align: center;
-}
-
-.md-typeset .trace-grid {
-  display: block;
-  width: 100%;
-  max-width: 44rem;
-  margin: 1rem auto;
-}
-
-/* Audience router and the three outcomes. */
-.md-typeset .grid.cards.audience,
-.md-typeset .grid.cards.outcomes {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-}
-
-.md-typeset .grid.cards.outcomes > ul > li {
-  text-align: center;
-}
-
-/* Homepage: the four-step strip. */
-.md-typeset .steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
-  counter-reset: none;
-}
-
-.md-typeset .step {
-  position: relative;
-  padding: 1rem 1rem 0.75rem;
-  border-top: 3px solid var(--calibrated-agent-evaluation-verdigris-700);
-  background: var(--md-code-bg-color);
-  border-radius: 0 0 0.4rem 0.4rem;
-}
-
-.md-typeset .step > p {
-  margin: 0.25rem 0 0.5rem;
-}
-
-.md-typeset .step__n {
-  display: inline-block;
-  width: 1.6rem;
-  height: 1.6rem;
-  line-height: 1.6rem;
-  border-radius: 50%;
-  text-align: center;
-  font-weight: 700;
-  color: #ffffff;
-  background: var(--calibrated-agent-evaluation-ink);
-}
-
-[data-md-color-scheme="slate"] .md-typeset .step__n {
-  color: var(--calibrated-agent-evaluation-ink);
-  background: var(--calibrated-agent-evaluation-vellum);
+/* The home page keeps its h1 for the document outline and search, and shows the hero instead. */
+.md-typeset h1:has(+ .hero) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

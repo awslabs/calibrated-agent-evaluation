@@ -129,5 +129,5 @@ At 12 trials a judge passes the 0.35 ceiling with at most one disagreeing trial,
 at most six. Six trials, as in the repository's test fixtures, pass only a judge that never
 disagrees. A trial with `toward` is also gated on how much more often the change moves the verdict
 in that direction than the placebo does, against 0.20; that needs at least 11 trials, so declare
-`toward` only in a set that large. [The bias check](concepts/how-the-numbers-work/refusals.md#the-bias-check)
-works one example through, and [Methodology](concepts/methodology.md) cites the interval.
+`toward` only in a set that large. [The bias check](methods.md#the-bias-check)
+works one example through, and [Methodology](methods.md) cites the interval.

@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-<h3 align="center">Find out how often your AI agent fails, with a number you can defend.</h3>
+<h3 align="center">Check your LLM judge before you trust its numbers.</h3>
 
 <p align="center">
   <a href="https://pypi.org/project/calibrated-agent-evaluation/"><img alt="PyPI" src="https://img.shields.io/pypi/v/calibrated-agent-evaluation"></a>
@@ -16,18 +16,20 @@
 
 <p align="center">
   <a href="https://awslabs.github.io/calibrated-agent-evaluation/">Documentation</a> ·
-  <a href="https://awslabs.github.io/calibrated-agent-evaluation/getting-started/quickstart/">Quickstart</a> ·
-  <a href="https://awslabs.github.io/calibrated-agent-evaluation/guides/lifecycle/">Lifecycle guide</a> ·
+  <a href="https://awslabs.github.io/calibrated-agent-evaluation/why/">Why check your judge</a> ·
+  <a href="https://awslabs.github.io/calibrated-agent-evaluation/walkthrough/">Walkthrough</a> ·
   <a href="https://awslabs.github.io/calibrated-agent-evaluation/cli/">CLI reference</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
 ---
 
-An LLM judge reports that 12% of your agent's runs fail. How wrong is the judge, and how wide is
-that 12% once you count its mistakes? Calibrated Agent Evaluation answers both questions. It takes
-your agent's traces through error analysis, certifies a judge against human labels, corrects the
-measured failure rate for the judge's own error, and gates CI on the interval's lower bound.
+Most teams grade their AI agent with an LLM judge and ship on what it says, without ever checking
+the judge. Calibrated Agent Evaluation has people on your team label a sample of runs, names the
+failure modes they find, and measures the judge against those labels. Only a judge that agrees with
+your team often enough and passes a bias check can score runs, and `run --ci` refuses verdicts from
+any other judge. Those verdicts gate CI per failure mode. The reported failure rate has the judge's
+measured mistakes taken out.
 
 It grades what the agent did (a normalized trace), so a custom loop, an LLM with MCP tools, a
 Strands agent and a multi-agent crew all go through the same pipeline. It is a library and CLI you
@@ -39,7 +41,8 @@ run yourself, offline on a laptop or inside a corporate network. There is no hos
   true-positive and true-negative rates reach 0.80, measured on gold labels that are used once.
 - **Corrected failure rates.** The judge's measured rate is corrected for its error
   (Rogan–Gladen), with an interval that carries the uncertainty of the human gold and the judge.
-  The correction is refused when the judge is too close to chance.
+  It is reported beside the CI decision and does not change it. The correction is refused when the
+  judge is too close to chance.
 - **Enough labels.** Good–Turing coverage tells you when labeling has stopped finding new failure
   modes, and a planner sizes the gold set and the CI sample before you start.
 - **Fixes that held.** A fix is accepted against a target registered before the change, with
@@ -47,8 +50,9 @@ run yourself, offline on a laptop or inside a corporate network. There is no hos
 - **Crews.** In a multi-agent run, the span that caused a failure is kept apart from the span
   where it showed.
 
-It does not label traces for you (a human writes the gold) and it never gates on subjective
-qualities such as tone. `calibrated-agent-evaluation prefer` ranks those instead.
+It does not label traces for you (a human writes the gold). For subjective qualities such as tone,
+`calibrated-agent-evaluation prefer` ranks outputs instead of gating them, and `run --ci --atoms
+FILE` refuses to gate any mode the file doesn't declare objective.
 
 ## Install
 
@@ -75,7 +79,7 @@ pip install "calibrated-agent-evaluation[ui,stats,langfuse]"
 | `agentcore` | the Amazon Bedrock AgentCore plug-in                                  |
 
 `calibrated-agent-evaluation doctor` lists what is installed. The full set is in the
-[installation guide](https://awslabs.github.io/calibrated-agent-evaluation/getting-started/installation/).
+[install guide](https://awslabs.github.io/calibrated-agent-evaluation/how-to/install/).
 
 ## Quickstart
 
@@ -97,7 +101,7 @@ Failure modes found:
 judge kit with recorded model replies, then prints the commands that certify the judge, run its
 bias battery and gate CI, all offline. Then bring your own traces from
 OpenTelemetry (OpenInference or OpenLLMetry), Inspect AI, Strands, Langfuse, JSONL or Parquet:
-[choose your integration path](https://awslabs.github.io/calibrated-agent-evaluation/integrate/).
+[connect your agent](https://awslabs.github.io/calibrated-agent-evaluation/integrate/).
 
 ## How it works
 
@@ -112,10 +116,8 @@ Each stage is one subcommand, run in this order. Error analysis comes first: you
 traces, label them, and name the failure modes before anything is scored. A judge then has to pass
 both trust gates before `judge` will run it, and `run` fails the build when a failure mode's
 pass-rate 95% lower bound falls below the threshold. The
-[stage map](https://awslabs.github.io/calibrated-agent-evaluation/concepts/stage-map/) covers each
-stage, and
-[how the numbers work](https://awslabs.github.io/calibrated-agent-evaluation/concepts/how-the-numbers-work/)
-explains the statistics, with every method cited.
+[walkthrough](https://awslabs.github.io/calibrated-agent-evaluation/walkthrough/) covers each stage on one sample agent, and
+[methods and citations](https://awslabs.github.io/calibrated-agent-evaluation/methods/) lists the statistics behind it.
 
 ## Skills plugin
 
@@ -133,13 +135,11 @@ For Kiro, see [`skills/README.md`](skills/README.md).
 
 ## Documentation
 
-- [Why calibrate](https://awslabs.github.io/calibrated-agent-evaluation/why/) and
-  [how it compares with alternatives](https://awslabs.github.io/calibrated-agent-evaluation/why/alternatives/)
-- [The lifecycle guide](https://awslabs.github.io/calibrated-agent-evaluation/guides/lifecycle/),
-  from defining behavior to gating in production
-- [Calibrate a judge](https://awslabs.github.io/calibrated-agent-evaluation/guides/calibrate-a-judge/)
-  and [gate a pull request in CI](https://awslabs.github.io/calibrated-agent-evaluation/guides/gate-in-ci/)
-- [Methods and citations](https://awslabs.github.io/calibrated-agent-evaluation/concepts/methodology/)
+- [Why check your judge](https://awslabs.github.io/calibrated-agent-evaluation/why/), with where it fits next to other tools
+- [The walkthrough](https://awslabs.github.io/calibrated-agent-evaluation/walkthrough/), from defining behavior to watching production
+- [Put a judge on probation](https://awslabs.github.io/calibrated-agent-evaluation/walkthrough/judge/)
+  and [gate your pull requests](https://awslabs.github.io/calibrated-agent-evaluation/walkthrough/gate/)
+- [Methods and citations](https://awslabs.github.io/calibrated-agent-evaluation/methods/)
 - [Python API](https://awslabs.github.io/calibrated-agent-evaluation/reference/) and
   [CLI](https://awslabs.github.io/calibrated-agent-evaluation/cli/) reference
 

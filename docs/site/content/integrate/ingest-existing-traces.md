@@ -53,8 +53,8 @@ Every file ends in one of three states:
   both would overwrite one with the other. The reason names both files and two ways to fix it.
 - `[skipped]` could not be read as a trace at all. The reason lists the signals it looked for.
 
-A dry run always exits 0. A real run exits 1 if any file was refused or skipped, so a script cannot
-mistake a partial ingest for a complete one.
+A dry run always exits 0. A real run exits 1 if any file was refused or skipped, so a script can
+tell a partial ingest from a complete one.
 
 When files in one batch share the part of the name before the first dot (the three `ORD-1001.*`
 files above), each is stored under its OpenTelemetry trace id instead, which is why those lines
@@ -63,8 +63,9 @@ instrumentation time (below).
 
 ## Draw a sample instead of taking everything
 
-A rate is only honest over a frame that stands for production traffic, and a directory of exports
-or a Langfuse project is not one: whoever exported it chose what went in. `--sample N --seed S`
+A failure rate describes production only when it is measured on traces that stand for production
+traffic. A directory of exports or a Langfuse project usually doesn't: whoever exported it chose
+what went in. `--sample N --seed S`
 draws a seeded random sample of the population, stores those traces tagged
 `production-representative`, and writes a record of the draw:
 
@@ -72,10 +73,10 @@ draws a seeded random sample of the population, stores those traces tagged
 --8<-- "fixtures/expected/docs/integrate-ingest-sample.txt"
 ```
 
-The seed is required, because a draw nobody can repeat is not evidence. The record under
+The seed is required so anyone can repeat the draw and get the same traces. The record under
 `<root>/records/sample/` keeps the seed, the population size, the ids drawn and the ids stored, and
 `calibrated-agent-evaluation dump` carries it with everything else. Asking for more traces than the
-population holds is refused rather than quietly reduced to all of them.
+population holds stops with an error that gives the population size.
 
 For a Langfuse project, `--cell KEY=VALUE` draws within one taxonomy cell, which is a stratified
 sample: run it once per cell and each draw gets its own record with its own population size.
@@ -129,8 +130,8 @@ with get_backend() as backend:      # the local store at ./.calibrated-agent-eva
     backend.put_trace(trace)        # storing the same trace id again replaces it
 ```
 
-`normalize()` either returns a complete, validated `Trace` or raises `NormalizationError`. It never
-returns a partial trace or drops a span. Note one difference from the CLI: the library takes the
+`normalize()` returns a complete, validated `Trace` with every span, or raises
+`NormalizationError`. Note one difference from the CLI: the library takes the
 trace id from the spans (pass `trace_id=` to set one), while the CLI names a trace after its file.
 
 Each source has its own descriptor:
@@ -184,8 +185,9 @@ tag_span(
 )
 ```
 
-This is optional. Without it, ingest uses the file name or OpenTelemetry trace id and the
-`production-representative` frame (`discovery` for datasets).
+This is optional. Without it, ingest uses the file name or OpenTelemetry trace id, and the
+`discovery` frame unless you pass `--frame production-representative` (or draw a sample with
+`--sample N --seed S`, which tags the drawn traces `production-representative`).
 
 ## My framework is not listed
 
@@ -236,7 +238,7 @@ readers try, with no new adapter.
 ## Next
 
 - [Capture in process](capture-and-ingest.md) if your agent does not export traces yet.
-- [Normalized traces](../concepts/normalized-traces.md) for what a stored trace contains.
+- [Trace format](../trace-format.md) for what a stored trace contains.
 - The [`calibrated_agent_evaluation.normalize` API
   reference](../reference/calibrated_agent_evaluation/normalize/index.md) for every descriptor
   field.

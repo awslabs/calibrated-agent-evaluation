@@ -1,0 +1,2 @@
+$ calibrated-agent-evaluation generate --frame frame.json --out inputs.jsonl
+synthesized 9 frame-tagged input(s) from a 9-row discovery frame (frame file frame.json) via the offline template renderer; wrote them to inputs.jsonl (JSONL, one input per line)

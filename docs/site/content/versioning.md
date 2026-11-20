@@ -46,7 +46,7 @@ The dump manifest's is `calibrated_agent_evaluation.dumpload.io.DUMP_FORMAT_VERS
 
 A store or dump written under an older version has to be regenerated with the release that
 reads it. There is no migration tool: `calibrated-agent-evaluation load` refuses a dump whose version differs, as
-[Troubleshooting](guides/troubleshooting.md) shows.
+[Troubleshooting](how-to/troubleshooting.md) shows.
 
 The fixture corpus under `fixtures/` carries its own `VERSION` file, which must equal the trace
 schema version the code runs.

@@ -43,9 +43,9 @@ In order, they show:
 2. `--trace-id` stores the trace under a name you choose. The line reports the convention the spans
    were read with, the agent steps and tool calls recovered, and that the trace is owned (its steps
    are visible).
-3. A second capture under the same id is refused, because a capture cannot be re-run to recover
-   the trace it would replace. Pass `--overwrite` to replace it on purpose.
-4. A function that emits no spans is refused instead of being stored as an empty trace.
+3. A second capture under the same id stops with an error and keeps the stored trace, since a
+   capture can't be re-run to get the old one back. Pass `--overwrite` to replace it on purpose.
+4. A function that emits no spans stops with an error, and nothing is stored.
    `os:getcwd` is a real function that emits nothing.
 
 If the function raises, `calibrated-agent-evaluation capture` prints the `--agent` value and the
@@ -105,7 +105,7 @@ it; export OTLP-JSON from that process and ingest the file instead.
 
 ## Next
 
-With traces in the store, the next stage is labeling. `calibrated-agent-evaluation label` without
+With traces in the store, the next step is labeling. `calibrated-agent-evaluation label` without
 `--serve` prints the command that opens the review surface on your store:
 
 <div class="wrap-output" markdown>
@@ -116,4 +116,4 @@ With traces in the store, the next stage is labeling. `calibrated-agent-evaluati
 
 </div>
 
-See [Review traces in the UI](../guides/review-traces.md) for the labeling session itself.
+See [Review traces in the UI](../how-to/review-ui.md) for the labeling session itself.

@@ -6,15 +6,42 @@ hide:
 
 # Calibrated Agent Evaluation
 
-<div class="hero-tagline" markdown>
-Error analysis and judge calibration for AI agents.<br>Mark the doubtful. Measure the rest.
-</div>
+<div class="hero" markdown>
+
+<p class="hero-title">Check your LLM judge before you <mark>trust its numbers</mark>.</p>
 
 <p class="hero-lead">
-Most teams grade their AI agent with another AI model, called an LLM judge. Calibrated Agent Evaluation checks that judge
-against answers from people on your team, then reports how often your agent really fails. When the
-evidence is too thin to say, it tells you so, and how much more to collect.
+Most teams grade their AI agent with another model, an LLM judge, and ship on what it says. This
+toolkit has people on your team label a sample of runs, measures the judge against those labels, and
+lets the judge score the runs that gate your CI build only after it passes. Then it tells you how often your agent
+really fails.
 </p>
+
+<div class="cta" markdown>
+[Why check your judge](why.md){ .md-button .md-button--primary }
+[Walk through it](walkthrough/index.md){ .md-button }
+</div>
+
+</div>
+
+## A judge is a new hire on review duty
+
+<div class="analogy" markdown>
+
+You would not let a new hire's code reviews gate production on their first day. You would read a
+few dozen of their calls next to your own first, see where they go easy and where they nitpick, and
+sign them off once they agree with you often enough. An LLM judge needs the same treatment, and most
+teams skip it.
+
+</div>
+
+![A judge's calls compared with a person's on a sample, then cleared to review alone](assets/images/judge-probation-light.svg#only-light){ .figure }
+![A judge's calls compared with a person's on a sample, then cleared to review alone](assets/images/judge-probation-dark.svg#only-dark){ .figure }
+
+This toolkit runs that probation. Your team labels a sample of the agent's runs, the judge grades
+the same runs, and the two are compared. A judge that misses too many real failures, or flags too
+many good runs, cannot score anything, so its verdicts never reach the build's gate. Changing the
+judge's model or prompt starts its probation over.
 
 ## What a judge's number hides
 
@@ -22,8 +49,6 @@ evidence is too thin to say, it tells you so, and how much more to collect.
 ![1,000 sample traces, marked by what the judge said and what was true](assets/charts/trace-grid-dark.svg#only-dark){ .trace-grid }
 
 --8<-- "fixtures/expected/docs/home-value-panel.md"
-
-[See it step by step](why/index.md).
 
 ??? example "The program behind this picture"
 
@@ -34,47 +59,35 @@ evidence is too thin to say, it tells you so, and how much more to collect.
     The sample is synthetic, so the true rate is known. The picture and this output are rebuilt from
     `docs/site/examples/rate_correction.py` on every docs build.
 
-## Start where you are
+## Four ways a judge's number misleads a team
 
-<div class="grid cards audience" markdown>
+<div class="grid cards burns" markdown>
 
--   **[New to agent evals](why/primer.md)**
+-   **It misses a failure**
 
-    Five pictures: what a trace, a judge and a label are, and why the judge needs checking.
+    The judge passes runs where the agent issues a refund the policy doesn't allow. The dashboard
+    is green, and the money is gone.
+    [Step 4](walkthrough/judge.md)
 
--   **[Deciding whether to ship](why/leaders.md)**
+-   **It flags failures that aren't there**
 
-    What the toolkit tells you, what it costs your team, and how to read its answer.
+    The judge wrongly flags a few good replies in every hundred. When real failures are rare, those
+    outnumber them, and the team spends a sprint fixing replies that were fine.
+    [Step 4](walkthrough/judge.md)
 
--   **[Building an agent](getting-started/quickstart.md)**
+-   **A generic score hides the real problem**
 
-    Run it on the sample corpus in a few minutes, then [connect your own traces](integrate/index.md).
+    "Helpfulness" goes up release after release while the refund-policy mistakes stay where they
+    were, because nobody named them.
+    [Step 3](walkthrough/cluster.md)
 
--   **[Checking the math](concepts/methodology.md)**
+-   **A fix only works on the test set**
 
-    The methods, the published work behind each one, and the coverage studies.
-
-</div>
-
-## Three possible answers
-
-<div class="grid cards outcomes" markdown>
-
--   **Pass**
-
-    Every failure mode is under your limit, even at the cautious end of its range.
-
--   **Fail**
-
-    At least one failure mode is over your limit. The verdict names it.
-
--   **Not enough evidence**
-
-    The judge isn't checked yet, or there are too few traces. The verdict says what to collect.
+    The failure rate drops on the traces the team tuned against. In production, the same failures
+    show up under a different name.
+    [Step 6](walkthrough/improve.md)
 
 </div>
-
-[Every refusal and its reason](concepts/how-the-numbers-work/refusals.md).
 
 ## How it works
 
@@ -82,45 +95,48 @@ evidence is too thin to say, it tells you so, and how much more to collect.
 
 <div class="step" markdown>
 <span class="step__n">1</span>
-**Bring your traces**
+**Read your traces**
 
-The recorded steps of each agent run, from OpenTelemetry, Langfuse, Inspect or Strands.
+Bring the recorded runs of your agent from OpenTelemetry, Langfuse, Inspect, Strands or a file, and
+read them before deciding what to measure.
 </div>
 
 <div class="step" markdown>
 <span class="step__n">2</span>
-**Label a sample**
+**Label and name failures**
 
-People on your team mark a sample of runs pass or fail in the review UI: about 55 failures and
-55 passes for a judge you expect to be right 90% of the time.
+People on your team mark runs pass or fail in a review UI, and the toolkit groups the failures into
+named failure modes.
 </div>
 
 <div class="step" markdown>
 <span class="step__n">3</span>
-**Check the judge**
+**Put a judge on probation**
 
-Calibrated Agent Evaluation measures the judge against those labels, and tests whether longer answers or pushback sway it.
+The judge grades the labeled runs. It may score new runs only after it agrees with your team often
+enough and passes a bias check: padding a reply, writing in the judge's own style, or a customer
+insisting they are right must not change its verdict.
 </div>
 
 <div class="step" markdown>
 <span class="step__n">4</span>
-**Report or gate**
+**Gate and report**
 
-A corrected failure rate with its range, and a pass, fail or refusal for your CI build.
+A certified judge scores new runs. The CI gate passes or fails each failure mode, and the report
+gives the failure rate with the judge's mistakes taken out.
 </div>
 
 </div>
 
-[How a trace becomes a verdict](getting-started/how-it-works.md).
+The [walkthrough](walkthrough/index.md) follows one support team through every step.
 
 ## Try it
 
-From a checkout of the repository, with no API keys and no network
-([Installation](getting-started/installation.md) has the clone command):
+No API keys and no network. The sample corpus ships with the package:
 
 ```bash
-uv sync
-uv run calibrated-agent-evaluation quickstart
+pip install calibrated-agent-evaluation
+calibrated-agent-evaluation quickstart
 ```
 
 ??? example "What it prints"
@@ -129,18 +145,19 @@ uv run calibrated-agent-evaluation quickstart
     --8<-- "fixtures/expected/docs/calibrated-agent-evaluation-quickstart.txt"
     ```
 
-The [Quickstart](getting-started/quickstart.md) continues from here.
+[Install](how-to/install.md) lists the optional extras.
 
 ## Works with what you have
 
 It reads traces from [OpenTelemetry GenAI spans](integrate/gallery/otel-genai.md),
 [Langfuse](integrate/langfuse.md), [OpenInference](integrate/gallery/openinference.md),
 [OpenLLMetry](integrate/gallery/openllmetry.md), [Inspect AI](integrate/gallery/inspect.md),
-[Strands Agents](integrate/gallery/strands.md) and plain [datasets](integrate/gallery/datasets.md). It can also sample an agent you only reach over
-HTTP. [Choose your path](integrate/index.md).
+[Strands Agents](integrate/gallery/strands.md), [Bedrock AgentCore](integrate/agentcore.md) and
+plain [datasets](integrate/gallery/datasets.md). It can also sample an agent you only reach over
+HTTP. [Connect your agent](integrate/index.md).
 
 ---
 
-Distribution: `calibrated-agent-evaluation` · CLI: `calibrated-agent-evaluation` ·
-import name: `calibrated_agent_evaluation` · License: Apache-2.0 ·
+Package and CLI: `calibrated-agent-evaluation` · import name: `calibrated_agent_evaluation` ·
+License: Apache-2.0 ·
 Source: [awslabs/calibrated-agent-evaluation](https://github.com/awslabs/calibrated-agent-evaluation)

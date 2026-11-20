@@ -18,7 +18,7 @@ On a one-sample log of the repository's OrderBot:
 
 A log holds one sample per dataset row, and ingest stores one trace per sample. From Python, use
 `normalize_all(InspectEvalLog(path=...))` for every sample; `normalize()` on a multi-sample log
-refuses unless `sample_id=` names one, so it cannot quietly read a fraction of the log.
+raises an error unless `sample_id=` names one, so you always know which samples were read.
 
 ## Or let Calibrated Agent Evaluation run the task
 
@@ -42,4 +42,4 @@ sample's metadata can carry the trace id and taxonomy cell.
   the log. Check that the content you need is in the trace before relying on it.
 - The trace above is the OrderBot failure the bundled judge kit is built on: the order was outside
   the 30-day return window, the broken policy tool said it was within it, and the agent refunded
-  $89.99 on its word. Ingest records what happened; judging it is the later stages' job.
+  $89.99 on its word. Ingest records what happened; judging it comes later.

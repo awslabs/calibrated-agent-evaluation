@@ -632,7 +632,6 @@ FRAGMENTS: tuple[Fragment, ...] = (
         ("python", "docs/site/examples/improve_guard.py", "--detail"),
     ),
     Fragment("example-crew-attribution", ("python", "docs/site/examples/crew_attribution.py")),
-    Fragment("example-decision-flips", ("python", "docs/site/examples/decision_flips.py")),
     Fragment("crew-span-tree-clm-4471", suffix=".md", render=crew_span_tree),
     Fragment("guide-judge-file", suffix=".md", render=annotated_judge_file),
     *(
@@ -851,6 +850,32 @@ FRAGMENTS: tuple[Fragment, ...] = (
         shown="calibrated-agent-evaluation define --taxonomy taxonomy.json --out frame.json",
         workdir=True,
         setup=(Step(("cp", "{repo}/docs/site/examples/guides/taxonomy.json", "taxonomy.json")),),
+    ),
+    Fragment(
+        "walkthrough-generate-template",
+        (
+            "calibrated-agent-evaluation",
+            "generate",
+            "--frame",
+            "frame.json",
+            "--out",
+            "inputs.jsonl",
+        ),
+        shown="calibrated-agent-evaluation generate --frame frame.json --out inputs.jsonl",
+        workdir=True,
+        setup=(
+            Step(("cp", "{repo}/docs/site/examples/guides/taxonomy.json", "taxonomy.json")),
+            Step(
+                (
+                    "calibrated-agent-evaluation",
+                    "define",
+                    "--taxonomy",
+                    "taxonomy.json",
+                    "--out",
+                    "frame.json",
+                )
+            ),
+        ),
     ),
     Fragment(
         "guide-cluster-ratify",

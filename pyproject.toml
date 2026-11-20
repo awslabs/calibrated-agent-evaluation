@@ -1,7 +1,7 @@
 [project]
 name = "calibrated-agent-evaluation"
 version = "0.1.0"
-description = "Error analysis and judge calibration for AI agents: certify an LLM judge against human labels, then gate CI on failure rates corrected for its error."
+description = "Error analysis and judge calibration for AI agents: certify an LLM judge against human labels before its verdicts can gate CI, and report failure rates corrected for its error."
 requires-python = ">=3.11.5"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE", "THIRD-PARTY-LICENSES"]

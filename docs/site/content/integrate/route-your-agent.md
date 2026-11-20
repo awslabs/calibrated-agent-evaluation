@@ -95,7 +95,7 @@ trace, so failures can later be broken down by line and peril.
 The default `global.` model ID is a cross-Region inference profile, so Bedrock may process the
 agent's prompts in other Regions. If you have data-residency requirements, pass an in-Region model
 ID or a geographic profile; see
-[Bedrock model IDs and Regions](../getting-started/installation.md#bedrock-model-ids-and-regions).
+[Bedrock model IDs and Regions](../how-to/install.md#bedrock-model-ids-and-regions).
 
 The executor sends `temperature=0.0` by default. The newest Anthropic models reject an explicit
 temperature, so pass `temperature=None` to send none.
@@ -292,11 +292,11 @@ so a labeler or a judge reads the conversation rather than its opening line.
 
 The simulated person is `strands_evals`'s `ActorSimulator` (the `synth` extra), and it writes only
 the user turns. The library never writes an agent turn: each one comes back from your agent through the
-executor, and a turn that produces no text is refused rather than recorded as an empty reply.
+executor, and a turn that produces no text stops the run with an error.
 
 ## Next
 
-- [Look and label](../guides/lifecycle/3-look-and-label.md) takes stored traces through labeling,
+- [Read and label traces](../walkthrough/label.md) takes stored traces through labeling,
   judging and the gate.
 - The [`calibrated_agent_evaluation.execute`
   reference](../reference/calibrated_agent_evaluation/execute/index.md) lists every executor

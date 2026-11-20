@@ -53,4 +53,4 @@ An owned trace with the model's messages and tool calls. A crew becomes a tree o
   only as an LLM span. A trace holds agent steps and tool calls, so those calls are not separate
   nodes.
 - Traceloop emits empty duplicate `invoke_agent LangGraph` spans; ingest counts them as nodes with
-  no content and reports the count rather than hiding them.
+  no content and reports the count.
