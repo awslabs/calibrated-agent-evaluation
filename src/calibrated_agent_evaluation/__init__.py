@@ -1,10 +1,9 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Calibrated Agent Evaluation: rigorous, statistically honest evaluation of AI agents.
+"""Calibrated Agent Evaluation: error analysis and judge calibration for AI agents.
 
-The distribution is ``calibrated-agent-evaluation`` (not yet on PyPI); the command-line entry point
-is ``calibrated-agent-evaluation``.
+The distribution and the command-line entry point are both ``calibrated-agent-evaluation``.
 """
 
 from importlib.metadata import PackageNotFoundError, version

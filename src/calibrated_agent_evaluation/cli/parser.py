@@ -225,7 +225,7 @@ def build_parser() -> argparse.ArgumentParser:
     """Build the top-level ``calibrated-agent-evaluation`` parser with a subparser per stage."""
     parser = argparse.ArgumentParser(
         prog="calibrated-agent-evaluation",
-        description="Calibrated Agent Evaluation: rigorous, statistically honest evaluation of AI "
+        description="Calibrated Agent Evaluation: error analysis and judge calibration for AI "
         "agents.",
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")

@@ -86,3 +86,25 @@ def test_an_unreachable_langfuse_is_reported_not_reachable(
     monkeypatch.setenv("LANGFUSE_SECRET_KEY", "sk-lf-x")
     assert main(["--backend", "langfuse", "--root", str(tmp_path), "doctor"]) == 1
     assert "Langfuse backend: NOT reachable" in capsys.readouterr().err
+
+
+def test_the_python_requirement_is_read_from_the_package_metadata(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from importlib.metadata import metadata
+
+    required = metadata("calibrated-agent-evaluation")["Requires-Python"]
+    main(["--root", str(tmp_path / "store"), "doctor"])
+    assert f"(Calibrated Agent Evaluation requires Python {required})" in capsys.readouterr().out
+
+
+def test_a_source_tree_without_metadata_omits_the_requirement(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from calibrated_agent_evaluation.cli.stages import doctor
+
+    monkeypatch.setattr(doctor, "required_python", lambda: None)
+    main(["--root", str(tmp_path / "store"), "doctor"])
+    out = capsys.readouterr().out
+    assert "requires Python" not in out
+    assert "Python: " in out

@@ -7,7 +7,7 @@ hide:
 # Calibrated Agent Evaluation
 
 <div class="hero-tagline" markdown>
-Statistically honest evaluation of AI agents.<br>Mark the doubtful. Measure the rest.
+Error analysis and judge calibration for AI agents.<br>Mark the doubtful. Measure the rest.
 </div>
 
 <p class="hero-lead">

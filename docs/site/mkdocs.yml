@@ -1,7 +1,7 @@
 # Calibrated Agent Evaluation documentation site (MkDocs + Material). Build or serve it with the
 # `just docs` / `just docs-build` recipes. Pure-Python toolchain (no Node); see docs/site/README.md.
 site_name: Calibrated Agent Evaluation
-site_description: Statistically honest evaluation of AI agents, with LLM judges calibrated against human labels.
+site_description: Error analysis and judge calibration for AI agents. Certify an LLM judge against human labels, then gate CI on failure rates corrected for its error.
 # The canonical base sets the absolute asset URLs Material emits, including the search worker's.
 # The defaults are the GitHub Pages site and the GitHub repository; set these to build for another
 # host.
