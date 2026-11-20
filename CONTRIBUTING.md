@@ -79,8 +79,12 @@ opt-in:
 - The Bedrock tests need AWS credentials with Bedrock access and an opt-in variable, for example
   `CALIBRATED_AGENT_EVALUATION_JUDGE_LIVE=1 uv run pytest -m integration -k judges_live`. They make
   billed model calls.
-- `just test-agentcore-live` runs the AgentCore suite against a real account. See
-  `tests/integration/agentcore/` for the role and variables it needs.
+- `just test-agentcore-live` runs the AgentCore suite against a real account, as the role in
+  [`infra/agentcore-live-test-role.yaml`](infra/README.md). See `tests/integration/agentcore/` for
+  the variables it needs. CI does not run it yet: the manual `integration-aws.yml` workflow exists,
+  but the role trusts only an IAM role or user. Running it from GitHub Actions needs a GitHub OIDC
+  provider in the test account and a trust statement for this repository's `aws-integration`
+  environment.
 
 The variables are listed under [Environment variables](#environment-variables).
 
@@ -107,6 +111,51 @@ Individually:
 | `just test-extras` | install each extra alone from the built wheel and import what it enables |
 | `just test-integration` | the opt-in suite against a running Langfuse (`just langfuse-up` first) |
 | `just docs-build`| strict docs-site build                                   |
+
+## Code layout
+
+The methodology plane lives under `src/calibrated_agent_evaluation/` and imports no vendor type:
+
+| Package        | Responsibility                                                          |
+| -------------- | ----------------------------------------------------------------------- |
+| `schema/`      | normalized `Trace`/`Span`/`Label` Pydantic models; the serialization contract |
+| `backends/`    | trace-store abstraction; local SQLite/CSV + Langfuse adapters           |
+| `normalize/`   | trajectory normalizer (Inspect / Strands / OTel → normalized `Trace`)   |
+| `ingest/`      | `calibrated-agent-evaluation ingest` / `calibrated-agent-evaluation capture`: files, directories, datasets, Langfuse → store; seeded `--sample` draws |
+| `dumpload/`    | the CSV+JSON dump/load registry behind `calibrated-agent-evaluation dump` / `calibrated-agent-evaluation load`        |
+| `execute/`     | execution plane: Inspect + Strands executors, judge models, Bedrock renderer and embedder, benchmark tasks, cassette record/replay |
+| `stats/`       | statistics primitives (Wilson, Rogan–Gladen, McNemar, agreement, drift, multiplicity) and the coverage studies |
+| `calibrate/`   | the judge-calibration engine (the first trust gate), sample-size planners, single-use gold ledger |
+| `enforce/`     | tiered lint / enforcement policy layer and judge admission              |
+| `sampling/`    | covering-array discovery + stratified production frames                 |
+| `cluster/`     | failure-mode clustering, coverage & saturation                          |
+| `synth/`       | input synthesis + dedup/diversity guards                                |
+| `attribution/` | multi-agent walk-back attribution                                       |
+| `judges/`      | judge-execution runtime; workflow/span/process judge levels             |
+| `subjective/`  | subjective outcomes: atom decomposition, preference pairs, Bradley–Terry / Elo |
+| `scorers/`     | heuristic scorers: exact match, Levenshtein, numeric diff, JSON diff, valid JSON |
+| `scenarios/`   | test scenarios and dataset slices built from human FAILs and an answer key (vendor-free) |
+| `probe/`       | black-box probing toolkit                                               |
+| `bias/`        | CALM bias battery (the second trust gate)                               |
+| `run/`         | the CI gate, corrected-rate trend, drift report, staleness and judge re-check records |
+| `improve/`     | causal before/after guards, the pre-registration ledger, crew evaluation |
+| `review/`      | the FastHTML review web app (optional `[ui]` extra), codebooks, the agreement gate |
+| `cli/`         | the `calibrated-agent-evaluation` pipeline CLI                                                  |
+| `flagship/`    | the end-to-end proof orchestrator (composes the above; `just flagship`) |
+| `agentcore/`   | the opt-in Amazon Bedrock AgentCore plug-in (`[agentcore]`): the account check (`calibrated-agent-evaluation doctor --agentcore`), the window ingest (`calibrated-agent-evaluation ingest --source agentcore`), the Runtime executor (`calibrated-agent-evaluation generate --run --executor agentcore`), dataset publish, pull and simulated runs with session-level judging (`calibrated-agent-evaluation dataset publish`,
+`pull`, `run`), and the `strands-agents-evals` failure detector with its vocabulary and draft namer (live model calls capped by `max_live_calls`, 0 by default); imports no AWS SDK until used |
+
+To exercise the pipeline from a checkout, seed the shared fixture corpus and walk a stage:
+
+```bash
+uv run python scripts/seed_fixture.py --backend local
+uv run calibrated-agent-evaluation cluster
+uv run calibrated-agent-evaluation run --ci --verdicts human   # non-zero if the gate fails
+```
+
+`just flagship --local-only` takes both reference agents through probe, define, generate, label,
+cluster, judge, run and improve, and checks the results against committed oracles. Start Langfuse
+with `just langfuse-up` and drop `--local-only` to add the Langfuse leg.
 
 ## Conventions that matter
 
