@@ -29,7 +29,7 @@ from calibrated_agent_evaluation.cli.dispatch import EXIT_OK
 from calibrated_agent_evaluation.cli.errors import StaleReadError
 from calibrated_agent_evaluation.schema.errors import BackendError
 from calibrated_agent_evaluation.schema.types import Label, Trace
-from cli_store_helpers import trace
+from cli_store_helpers import admit_default_judge, default_judge_rater_id, trace
 
 LAG = 5.0
 
@@ -121,6 +121,7 @@ def _verdict(trace_id: str = "T1", outcome: str = "FAIL") -> Label:
         outcome=outcome,  # type: ignore[arg-type]
         critique="v",
         failure_mode="over_refund",
+        rater_id=default_judge_rater_id(),
     )
 
 
@@ -285,6 +286,7 @@ def test_run_right_after_judge_gates_every_new_verdict(tmp_path, monkeypatch, cl
         judge.put_trace(trace(f"T{i:03d}"))
         judge.put_score(_verdict(f"T{i:03d}", "FAIL"))
 
+    admit_default_judge(root)
     argv = ["--backend", "langfuse", "--root", str(root), "run", "--n-resamples", "199"]
     assert main(argv) == EXIT_OK
     out = capsys.readouterr().out

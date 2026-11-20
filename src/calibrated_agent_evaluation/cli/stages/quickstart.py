@@ -108,7 +108,7 @@ def quickstart_handler(args: argparse.Namespace) -> StageOutcome:
         f"    {here} label --serve --rater YOUR_ID\n"
         "    review traces in the UI\n"
         f"  - {install_hint('stats')}\n"
-        "    unlocks calibrated judges and honest rates\n"
+        "    judge calibration and corrected failure rates\n"
         f"  - {here} cluster\n"
         "    check failure-mode saturation and coverage\n"
         f"  - {here} run --verdicts human --ci\n"

@@ -13,6 +13,13 @@ Reuses the ``calibrated_agent_evaluation.run`` surface:
     source is never gated in its place. The source is recorded on the run record's inputs as
     ``verdict_source``. ``--ci`` turns a failing gate into exit 1 so a regression blocks CI.
 
+    Judge verdicts are gated only when every judge that made them is admitted, as
+    ``calibrated-agent-evaluation judge`` admits one: a CERTIFIED calibration record and a CLEAR
+    bias battery under ``<root>/records/`` for the version (``<judge_id>@<fingerprint>``) the
+    verdicts carry, or, with ``--judge FILE``, the full admission chain on that file. Verdicts from
+    any other judge, including ones brought in with ``calibrated-agent-evaluation load``, are
+    refused with ``JudgeNotAdmittedError`` before anything is gated.
+
     The gate reads the production-representative traces only: its bound assumes a random sample,
     and a hunted discovery trace is not one. Each verdict counts under the mode it carries (and the
     agent of the span it is about), a judge re-run counts once (``latest_verdicts``), and a span
@@ -59,7 +66,7 @@ from calibrated_agent_evaluation.cli.dispatch import (
     EXIT_OK,
     StageOutcome,
 )
-from calibrated_agent_evaluation.cli.errors import CliError, UsageError
+from calibrated_agent_evaluation.cli.errors import CliError, JudgeNotAdmittedError, UsageError
 from calibrated_agent_evaluation.schema.serde import latest_verdicts
 from calibrated_agent_evaluation.schema.types import Label, Trace
 
@@ -165,6 +172,8 @@ def _run(args: argparse.Namespace, held: contextlib.ExitStack) -> StageOutcome:
                 "(`calibrated-agent-evaluation judge`) first"
             )
         all_labels = mine
+    if verdict_source == "judge":
+        _refuse_unadmitted_judges(all_labels, traces, root, judge_files)
     from calibrated_agent_evaluation.attribution.labels import span_agents
 
     agents = span_agents(traces)
@@ -733,6 +742,91 @@ def _admission_refusal(judge: Any, record: Any, battery: Any) -> tuple[str, str]
     else:
         plain_why = "this judge didn't pass its bias check, so its verdicts aren't trusted"
     return gate.refusal_reason or "refused", plain_why
+
+
+def _refuse_unadmitted_judges(
+    labels: list[Label], traces: list[Trace], root: Path, judge_files: list[JudgeFile]
+) -> None:
+    """Refuse to gate judge verdicts unless every judge that made them is admitted.
+
+    ``judge`` writes verdicts only for an admitted judge, but verdicts can also arrive with
+    ``load`` or from an older store. Each gated verdict names its judge as
+    ``<judge_id>@<fingerprint>``; that judge needs a CERTIFIED calibration record and a CLEAR bias
+    battery under ``root`` for the same fingerprint, the newest of each counting. With ``--judge``
+    files the full admission chain runs on each file instead.
+    """
+    from calibrated_agent_evaluation.cli.records import latest_for_judge, load_records_of
+    from calibrated_agent_evaluation.judges import verdict_rater_id
+
+    production = {t.trace_id for t in traces if t.frame == _PRODUCTION}
+    raters = sorted(
+        {
+            lb.rater_id or ""
+            for lb in labels
+            if lb.kind == "llm-judge"
+            and lb.failure_mode is not None
+            and not lb.span_defect
+            and lb.trace_id in production
+        }
+    )
+    if not raters:
+        return
+    calibrations = load_records_of(root, "calibration")
+    batteries = load_records_of(root, "bias")
+    by_file = {verdict_rater_id(jf.judge): jf for jf in judge_files}
+    refused: list[str] = []
+    for rater in raters:
+        jf = by_file.get(rater)
+        if jf is not None:
+            judge = jf.judge
+            why = _admission_refusal(
+                judge, latest_for_judge(calibrations, judge), latest_for_judge(batteries, judge)
+            )
+            if why is not None:
+                refused.append(f"{judge.judge_id!r} ({why[0]})")
+            continue
+        judge_id, sep, fingerprint = rater.rpartition("@")
+        if not sep or not judge_id:
+            named = repr(rater) if rater else "a judge with no rater id"
+            refused.append(f"{named} (the verdicts carry no judge fingerprint)")
+            continue
+        why_not = _record_refusal(judge_id, fingerprint, calibrations, batteries)
+        if why_not is not None:
+            refused.append(f"{judge_id!r} ({why_not})")
+    if refused:
+        raise JudgeNotAdmittedError(
+            "refusing to gate verdicts from a judge that is not admitted (certified against "
+            f"human labels, and its bias battery CLEAR): {'; '.join(refused)}. Calibrate and "
+            "bias-check the judge, score the traces with `calibrated-agent-evaluation judge`, or "
+            "gate human labels with --verdicts human",
+            refusals=tuple(refused),
+        )
+
+
+def _record_refusal(
+    judge_id: str, fingerprint: str, calibrations: list[Any], batteries: list[Any]
+) -> str | None:
+    """Why the judge ``judge_id@fingerprint`` is not admitted on its stored records, or ``None``."""
+
+    def newest(records: list[Any]) -> Any:
+        mine = [
+            (i, r)
+            for i, r in enumerate(records)
+            if r.judge_id == judge_id and r.judge_fingerprint == fingerprint
+        ]
+        return max(mine, key=lambda ir: (ir[1].provenance.run_at, ir[0]))[1] if mine else None
+
+    record = newest(calibrations)
+    if record is None:
+        return "no calibration record for this version of the judge"
+    if record.result != "CERTIFIED":
+        return f"its newest calibration {record.calib_id!r} is {record.result}"
+    battery = newest(batteries)
+    if battery is None:
+        return f"calibration {record.calib_id!r}, but no bias battery"
+    if battery.verdict != "CLEAR":
+        return f"its newest bias battery {battery.battery_id!r} is {battery.verdict}"
+    return None
 
 
 def _agent_matches(label: Label, jf: JudgeFile, agents: dict[tuple[str, str], str]) -> bool:

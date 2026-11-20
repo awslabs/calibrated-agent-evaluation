@@ -17,7 +17,7 @@ from calibrated_agent_evaluation.backends.dashboard import LocalDashboardSink
 from calibrated_agent_evaluation.cli import main
 from calibrated_agent_evaluation.cli.dispatch import EXIT_DOMAIN_ERROR, EXIT_OK
 from calibrated_agent_evaluation.cli.records import load_records_of
-from cli_store_helpers import seed_verdicts
+from cli_store_helpers import admit_default_judge, seed_verdicts
 
 
 @pytest.fixture
@@ -25,6 +25,7 @@ def root(tmp_path, monkeypatch):
     monkeypatch.delenv("CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT", raising=False)
     root = tmp_path / "store"
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     return root
 
 
@@ -99,6 +100,7 @@ def test_published_drift_points_match_the_recorded_drift(tmp_path, monkeypatch, 
     baseline, now = tmp_path / "baseline", tmp_path / "now"
     seed_traces(baseline, [owned_trace(f"B{i}", chars=80 + i % 20) for i in range(60)])
     seed_traces(now, [owned_trace(f"T{i}", chars=90 + i % 20) for i in range(60)], n_fail=2)
+    admit_default_judge(now)
     argv = ("--drift-baseline", str(baseline), "--drift-feature", "input-chars")
     assert _run(now, "--publish", "local", *argv) == EXIT_OK
     (record,) = load_records_of(now, "run")

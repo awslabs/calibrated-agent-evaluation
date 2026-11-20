@@ -128,8 +128,10 @@ STAGE_DESCRIPTION: dict[str, str] = {
     "`calibrated-agent-evaluation run --verdicts scorer`.",
     "run": "The CI gate: every failure mode's pass-rate 95% lower bound must clear --threshold "
     "(--ci makes a failure exit 1), over the LLM-judge verdicts or, with --verdicts scorer or "
-    "--verdicts human, the code-scorer verdicts or the human labels. With --judge, each judged "
-    "mode's rate is corrected for the judge's error. Each run is recorded under "
+    "--verdicts human, the code-scorer verdicts or the human labels. LLM-judge verdicts are gated "
+    "only when the judge that made them is admitted (a certifying calibration and a CLEAR bias "
+    "battery under <root>/records/); verdicts from any other judge are refused. With --judge, "
+    "each judged mode's rate is corrected for the judge's error. Each run is recorded under "
     "<root>/records/run/. Exit codes: 0 the run finished (and, with --ci, the gate passed); 1 the "
     "gate failed under --ci, a refusal, or a failed --publish; 2 a usage error; 3 with "
     "--fail-on-drift, input drift or a stale judge was flagged while the gate did not fail.",

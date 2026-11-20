@@ -23,6 +23,7 @@ __all__ = [
     "DOMAIN_ERRORS",
     "CliError",
     "GoldSetReusedError",
+    "JudgeNotAdmittedError",
     "JudgeNotCertifiedError",
     "StaleReadError",
     "UsageError",
@@ -70,6 +71,18 @@ class JudgeNotCertifiedError(CliError):
         self.reason = reason
         self.judge_path = judge_path
         self.root = root
+
+
+class JudgeNotAdmittedError(CliError):
+    """``run`` was asked to gate judge verdicts from a judge that is not admitted.
+
+    ``refusals`` names each judge in scope that lacks a certifying calibration or a CLEAR bias
+    battery for the version that made its verdicts, with the reason, in the order reported.
+    """
+
+    def __init__(self, message: str, *, refusals: tuple[str, ...]) -> None:
+        super().__init__(message)
+        self.refusals = refusals
 
 
 class GoldSetReusedError(CliError):

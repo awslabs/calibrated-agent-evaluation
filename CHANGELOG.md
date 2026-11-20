@@ -5,6 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- `calibrated-agent-evaluation run` gates LLM-judge verdicts only when the judge that made them is
+  admitted: a CERTIFIED calibration record and a CLEAR bias battery for the same judge version
+  under `<root>/records/`, or the full admission chain on a `--judge FILE`. Verdicts from any other
+  judge, such as ones brought in with `load` without their records, are refused with
+  `JudgeNotAdmittedError` (exit 1). Before, `judge` refused to score with an unadmitted judge, but
+  `run` gated whatever judge verdicts were in scope.
+
 ## [0.1.0] - 2026-11-24
 
 The first public release.

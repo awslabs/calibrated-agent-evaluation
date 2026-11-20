@@ -19,7 +19,7 @@ import pytest
 from calibrated_agent_evaluation.cli import main
 from calibrated_agent_evaluation.cli.dispatch import EXIT_DOMAIN_ERROR, EXIT_OK
 from calibrated_agent_evaluation.cli.records import NO_LEDGER_HEAD, load_records_of
-from cli_store_helpers import seed_verdicts
+from cli_store_helpers import admit_default_judge, seed_verdicts
 
 
 @pytest.fixture
@@ -76,6 +76,7 @@ def test_code_verdicts_with_no_recorded_scorer_gate_with_a_note(root, capsys):
 
 def test_judge_verdicts_record_no_scorer_lanes(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root, "--ci") == EXIT_OK
     (record,) = load_records_of(root, "run")
     assert record.scorer_lanes == ()
@@ -94,6 +95,7 @@ def _atoms(tmp_path, *, objective=(), subjective=()) -> str:
 
 def test_an_objective_atom_is_gated(root, tmp_path, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     atoms = _atoms(tmp_path, objective=("over_refund",), subjective=("tone",))
     assert _run(root, "--ci", "--atoms", atoms) == EXIT_OK
     (record,) = load_records_of(root, "run")
@@ -102,6 +104,7 @@ def test_an_objective_atom_is_gated(root, tmp_path, capsys):
 
 def test_a_subjective_dimension_cannot_be_gated(root, tmp_path, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     atoms = _atoms(tmp_path, objective=("tone",), subjective=("over_refund",))
     assert _run(root, "--ci", "--atoms", atoms) == EXIT_DOMAIN_ERROR
     assert "'over_refund' is subjective" in capsys.readouterr().err
@@ -110,6 +113,7 @@ def test_a_subjective_dimension_cannot_be_gated(root, tmp_path, capsys):
 
 def test_a_mode_the_atoms_file_does_not_declare_is_refused(root, tmp_path, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     atoms = _atoms(tmp_path, objective=("wrong_item",))
     assert _run(root, "--atoms", atoms) == EXIT_DOMAIN_ERROR
     assert "'over_refund' not found in AtomSet" in capsys.readouterr().err
@@ -148,6 +152,7 @@ def test_a_missing_atoms_file_is_refused(root, tmp_path, capsys):
 
 def test_every_run_record_carries_the_ledger_head(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root) == EXIT_OK
     assert main(["--root", str(root), "improve", "--register", "over_refund",
                  "--min-reduction", "0.05"]) == EXIT_OK  # fmt: skip

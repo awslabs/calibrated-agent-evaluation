@@ -22,7 +22,7 @@ from calibrated_agent_evaluation.cli.dispatch import EXIT_DOMAIN_ERROR, EXIT_OK
 from calibrated_agent_evaluation.cli.records import load_records_of
 from calibrated_agent_evaluation.run import ModeKey
 from calibrated_agent_evaluation.schema.types import Label, Span, Trace
-from cli_store_helpers import seed_verdicts, trace
+from cli_store_helpers import admit_default_judge, admit_raters, seed_verdicts, trace
 
 
 @pytest.fixture
@@ -81,6 +81,7 @@ def test_two_judges_on_one_trace_are_gated_under_their_own_modes(root, capsys):
     labels = [_verdict(t, "FAIL" if i < 40 else "PASS", "m_a", "A@1") for i, t in enumerate(ids)]
     labels += [_verdict(t, "PASS", "m_b", "B@1") for t in ids]
     _store(root, ids, labels)
+    admit_raters(root, "A@1", "B@1")
 
     assert _run(root, "--ci") == EXIT_DOMAIN_ERROR
     err = capsys.readouterr().err
@@ -101,6 +102,7 @@ def test_a_judge_re_run_with_new_critiques_does_not_double_the_sample(root, caps
         _verdict(t, "FAIL" if i < 4 else "PASS", "m", "j@f", "run 1") for i, t in enumerate(ids)
     ]
     _store(root, ids, first)
+    admit_raters(root, "j@f")
     assert _run(root, "--ci") == EXIT_DOMAIN_ERROR  # 36/40: lower bound 0.795 < 0.80
     capsys.readouterr()
 
@@ -117,6 +119,7 @@ def test_the_newest_verdict_of_a_re_run_is_the_one_counted(root, capsys):
     ids = [f"T{i:03d}" for i in range(50)]
     _store(root, ids, [_verdict(t, "FAIL", "m", "j@f", "old") for t in ids])
     _store(root, [], [_verdict(t, "PASS", "m", "j@f", "new") for t in ids])
+    admit_raters(root, "j@f")
     assert _run(root, "--ci") == EXIT_OK
     assert _gate_record(root).gate_modes[0].n_fail == 0
 
@@ -214,6 +217,7 @@ def test_span_defects_are_not_gated(root, capsys):
         ),
     ]
     _store(root, ["T0"], labels)
+    admit_raters(root, "j@1")
     _run(root)
     assert "CI gate over 1 judge verdicts" in capsys.readouterr().out
     (gate,) = _gate_record(root).gate_modes
@@ -223,6 +227,7 @@ def test_span_defects_are_not_gated(root, capsys):
 def test_discovery_traces_are_left_out_of_the_gate_and_the_output_says_so(root, capsys):
     seed_verdicts(root, 60, 0, mode="m")
     seed_verdicts(root, 0, 15, mode="m", frame="discovery", prefix="D")
+    admit_default_judge(root)
     assert _run(root, "--ci") == EXIT_OK
     out = capsys.readouterr().out
     assert "CI gate over 60 judge verdicts on 75 stored trace(s)" in out
