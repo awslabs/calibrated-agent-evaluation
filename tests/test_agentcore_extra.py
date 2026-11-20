@@ -19,14 +19,14 @@ _AGENTCORE_PINS = {
     "botocore": ">=1.43.103,<2",
     "bedrock-agentcore": ">=1.24.2,<2",
     "jinja2": ">=3.1.6,<4",
-    "strands-agents-evals": ">=1.6.0,<2",
+    "strands-agents-evals": ">=1.6.0,<1.7",
     # Declared because the runtime executor imports urllib3's errors. The floor, 1.26.5, imports on
     # Python 3.11 to 3.13, while 1.26.4 fails on 3.12 and 3.13; 3.14 is not checked yet.
     "urllib3": ">=1.26.5,!=2.2.0,<3",
     # 1.48 fixes GHSA-3w55-933p-8pv5 and GHSA-763v-5pjm-fx36 in the default session storage.
     "strands-agents": ">=1.48,<2",
 }
-_STRANDS_EVALS_PIN = ">=1.6.0,<2"
+_STRANDS_EVALS_PIN = ">=1.6.0,<1.7"
 
 
 def _declared_for_extra(extra: str) -> list[Requirement]:
@@ -97,5 +97,5 @@ def test_an_exact_pin_is_reported() -> None:
         [Requirement("strands-agents-evals==1.6.0")], {"strands-agents-evals": _STRANDS_EVALS_PIN}
     )
 
-    assert "strands-agents-evals is ==1.6.0, expected >=1.6.0,<2" in problems
+    assert "strands-agents-evals is ==1.6.0, expected >=1.6.0,<1.7" in problems
     assert "strands-agents-evals has no major cap" in problems

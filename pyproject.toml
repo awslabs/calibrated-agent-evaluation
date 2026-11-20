@@ -93,7 +93,9 @@ sampling = ["allpairspy>=2.5,<3"]
 # Apache-2.0. Floor is 1.6.0, the release whose simulator surface was re-introspected; the files the
 # borrow uses are unchanged since 1.0.0, and tests/test_synth_borrow_surface.py fails if a later 1.x
 # moves them. Opt-in only; the vendor SDK is confined to `synth/borrow/` and `agentcore/`.
-synth = ["strands-agents-evals>=1.6.0,<2"]
+# Capped below 1.7: 1.10 changed the detector prompt and failure vocabulary the agentcore
+# detectors are verified and recorded against.
+synth = ["strands-agents-evals>=1.6.0,<1.7"]
 # Run Strands Agent/Graph/Swarm programmatically into normalized Traces via StrandsExecutor.
 # Apache-2.0, checked at 1.45.0; the same package the `corpus` group pins. The vendor SDK is
 # confined to `execute/`. `execute/strands_capture.py` (behind both `calibrated-agent-evaluation capture` and
@@ -142,7 +144,7 @@ agentcore = [
     # BSD-3-Clause, checked at 3.1.6: the AgentCore simulated user renders bedrock-agentcore's
     # actor prompt template with it (the SDK's own `simulation` extra declares it too).
     "jinja2>=3.1.6,<4",
-    "strands-agents-evals>=1.6.0,<2",
+    "strands-agents-evals>=1.6.0,<1.7",
     "urllib3>=1.26.5,!=2.2.0,<3",
     # Apache-2.0, checked at 1.45.0. The failure detector subclasses strands' Model and builds
     # BedrockModel, so the extra declares strands-agents itself, with the same range as [strands].
@@ -201,7 +203,7 @@ dev = [
     # The [synth] and [agentcore] extras must be importable for `just check` so the borrow adapter
     # and `calibrated_agent_evaluation.agentcore` are type-checked and tested against the real SDK surfaces. Floors match
     # the runtime extras.
-    "strands-agents-evals>=1.6.0,<2",
+    "strands-agents-evals>=1.6.0,<1.7",
     "boto3>=1.43.103,<2",
     "botocore>=1.43.103,<2",
     "bedrock-agentcore>=1.24.2,<2",
