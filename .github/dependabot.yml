@@ -12,6 +12,9 @@ updates:
 
   - package-ecosystem: uv
     directory: /
+    # Move only the lock, inside pyproject's ranges. The caps there are deliberate (vendor surfaces
+    # verified against one release line); widening one is a reviewed change, not a bot bump.
+    versioning-strategy: lockfile-only
     schedule:
       interval: weekly
     cooldown:

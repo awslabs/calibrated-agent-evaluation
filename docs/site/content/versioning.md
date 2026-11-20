@@ -62,6 +62,7 @@ against. Three are narrower:
 | `ui` | `python-fasthtml>=0.14,<0.15` | FastHTML is pre-1.0, so a minor release may break. The cap stops one arriving unreviewed. |
 | `inspect` | `inspect-ai>=0.3.242,<0.4` | Same reason: a 0.x package, capped at the next minor. The `bedrock` extra carries the same pin. |
 | `probe` | `inspect_evals>=0.14.3,<0.15`, `inspect-ai>=0.3.242,<0.3.288` | Also 0.x; the benchmark battery reads task names that a minor release can rename. inspect_evals 0.14 imports a symbol inspect-ai 0.3.288 removed. |
+| `synth`, `agentcore` | `strands-agents-evals>=1.6.0,<1.7` | The AgentCore failure detectors are verified and recorded against the 1.6 detector prompt and failure vocabulary; 1.10 changed both. |
 
 Raising any of these means re-checking the adapter against the new version first.
 
