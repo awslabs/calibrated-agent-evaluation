@@ -1,6 +1,6 @@
 # Calibrated Agent Evaluation
 
-> Statistically honest evaluation of AI agents. It reads an agent's traces, checks the LLM judge used to grade them against human labels, and reports only the numbers that evidence supports. When a number isn't ready, it refuses and says what to collect next. It is offline by default and ships as a Python library and CLI with no hosted service.
+> Error analysis and judge calibration for AI agents. It reads an agent's traces, checks the LLM judge used to grade them against human labels, and reports only the numbers that evidence supports. When a number isn't ready, it refuses and says what to collect next. It is offline by default and ships as a Python library and CLI with no hosted service.
 
 Calibrated Agent Evaluation evaluates agents from their traces rather than their code, so a hand-coded loop, an LLM+MCP composition, a single agent, and a crew all reduce to the same `Trace` and one gold label. A judge scores only after it agrees with human labels on both failures and passes, and after its verdicts hold steady under a bias battery. Failure rates are reported with the judge's measured error removed and a 95% range, and refused when the judge is too weak, the labels too few, or the rate sample under 150 traces. The base install has one runtime dependency (Pydantic); every capability beyond the offline local backend is an opt-in extra. Distribution name `calibrated-agent-evaluation`, CLI `calibrated-agent-evaluation`, import name `calibrated_agent_evaluation`, License Apache-2.0.
 

@@ -56,6 +56,14 @@ _DIST = re.compile(r"^\s*([A-Za-z0-9][A-Za-z0-9._-]*)")
 _EXTRA = re.compile(r"""extra\s*==\s*['"]([^'"]+)['"]""")
 
 
+def required_python() -> str | None:
+    """The installed distribution's ``Requires-Python``, or None for an uninstalled source tree."""
+    try:
+        return metadata("calibrated-agent-evaluation")["Requires-Python"]
+    except (PackageNotFoundError, KeyError):
+        return None
+
+
 def extras_and_requirements() -> dict[str, list[str]]:
     """Each extra the installed distribution declares, mapped to the distributions it needs.
 
@@ -117,10 +125,12 @@ def doctor_handler(args: argparse.Namespace) -> StageOutcome:
             "--agentcore, or drop them"
         )
     py = sys.version_info
+    required = required_python()
+    needs = f"  (Calibrated Agent Evaluation requires Python {required})" if required else ""
     lines: list[str] = [
         "calibrated-agent-evaluation doctor: Calibrated Agent Evaluation install report",
         "",
-        f"Python: {py.major}.{py.minor}.{py.micro}  (Calibrated Agent Evaluation needs >= 3.11)",
+        f"Python: {py.major}.{py.minor}.{py.micro}{needs}",
         "Default runtime: offline local backend (no extras needed, always available)",
         "",
         "Optional extras:",
