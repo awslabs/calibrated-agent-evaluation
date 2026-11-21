@@ -1,6 +1,7 @@
 <div class="diagram" markdown>
 
 ```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
 flowchart TD
     traces(["Does the agent already<br/>export traces?"])
     traces -- "as files" --> files["Ingest the files<br/><code>ingest</code>"]

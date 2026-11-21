@@ -19,6 +19,7 @@ three traces per mode, one of them failing, are too few to pass:
 ## The job
 
 ```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
 flowchart TD
     pr([PR opened]) --> load[Load the committed evaluation set]
     load --> add["Add the PR traces"]
@@ -27,7 +28,7 @@ flowchart TD
     src -->|LLM judge| trust{"judge admits it?<br/>certified and bias-checked"}
     trust -->|no: no verdicts written| refuse
     trust -->|yes| score["Score: recorded replies or live"]
-    score --> gate["calibrated-agent-evaluation run --ci"]
+    score --> gate["Gate: run --ci"]
     gate -->|all modes clear| pass(["exit 0: pass"])
     gate -->|a mode falls short| fail(["exit 1: fail"])
     gate -->|no verdicts| refuse(["exit 1: refusal"])

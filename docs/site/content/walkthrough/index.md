@@ -21,6 +21,7 @@ When you follow along on your own agent, the labels come from people on your tea
 <div class="diagram" markdown>
 
 ```mermaid
+%%{init: {"themeVariables": {"edgeLabelBackground": "transparent"}}}%%
 flowchart TD
     s0["0. Decide what good means"] --> s1["1. Make test inputs"]
     s1 --> s2["2. Read and label traces"]
