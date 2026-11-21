@@ -23,6 +23,7 @@ from calibrated_agent_evaluation.cli.dispatch import (
 from calibrated_agent_evaluation.cli.records import load_records_of
 from calibrated_agent_evaluation.run.drift_report import METHOD_JSD_COUNTS
 from cli_store_helpers import (
+    admit_default_judge,
     certified_calibration,
     clear_battery,
     owned_trace,
@@ -73,6 +74,7 @@ def test_traffic_like_the_baseline_reports_no_drift_and_records_the_report(
 ):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=80), n_fail=2)
+    admit_default_judge(root)
     assert _run(root, "--ci", "--fail-on-drift", *_drift_args(baseline)) == EXIT_OK
     out = capsys.readouterr().out
     assert "Input drift on input-chars: none found (60 current traces against 60" in out
@@ -91,6 +93,7 @@ def test_drifted_traffic_is_reported_but_never_changes_the_gate_without_the_flag
 ):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=300), n_fail=2)
+    admit_default_judge(root)
     assert _run(root, "--ci", *_drift_args(baseline)) == EXIT_OK
     out = capsys.readouterr().out
     assert "CI gate passed" in out
@@ -106,6 +109,7 @@ def test_fail_on_drift_exits_three_when_the_gate_passes_and_drift_is_flagged(
 ):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=300), n_fail=2)
+    admit_default_judge(root)
     assert _run(root, "--ci", "--fail-on-drift", *_drift_args(baseline)) == EXIT_DRIFT
     err = capsys.readouterr().err
     assert "CI gate passed" in err
@@ -115,6 +119,7 @@ def test_fail_on_drift_exits_three_when_the_gate_passes_and_drift_is_flagged(
 def test_a_failing_gate_under_ci_keeps_exit_one_even_with_drift_flagged(tmp_path, baseline, capsys):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=300), n_fail=20)
+    admit_default_judge(root)
     assert _run(root, "--ci", "--fail-on-drift", *_drift_args(baseline)) == EXIT_DOMAIN_ERROR
     err = capsys.readouterr().err
     assert "CI gate failed" in err
@@ -124,6 +129,7 @@ def test_a_failing_gate_under_ci_keeps_exit_one_even_with_drift_flagged(tmp_path
 def test_the_taxonomy_cell_mix_is_always_compared_and_never_flags(tmp_path, baseline, capsys):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=80, cells=("refund", "exchange")), n_fail=2)
+    admit_default_judge(root)
     assert _run(root, "--explain", *_drift_args(baseline)) == EXIT_OK
     out = capsys.readouterr().out
     assert "taxonomy-cell JSD" in out
@@ -141,6 +147,7 @@ def test_step_and_tool_call_features_are_compared_on_owned_traces(
 ):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=80, steps=5), n_fail=2)
+    admit_default_judge(root)
     assert _run(root, *_drift_args(baseline, feature)) == EXIT_OK
     (record,) = load_records_of(root, "run")
     assert record.input_drift is not None
@@ -153,6 +160,7 @@ def test_step_and_tool_call_features_are_compared_on_owned_traces(
 def test_too_few_traces_is_a_named_note_not_a_no_drift(tmp_path, baseline, capsys):
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=80)[:20])
+    admit_default_judge(root)
     assert _run(root, "--fail-on-drift", *_drift_args(baseline)) == EXIT_OK
     out = capsys.readouterr().out
     assert "Input drift on input-chars: not measured, too few traces to compare" in out
@@ -168,6 +176,7 @@ def test_probed_traces_have_no_steps_so_the_step_feature_is_not_measured(
 
     root = tmp_path / "now"
     seed_verdicts(root, 58, 2)
+    admit_default_judge(root)
     assert _run(root, "--explain", *_drift_args(baseline, "turns")) == EXIT_OK
     out = capsys.readouterr().out
     assert "60 current trace(s) have no turns" in out
@@ -246,6 +255,7 @@ def test_a_baseline_with_no_random_sample_is_refused(tmp_path, capsys):
     seed_traces(hunted, [owned_trace(f"H{i}", frame="discovery") for i in range(N)], rater_id=None)
     root = tmp_path / "now"
     seed_traces(root, _traces("T", chars=80), n_fail=2)
+    admit_default_judge(root)
     assert _run(root, *_drift_args(hunted)) == EXIT_DOMAIN_ERROR
     err = capsys.readouterr().err
     assert "none of them production-representative" in err

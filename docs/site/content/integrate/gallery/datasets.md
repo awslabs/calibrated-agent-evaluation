@@ -52,13 +52,13 @@ for trace in load_traces(JSONLDataset(path=Path("captures/week-30.jsonl"), mappi
 ## What you get
 
 One owned trace per record, tagged with the `discovery` frame. A benchmark slice was collected to
-find failures, not sampled from your production traffic, so Calibrated Agent Evaluation never
-estimates a production rate from it.
+find failures, not sampled from your production traffic, so the toolkit estimates no production
+rate from it.
 
 ## Limits
 
 - A dataset's own `success` or `score` column may be copied onto the taxonomy cell as a field to
-  filter by, but it is never turned into a gold label. Labels come from your reviewers.
+  filter by, but it does not become a label. Labels come from your reviewers.
 - The third session in the slice is a code-action agent whose tool use is written into its reply
   text, so it comes in with 0 tool calls.
 - `--format hf` downloads every parquet shard of the repo before it reads the first record. For

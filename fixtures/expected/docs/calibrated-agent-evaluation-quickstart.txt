@@ -19,7 +19,7 @@ judged yet. Next steps:
     calibrated-agent-evaluation --root $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT label --serve --rater YOUR_ID
     review traces in the UI
   - uv sync --inexact --extra stats
-    unlocks calibrated judges and honest rates
+    judge calibration and corrected failure rates
   - calibrated-agent-evaluation --root $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT cluster
     check failure-mode saturation and coverage
   - calibrated-agent-evaluation --root $CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT run --verdicts human --ci

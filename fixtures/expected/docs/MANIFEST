@@ -7,7 +7,6 @@ calibrated-agent-evaluation-run-ci.txt
 crew-span-tree-clm-4471.md
 example-calibration-sizing.txt
 example-crew-attribution.txt
-example-decision-flips.txt
 example-discipline-refusals.txt
 example-improve-guard-detail.txt
 example-improve-guard.txt
@@ -121,3 +120,4 @@ tutorial-labeled-trace.txt
 tutorial-prompt-revision.txt
 tutorial-run-ci-explain.txt
 tutorial-run-ci.txt
+walkthrough-generate-template.txt

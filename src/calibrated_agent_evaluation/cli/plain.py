@@ -410,6 +410,17 @@ def _judge_not_certified(exc: BaseException) -> PlainError:
     return PlainError(headline, f"run `{calibrate_cmd}` first.")
 
 
+def _judge_not_admitted(exc: BaseException) -> PlainError:
+    refusals = getattr(exc, "refusals", ())
+    which = f": {'; '.join(refusals)}" if refusals else ""
+    return PlainError(
+        "These judge verdicts came from a judge that hasn't passed its check against your labels "
+        f"and its bias check, so they can't gate the build{which}.",
+        "calibrate and bias-check the judge, then score the traces with "
+        "`calibrated-agent-evaluation judge`; or gate your human labels with --verdicts human.",
+    )
+
+
 def _gold_set_reused(exc: BaseException) -> PlainError:
     prior = getattr(exc, "prior_result", None)
     outcome = {"CERTIFIED": "it certified that judge", "REFUSED": "it refused that judge"}
@@ -495,6 +506,7 @@ def default_error_explainers() -> dict[str, ErrorExplainer]:
             "certify a more accurate judge, or label the sample by hand.",
         ),
         "JudgeNotCertifiedError": _judge_not_certified,
+        "JudgeNotAdmittedError": _judge_not_admitted,
         "LikertNotAllowedError": _const(
             "The judge file scores on a Likert (1-5 style) scale, and Calibrated Agent Evaluation "
             "judges give one "

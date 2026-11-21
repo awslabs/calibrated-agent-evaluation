@@ -13,6 +13,7 @@ from calibrated_agent_evaluation.cli import main
 from calibrated_agent_evaluation.cli.dispatch import EXIT_DOMAIN_ERROR, EXIT_OK, EXIT_USAGE
 from calibrated_agent_evaluation.cli.records import load_records_of
 from cli_store_helpers import (
+    admit_default_judge,
     certified_calibration,
     clear_battery,
     default_judge_rater_id,
@@ -36,6 +37,7 @@ def _run(root, *argv: str) -> int:
 def test_threshold_changes_the_gate_and_is_printed_both_ways(root, capsys):
     # 48 of 50 pass: the Wilson 95% lower bound is about 0.865.
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root, "--ci") == EXIT_OK
     out = capsys.readouterr().out
     assert "threshold 0.80" in out
@@ -50,6 +52,7 @@ def test_threshold_changes_the_gate_and_is_printed_both_ways(root, capsys):
 
 def test_without_ci_a_failing_gate_is_reported_with_exit_zero(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root, "--threshold", "0.90") == EXIT_OK
     assert "FAILED" in capsys.readouterr().out
 
@@ -68,6 +71,7 @@ def test_an_empty_store_refuses_a_vacuous_pass(root, capsys):
 
 def test_every_run_persists_a_run_record_with_its_seed_resamples_and_threshold(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root, "--seed", "7", "--threshold", "0.85") == EXIT_OK
     assert _run(root) == EXIT_OK
     records = load_records_of(root, "run")
@@ -84,12 +88,14 @@ def test_every_run_persists_a_run_record_with_its_seed_resamples_and_threshold(r
 
 def test_ci_runs_are_recorded_as_ci(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root, "--ci") == EXIT_OK
     assert load_records_of(root, "run")[0].mode == "ci"
 
 
 def test_the_judge_verdicts_are_the_default_source(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     seed_verdicts(root, 0, 5, kind="human", prefix="H")
     assert _run(root, "--ci") == EXIT_OK
     out = capsys.readouterr().out
@@ -130,6 +136,7 @@ def test_a_store_of_only_judge_verdicts_has_no_human_labels_to_gate(root, capsys
 def test_verdicts_judge_gates_only_the_llm_judge_verdicts(root, capsys):
     """Code-scorer verdicts are their own source, not part of `judge`."""
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     seed_verdicts(root, 0, 7, kind="code", prefix="S")
     assert _run(root, "--ci") == EXIT_OK
     assert "CI gate over 50 judge verdicts on 57 stored trace(s)" in capsys.readouterr().out
@@ -180,6 +187,7 @@ def test_an_unknown_verdict_source_is_a_usage_error(root):
 
 def test_no_judge_file_means_no_trend_and_the_output_says_why(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root) == EXIT_OK
     out = capsys.readouterr().out
     assert "trend: none" in out
@@ -189,10 +197,15 @@ def test_no_judge_file_means_no_trend_and_the_output_says_why(root, capsys):
 
 def test_a_judge_without_a_certifying_calibration_gets_no_trend(root, tmp_path, capsys):
     seed_verdicts(root, 160, 40)
+    seed_verdicts(root, 0, 5, kind="human", prefix="H")
     judge = write_judge_file(tmp_path / "judge.json")
     store_calibration(root, certified_calibration(result="REFUSED"))
     store_battery(root, clear_battery())
-    assert _run(root, "--judge", str(judge)) == EXIT_OK
+    # Its verdicts can't gate, so the judge source is refused; the human gate still reports why
+    # the judge got no corrected rate.
+    assert _run(root, "--judge", str(judge)) == EXIT_DOMAIN_ERROR
+    assert "calibration gate refused" in capsys.readouterr().err
+    assert _run(root, "--verdicts", "human", "--judge", str(judge)) == EXIT_OK
     out = capsys.readouterr().out
     assert "failure rate: not estimated (this judge isn't certified" in out
 
@@ -245,6 +258,7 @@ def test_discovery_frame_verdicts_stay_out_of_the_rate(root, tmp_path, capsys):
 
 def test_trace_scopes_the_run_to_one_trace(root, capsys):
     ids = seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root, "--trace", ids[0]) == EXIT_OK
     out = capsys.readouterr().out
     assert f"CI gate over 1 judge verdicts on trace {ids[0]!r}" in out
@@ -297,10 +311,13 @@ def test_run_refuses_to_gate_a_judge_whose_verdicts_are_all_another_versions(
 
 def test_a_judge_that_failed_its_bias_check_gets_no_corrected_rate(root, tmp_path, capsys):
     seed_verdicts(root, 160, 40)
+    seed_verdicts(root, 0, 5, kind="human", prefix="H")
     judge = write_judge_file(tmp_path / "judge.json")
     store_calibration(root, certified_calibration())
     store_battery(root, clear_battery(verdict="BIASED"))
-    assert _run(root, "--judge", str(judge)) == EXIT_OK
+    assert _run(root, "--judge", str(judge)) == EXIT_DOMAIN_ERROR
+    assert "bias gate refused" in capsys.readouterr().err
+    assert _run(root, "--verdicts", "human", "--judge", str(judge)) == EXIT_OK
     out = capsys.readouterr().out
     assert "failure rate: not estimated (this judge didn't pass its bias check" in out
     assert load_records_of(root, "run")[0].trend == ()
@@ -308,9 +325,12 @@ def test_a_judge_that_failed_its_bias_check_gets_no_corrected_rate(root, tmp_pat
 
 def test_a_judge_never_checked_for_bias_gets_no_corrected_rate(root, tmp_path, capsys):
     seed_verdicts(root, 160, 40)
+    seed_verdicts(root, 0, 5, kind="human", prefix="H")
     judge = write_judge_file(tmp_path / "judge.json")
     store_calibration(root, certified_calibration())
-    assert _run(root, "--judge", str(judge)) == EXIT_OK
+    assert _run(root, "--judge", str(judge)) == EXIT_DOMAIN_ERROR
+    assert "but no bias battery" in capsys.readouterr().err
+    assert _run(root, "--verdicts", "human", "--judge", str(judge)) == EXIT_OK
     out = capsys.readouterr().out
     assert "this judge hasn't been checked for bias" in out
     assert load_records_of(root, "run")[0].trend == ()
@@ -318,6 +338,7 @@ def test_a_judge_never_checked_for_bias_gets_no_corrected_rate(root, tmp_path, c
 
 def test_the_default_output_says_when_no_rate_was_estimated(root, capsys):
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     assert _run(root) == EXIT_OK
     out = capsys.readouterr().out.split("Run with --explain")[0]
     assert "No failure rate estimated: pass --judge FILE" in out

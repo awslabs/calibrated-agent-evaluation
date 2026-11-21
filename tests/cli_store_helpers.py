@@ -166,6 +166,32 @@ def store_battery(root: Path, record: BiasBatteryRecord) -> None:
     append_records(root, "bias", [record])
 
 
+def admit_default_judge(root: Path) -> None:
+    """Store a certifying calibration and a CLEAR bias battery for the default judge file's judge.
+
+    ``run`` gates LLM-judge verdicts only from an admitted judge, so a test whose subject is the
+    gate, drift or the run record over the default judge's verdicts admits it first.
+    """
+    store_calibration(root, certified_calibration())
+    store_battery(root, clear_battery())
+
+
+def admit_raters(root: Path, *rater_ids: str) -> None:
+    """Admit each judge version named by a verdict ``rater_id`` (``<judge_id>@<fingerprint>``).
+
+    For verdicts a test writes by hand: it stores a certifying calibration and a CLEAR battery
+    pinned to that id and fingerprint, which is what ``run`` reads to admit them.
+    """
+    for rater in rater_ids:
+        judge_id, _, fingerprint = rater.rpartition("@")
+        record = certified_calibration(
+            judge_id, calib_id=f"calib-{judge_id}", fingerprint=fingerprint
+        )
+        # A gold set certifies once, so each judge gets its own.
+        store_calibration(root, record.model_copy(update={"hunted_set_id": f"hunted-{judge_id}"}))
+        store_battery(root, clear_battery(judge_id, fingerprint=fingerprint))
+
+
 def owned_trace(
     trace_id: str,
     *,

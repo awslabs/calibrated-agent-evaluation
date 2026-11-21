@@ -1,7 +1,7 @@
 # Calibrated Agent Evaluation documentation site (MkDocs + Material). Build or serve it with the
 # `just docs` / `just docs-build` recipes. Pure-Python toolchain (no Node); see docs/site/README.md.
 site_name: Calibrated Agent Evaluation
-site_description: Error analysis and judge calibration for AI agents. Certify an LLM judge against human labels, then gate CI on failure rates corrected for its error.
+site_description: Check your LLM judge before you trust its numbers. Error analysis and judge calibration for AI agents, with a CI gate that only runs on a judge you have checked against your own labels.
 # The canonical base sets the absolute asset URLs Material emits, including the search worker's.
 # The defaults are the GitHub Pages site and the GitHub repository; set these to build for another
 # host.
@@ -64,7 +64,7 @@ theme:
         name: Switch to light mode
 
 extra_css:
-  # The Calibrated Agent Evaluation palette for the custom primary/accent, and the visually hidden homepage H1.
+  # The whole design: Geist fonts, tokens, both color schemes, and the home page layout.
   - assets/stylesheets/extra.css
 
 extra_javascript:
@@ -133,8 +133,9 @@ markdown_extensions:
   - material.extensions.preview:
       targets:
         include:
-          - concepts/*
-          - concepts/how-the-numbers-work/*
+          - walkthrough/*
+          - methods.md
+          - glossary.md
   - admonition # callout boxes (note/tip/warning)
   - attr_list # attributes on elements (buttons, grids)
   - md_in_html # markdown inside HTML blocks
@@ -183,24 +184,25 @@ exclude_docs: |
 
 nav:
   - Home: index.md
-  - Why Calibrated Agent Evaluation:
-      - why/index.md
-      - Agent evals in five pictures: why/primer.md
-      - Deciding whether to ship: why/leaders.md
-      - Compared with alternatives: why/alternatives.md
-      - What it costs you: why/cost.md
-  - Get started:
-      - getting-started/index.md
-      - Installation: getting-started/installation.md
-      - Quickstart: getting-started/quickstart.md
-      - How it works: getting-started/how-it-works.md
-  - Integrate:
-      - Choose your path: integrate/index.md
+  - Why check your judge: why.md
+  - Walkthrough:
+      - walkthrough/index.md
+      - 0. Decide what good means: walkthrough/define.md
+      - 1. Make test inputs: walkthrough/generate.md
+      - 2. Read and label traces: walkthrough/label.md
+      - 3. Name what goes wrong: walkthrough/cluster.md
+      - 4. Put a judge on probation: walkthrough/judge.md
+      - 5. Gate your pull requests: walkthrough/gate.md
+      - 6. Check that a fix worked: walkthrough/improve.md
+      - 7. Watch production: walkthrough/production.md
+  - Connect your agent:
+      - integrate/index.md
       - Ingest trace files: integrate/ingest-existing-traces.md
       - Read from Langfuse: integrate/langfuse.md
       - Capture in process: integrate/capture-and-ingest.md
       - Route your agent through: integrate/route-your-agent.md
       - Probe a black-box endpoint: integrate/probe-black-box.md
+      - Bedrock AgentCore: integrate/agentcore.md
       - Integration gallery:
           - integrate/gallery/index.md
           - OpenTelemetry GenAI spans: integrate/gallery/otel-genai.md
@@ -209,55 +211,25 @@ nav:
           - Strands Agents: integrate/gallery/strands.md
           - Inspect AI: integrate/gallery/inspect.md
           - Datasets: integrate/gallery/datasets.md
-          - Bedrock AgentCore: integrate/gallery/agentcore.md
-      - Claude Code skills: integrate/skills.md
-  - Guides:
-      - guides/index.md
-      - From first trace to production:
-          - guides/lifecycle/index.md
-          - 0. Before you start: guides/lifecycle/0-before-you-start.md
-          - 1. Define behavior: guides/lifecycle/1-define-behavior.md
-          - 2. Get traces in: guides/lifecycle/2-get-traces-in.md
-          - 3. Look and label: guides/lifecycle/3-look-and-label.md
-          - 4. Name failure modes: guides/lifecycle/4-name-failure-modes.md
-          - 5. Build and certify a judge: guides/lifecycle/5-build-and-certify-a-judge.md
-          - 6. Gate in CI: guides/lifecycle/6-gate-in-ci.md
-          - 7. After the gate: guides/lifecycle/7-after-the-gate.md
-          - 8. Run it in production: guides/lifecycle/8-production.md
-      - Calibrate a judge: guides/calibrate-a-judge.md
-      - Gate a PR in CI: guides/gate-in-ci.md
-      - Review traces in the UI: guides/review-traces.md
-      - Evaluate a multi-agent crew: guides/evaluate-a-crew.md
-      - Rank subjective qualities: guides/rank-subjective-qualities.md
-      - Run fully offline: guides/offline.md
-      - Troubleshooting: guides/troubleshooting.md
-  - Recipes:
-      - recipes/index.md
-      - Re-certify after a prompt change: recipes/recertify-after-prompt-change.md
-      - Check for drift: recipes/drift-check.md
-      - The improve request file: recipes/improve-request-file.md
-      - Run a judge with no network: recipes/air-gapped-judge.md
-  - Concepts:
-      - concepts/index.md
-      - The stage map: concepts/stage-map.md
-      - Normalized traces: concepts/normalized-traces.md
-      - How the numbers work:
-          - concepts/how-the-numbers-work/index.md
-          - Why a judge's raw rate is wrong: concepts/how-the-numbers-work/raw-rate.md
-          - Checking a judge: concepts/how-the-numbers-work/checking-a-judge.md
-          - Correcting the rate: concepts/how-the-numbers-work/correcting-the-rate.md
-          - Why the range matters: concepts/how-the-numbers-work/the-range.md
-          - When the toolkit refuses: concepts/how-the-numbers-work/refusals.md
-          - The CI gate: concepts/how-the-numbers-work/ci-gate.md
-          - Did the fix work?: concepts/how-the-numbers-work/did-the-fix-work.md
-          - Error clusters: concepts/how-the-numbers-work/error-clusters.md
-      - The extras model: concepts/extras.md
-      - Methods and citations: concepts/methodology.md
-      - Reviewer notes: concepts/reviewer-notes.md
-      - Glossary: concepts/glossary.md
+  - How-to:
+      - how-to/index.md
+      - Install: how-to/install.md
+      - Use the Claude Code skills: how-to/claude-code-skills.md
+      - Configure the CI job: how-to/ci-config.md
+      - Review traces in the UI: how-to/review-ui.md
+      - Evaluate a multi-agent crew: how-to/evaluate-a-crew.md
+      - Rank subjective qualities: how-to/rank-subjective-qualities.md
+      - Check for drift: how-to/drift-check.md
+      - Write an improve request: how-to/improve-request-file.md
+      - Run fully offline: how-to/offline.md
+      - Troubleshooting: how-to/troubleshooting.md
   - Reference:
+      - CLI: cli/
       - Python API: reference/
-      - CLI (calibrated-agent-evaluation): cli/
+      - Trace format: trace-format.md
       - Bias probe files: bias-probe-format.md
+      - Methods and citations: methods.md
+      - Reviewer notes: reviewer-notes.md
+      - Glossary: glossary.md
       - Versioning and stability: versioning.md
   - Changelog: changelog.md

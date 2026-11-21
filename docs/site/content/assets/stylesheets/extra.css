@@ -1,67 +1,621 @@
 /* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. */
 /* SPDX-License-Identifier: Apache-2.0 */
 
-/* Site palette. Material's `custom` primary/accent read these variables;
-   mermaid diagrams derive their node, edge and label colors from them too. */
+/* The docs site design: Geist and Geist Mono, a dark terminal hero, one violet accent. Every size,
+   space, radius and color below comes from the tokens in :root and the two schemes. */
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/Geist-Variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/Geist-Italic-Variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/GeistMono-Variable.woff2") format("woff2");
+}
+
+/* Tokens. Material's root size is 20px (more on wide screens), so 0.8rem is the 16px body. */
 :root {
-  --calibrated-agent-evaluation-ink: #1e2440;
-  --calibrated-agent-evaluation-vellum: #f5f0e6;
-  --calibrated-agent-evaluation-verdigris: #2f8a7e;
-  --calibrated-agent-evaluation-verdigris-700: #287a70;
-  --calibrated-agent-evaluation-pass: #287a70;
-  --calibrated-agent-evaluation-fail: #c0392b;
-  --calibrated-agent-evaluation-insufficient: #776c59;
-}
+  --cae-sans: "Geist", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --cae-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --md-text-font-family: var(--cae-sans);
+  --md-code-font-family: var(--cae-mono);
 
-[data-md-color-primary="custom"] {
-  --md-primary-fg-color: var(--calibrated-agent-evaluation-ink);
-  --md-primary-fg-color--light: #2c3459;
-  --md-primary-fg-color--dark: #141830;
-  --md-primary-bg-color: #ffffff;
-  --md-primary-bg-color--light: #ffffffb3;
-}
+  /* Type scale, ratio 1.25 from a 0.8rem body. */
+  --cae-fs--1: 0.64rem;
+  --cae-fs-0: 0.8rem;
+  --cae-fs-1: 1rem;
+  --cae-fs-2: 1.25rem;
+  --cae-fs-3: 1.5625rem;
+  --cae-fs-4: 1.953rem;
+  --cae-fs-5: 2.441rem;
+  /* Mono sets larger on the eye than Geist at the same size, so code sits between steps. */
+  --cae-fs-code: 0.7rem;
+  --cae-lh-body: 1.65;
+  --cae-lh-tight: 1.2;
+  --cae-lh-display: 1.05;
+  --cae-w-regular: 400;
+  --cae-w-medium: 500;
+  --cae-w-strong: 600;
 
-[data-md-color-accent="custom"] {
-  --md-accent-fg-color: var(--calibrated-agent-evaluation-verdigris-700);
-  --md-accent-fg-color--transparent: #287a701a;
-  --md-accent-bg-color: #ffffff;
-  --md-accent-bg-color--light: #ffffffb3;
+  /* Spacing, a 4px grid at the 20px root. */
+  --cae-sp-1: 0.2rem;
+  --cae-sp-2: 0.4rem;
+  --cae-sp-3: 0.6rem;
+  --cae-sp-4: 0.8rem;
+  --cae-sp-5: 1.2rem;
+  --cae-sp-6: 1.6rem;
+  --cae-sp-7: 2.4rem;
+  --cae-sp-8: 3.2rem;
+
+  --cae-r-sm: 0.2rem;
+  --cae-r-md: 0.4rem;
+  --cae-r-lg: 0.6rem;
+
+  /* The one column every block on a page shares. Content pages get it from Material's grid;
+     the home page, which hides both sidebars, sets it explicitly. */
+  --cae-measure: 37rem;
+
+  /* The terminal surfaces are the same in both schemes. */
+  --cae-term: #0e0b16;
+  --cae-term-2: #1a1428;
+  --cae-term-ink: #ece9f4;
+  --cae-term-soft: #a7a1b9;
+  --cae-term-rule: #2c2540;
+  --cae-term-accent: #c4b5fd;
 }
 
 [data-md-color-scheme="default"] {
-  --md-default-bg-color: #fbf9f4;
-  --md-typeset-a-color: var(--calibrated-agent-evaluation-verdigris-700);
-  --md-code-bg-color: var(--calibrated-agent-evaluation-vellum);
+  --cae-bg: #fbfbfd;
+  --cae-panel: #f3f2f7;
+  --cae-rule: #e4e2ec;
+  --cae-ink: #16141d;
+  --cae-soft: #56526a;
+  --cae-accent: #6d28d9;
+  --cae-accent-hover: #5b21b6;
+  --cae-accent-tint: #6d28d91f;
+  --cae-fail: #b91c1c;
+
+  --md-default-bg-color: var(--cae-bg);
+  --md-default-fg-color: #16141ddb;
+  --md-default-fg-color--light: #16141da3;
+  --md-default-fg-color--lighter: #16141d52;
+  --md-default-fg-color--lightest: #16141d12;
+  --md-typeset-color: var(--cae-ink);
+  --md-typeset-a-color: var(--cae-accent);
+  --md-code-bg-color: var(--cae-panel);
+  --md-code-fg-color: var(--cae-ink);
+  --md-footer-bg-color: var(--cae-term);
+  --md-footer-bg-color--dark: #08060d;
+
+  --md-mermaid-font-family: var(--cae-sans);
+  --md-mermaid-edge-color: #56526a;
+  --md-mermaid-node-bg-color: #ede9fe;
+  --md-mermaid-node-fg-color: #16141d;
+  --md-mermaid-label-bg-color: var(--cae-bg);
+  --md-mermaid-label-fg-color: #16141d;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-hue: 230;
-  --md-default-bg-color: #161a2e;
-  --md-typeset-a-color: #5fb3a6;
-  --md-accent-fg-color: #5fb3a6;
+  --md-hue: 260;
+  --cae-bg: #0f0d15;
+  --cae-panel: #18151f;
+  --cae-rule: #2a2637;
+  --cae-ink: #ece9f4;
+  --cae-soft: #a7a1b9;
+  --cae-accent: #b69cf8;
+  --cae-accent-hover: #cdbbfb;
+  --cae-accent-tint: #b69cf82b;
+  --cae-fail: #f87171;
+
+  --md-default-bg-color: var(--cae-bg);
+  --md-default-fg-color: #ece9f4db;
+  --md-default-fg-color--light: #ece9f4a3;
+  --md-default-fg-color--lighter: #ece9f452;
+  --md-default-fg-color--lightest: #ece9f412;
+  --md-typeset-color: var(--cae-ink);
+  --md-typeset-a-color: var(--cae-accent);
+  --md-code-bg-color: var(--cae-panel);
+  --md-code-fg-color: var(--cae-ink);
+  --md-footer-bg-color: #0a0810;
+  --md-footer-bg-color--dark: #060509;
+
+  --md-mermaid-font-family: var(--cae-sans);
+  --md-mermaid-edge-color: #a7a1b9;
+  --md-mermaid-node-bg-color: #2a2140;
+  --md-mermaid-node-fg-color: #ece9f4;
+  --md-mermaid-label-bg-color: var(--cae-bg);
+  --md-mermaid-label-fg-color: #ece9f4;
 }
 
-/* Homepage value panel: the judge's raw number, the corrected one, and the answer key. */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: var(--cae-term);
+  --md-primary-fg-color--light: var(--cae-term);
+  --md-primary-fg-color--dark: var(--cae-term);
+  --md-primary-bg-color: var(--cae-term-ink);
+  --md-primary-bg-color--light: var(--cae-term-soft);
+}
+
+[data-md-color-accent="custom"] {
+  --md-accent-fg-color: var(--cae-accent);
+  --md-accent-fg-color--transparent: var(--cae-accent-tint);
+  --md-accent-bg-color: #ffffff;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cae-accent);
+  outline-offset: 2px;
+}
+
+/* Chrome: header, tabs, sidebars. */
+
+.md-header {
+  box-shadow: none;
+}
+
+.md-header__topic:first-child {
+  font-weight: var(--cae-w-strong);
+}
+
+.md-tabs {
+  background: var(--cae-term);
+  border-bottom: 1px solid var(--cae-term-rule);
+}
+
+.md-tabs__link {
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
+  color: var(--cae-term-soft);
+  opacity: 1;
+}
+
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__link:hover {
+  color: var(--cae-term-ink);
+}
+
+.md-search__form {
+  border-radius: var(--cae-r-md);
+  background: #ffffff14;
+}
+
+.md-nav {
+  font-size: var(--cae-fs--1);
+}
+
+.md-nav__item--section > .md-nav__link {
+  font-weight: var(--cae-w-strong);
+  color: var(--cae-ink);
+}
+
+.md-nav__link--active {
+  font-weight: var(--cae-w-medium);
+  color: var(--cae-accent);
+}
+
+.md-path {
+  font-size: var(--cae-fs--1);
+}
+
+/* Type. */
+
+.md-typeset {
+  font-size: var(--cae-fs-0);
+  line-height: var(--cae-lh-body);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  color: var(--cae-ink);
+  font-weight: var(--cae-w-strong);
+  line-height: var(--cae-lh-tight);
+}
+
+.md-typeset h1 {
+  margin: 0 0 var(--cae-sp-5);
+  font-size: var(--cae-fs-4);
+  letter-spacing: -0.025em;
+}
+
+.md-typeset h2 {
+  margin: var(--cae-sp-7) 0 var(--cae-sp-4);
+  font-size: var(--cae-fs-3);
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h3 {
+  margin: var(--cae-sp-6) 0 var(--cae-sp-3);
+  font-size: var(--cae-fs-2);
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h4 {
+  margin: var(--cae-sp-5) 0 var(--cae-sp-2);
+  font-size: var(--cae-fs-1);
+}
+
+.md-typeset h5,
+.md-typeset h6 {
+  margin: var(--cae-sp-5) 0 var(--cae-sp-2);
+  font-size: var(--cae-fs-0);
+  font-weight: var(--cae-w-strong);
+  color: var(--cae-ink);
+  text-transform: none;
+}
+
+.md-typeset strong {
+  font-weight: var(--cae-w-strong);
+}
+
+.md-typeset p,
+.md-typeset ul,
+.md-typeset ol,
+.md-typeset dl {
+  margin-block: 0 var(--cae-sp-4);
+}
+
+.md-typeset a {
+  text-decoration: underline;
+  text-decoration-color: var(--cae-accent-tint);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+.md-typeset a:hover {
+  color: var(--cae-accent-hover);
+  text-decoration-color: currentColor;
+}
+
+.md-typeset .md-button,
+.md-typeset .headerlink,
+.md-typeset .tabbed-labels a,
+.md-typeset .grid.cards a.md-button {
+  text-decoration: none;
+}
+
+.md-typeset mark {
+  background: var(--cae-accent-tint);
+  color: inherit;
+}
+
+.md-typeset abbr {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+}
+
+.md-typeset blockquote {
+  border-left: 2px solid var(--cae-accent);
+  color: var(--cae-soft);
+  padding-left: var(--cae-sp-4);
+}
+
+/* Code. Inline code is a quiet chip; blocks look like a terminal window in both schemes. */
+
+.md-typeset code {
+  font-size: var(--cae-fs-code);
+  border-radius: var(--cae-r-sm);
+}
+
+.md-typeset :not(pre) > code {
+  padding: 0.05em 0.3em;
+  background: var(--cae-panel);
+  color: var(--cae-ink);
+  box-shadow: inset 0 0 0 1px var(--cae-rule);
+}
+
+.md-typeset .highlight,
+.md-typeset pre {
+  margin-block: var(--cae-sp-4);
+}
+
+.md-typeset pre {
+  position: relative;
+  padding-top: var(--cae-sp-5);
+  border: 1px solid var(--cae-term-rule);
+  border-radius: var(--cae-r-lg);
+  background: var(--cae-term);
+}
+
+.md-typeset pre::before {
+  content: "";
+  position: absolute;
+  top: var(--cae-sp-3);
+  left: var(--cae-sp-4);
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #4a4060;
+  box-shadow: 0.65rem 0 0 #4a4060, 1.3rem 0 0 #4a4060;
+}
+
+.md-typeset pre > code {
+  background: transparent;
+  color: var(--cae-term-ink);
+  line-height: 1.6;
+  --md-code-fg-color: var(--cae-term-ink);
+  --md-code-hl-comment-color: var(--cae-term-soft);
+  --md-code-hl-string-color: #86efac;
+  --md-code-hl-keyword-color: #c4b5fd;
+  --md-code-hl-name-color: var(--cae-term-ink);
+  --md-code-hl-function-color: #93c5fd;
+  --md-code-hl-number-color: #fdba74;
+  --md-code-hl-constant-color: #f9a8d4;
+  --md-code-hl-operator-color: var(--cae-term-soft);
+  --md-code-hl-punctuation-color: var(--cae-term-soft);
+  --md-code-hl-variable-color: var(--cae-term-ink);
+  --md-code-hl-generic-color: var(--cae-term-soft);
+  --md-code-hl-special-color: #f9a8d4;
+}
+
+.md-typeset .md-code__button,
+.md-typeset .md-clipboard {
+  color: var(--cae-term-soft);
+}
+
+.md-typeset .wrap-output pre > code {
+  white-space: pre-wrap;
+}
+
+/* Tables, admonitions, tabs: one border, one radius, the body size or one step down. */
+
+.md-typeset__scrollwrap,
+.md-typeset__table {
+  display: block;
+  width: 100%;
+}
+
+.md-typeset__table > table:not([class]) {
+  display: table;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+  font-size: var(--cae-fs--1);
+  box-shadow: none;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--cae-panel);
+  color: var(--cae-ink);
+  font-weight: var(--cae-w-strong);
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: var(--cae-sp-3) var(--cae-sp-4);
+  border-top: 1px solid var(--cae-rule);
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  margin-block: var(--cae-sp-5);
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+  box-shadow: none;
+  font-size: var(--cae-fs-0);
+}
+
+.md-typeset :is(.admonition, details) > :is(.admonition-title, summary) {
+  font-weight: var(--cae-w-strong);
+}
+
+.md-typeset .tabbed-set {
+  margin-block: var(--cae-sp-4);
+}
+
+.md-typeset .tabbed-content {
+  padding-top: var(--cae-sp-4);
+}
+
+.md-typeset .tabbed-labels > label {
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
+}
+
+.md-typeset .footnote {
+  font-size: var(--cae-fs--1);
+  color: var(--cae-soft);
+}
+
+/* Buttons. */
+
+.md-typeset .md-button {
+  margin: 0;
+  padding: var(--cae-sp-2) var(--cae-sp-5);
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-md);
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
+  color: var(--cae-ink);
+}
+
+.md-typeset .md-button--primary {
+  border-color: var(--cae-accent);
+  background: var(--cae-accent);
+  color: #ffffff;
+}
+
+.md-typeset .md-button:is(:hover, :focus) {
+  border-color: var(--cae-accent-hover);
+  background: var(--cae-accent-hover);
+  color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary,
+[data-md-color-scheme="slate"] .md-typeset .md-button:is(:hover, :focus) {
+  color: var(--cae-term);
+}
+
+/* Card label: the one place mono uppercase appears (FAIL, step N, value-panel labels). */
+
+.md-typeset .grid.cards.burns > ul > li > p:first-child strong::before,
+.md-typeset .step__n,
+.value-panel__label {
+  font-family: var(--cae-mono);
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Cards. One card style for the burns grid, the steps and the value panel. */
+
+.md-typeset .grid {
+  gap: var(--cae-sp-4);
+  margin-block: var(--cae-sp-5);
+}
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .step,
+.value-panel__figure {
+  padding: var(--cae-sp-4) var(--cae-sp-5);
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+  background: var(--cae-bg);
+  box-shadow: none;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--cae-accent-tint);
+  box-shadow: none;
+}
+
+.md-typeset .grid.cards > ul > li > :first-child,
+.md-typeset .step > :first-child {
+  margin-top: 0;
+}
+
+.md-typeset .grid.cards > ul > li > :last-child,
+.md-typeset .step > :last-child {
+  margin-bottom: 0;
+}
+
+/* Card title: the bold first line of a card, at body size. */
+.md-typeset .grid.cards > ul > li > p:first-child strong,
+.md-typeset .step > p:first-of-type strong {
+  display: block;
+  margin-bottom: var(--cae-sp-2);
+  font-size: var(--cae-fs-0);
+  font-weight: var(--cae-w-strong);
+  color: var(--cae-ink);
+}
+
+.md-typeset .grid.cards.burns > ul > li > p:first-child strong::before {
+  content: "FAIL";
+  display: block;
+  margin-bottom: var(--cae-sp-1);
+  color: var(--cae-fail);
+}
+
+.md-typeset .grid.cards > ul > li,
+.md-typeset .step {
+  font-size: var(--cae-fs-0);
+  line-height: var(--cae-lh-body);
+}
+
+.md-typeset .grid.cards.burns,
+.md-typeset .steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cae-sp-4);
+  margin-block: var(--cae-sp-5);
+}
+
+.md-typeset .grid.cards > ul {
+  display: contents;
+  margin: 0;
+  padding: 0;
+}
+
+.md-typeset .step__n {
+  display: block;
+  margin-bottom: var(--cae-sp-1);
+  color: var(--cae-accent);
+}
+
+.md-typeset .step__n::before {
+  content: "Step ";
+}
+
+.md-typeset .step > p {
+  margin: 0;
+}
+
+.md-typeset .step > p + p {
+  margin-top: var(--cae-sp-2);
+}
+
+/* Figures and diagrams fill the column, with the same vertical rhythm. */
+
+.md-typeset img.figure,
+.md-typeset .trace-grid,
+.md-typeset img[src*="assets/charts/"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: var(--cae-sp-5) 0;
+}
+
+.md-typeset p:has(> img.figure, > img.trace-grid, > img[src*="assets/charts/"]) {
+  margin: 0;
+}
+
+.md-typeset img[src$=".png"] {
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+}
+
+.md-typeset .diagram {
+  margin-block: var(--cae-sp-5);
+}
+
+.md-typeset .mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+/* display:block above outranks Material's scheme switch for images, so restate it. */
+[data-md-color-scheme="slate"] .md-typeset img[src$="#only-light"],
+[data-md-color-scheme="default"] .md-typeset img[src$="#only-dark"] {
+  display: none;
+}
+
+/* The value panel: what the judge flagged, the corrected rate, and the true rate. */
+
 .value-panel {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--cae-sp-4);
+  margin-block: var(--cae-sp-5);
 }
 
 .value-panel__figure {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 1rem 1.25rem;
-  border-radius: 0.4rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  background: var(--md-code-bg-color);
-}
-
-.value-panel__figure--honest {
-  border-color: var(--calibrated-agent-evaluation-verdigris-700);
-  border-width: 2px;
+  gap: var(--cae-sp-1);
 }
 
 .value-panel__figure > p {
@@ -75,100 +629,182 @@
 }
 
 .value-panel__label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--md-default-fg-color--light);
+  color: var(--cae-soft);
 }
 
 .value-panel__number {
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 1.1;
+  font-family: var(--cae-mono);
+  font-size: var(--cae-fs-4);
+  font-weight: var(--cae-w-strong);
   font-variant-numeric: tabular-nums;
-}
-
-.value-panel__figure--raw .value-panel__number,
-.value-panel__figure--key .value-panel__number {
-  color: var(--md-default-fg-color--light);
-}
-
-.value-panel__figure--key {
-  border-style: dashed;
-}
-
-.value-panel__figure--honest .value-panel__number {
-  color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-[data-md-color-scheme="slate"] .value-panel__figure--honest .value-panel__number,
-[data-md-color-scheme="slate"] .value-panel__figure--honest {
-  color: #5fb3a6;
-  border-color: #5fb3a6;
+  line-height: var(--cae-lh-tight);
+  color: var(--cae-ink);
 }
 
 .value-panel__note {
-  font-size: 0.8rem;
-  color: var(--md-default-fg-color--light);
+  font-size: var(--cae-fs--1);
+  color: var(--cae-soft);
 }
 
-/* Captured CLI output whose lines are sentences: wrap them instead of scrolling. */
-.md-typeset .wrap-output pre > code {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+.value-panel__figure--honest {
+  border-color: var(--cae-term-rule);
+  background: var(--cae-term);
+}
+
+.value-panel__figure--honest .value-panel__label,
+.value-panel__figure--honest .value-panel__note {
+  color: var(--cae-term-soft);
+}
+
+.value-panel__figure--honest .value-panel__number {
+  color: var(--cae-term-accent);
 }
 
 .value-panel__why {
   grid-column: 1 / -1;
-  font-size: 0.8rem;
 }
 
+.value-panel__why > p {
+  margin: 0;
+}
+
+/* Home. The page hides both sidebars, so its column is set to the content-page measure, and the
+   hero is the one full-bleed band. */
+
+.md-content:has(.hero) .md-content__inner {
+  max-width: var(--cae-measure);
+  margin-inline: auto;
+  padding-inline: var(--cae-sp-4);
+}
+
+.md-typeset h1:has(+ .hero) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.md-typeset .hero {
+  position: relative;
+  margin: 0 calc(50% - 50vw) var(--cae-sp-7);
+  padding: var(--cae-sp-8) calc(50vw - 50%) var(--cae-sp-7);
+  border-bottom: 1px solid var(--cae-term-rule);
+  background:
+    radial-gradient(circle at 1px 1px, #ffffff12 1px, transparent 0) 0 0 / 18px 18px,
+    linear-gradient(160deg, var(--cae-term-2) 0%, var(--cae-term) 65%);
+  color: var(--cae-term-ink);
+}
+
+.md-content:has(.hero) .md-content__inner {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.md-main__inner:has(.hero) {
+  margin-top: 0;
+}
+
+.md-content:has(.hero) .md-content__inner::before {
+  display: none;
+}
+
+.md-typeset .hero::before {
+  content: "$ calibrated-agent-evaluation run --ci";
+  display: block;
+  margin-bottom: var(--cae-sp-5);
+  font-family: var(--cae-mono);
+  font-size: var(--cae-fs--1);
+  color: var(--cae-term-accent);
+}
+
+.md-typeset .hero-title {
+  margin: 0 0 var(--cae-sp-5);
+  font-size: var(--cae-fs-5);
+  font-weight: var(--cae-w-strong);
+  line-height: var(--cae-lh-display);
+  letter-spacing: -0.035em;
+  color: #ffffff;
+}
+
+.md-typeset .hero-title mark {
+  background: none;
+  color: var(--cae-term-accent);
+}
+
+.md-typeset .hero-lead {
+  margin: 0 0 var(--cae-sp-6);
+  font-size: var(--cae-fs-1);
+  line-height: 1.55;
+  color: var(--cae-term-soft);
+}
+
+.md-typeset .cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cae-sp-3);
+}
+
+.md-typeset .cta > p {
+  display: contents;
+}
+
+.md-typeset .hero .md-button {
+  border-color: var(--cae-term-rule);
+  color: var(--cae-term-ink);
+}
+
+.md-typeset .hero .md-button--primary {
+  border-color: #7c3aed;
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.md-typeset .hero .md-button:is(:hover, :focus) {
+  border-color: var(--cae-term-accent);
+  background: var(--cae-term-accent);
+  color: var(--cae-term);
+}
+
+.md-content:has(.hero) .md-typeset h2:first-of-type {
+  margin-top: 0;
+}
+
+.md-typeset .analogy {
+  margin-block: var(--cae-sp-5);
+  padding: var(--cae-sp-4) var(--cae-sp-5);
+  border-left: 2px solid var(--cae-accent);
+  background: var(--cae-panel);
+  border-radius: 0 var(--cae-r-lg) var(--cae-r-lg) 0;
+  font-size: var(--cae-fs-1);
+  line-height: 1.55;
+}
+
+.md-typeset .analogy > p {
+  margin: 0;
+}
+
+/* Small screens: one column everywhere. */
+
 @media screen and (max-width: 44.9375em) {
+  .md-typeset .grid.cards.burns,
+  .md-typeset .steps,
   .value-panel {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-}
 
-.md-typeset .grid.cards.two-up {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-}
-
-@media screen and (min-width: 60em) {
-  .md-typeset .grid.cards.two-up {
-    grid-template-columns: repeat(2, 1fr);
+  .md-typeset .hero {
+    padding-block: var(--cae-sp-7) var(--cae-sp-6);
   }
-}
 
-/* Collapsible example blocks in the brand accent instead of Material's purple. */
-.md-typeset .admonition.example,
-.md-typeset details.example {
-  border-color: var(--calibrated-agent-evaluation-verdigris-700);
-}
+  .md-typeset .hero-title {
+    font-size: var(--cae-fs-4);
+  }
 
-.md-typeset .example > .admonition-title,
-.md-typeset .example > summary {
-  background-color: #287a701a;
-}
-
-.md-typeset .example > .admonition-title::before,
-.md-typeset .example > summary::before {
-  background-color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-/* The collapse chevron takes the admonition color too; keep it in the palette for every type. */
-.md-typeset details > summary::after {
-  color: var(--calibrated-agent-evaluation-verdigris-700);
-}
-
-[data-md-color-scheme="slate"] .md-typeset details > summary::after {
-  color: #5fb3a6;
-}
-
-/* Material draws each diagram inside a shadow root sized to its host, so on a phone a diagram
-   shrinks its text until it can't be read. There, diagrams wrapped in .diagram keep a readable
-   minimum width and scroll sideways instead. */
-@media screen and (max-width: 44.9375em) {
   .md-typeset .diagram {
     overflow-x: auto;
   }
@@ -176,94 +812,37 @@
   .md-typeset .diagram > .mermaid {
     min-width: 36rem;
   }
-}
 
-/* Homepage: the tagline under the title. */
-.hero-tagline {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--md-default-fg-color--light);
-  margin: 1rem 0 1.5rem;
-}
-
-@media screen and (max-width: 44.9375em) {
-  /* Charts are drawn wide for a desktop column; on a phone they keep a readable width and scroll
-     sideways, like the diagrams. */
-  .md-typeset p:has(> img[src*="assets/charts/"]) {
+  /* Chart text is drawn at the chart's own size, so a phone scrolls the chart instead of
+     shrinking its labels below reading size. */
+  .md-typeset p:has(> img.trace-grid, > img.figure, > img[src*="assets/charts/"]) {
     overflow-x: auto;
   }
 
+  .md-typeset img.trace-grid,
+  .md-typeset img.figure,
   .md-typeset img[src*="assets/charts/"] {
-    min-width: 40rem;
+    width: 36rem;
     max-width: none;
   }
 }
 
-/* A long reference breadcrumb wraps instead of running past the screen edge. */
-.md-path__list {
-  flex-wrap: wrap;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Homepage: the plain-language lead under the tagline. */
-.md-typeset .hero-lead {
-  max-width: 46rem;
-  margin: 1.5rem auto 0.5rem;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  text-align: center;
-}
+@media print {
+  .md-typeset .hero {
+    margin-inline: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+  }
 
-.md-typeset .trace-grid {
-  display: block;
-  width: 100%;
-  max-width: 44rem;
-  margin: 1rem auto;
-}
-
-/* Audience router and the three outcomes. */
-.md-typeset .grid.cards.audience,
-.md-typeset .grid.cards.outcomes {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-}
-
-.md-typeset .grid.cards.outcomes > ul > li {
-  text-align: center;
-}
-
-/* Homepage: the four-step strip. */
-.md-typeset .steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
-  counter-reset: none;
-}
-
-.md-typeset .step {
-  position: relative;
-  padding: 1rem 1rem 0.75rem;
-  border-top: 3px solid var(--calibrated-agent-evaluation-verdigris-700);
-  background: var(--md-code-bg-color);
-  border-radius: 0 0 0.4rem 0.4rem;
-}
-
-.md-typeset .step > p {
-  margin: 0.25rem 0 0.5rem;
-}
-
-.md-typeset .step__n {
-  display: inline-block;
-  width: 1.6rem;
-  height: 1.6rem;
-  line-height: 1.6rem;
-  border-radius: 50%;
-  text-align: center;
-  font-weight: 700;
-  color: #ffffff;
-  background: var(--calibrated-agent-evaluation-ink);
-}
-
-[data-md-color-scheme="slate"] .md-typeset .step__n {
-  color: var(--calibrated-agent-evaluation-ink);
-  background: var(--calibrated-agent-evaluation-vellum);
+  .md-typeset .hero-title,
+  .md-typeset .hero-lead {
+    color: inherit;
+  }
 }

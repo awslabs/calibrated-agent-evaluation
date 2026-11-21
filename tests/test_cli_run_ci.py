@@ -24,11 +24,12 @@ def test_ci_gate_fails_nonzero_when_a_mode_regresses(seeded_local_root):
 
 def test_ci_gate_passes_exit_zero_over_passing_verdicts(tmp_path, monkeypatch):
     """Positive: when every gated mode clears its lower bound, `run --ci` exits 0."""
-    from cli_store_helpers import seed_verdicts
+    from cli_store_helpers import admit_default_judge, seed_verdicts
 
     monkeypatch.delenv("CALIBRATED_AGENT_EVALUATION_LOCAL_ROOT", raising=False)
     root = tmp_path / "store"
     seed_verdicts(root, 48, 2)
+    admit_default_judge(root)
     # Sanity: this input really does pass the shipped gate (guards against a vacuous test).
     mode = ModeKey(failure_type="over_refund")
     labels = [

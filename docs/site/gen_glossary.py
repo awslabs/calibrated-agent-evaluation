@@ -5,7 +5,7 @@
 
 ``content/includes/abbreviations.md`` is the single source: every page gets its terms as tooltips
 through ``pymdownx.snippets`` ``auto_append``, and this script renders the same entries as
-``concepts/glossary.md``. Plural and spelling variants (same definition as an earlier entry) are
+``glossary.md``. Plural and spelling variants (same definition as an earlier entry) are
 listed once, under the first spelling. HTML comments in the source carry what a tooltip cannot:
 ``group:`` starts a glossary section, ``see:`` links the entry above it to the page that explains
 it, and ``glossary-only:`` adds a row with no tooltip, for words too common to underline site-wide.
@@ -20,7 +20,7 @@ from pathlib import Path
 import mkdocs_gen_files
 
 _ABBREVIATIONS = Path(__file__).parent / "content" / "includes" / "abbreviations.md"
-_PAGE = "concepts/glossary.md"
+_PAGE = "glossary.md"
 _ENTRY = re.compile(r"^\*\[(?P<term>[^\]]+)\]:\s*(?P<definition>.+)$")
 _GLOSSARY_ONLY = re.compile(
     r"^<!--\s*glossary-only:\s*(?P<term>[^:]+):\s*(?P<definition>.+?)\s*-->$"

@@ -253,9 +253,10 @@ just docs-build  # the strict build: a broken link or anchor fails it
 ```
 
 Run `just docs-build` before you open a pull request that touches the docs. Prose on the site follows
-[`docs/site/STYLE.md`](docs/site/STYLE.md). In short: example first, real command output pasted
-rather than paraphrased, no em dashes, bold only for a term being defined, and every statistical
-method cited in [`docs/site/content/concepts/methodology.md`](docs/site/content/concepts/methodology.md).
+[`docs/site/STYLE.md`](docs/site/STYLE.md). In short: argue with what happens to a team, example
+first, command output captured as a golden (`docs_examples.py`, `just docs-goldens`) and never
+hand-written, no em dashes, bold only for a term being defined, and no statistical method named
+outside [`docs/site/content/methods.md`](docs/site/content/methods.md), where every method is cited.
 `docs/site/README.md` covers the toolchain and hosting.
 
 ## Working with coding agents

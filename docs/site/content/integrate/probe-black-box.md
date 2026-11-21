@@ -2,7 +2,7 @@
 
 When you can reach an agent only over HTTP or WebSocket, with no code and no traces,
 `calibrated-agent-evaluation probe` sends it prompts and stores each reply as a trace. You see what
-the agent answered and which tools its replies mention, never the steps in between. An agent
+the agent answered and which tools its replies mention, but not the steps in between. An agent
 deployed to Amazon Bedrock AgentCore Runtime is probed by its runtime ARN instead ([an agent on
 AgentCore Runtime](#an-agent-on-agentcore-runtime)).
 
@@ -25,8 +25,8 @@ Each reply became a trace with the prompt as input, the reply as output and no s
 called probed traces, as opposed to owned traces from an agent you instrument. They flow into
 labeling, judging and the CI gate like any other trace, judged on outcomes only.
 
-The summary ends with the three limits that apply to every probe result: the tools seen are a
-lower bound, a refusal is not proof the agent cannot do something, and a verdict on a reply is only
+The summary ends with the three limits that apply to every probe result: the agent may have tools
+it never showed, a refusal is not proof the agent cannot do something, and a verdict on a reply is only
 as good as the judge that made it.
 
 ## Your endpoint
@@ -83,13 +83,13 @@ config = ConnectionConfig(
 )
 report = probe(config, authorized=True, seeds=["What can you help me with?"])
 
-print(report.capability_map.observed_tools)   # tools seen in replies, a lower bound
+print(report.capability_map.observed_tools)   # tools seen in replies; there may be more
 print([t.trace_id for t in report.traces])    # one probed trace per prompt
 print(report.hypotheses)                      # failure modes worth investigating
 ```
 
 `probe()` returns a `ProbeReport` with the capability map, one trace per prompt and a list of
-failure hypotheses. Store the traces with `backend.put_trace(trace)` to use them in later stages;
+failure hypotheses. Store the traces with `backend.put_trace(trace)` to use them in later steps;
 the CLI does this for you. `ApiKeyAuth(header="x-api-key", key_env=...)`,
 `HeaderAuth(headers_env=...)` and `SubprotocolAuth(token_env=...)` cover the other auth shapes.
 
@@ -244,9 +244,10 @@ then gets a line like:
 ```
 
 A trial is scored when it holds at least one Policy decision on a tool call; every count is over the
-scored trials and is followed by its one-sided 95% upper bound. A case reads "not vulnerable" only
-when that bound on the calls it expects denied clears 5%, which takes 59 clean trials. A case with
-no scored trial prints a `(no decision)` line and is never called clean: the agent called no tool,
+scored trials and is followed by "at most", a cautious ceiling on how often it really happens. A
+case reads "not vulnerable" only when that ceiling for the calls it expects denied falls under 5%,
+which takes 59 clean trials. [Methods](../methods.md) has how the ceiling is computed. A case with
+no scored trial prints a `(no decision)` line instead of a verdict. It happens when the agent called no tool,
 the engine hid the tool, or trace context did not reach the Gateway. The findings go to the probe
 record, which `calibrated-agent-evaluation results` reads. Each trial's reply is stored as a probed,
 outcome-only trace in the trace store `--backend` selects (a trial whose agent reported an error
@@ -257,20 +258,20 @@ is certified on those traces. `--prompt` is refused, since the case file supplie
 
 What the engine records, and so what a battery can see:
 
-- **An enforcing gateway** records allow or deny on every call. It also leaves out of `tools/list`
-  any tool no policy could permit, so an agent never attempts such a tool and no decision names
+- An enforcing gateway records allow or deny on every call. It also leaves out of `tools/list`
+  any tool no policy could permit, so the agent can't attempt such a tool and no decision names
   it. To see a deny through an agent, expect denied a tool the policy permits only under a
   condition, and prompt for a call outside it.
-- **Expectations are per tool, not per call.** An agent that is denied a call outside the
+- Expectations apply to a tool across the whole trial. An agent that is denied a call outside the
   condition may retry inside it, and that allowed call counts against the case: it reads
   vulnerable although the policy worked. Each trial lists its decisions in order, so a deny
   followed by an allow on the same tool tells a retry inside the condition apart from a call the
   policy let through.
-- **A log-only policy inside an enforcing gateway** is recorded as the policy that would flip a
+- A log-only policy inside an enforcing gateway is recorded as the policy that would flip a
   decision, and the battery reports how many trials each such policy would flip and how many gaps
   it would close.
-- **A log-only gateway** evaluates asynchronously and records no decision on each call, so a
-  battery against one reads no decision and is refused.
+- A log-only gateway evaluates asynchronously and records no decision on each call, so a battery
+  against one reads no decision and stops with an error.
 
 ## Safety benchmarks: calibrated-agent-evaluation probe --battery
 
@@ -285,7 +286,7 @@ calibrated-agent-evaluation probe --endpoint https://agent.vendor.com/v1/chat --
   --grader-model bedrock/global.anthropic.claude-sonnet-4-6
 ```
 
-The result is an upper bound, never a rate. Here the CLI runs against a local agent that declines
+The result is a ceiling on how often the agent breaks, not an estimate of the rate. Here the CLI runs against a local agent that declines
 every request, with a 20-sample stand-in for StrongREJECT that reads the same `refusal` flag but
 checks the reply for a refusal phrase instead of calling a grader model
 (`docs/site/examples/integrate/probe_battery_local.py`):
@@ -298,8 +299,8 @@ checks the reply for a refusal phrase instead of calling a grader model
 
 </div>
 
-Zero breaks is not a clean bill: with 20 trials the one-sided 95% bound still sits at 13.9%, and it
-reaches 5% only at 59 trials. `--explain` prints the interval, the method and the endpoint
+With zero breaks in 20 trials, the agent could still break as often as 13.9% of the time; the
+ceiling falls to 5% only at 59 trials. `--explain` prints the range, the method and the endpoint
 fingerprint behind each line. The findings are written as a `probe` record under
 `<root>/records/probe/`, and `calibrated-agent-evaluation dump` carries it with everything else.
 
@@ -354,8 +355,8 @@ extra.
 
 ## Next
 
-- [Look and label](../guides/lifecycle/3-look-and-label.md): label, judge and gate the probed
+- [Read and label traces](../walkthrough/label.md): label, judge and gate the probed
   outcomes.
-- [Normalized traces](../concepts/normalized-traces.md): why a probed trace has no spans.
+- [Trace format](../trace-format.md): why a probed trace has no spans.
 - The [`calibrated_agent_evaluation.probe`
   reference](../reference/calibrated_agent_evaluation/probe/index.md).
