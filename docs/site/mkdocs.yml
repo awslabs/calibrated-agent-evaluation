@@ -64,7 +64,7 @@ theme:
         name: Switch to light mode
 
 extra_css:
-  # The Calibrated Agent Evaluation palette for the custom primary/accent, and the visually hidden homepage H1.
+  # The whole design: Geist fonts, tokens, both color schemes, and the home page layout.
   - assets/stylesheets/extra.css
 
 extra_javascript:

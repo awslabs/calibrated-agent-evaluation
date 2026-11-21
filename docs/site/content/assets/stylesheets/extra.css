@@ -1,295 +1,164 @@
 /* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. */
 /* SPDX-License-Identifier: Apache-2.0 */
 
-/* A field guide: reading text is set in a serif, and the apparatus around it (navigation, labels,
-   tables, admonition titles, captured output) in a sans and a mono. Fonts are vendored under
-   assets/fonts/ (SIL OFL 1.1, see the LICENSE files there) so the site loads nothing from a
-   third party and works under a self-only Content-Security-Policy. */
-
-/* ---------- Fonts ---------- */
+/* The docs site design: Geist and Geist Mono, a dark terminal hero, one violet accent. Every size,
+   space, radius and color below comes from the tokens in :root and the two schemes. */
 
 @font-face {
-  font-family: "Source Serif 4";
+  font-family: "Geist";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/SourceSerif4-Regular.woff2") format("woff2");
+  src: url("../fonts/Geist-Variable.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Source Serif 4";
+  font-family: "Geist";
   font-style: italic;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/SourceSerif4-It.woff2") format("woff2");
+  src: url("../fonts/Geist-Italic-Variable.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: "Source Serif 4";
+  font-family: "Geist Mono";
   font-style: normal;
-  font-weight: 600 700;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/SourceSerif4-Semibold.woff2") format("woff2");
+  src: url("../fonts/GeistMono-Variable.woff2") format("woff2");
 }
 
-@font-face {
-  font-family: "Source Serif 4 Display";
-  font-style: normal;
-  font-weight: 600 700;
-  font-display: swap;
-  src: url("../fonts/SourceSerif4Display-Semibold.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Source Serif 4 Display";
-  font-style: italic;
-  font-weight: 400 700;
-  font-display: swap;
-  src: url("../fonts/SourceSerif4Display-It.woff2") format("woff2");
-}
-
-/* The Latin-1 split files from the IBM Plex release; their unicode-range matches upstream's CSS, so
-   anything outside it (arrows, math signs) falls back to the system sans. */
-@font-face {
-  font-family: "IBM Plex Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/IBMPlexSans-Regular-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-@font-face {
-  font-family: "IBM Plex Sans";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/IBMPlexSans-Italic-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-@font-face {
-  font-family: "IBM Plex Sans";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../fonts/IBMPlexSans-Medium-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-@font-face {
-  font-family: "IBM Plex Sans";
-  font-style: normal;
-  font-weight: 600 700;
-  font-display: swap;
-  src: url("../fonts/IBMPlexSans-SemiBold-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/IBMPlexMono-Regular-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/IBMPlexMono-Italic-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 500 700;
-  font-display: swap;
-  src: url("../fonts/IBMPlexMono-Medium-Latin1.woff2") format("woff2");
-  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A4-00FF, U+0131, U+0152-0153,
-    U+02C6, U+02DA, U+02DC, U+2013-2014, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030,
-    U+2039-203A, U+2044, U+2074, U+20AC, U+2122, U+2212, U+FB01-FB02;
-}
-
-/* ---------- Tokens ---------- */
-
+/* Tokens. Material's root size is 20px (more on wide screens), so 0.8rem is the 16px body. */
 :root {
-  --cae-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --cae-display: "Source Serif 4 Display", "Source Serif 4", Georgia, serif;
-  --cae-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif;
-  --cae-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --cae-sans: "Geist", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --cae-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --md-text-font-family: var(--cae-sans);
+  --md-code-font-family: var(--cae-mono);
 
-  /* Material reads these two for the whole UI and for code. */
-  --md-text-font: "IBM Plex Sans";
-  --md-code-font: "IBM Plex Mono";
+  /* Type scale, ratio 1.25 from a 0.8rem body. */
+  --cae-fs--1: 0.64rem;
+  --cae-fs-0: 0.8rem;
+  --cae-fs-1: 1rem;
+  --cae-fs-2: 1.25rem;
+  --cae-fs-3: 1.5625rem;
+  --cae-fs-4: 1.953rem;
+  --cae-fs-5: 2.441rem;
+  /* Mono sets larger on the eye than Geist at the same size, so code sits between steps. */
+  --cae-fs-code: 0.7rem;
+  --cae-lh-body: 1.65;
+  --cae-lh-tight: 1.2;
+  --cae-lh-display: 1.05;
+  --cae-w-regular: 400;
+  --cae-w-medium: 500;
+  --cae-w-strong: 600;
 
+  /* Spacing, a 4px grid at the 20px root. */
+  --cae-sp-1: 0.2rem;
+  --cae-sp-2: 0.4rem;
+  --cae-sp-3: 0.6rem;
+  --cae-sp-4: 0.8rem;
+  --cae-sp-5: 1.2rem;
+  --cae-sp-6: 1.6rem;
+  --cae-sp-7: 2.4rem;
+  --cae-sp-8: 3.2rem;
+
+  --cae-r-sm: 0.2rem;
+  --cae-r-md: 0.4rem;
+  --cae-r-lg: 0.6rem;
+
+  /* The one column every block on a page shares. Content pages get it from Material's grid;
+     the home page, which hides both sidebars, sets it explicitly. */
   --cae-measure: 37rem;
 
-  /* Kept for pages and charts that name them. */
-  --calibrated-agent-evaluation-ink: #1c2230;
-  --calibrated-agent-evaluation-vellum: #f2f2ed;
-  --calibrated-agent-evaluation-verdigris: #2f8a7e;
-  --calibrated-agent-evaluation-verdigris-700: #23706a;
-  --calibrated-agent-evaluation-pass: #23706a;
-  --calibrated-agent-evaluation-fail: #b23a2e;
-  --calibrated-agent-evaluation-insufficient: #776c59;
+  /* The terminal surfaces are the same in both schemes. */
+  --cae-term: #0e0b16;
+  --cae-term-2: #1a1428;
+  --cae-term-ink: #ece9f4;
+  --cae-term-soft: #a7a1b9;
+  --cae-term-rule: #2c2540;
+  --cae-term-accent: #c4b5fd;
 }
 
 [data-md-color-scheme="default"] {
-  --cae-paper: #fbfbf8;
-  --cae-ink: #1c2230;
-  --cae-ink-soft: #4b5263;
-  --cae-rule: #e3e2dc;
-  --cae-accent: #23706a;
-  --cae-accent-tint: #23706a14;
-  --cae-mark: #fde58f;
-  --cae-fail: #b23a2e;
-  --cae-code-bg: #f2f2ed;
+  --cae-bg: #fbfbfd;
+  --cae-panel: #f3f2f7;
+  --cae-rule: #e4e2ec;
+  --cae-ink: #16141d;
+  --cae-soft: #56526a;
+  --cae-accent: #6d28d9;
+  --cae-accent-hover: #5b21b6;
+  --cae-accent-tint: #6d28d91f;
+  --cae-fail: #b91c1c;
 
-  --md-default-bg-color: var(--cae-paper);
-  --md-default-fg-color: #1c2230de;
-  --md-default-fg-color--light: #1c22309c;
-  --md-default-fg-color--lighter: #1c223052;
-  --md-default-fg-color--lightest: #1c22301c;
+  --md-default-bg-color: var(--cae-bg);
+  --md-default-fg-color: #16141ddb;
+  --md-default-fg-color--light: #16141da3;
+  --md-default-fg-color--lighter: #16141d52;
+  --md-default-fg-color--lightest: #16141d12;
   --md-typeset-color: var(--cae-ink);
   --md-typeset-a-color: var(--cae-accent);
-  --md-code-bg-color: var(--cae-code-bg);
-  --md-code-fg-color: #2a3142;
-  --md-typeset-mark-color: var(--cae-mark);
-  --md-footer-bg-color: #1c2230;
-  --md-footer-bg-color--dark: #151a25;
+  --md-code-bg-color: var(--cae-panel);
+  --md-code-fg-color: var(--cae-ink);
+  --md-footer-bg-color: var(--cae-term);
+  --md-footer-bg-color--dark: #08060d;
+
+  --md-mermaid-font-family: var(--cae-sans);
+  --md-mermaid-edge-color: #56526a;
+  --md-mermaid-node-bg-color: #ede9fe;
+  --md-mermaid-node-fg-color: #16141d;
+  --md-mermaid-label-bg-color: var(--cae-bg);
+  --md-mermaid-label-fg-color: #16141d;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-hue: 220;
-  --cae-paper: #15181d;
-  --cae-ink: #e6e5df;
-  --cae-ink-soft: #a9adb5;
-  --cae-rule: #2b3038;
-  --cae-accent: #6cc2b3;
-  --cae-accent-tint: #6cc2b31a;
-  --cae-mark: #e0a93c66;
-  --cae-fail: #e07a6c;
-  --cae-code-bg: #1d2128;
+  --md-hue: 260;
+  --cae-bg: #0f0d15;
+  --cae-panel: #18151f;
+  --cae-rule: #2a2637;
+  --cae-ink: #ece9f4;
+  --cae-soft: #a7a1b9;
+  --cae-accent: #b69cf8;
+  --cae-accent-hover: #cdbbfb;
+  --cae-accent-tint: #b69cf82b;
+  --cae-fail: #f87171;
 
-  --md-default-bg-color: var(--cae-paper);
-  --md-default-fg-color: #e6e5dfde;
-  --md-default-fg-color--light: #e6e5df9c;
-  --md-default-fg-color--lighter: #e6e5df52;
-  --md-default-fg-color--lightest: #e6e5df1c;
+  --md-default-bg-color: var(--cae-bg);
+  --md-default-fg-color: #ece9f4db;
+  --md-default-fg-color--light: #ece9f4a3;
+  --md-default-fg-color--lighter: #ece9f452;
+  --md-default-fg-color--lightest: #ece9f412;
   --md-typeset-color: var(--cae-ink);
   --md-typeset-a-color: var(--cae-accent);
-  --md-accent-fg-color: var(--cae-accent);
-  --md-code-bg-color: var(--cae-code-bg);
-  --md-code-fg-color: #d9dbe0;
-  --md-typeset-mark-color: var(--cae-mark);
-  --md-footer-bg-color: #101317;
-  --md-footer-bg-color--dark: #0c0e11;
+  --md-code-bg-color: var(--cae-panel);
+  --md-code-fg-color: var(--cae-ink);
+  --md-footer-bg-color: #0a0810;
+  --md-footer-bg-color--dark: #060509;
+
+  --md-mermaid-font-family: var(--cae-sans);
+  --md-mermaid-edge-color: #a7a1b9;
+  --md-mermaid-node-bg-color: #2a2140;
+  --md-mermaid-node-fg-color: #ece9f4;
+  --md-mermaid-label-bg-color: var(--cae-bg);
+  --md-mermaid-label-fg-color: #ece9f4;
 }
 
-/* The header is paper with a hairline, not a colored bar. */
 [data-md-color-primary="custom"] {
-  --md-primary-fg-color: var(--cae-paper);
-  --md-primary-fg-color--light: var(--cae-paper);
-  --md-primary-fg-color--dark: var(--cae-paper);
-  --md-primary-bg-color: var(--cae-ink);
-  --md-primary-bg-color--light: var(--cae-ink-soft);
+  --md-primary-fg-color: var(--cae-term);
+  --md-primary-fg-color--light: var(--cae-term);
+  --md-primary-fg-color--dark: var(--cae-term);
+  --md-primary-bg-color: var(--cae-term-ink);
+  --md-primary-bg-color--light: var(--cae-term-soft);
 }
 
 [data-md-color-accent="custom"] {
   --md-accent-fg-color: var(--cae-accent);
   --md-accent-fg-color--transparent: var(--cae-accent-tint);
   --md-accent-bg-color: #ffffff;
-  --md-accent-bg-color--light: #ffffffb3;
 }
 
-/* ---------- Chrome ---------- */
-
-.md-header {
-  box-shadow: none;
-  border-bottom: 1px solid var(--cae-rule);
-}
-
-.md-header[data-md-state="shadow"],
-.md-header--shadow {
-  box-shadow: none;
-}
-
-.md-header__topic:first-child {
-  font-family: var(--cae-display);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0;
-}
-
-.md-tabs {
-  border-bottom: 1px solid var(--cae-rule);
-}
-
-.md-tabs__link {
-  font-size: 0.7rem;
-  font-weight: 500;
-  opacity: 1;
-  color: var(--cae-ink-soft);
-}
-
-.md-tabs__item--active .md-tabs__link,
-.md-tabs__link:hover {
-  color: var(--cae-ink);
-}
-
-.md-tabs__item--active .md-tabs__link {
-  text-decoration: underline;
-  text-decoration-color: var(--cae-accent);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.5rem;
-}
-
-.md-search__form {
-  background-color: var(--md-default-fg-color--lightest);
-}
-
-.md-nav {
-  font-size: 0.68rem;
-}
-
-.md-nav__title {
-  color: var(--cae-ink-soft);
-}
-
-.md-nav__item--section > .md-nav__link {
-  font-weight: 600;
-  color: var(--cae-ink);
-}
-
-.md-nav__link--active {
-  font-weight: 600;
-}
-
-.md-path {
-  font-size: 0.62rem;
-}
-
-/* A long reference breadcrumb wraps instead of running past the screen edge. */
-.md-path__list {
-  flex-wrap: wrap;
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :focus-visible {
@@ -297,545 +166,456 @@
   outline-offset: 2px;
 }
 
-/* ---------- Reading text ---------- */
+/* Chrome: header, tabs, sidebars. */
 
-.md-typeset {
-  font-family: var(--cae-serif);
-  font-size: 0.86rem;
-  line-height: 1.65;
-  color: var(--cae-ink);
-  font-feature-settings: "kern", "liga", "onum";
+.md-header {
+  box-shadow: none;
 }
 
-/* Prose keeps a book measure; code, tables, diagrams and grids may use the full column. */
-.md-typeset > p,
-.md-typeset > ul,
-.md-typeset > ol,
-.md-typeset > dl,
-.md-typeset > blockquote,
-.md-typeset > h2,
-.md-typeset > h3,
-.md-typeset > h4,
-.md-typeset > .admonition,
-.md-typeset > details {
-  max-width: var(--cae-measure);
+.md-header__topic:first-child {
+  font-weight: var(--cae-w-strong);
+}
+
+.md-tabs {
+  background: var(--cae-term);
+  border-bottom: 1px solid var(--cae-term-rule);
+}
+
+.md-tabs__link {
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
+  color: var(--cae-term-soft);
+  opacity: 1;
+}
+
+.md-tabs__item--active .md-tabs__link,
+.md-tabs__link:hover {
+  color: var(--cae-term-ink);
+}
+
+.md-search__form {
+  border-radius: var(--cae-r-md);
+  background: #ffffff14;
+}
+
+.md-nav {
+  font-size: var(--cae-fs--1);
+}
+
+.md-nav__item--section > .md-nav__link {
+  font-weight: var(--cae-w-strong);
+  color: var(--cae-ink);
+}
+
+.md-nav__link--active {
+  font-weight: var(--cae-w-medium);
+  color: var(--cae-accent);
+}
+
+.md-path {
+  font-size: var(--cae-fs--1);
+}
+
+/* Type. */
+
+.md-typeset {
+  font-size: var(--cae-fs-0);
+  line-height: var(--cae-lh-body);
 }
 
 .md-typeset h1,
-.md-typeset h2 {
-  font-family: var(--cae-display);
-  font-weight: 600;
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
   color: var(--cae-ink);
-  letter-spacing: -0.012em;
+  font-weight: var(--cae-w-strong);
+  line-height: var(--cae-lh-tight);
 }
 
 .md-typeset h1 {
-  font-size: 2.05rem;
-  line-height: 1.12;
-  margin: 0.2rem 0 1.4rem;
-  max-width: 30rem;
+  margin: 0 0 var(--cae-sp-5);
+  font-size: var(--cae-fs-4);
+  letter-spacing: -0.025em;
 }
 
 .md-typeset h2 {
-  font-size: 1.35rem;
-  line-height: 1.25;
-  margin-top: 2.6rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--cae-rule);
+  margin: var(--cae-sp-7) 0 var(--cae-sp-4);
+  font-size: var(--cae-fs-3);
+  letter-spacing: -0.02em;
 }
 
 .md-typeset h3 {
-  font-family: var(--cae-serif);
-  font-weight: 600;
-  font-size: 1.02rem;
-  letter-spacing: 0;
-  margin-top: 1.8rem;
+  margin: var(--cae-sp-6) 0 var(--cae-sp-3);
+  font-size: var(--cae-fs-2);
+  letter-spacing: -0.01em;
 }
 
-.md-typeset h4,
+.md-typeset h4 {
+  margin: var(--cae-sp-5) 0 var(--cae-sp-2);
+  font-size: var(--cae-fs-1);
+}
+
 .md-typeset h5,
 .md-typeset h6 {
-  font-family: var(--cae-sans);
-  font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--cae-ink-soft);
+  margin: var(--cae-sp-5) 0 var(--cae-sp-2);
+  font-size: var(--cae-fs-0);
+  font-weight: var(--cae-w-strong);
+  color: var(--cae-ink);
+  text-transform: none;
+}
+
+.md-typeset strong {
+  font-weight: var(--cae-w-strong);
+}
+
+.md-typeset p,
+.md-typeset ul,
+.md-typeset ol,
+.md-typeset dl {
+  margin-block: 0 var(--cae-sp-4);
 }
 
 .md-typeset a {
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--cae-accent) 40%, transparent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-decoration-color: var(--cae-accent-tint);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
 }
 
 .md-typeset a:hover {
-  text-decoration-color: currentcolor;
+  color: var(--cae-accent-hover);
+  text-decoration-color: currentColor;
 }
 
-/* Headings, nav-like links and buttons don't carry the prose underline. */
-.md-typeset .headerlink,
 .md-typeset .md-button,
+.md-typeset .headerlink,
 .md-typeset .tabbed-labels a,
-.md-typeset .footnote-ref,
-.md-typeset .footnote-backref,
-.md-typeset .grid.cards a,
-.md-typeset h1 a,
-.md-typeset h2 a,
-.md-typeset h3 a {
+.md-typeset .grid.cards a.md-button {
   text-decoration: none;
 }
 
-.md-typeset blockquote {
-  border-left: 2px solid var(--cae-rule);
-  color: var(--cae-ink-soft);
-  font-style: italic;
-}
-
-.md-typeset strong {
-  font-weight: 600;
-}
-
-/* The highlighter: a reviewer's mark on the phrase that matters. */
 .md-typeset mark {
+  background: var(--cae-accent-tint);
   color: inherit;
-  background: linear-gradient(
-    100deg,
-    transparent 0.1em,
-    var(--cae-mark) 0.15em,
-    var(--cae-mark) calc(100% - 0.15em),
-    transparent calc(100% - 0.1em)
-  );
-  background-size: 100% 62%;
-  background-position: 0 72%;
-  background-repeat: no-repeat;
-  padding: 0 0.12em;
-  border-radius: 0;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
 }
 
-/* ---------- Apparatus: code, tables, admonitions ---------- */
-
-.md-typeset code,
-.md-typeset kbd,
-.md-typeset pre {
-  font-family: var(--cae-mono);
-  font-feature-settings: normal;
+.md-typeset abbr {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
 }
+
+.md-typeset blockquote {
+  border-left: 2px solid var(--cae-accent);
+  color: var(--cae-soft);
+  padding-left: var(--cae-sp-4);
+}
+
+/* Code. Inline code is a quiet chip; blocks look like a terminal window in both schemes. */
 
 .md-typeset code {
-  font-size: 0.82em;
-  border-radius: 0.15rem;
+  font-size: var(--cae-fs-code);
+  border-radius: var(--cae-r-sm);
+}
+
+.md-typeset :not(pre) > code {
+  padding: 0.05em 0.3em;
+  background: var(--cae-panel);
+  color: var(--cae-ink);
+  box-shadow: inset 0 0 0 1px var(--cae-rule);
+}
+
+.md-typeset .highlight,
+.md-typeset pre {
+  margin-block: var(--cae-sp-4);
+}
+
+.md-typeset pre {
+  position: relative;
+  padding-top: var(--cae-sp-5);
+  border: 1px solid var(--cae-term-rule);
+  border-radius: var(--cae-r-lg);
+  background: var(--cae-term);
+}
+
+.md-typeset pre::before {
+  content: "";
+  position: absolute;
+  top: var(--cae-sp-3);
+  left: var(--cae-sp-4);
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #4a4060;
+  box-shadow: 0.65rem 0 0 #4a4060, 1.3rem 0 0 #4a4060;
 }
 
 .md-typeset pre > code {
-  font-size: 0.72rem;
-  line-height: 1.55;
-  border-left: 2px solid var(--cae-rule);
+  background: transparent;
+  color: var(--cae-term-ink);
+  line-height: 1.6;
+  --md-code-fg-color: var(--cae-term-ink);
+  --md-code-hl-comment-color: var(--cae-term-soft);
+  --md-code-hl-string-color: #86efac;
+  --md-code-hl-keyword-color: #c4b5fd;
+  --md-code-hl-name-color: var(--cae-term-ink);
+  --md-code-hl-function-color: #93c5fd;
+  --md-code-hl-number-color: #fdba74;
+  --md-code-hl-constant-color: #f9a8d4;
+  --md-code-hl-operator-color: var(--cae-term-soft);
+  --md-code-hl-punctuation-color: var(--cae-term-soft);
+  --md-code-hl-variable-color: var(--cae-term-ink);
+  --md-code-hl-generic-color: var(--cae-term-soft);
+  --md-code-hl-special-color: #f9a8d4;
+}
+
+.md-typeset .md-code__button,
+.md-typeset .md-clipboard {
+  color: var(--cae-term-soft);
+}
+
+.md-typeset .wrap-output pre > code {
+  white-space: pre-wrap;
+}
+
+/* Tables, admonitions, tabs: one border, one radius, the body size or one step down. */
+
+.md-typeset__scrollwrap,
+.md-typeset__table {
+  display: block;
+  width: 100%;
+}
+
+.md-typeset__table > table:not([class]) {
+  display: table;
+  width: 100%;
 }
 
 .md-typeset table:not([class]) {
-  font-family: var(--cae-sans);
-  font-size: 0.7rem;
-  border: none;
-  border-top: 1px solid var(--cae-ink);
-  border-bottom: 1px solid var(--cae-ink);
-  border-radius: 0;
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+  font-size: var(--cae-fs--1);
   box-shadow: none;
-  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .md-typeset table:not([class]) th {
-  font-weight: 600;
-  background: transparent;
-  border-bottom: 1px solid var(--cae-ink);
+  background: var(--cae-panel);
+  color: var(--cae-ink);
+  font-weight: var(--cae-w-strong);
 }
 
+.md-typeset table:not([class]) th,
 .md-typeset table:not([class]) td {
+  padding: var(--cae-sp-3) var(--cae-sp-4);
   border-top: 1px solid var(--cae-rule);
-}
-
-.md-typeset table:not([class]) tbody tr:hover {
-  background: var(--cae-accent-tint);
-  box-shadow: none;
 }
 
 .md-typeset .admonition,
 .md-typeset details {
-  font-size: 0.8rem;
-  border-width: 0 0 0 2px;
-  border-radius: 0;
+  margin-block: var(--cae-sp-5);
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
   box-shadow: none;
-  background: transparent;
-}
-
-.md-typeset .admonition-title,
-.md-typeset summary {
-  font-family: var(--cae-sans);
-  font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.01em;
+  font-size: var(--cae-fs-0);
 }
 
 .md-typeset :is(.admonition, details) > :is(.admonition-title, summary) {
-  background-color: transparent;
+  font-weight: var(--cae-w-strong);
 }
 
-.md-typeset .admonition.example,
-.md-typeset details.example {
-  border-color: var(--cae-accent);
+.md-typeset .tabbed-set {
+  margin-block: var(--cae-sp-4);
 }
 
-.md-typeset .example > .admonition-title::before,
-.md-typeset .example > summary::before {
-  background-color: var(--cae-accent);
-}
-
-.md-typeset :is(details, .admonition) > summary::after {
-  color: var(--cae-accent);
-}
-
-.md-typeset .tabbed-labels {
-  font-family: var(--cae-sans);
+.md-typeset .tabbed-content {
+  padding-top: var(--cae-sp-4);
 }
 
 .md-typeset .tabbed-labels > label {
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
 }
 
 .md-typeset .footnote {
-  font-family: var(--cae-sans);
-  font-size: 0.68rem;
+  font-size: var(--cae-fs--1);
+  color: var(--cae-soft);
 }
 
-.md-typeset abbr {
-  text-decoration-color: var(--md-default-fg-color--lighter);
-}
-
-/* Captured CLI output whose lines are sentences: wrap them instead of scrolling. */
-.md-typeset .wrap-output pre > code {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-/* ---------- Buttons ---------- */
+/* Buttons. */
 
 .md-typeset .md-button {
-  font-family: var(--cae-sans);
-  font-weight: 500;
-  font-size: 0.75rem;
-  padding: 0.55em 1.3em;
-  border: 1px solid var(--cae-ink);
-  border-radius: 0.15rem;
+  margin: 0;
+  padding: var(--cae-sp-2) var(--cae-sp-5);
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-md);
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
   color: var(--cae-ink);
-  transition: background-color 120ms ease, color 120ms ease;
-}
-
-.md-typeset .md-button:hover,
-.md-typeset .md-button:focus {
-  background-color: var(--cae-ink);
-  border-color: var(--cae-ink);
-  color: var(--cae-paper);
 }
 
 .md-typeset .md-button--primary {
-  background-color: var(--cae-ink);
-  border-color: var(--cae-ink);
-  color: var(--cae-paper);
-}
-
-.md-typeset .md-button--primary:hover,
-.md-typeset .md-button--primary:focus {
-  background-color: var(--cae-accent);
   border-color: var(--cae-accent);
-  color: var(--cae-paper);
+  background: var(--cae-accent);
+  color: #ffffff;
 }
 
-.md-typeset .cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1.6rem 0 0.5rem;
+.md-typeset .md-button:is(:hover, :focus) {
+  border-color: var(--cae-accent-hover);
+  background: var(--cae-accent-hover);
+  color: #ffffff;
 }
 
-.md-typeset .cta > p {
-  display: contents;
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary,
+[data-md-color-scheme="slate"] .md-typeset .md-button:is(:hover, :focus) {
+  color: var(--cae-term);
 }
 
-.md-typeset .cta .md-button {
-  margin: 0;
-}
+/* Card label: the one place mono uppercase appears (FAIL, step N, value-panel labels). */
 
-/* ---------- Cards ---------- */
-
-.md-typeset .grid.cards > ul > li,
-.md-typeset .grid > .card {
-  border: 1px solid var(--cae-rule);
-  border-radius: 0.15rem;
-  box-shadow: none;
-  font-family: var(--cae-sans);
-  font-size: 0.74rem;
-  line-height: 1.55;
-  transition: border-color 120ms ease;
-}
-
-.md-typeset .grid.cards > ul > li:hover,
-.md-typeset .grid > .card:hover {
-  border-color: var(--cae-ink-soft);
-  box-shadow: none;
-}
-
-.md-typeset .grid.cards > ul > li > :first-child strong,
-.md-typeset .grid.cards > ul > li > p:first-child {
-  font-family: var(--cae-serif);
-  font-size: 0.92rem;
-  font-weight: 600;
-}
-
-.md-typeset .grid.cards > ul > li hr {
-  border-bottom-color: var(--cae-rule);
-}
-
-.md-typeset .grid.cards.two-up {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-}
-
-@media screen and (min-width: 60em) {
-  .md-typeset .grid.cards.two-up {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.md-typeset .grid.cards.audience,
-.md-typeset .grid.cards.outcomes {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
-}
-
-.md-typeset .grid.cards.outcomes > ul > li {
-  text-align: center;
-}
-
-/* ---------- Home ---------- */
-
-/* The hero is left-aligned like a title page: the claim in display type, the key phrase marked
-   the way a reviewer marks a trace. */
-.md-typeset .hero {
-  margin: 1.5rem 0 3.5rem;
-}
-
-.md-typeset .hero-eyebrow {
-  font-family: var(--cae-sans);
-  font-size: 0.68rem;
-  font-weight: 500;
+.md-typeset .grid.cards.burns > ul > li > p:first-child strong::before,
+.md-typeset .step__n,
+.value-panel__label {
+  font-family: var(--cae-mono);
+  font-size: var(--cae-fs--1);
+  font-weight: var(--cae-w-medium);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--cae-ink-soft);
-  margin: 0 0 1rem;
 }
 
-.md-typeset .hero-title,
-.md-typeset .hero h1 {
-  font-family: var(--cae-display);
-  font-weight: 600;
-  font-size: clamp(2.1rem, 5.4vw, 3.4rem);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  max-width: 17ch;
-  margin: 0 0 1.4rem;
-  padding: 0;
-  border: 0;
-  color: var(--cae-ink);
+/* Cards. One card style for the burns grid, the steps and the value panel. */
+
+.md-typeset .grid {
+  gap: var(--cae-sp-4);
+  margin-block: var(--cae-sp-5);
 }
 
-.md-typeset .hero-title > p {
-  margin: 0;
-  font: inherit;
+.md-typeset .grid.cards > ul > li,
+.md-typeset .step,
+.value-panel__figure {
+  padding: var(--cae-sp-4) var(--cae-sp-5);
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+  background: var(--cae-bg);
+  box-shadow: none;
 }
 
-.md-typeset .hero-title mark {
-  background-size: 100% 42%;
-  background-position: 0 88%;
-  animation: cae-highlight 900ms cubic-bezier(0.3, 0.7, 0.2, 1) 250ms both;
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--cae-accent-tint);
+  box-shadow: none;
 }
 
-@keyframes cae-highlight {
-  from {
-    background-size: 0% 42%;
-  }
-  to {
-    background-size: 100% 42%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .md-typeset .hero-title mark {
-    animation: none;
-  }
-}
-
-.md-typeset .hero-lead,
-.md-typeset .hero .hero-lead {
-  max-width: 34rem;
-  margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.6;
-  color: var(--cae-ink-soft);
-  text-align: left;
-}
-
-/* The old centered tagline, while pages still use it. */
-.hero-tagline {
-  font-family: var(--cae-sans);
-  font-size: 0.9rem;
-  color: var(--md-default-fg-color--light);
-  margin: 1rem 0 1.5rem;
-}
-
-/* The four ways a judge's number misleads. Not a sequence, so no numbers: each card is named by
-   what the team saw. */
-.md-typeset .burns {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  max-width: 46rem;
-  margin: 1.4rem 0 2rem;
-  border-top: 1px solid var(--cae-ink);
-}
-
-.md-typeset .grid.cards.burns > ul {
-  display: contents;
-}
-
-.md-typeset .burns > ul > li,
-.md-typeset .burns > div,
-.md-typeset .grid.cards.burns > ul > li {
-  margin: 0;
-  padding: 1rem 1.1rem 1.2rem 0;
-  border: 0;
-  border-bottom: 1px solid var(--cae-rule);
-  border-radius: 0;
-  font-family: var(--cae-serif);
-  font-size: 0.8rem;
-  line-height: 1.55;
-  list-style: none;
-}
-
-.md-typeset .grid.cards.burns > ul > li:hover {
-  border-color: var(--cae-rule);
-}
-
-.md-typeset .burns > ul > li > :first-child,
-.md-typeset .burns > div > :first-child {
+.md-typeset .grid.cards > ul > li > :first-child,
+.md-typeset .step > :first-child {
   margin-top: 0;
 }
 
-.md-typeset .burns strong:first-child,
-.md-typeset .burns h3 {
+.md-typeset .grid.cards > ul > li > :last-child,
+.md-typeset .step > :last-child {
+  margin-bottom: 0;
+}
+
+/* Card title: the bold first line of a card, at body size. */
+.md-typeset .grid.cards > ul > li > p:first-child strong,
+.md-typeset .step > p:first-of-type strong {
   display: block;
-  margin: 0 0 0.35rem;
-  padding: 0.55rem 0 0;
-  font-family: var(--cae-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--cae-ink);
-  background: linear-gradient(var(--cae-fail), var(--cae-fail)) 0 0 / 1.4rem 2px no-repeat;
-}
-
-@media screen and (min-width: 45em) {
-  .md-typeset .burns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .md-typeset .burns > ul > li:nth-child(even),
-  .md-typeset .burns > div:nth-child(even) {
-    padding-left: 1.4rem;
-    border-left: 1px solid var(--cae-rule);
-  }
-
-  .md-typeset .burns > ul > li:nth-child(odd),
-  .md-typeset .burns > div:nth-child(odd) {
-    padding-right: 1.4rem;
-  }
-}
-
-/* The new-hire analogy: a margin note set in italic beside a rule. */
-.md-typeset .analogy {
-  max-width: var(--cae-measure);
-  margin: 2rem 0;
-  padding: 0.2rem 0 0.2rem 1.3rem;
-  border-left: 3px solid var(--cae-mark);
-  font-family: var(--cae-display);
-  font-style: italic;
-  font-size: 1.12rem;
-  line-height: 1.5;
+  margin-bottom: var(--cae-sp-2);
+  font-size: var(--cae-fs-0);
+  font-weight: var(--cae-w-strong);
   color: var(--cae-ink);
 }
 
-[data-md-color-scheme="slate"] .md-typeset .analogy {
-  border-left-color: #f6d35a;
-}
-
-.md-typeset .analogy > p {
-  margin: 0.4rem 0;
-}
-
-.md-typeset .analogy cite,
-.md-typeset .analogy .analogy-source {
+.md-typeset .grid.cards.burns > ul > li > p:first-child strong::before {
+  content: "FAIL";
   display: block;
-  margin-top: 0.6rem;
-  font-family: var(--cae-sans);
-  font-style: normal;
-  font-size: 0.68rem;
-  color: var(--cae-ink-soft);
+  margin-bottom: var(--cae-sp-1);
+  color: var(--cae-fail);
 }
 
-/* ---------- Figures ---------- */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .step {
+  font-size: var(--cae-fs-0);
+  line-height: var(--cae-lh-body);
+}
 
-.md-typeset .trace-grid {
+.md-typeset .grid.cards.burns,
+.md-typeset .steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cae-sp-4);
+  margin-block: var(--cae-sp-5);
+}
+
+.md-typeset .grid.cards > ul {
+  display: contents;
+  margin: 0;
+  padding: 0;
+}
+
+.md-typeset .step__n {
   display: block;
-  width: 100%;
-  max-width: 44rem;
-  margin: 1rem auto;
+  margin-bottom: var(--cae-sp-1);
+  color: var(--cae-accent);
 }
+
+.md-typeset .step__n::before {
+  content: "Step ";
+}
+
+.md-typeset .step > p {
+  margin: 0;
+}
+
+.md-typeset .step > p + p {
+  margin-top: var(--cae-sp-2);
+}
+
+/* Figures and diagrams fill the column, with the same vertical rhythm. */
 
 .md-typeset img.figure,
-.md-typeset .figure img {
+.md-typeset .trace-grid,
+.md-typeset img[src*="assets/charts/"] {
   display: block;
   width: 100%;
-  max-width: 44rem;
-  margin: 1.2rem 0;
+  height: auto;
+  margin: var(--cae-sp-5) 0;
 }
 
-.md-typeset figcaption,
-.md-typeset .caption {
-  font-family: var(--cae-sans);
-  font-size: 0.68rem;
-  color: var(--cae-ink-soft);
-  max-width: var(--cae-measure);
+.md-typeset p:has(> img.figure, > img.trace-grid, > img[src*="assets/charts/"]) {
+  margin: 0;
 }
 
-/* Homepage value panel: the judge's raw number, the corrected one, and the answer key. */
+.md-typeset img[src$=".png"] {
+  border: 1px solid var(--cae-rule);
+  border-radius: var(--cae-r-lg);
+}
+
+.md-typeset .diagram {
+  margin-block: var(--cae-sp-5);
+}
+
+.md-typeset .mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+/* display:block above outranks Material's scheme switch for images, so restate it. */
+[data-md-color-scheme="slate"] .md-typeset img[src$="#only-light"],
+[data-md-color-scheme="default"] .md-typeset img[src$="#only-dark"] {
+  display: none;
+}
+
+/* The value panel: what the judge flagged, the corrected rate, and the true rate. */
+
 .value-panel {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--cae-sp-4);
+  margin-block: var(--cae-sp-5);
 }
 
 .value-panel__figure {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 1rem 1.25rem;
-  border-top: 1px solid var(--cae-ink);
-}
-
-.value-panel__figure--honest {
-  border-top: 3px solid var(--cae-accent);
+  gap: var(--cae-sp-1);
 }
 
 .value-panel__figure > p {
@@ -849,118 +629,54 @@
 }
 
 .value-panel__label {
-  font-family: var(--cae-sans);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--cae-ink-soft);
+  color: var(--cae-soft);
 }
 
 .value-panel__number {
-  font-family: var(--cae-display);
-  font-size: 2.4rem;
-  font-weight: 600;
-  line-height: 1.1;
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-.value-panel__figure--raw .value-panel__number,
-.value-panel__figure--key .value-panel__number {
-  color: var(--cae-ink-soft);
-}
-
-.value-panel__figure--honest .value-panel__number {
-  color: var(--cae-accent);
+  font-family: var(--cae-mono);
+  font-size: var(--cae-fs-4);
+  font-weight: var(--cae-w-strong);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--cae-lh-tight);
+  color: var(--cae-ink);
 }
 
 .value-panel__note {
-  font-family: var(--cae-sans);
-  font-size: 0.74rem;
-  color: var(--cae-ink-soft);
+  font-size: var(--cae-fs--1);
+  color: var(--cae-soft);
+}
+
+.value-panel__figure--honest {
+  border-color: var(--cae-term-rule);
+  background: var(--cae-term);
+}
+
+.value-panel__figure--honest .value-panel__label,
+.value-panel__figure--honest .value-panel__note {
+  color: var(--cae-term-soft);
+}
+
+.value-panel__figure--honest .value-panel__number {
+  color: var(--cae-term-accent);
 }
 
 .value-panel__why {
   grid-column: 1 / -1;
+}
+
+.value-panel__why > p {
+  margin: 0;
+}
+
+/* Home. The page hides both sidebars, so its column is set to the content-page measure, and the
+   hero is the one full-bleed band. */
+
+.md-content:has(.hero) .md-content__inner {
   max-width: var(--cae-measure);
-  font-size: 0.8rem;
+  margin-inline: auto;
+  padding-inline: var(--cae-sp-4);
 }
 
-/* The four-step strip some pages still use. */
-.md-typeset .steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.md-typeset .step {
-  padding: 0.9rem 0 0.75rem;
-  border-top: 1px solid var(--cae-ink);
-  font-family: var(--cae-sans);
-  font-size: 0.74rem;
-}
-
-.md-typeset .step > p {
-  margin: 0.25rem 0 0.5rem;
-}
-
-.md-typeset .step__n {
-  font-family: var(--cae-display);
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--cae-accent);
-}
-
-/* ---------- Small screens ---------- */
-
-@media screen and (max-width: 44.9375em) {
-  .md-typeset {
-    font-size: 0.82rem;
-  }
-
-  .md-typeset h1 {
-    font-size: 1.65rem;
-  }
-
-  .md-typeset h2 {
-    font-size: 1.2rem;
-  }
-
-  .value-panel {
-    grid-template-columns: 1fr;
-  }
-
-  /* Material draws each diagram inside a shadow root sized to its host, so on a phone a diagram
-     shrinks its text until it can't be read. Diagrams wrapped in .diagram keep a readable minimum
-     width and scroll sideways instead. */
-  .md-typeset .diagram {
-    overflow-x: auto;
-  }
-
-  .md-typeset .diagram > .mermaid {
-    min-width: 36rem;
-  }
-
-  /* Charts are drawn wide for a desktop column; on a phone they keep a readable width and scroll
-     sideways, like the diagrams. */
-  .md-typeset p:has(> img[src*="assets/charts/"]) {
-    overflow-x: auto;
-  }
-
-  .md-typeset img[src*="assets/charts/"] {
-    min-width: 40rem;
-    max-width: none;
-  }
-}
-
-@media print {
-  .md-typeset {
-    font-size: 10.5pt;
-  }
-}
-
-/* The home page keeps its h1 for the document outline and search, and shows the hero instead. */
 .md-typeset h1:has(+ .hero) {
   position: absolute;
   width: 1px;
@@ -971,4 +687,162 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+.md-typeset .hero {
+  position: relative;
+  margin: 0 calc(50% - 50vw) var(--cae-sp-7);
+  padding: var(--cae-sp-8) calc(50vw - 50%) var(--cae-sp-7);
+  border-bottom: 1px solid var(--cae-term-rule);
+  background:
+    radial-gradient(circle at 1px 1px, #ffffff12 1px, transparent 0) 0 0 / 18px 18px,
+    linear-gradient(160deg, var(--cae-term-2) 0%, var(--cae-term) 65%);
+  color: var(--cae-term-ink);
+}
+
+.md-content:has(.hero) .md-content__inner {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.md-main__inner:has(.hero) {
+  margin-top: 0;
+}
+
+.md-content:has(.hero) .md-content__inner::before {
+  display: none;
+}
+
+.md-typeset .hero::before {
+  content: "$ calibrated-agent-evaluation run --ci";
+  display: block;
+  margin-bottom: var(--cae-sp-5);
+  font-family: var(--cae-mono);
+  font-size: var(--cae-fs--1);
+  color: var(--cae-term-accent);
+}
+
+.md-typeset .hero-title {
+  margin: 0 0 var(--cae-sp-5);
+  font-size: var(--cae-fs-5);
+  font-weight: var(--cae-w-strong);
+  line-height: var(--cae-lh-display);
+  letter-spacing: -0.035em;
+  color: #ffffff;
+}
+
+.md-typeset .hero-title mark {
+  background: none;
+  color: var(--cae-term-accent);
+}
+
+.md-typeset .hero-lead {
+  margin: 0 0 var(--cae-sp-6);
+  font-size: var(--cae-fs-1);
+  line-height: 1.55;
+  color: var(--cae-term-soft);
+}
+
+.md-typeset .cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cae-sp-3);
+}
+
+.md-typeset .cta > p {
+  display: contents;
+}
+
+.md-typeset .hero .md-button {
+  border-color: var(--cae-term-rule);
+  color: var(--cae-term-ink);
+}
+
+.md-typeset .hero .md-button--primary {
+  border-color: #7c3aed;
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.md-typeset .hero .md-button:is(:hover, :focus) {
+  border-color: var(--cae-term-accent);
+  background: var(--cae-term-accent);
+  color: var(--cae-term);
+}
+
+.md-content:has(.hero) .md-typeset h2:first-of-type {
+  margin-top: 0;
+}
+
+.md-typeset .analogy {
+  margin-block: var(--cae-sp-5);
+  padding: var(--cae-sp-4) var(--cae-sp-5);
+  border-left: 2px solid var(--cae-accent);
+  background: var(--cae-panel);
+  border-radius: 0 var(--cae-r-lg) var(--cae-r-lg) 0;
+  font-size: var(--cae-fs-1);
+  line-height: 1.55;
+}
+
+.md-typeset .analogy > p {
+  margin: 0;
+}
+
+/* Small screens: one column everywhere. */
+
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .grid.cards.burns,
+  .md-typeset .steps,
+  .value-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .md-typeset .hero {
+    padding-block: var(--cae-sp-7) var(--cae-sp-6);
+  }
+
+  .md-typeset .hero-title {
+    font-size: var(--cae-fs-4);
+  }
+
+  .md-typeset .diagram {
+    overflow-x: auto;
+  }
+
+  .md-typeset .diagram > .mermaid {
+    min-width: 36rem;
+  }
+
+  /* Chart text is drawn at the chart's own size, so a phone scrolls the chart instead of
+     shrinking its labels below reading size. */
+  .md-typeset p:has(> img.trace-grid, > img.figure, > img[src*="assets/charts/"]) {
+    overflow-x: auto;
+  }
+
+  .md-typeset img.trace-grid,
+  .md-typeset img.figure,
+  .md-typeset img[src*="assets/charts/"] {
+    width: 36rem;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .md-typeset .hero {
+    margin-inline: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+  }
+
+  .md-typeset .hero-title,
+  .md-typeset .hero-lead {
+    color: inherit;
+  }
 }

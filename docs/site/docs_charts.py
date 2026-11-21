@@ -36,6 +36,10 @@ _DATA = REPO_ROOT / "docs" / "site" / "data"
 _COVERAGE = REPO_ROOT / "fixtures" / "expected" / "coverage" / "rg_interval_coverage.json"
 _SYNTHETIC = REPO_ROOT / "fixtures" / "calibration" / "synthetic_9090.json"
 GATE = 0.80
+# The site's font first. A chart shown through <img> cannot load the site's web font, so a reader
+# without Geist installed sees the next family in the list.
+_MPL_FONTS = ("Geist", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans")
+_SVG_FONTS = "Geist, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif"
 
 
 @dataclass(frozen=True)
@@ -49,25 +53,26 @@ class Theme:
     series: tuple[str, str, str]
 
 
-# Series slots: the corrected estimate (verdigris), the naive or raw number (fail red), and a
-# refused or insufficient state (sepia), following the brand's state colors.
+# Series slots: the corrected estimate (teal), the naive or raw number (fail red), and a refused
+# or insufficient state (gray), matching the site's pass, fail and muted colors. Each mark clears
+# 3:1 against the page background of its scheme.
 LIGHT = Theme(
     "light",
-    "#1e2440",
-    "#4f5571",
-    "#e4e0d6",
-    "#8a8578",
-    "#ece6da",
-    ("#287a70", "#c0392b", "#776c59"),
+    "#16141d",
+    "#56526a",
+    "#dcd9e5",
+    "#8a8599",
+    "#efedf5",
+    ("#0f766e", "#b91c1c", "#6b6680"),
 )
 DARK = Theme(
     "dark",
-    "#f5f0e6",
-    "#c4c0b6",
-    "#343a55",
-    "#8f93a6",
-    "#2a3049",
-    ("#5fb3a6", "#e06a5c", "#a89c86"),
+    "#ece9f4",
+    "#a7a1b9",
+    "#34304a",
+    "#7d7791",
+    "#1f1b2a",
+    ("#2dd4bf", "#f87171", "#a8a2b8"),
 )
 
 
@@ -170,7 +175,7 @@ def calibration_size(theme: Theme) -> Figure:
             ha="center",
             color=theme.text,
             fontsize=10,
-            fontweight="bold",
+            fontweight="semibold",
         )
     right.invert_xaxis()
     right.set(
@@ -403,14 +408,14 @@ def trace_grid(theme: Theme) -> bytes:
 
     grid_w = pad * 2 + cols * step - gap
     grid_h = pad * 2 + rows * step - gap
-    font = "font-family=\"'Helvetica Neue', Helvetica, Arial, sans-serif\""
+    font = f'font-family="{_SVG_FONTS}"'
 
     # The legend sits under the grid in two columns, so the picture stays narrow enough to read
     # on a phone.
     def item(x: float, y: float, swatch: str, head: str, note: str) -> str:
         return (
             f'<g transform="translate({x} {y})">{swatch}'
-            f'<text x="24" y="12" font-size="16" font-weight="700" fill="{theme.text}">'
+            f'<text x="24" y="12" font-size="16" font-weight="600" fill="{theme.text}">'
             f"{head}</text>"
             f'<text x="24" y="32" font-size="14" fill="{theme.muted}">{note}</text></g>'
         )
@@ -480,9 +485,9 @@ def render_all() -> dict[str, bytes]:
             "svg.hashsalt": "calibrated-agent-evaluation-docs",
             "svg.fonttype": "none",
             "font.family": "sans-serif",
-            "font.sans-serif": ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"],
+            "font.sans-serif": list(_MPL_FONTS),
             "axes.titlesize": 11,
-            "axes.titleweight": "bold",
+            "axes.titleweight": "semibold",
             "axes.labelsize": 9,
         }
     ):

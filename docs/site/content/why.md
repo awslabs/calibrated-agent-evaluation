@@ -74,9 +74,9 @@ This toolkit builds on that practice and turns the advice into checks that run o
 ## What happens to one team
 
 The [walkthrough](walkthrough/index.md) follows a support team whose agent, OrderBot, answers
-order questions and issues refunds. OrderBot is a sample agent that ships with the toolkit, and its
-customers are simulated, so its numbers are illustrative. Each problem below is shown on OrderBot
-where its sample can show it, and on another sample that ships with the toolkit where it can't.
+order questions and issues refunds. OrderBot ships with the toolkit, so you can run every step yourself. Each problem below is shown on
+OrderBot where its data can show it, and on another sample that ships with the toolkit where it
+can't.
 
 ![Four ways a judge's number misleads: a missed failure, over-flagging, a generic score, and a fix that only works on the eval set](assets/images/four-ways-light.svg#only-light){ .figure }
 ![Four ways a judge's number misleads: a missed failure, over-flagging, a generic score, and a fix that only works on the eval set](assets/images/four-ways-dark.svg#only-dark){ .figure }
@@ -117,12 +117,12 @@ A gated build passes or fails, and when it can't decide, the message says what t
 | Refused | There is nothing to gate: no verdicts from a judge that passed its check, or none on randomly drawn runs. | Run the step the message names first. |
 
 The cost is mostly people's time. Before a judge can score, someone who knows what a good reply
-looks like labels a sample of its runs: about 55 failures and 55 passes for a judge you expect to
-be right about 9 times in 10. Quoting the corrected failure rate needs more, up to 162 of each, and
-at least 150 randomly drawn runs for the judge to score. We haven't timed a labeling session yet, so
-there is no hours estimate. When the sample judge kit was recorded on Bedrock, its judge made 944
-model calls for $2.11, about $2.24 per 1,000. Everything the toolkit computes runs in seconds on a
-laptop. A judge that passes its check is reused until its model or prompt changes.
+looks like labels a sample of its runs: about 55 failures and 55 passes for a judge you expect to be
+right about 9 times in 10. Quoting the corrected failure rate needs more, up to 162 of each, and at
+least 150 randomly drawn runs for the judge to score. When the sample judge kit was recorded on
+Bedrock, its judge made 944 model calls for $2.11, about $2.24 per 1,000. Everything the toolkit
+computes runs in seconds on a laptop. A judge that passes its check is reused until its model or
+prompt changes.
 
 ## When this is overkill
 
@@ -135,9 +135,6 @@ laptop. A judge that passes its check is reused until its model or prompt change
   any measurement.
 - Failures are frequent and obvious. If half the runs are visibly broken, fix them first. The
   check earns its keep once the remaining failures are rare enough to hide.
-
-The toolkit is at version 0.1.0. The results on this site come from synthetic samples and the
-OrderBot sample agent; there is no production case study yet.
 
 [^openai]: OpenAI, "Expanding on what we missed with sycophancy", May 2025.
     <https://openai.com/index/expanding-on-sycophancy/>

@@ -12,8 +12,7 @@ sentence.
 
 Every page that teaches uses the same team: a customer-support team whose agent, OrderBot,
 answers order questions and issues refunds. OrderBot and ClaimsCrew are the reference agents in
-`corpus/agents/`. The data is synthetic, and pages say so where a number appears for the first
-time. Do not invent a second team.
+`corpus/agents/`. Do not invent a second team.
 
 The team runs into four problems over the walkthrough, and each one is told once, on the page
 where it belongs:
@@ -28,6 +27,10 @@ where it belongs:
 Show a problem on OrderBot's own captured output when the sample can show it. When it can't, use
 another reference sample (ClaimsCrew, the synthetic rate sample, the AgentCore audit) and name it.
 Never present another sample's numbers as OrderBot's.
+
+Do not write project-status disclaimers ("there is no production case study", "nobody has timed
+this yet", "these numbers are illustrative"). Say what a sample is where the reader needs it to
+read a number, for example that a sample is synthetic so its true rate is known.
 
 ## Rules
 
